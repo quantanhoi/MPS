@@ -1,0 +1,6 @@
+E:\Vorlesung\Video\3rd Sem\MPS\MPS-W22_Prakt_1.cydsn\MPS-W22_Prakt_1.cyprj|95048a8b-4d85-4ef0-b135-1defaca0db2a
+D:\Tools\PSoc Creator\PSoC Creator\4.4\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|bb74cb71-3f72-4671-ad75-7e6fc7f8a351
+C:\Users\Trung\Documents\PSoC Creator\4.4\Downloads ( 4.4).cylib\Downloads ( 4.4).cyprj|e8e710af-954a-430f-ab47-996bd13f24d1
+D:\Tools\PSoc Creator\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|49a86a17-3f0a-480f-a7d4-12f4297f467d
+D:\Tools\PSoc Creator\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|f21d937e-c6fd-4e5e-a7f7-185e0c3b0857
+D:\Tools\PSoc Creator\PSoC Creator\4.4\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|f85a5ea2-976a-498f-b26f-2c1ee3de04ab

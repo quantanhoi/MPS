@@ -1,0 +1,1305 @@
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccWlTsVT.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"cymetadata.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.global	cy_metadata
+  20              		.global	cy_meta_flashprotect
+  21              		.global	cy_meta_wonvl
+  22              		.global	cy_meta_custnvl
+  23              		.global	cy_meta_configecc
+  24              		.section	.cyconfigecc,"a",%progbits
+  25              		.align	2
+  26              		.type	cy_meta_configecc, %object
+  27              		.size	cy_meta_configecc, 780
+  28              	cy_meta_configecc:
+  29 0000 01       		.byte	1
+  30 0001 45       		.byte	69
+  31 0002 00       		.byte	0
+  32 0003 40       		.byte	64
+  33 0004 01       		.byte	1
+  34 0005 52       		.byte	82
+  35 0006 00       		.byte	0
+  36 0007 40       		.byte	64
+  37 0008 03       		.byte	3
+  38 0009 64       		.byte	100
+  39 000a 00       		.byte	0
+  40 000b 40       		.byte	64
+  41 000c 01       		.byte	1
+  42 000d 03       		.byte	3
+  43 000e 01       		.byte	1
+  44 000f 40       		.byte	64
+  45 0010 04       		.byte	4
+  46 0011 0B       		.byte	11
+  47 0012 01       		.byte	1
+  48 0013 40       		.byte	64
+  49 0014 56       		.byte	86
+  50 0015 0C       		.byte	12
+  51 0016 01       		.byte	1
+  52 0017 40       		.byte	64
+  53 0018 48       		.byte	72
+  54 0019 0D       		.byte	13
+  55 001a 01       		.byte	1
+  56 001b 40       		.byte	64
+  57 001c 67       		.byte	103
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccWlTsVT.s 			page 2
+
+
+  58 001d 0E       		.byte	14
+  59 001e 01       		.byte	1
+  60 001f 40       		.byte	64
+  61 0020 33       		.byte	51
+  62 0021 0F       		.byte	15
+  63 0022 01       		.byte	1
+  64 0023 40       		.byte	64
+  65 0024 02       		.byte	2
+  66 0025 40       		.byte	64
+  67 0026 01       		.byte	1
+  68 0027 40       		.byte	64
+  69 0028 03       		.byte	3
+  70 0029 41       		.byte	65
+  71 002a 01       		.byte	1
+  72 002b 40       		.byte	64
+  73 002c 05       		.byte	5
+  74 002d 45       		.byte	69
+  75 002e 01       		.byte	1
+  76 002f 40       		.byte	64
+  77 0030 04       		.byte	4
+  78 0031 46       		.byte	70
+  79 0032 01       		.byte	1
+  80 0033 40       		.byte	64
+  81 0034 02       		.byte	2
+  82 0035 50       		.byte	80
+  83 0036 01       		.byte	1
+  84 0037 40       		.byte	64
+  85 0038 01       		.byte	1
+  86 0039 51       		.byte	81
+  87 003a 01       		.byte	1
+  88 003b 40       		.byte	64
+  89 003c 35       		.byte	53
+  90 003d 02       		.byte	2
+  91 003e 14       		.byte	20
+  92 003f 01       		.byte	1
+  93 0040 8C       		.byte	-116
+  94 0041 38       		.byte	56
+  95 0042 8D       		.byte	-115
+  96 0043 72       		.byte	114
+  97 0044 8F       		.byte	-113
+  98 0045 0F       		.byte	15
+  99 0046 E6       		.byte	-26
+ 100 0047 02       		.byte	2
+ 101 0048 AF       		.byte	-81
+ 102 0049 10       		.byte	16
+ 103 004a B0       		.byte	-80
+ 104 004b 02       		.byte	2
+ 105 004c B5       		.byte	-75
+ 106 004d 02       		.byte	2
+ 107 004e EC       		.byte	-20
+ 108 004f 02       		.byte	2
+ 109 0050 02       		.byte	2
+ 110 0051 4C       		.byte	76
+ 111 0052 07       		.byte	7
+ 112 0053 01       		.byte	1
+ 113 0054 08       		.byte	8
+ 114 0055 31       		.byte	49
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccWlTsVT.s 			page 3
+
+
+ 115 0056 0A       		.byte	10
+ 116 0057 0E       		.byte	14
+ 117 0058 10       		.byte	16
+ 118 0059 6C       		.byte	108
+ 119 005a 12       		.byte	18
+ 120 005b 03       		.byte	3
+ 121 005c 1E       		.byte	30
+ 122 005d 13       		.byte	19
+ 123 005e 22       		.byte	34
+ 124 005f 08       		.byte	8
+ 125 0060 27       		.byte	39
+ 126 0061 01       		.byte	1
+ 127 0062 28       		.byte	40
+ 128 0063 31       		.byte	49
+ 129 0064 2A       		.byte	42
+ 130 0065 46       		.byte	70
+ 131 0066 30       		.byte	48
+ 132 0067 0F       		.byte	15
+ 133 0068 32       		.byte	50
+ 134 0069 30       		.byte	48
+ 135 006a 34       		.byte	52
+ 136 006b 4A       		.byte	74
+ 137 006c 37       		.byte	55
+ 138 006d 01       		.byte	1
+ 139 006e 38       		.byte	56
+ 140 006f 08       		.byte	8
+ 141 0070 3A       		.byte	58
+ 142 0071 22       		.byte	34
+ 143 0072 3E       		.byte	62
+ 144 0073 04       		.byte	4
+ 145 0074 3F       		.byte	63
+ 146 0075 40       		.byte	64
+ 147 0076 40       		.byte	64
+ 148 0077 03       		.byte	3
+ 149 0078 46       		.byte	70
+ 150 0079 04       		.byte	4
+ 151 007a 49       		.byte	73
+ 152 007b FF       		.byte	-1
+ 153 007c 4A       		.byte	74
+ 154 007d 07       		.byte	7
+ 155 007e 4B       		.byte	75
+ 156 007f FF       		.byte	-1
+ 157 0080 4C       		.byte	76
+ 158 0081 40       		.byte	64
+ 159 0082 4D       		.byte	77
+ 160 0083 20       		.byte	32
+ 161 0084 4E       		.byte	78
+ 162 0085 F0       		.byte	-16
+ 163 0086 4F       		.byte	79
+ 164 0087 05       		.byte	5
+ 165 0088 50       		.byte	80
+ 166 0089 08       		.byte	8
+ 167 008a 54       		.byte	84
+ 168 008b 18       		.byte	24
+ 169 008c 56       		.byte	86
+ 170 008d 04       		.byte	4
+ 171 008e 58       		.byte	88
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccWlTsVT.s 			page 4
+
+
+ 172 008f 04       		.byte	4
+ 173 0090 59       		.byte	89
+ 174 0091 04       		.byte	4
+ 175 0092 5A       		.byte	90
+ 176 0093 04       		.byte	4
+ 177 0094 5B       		.byte	91
+ 178 0095 04       		.byte	4
+ 179 0096 5F       		.byte	95
+ 180 0097 01       		.byte	1
+ 181 0098 60       		.byte	96
+ 182 0099 40       		.byte	64
+ 183 009a 61       		.byte	97
+ 184 009b A8       		.byte	-88
+ 185 009c 62       		.byte	98
+ 186 009d 40       		.byte	64
+ 187 009e 63       		.byte	99
+ 188 009f 20       		.byte	32
+ 189 00a0 80       		.byte	-128
+ 190 00a1 04       		.byte	4
+ 191 00a2 84       		.byte	-124
+ 192 00a3 1C       		.byte	28
+ 193 00a4 85       		.byte	-123
+ 194 00a5 0C       		.byte	12
+ 195 00a6 86       		.byte	-122
+ 196 00a7 E1       		.byte	-31
+ 197 00a8 89       		.byte	-119
+ 198 00a9 04       		.byte	4
+ 199 00aa 8A       		.byte	-118
+ 200 00ab 63       		.byte	99
+ 201 00ac 8D       		.byte	-115
+ 202 00ad 63       		.byte	99
+ 203 00ae 90       		.byte	-112
+ 204 00af 3C       		.byte	60
+ 205 00b0 91       		.byte	-111
+ 206 00b1 73       		.byte	115
+ 207 00b2 92       		.byte	-110
+ 208 00b3 C2       		.byte	-62
+ 209 00b4 93       		.byte	-109
+ 210 00b5 0C       		.byte	12
+ 211 00b6 94       		.byte	-108
+ 212 00b7 FF       		.byte	-1
+ 213 00b8 95       		.byte	-107
+ 214 00b9 7F       		.byte	127
+ 215 00ba 99       		.byte	-103
+ 216 00bb 42       		.byte	66
+ 217 00bc 9A       		.byte	-102
+ 218 00bd 04       		.byte	4
+ 219 00be 9C       		.byte	-100
+ 220 00bf E7       		.byte	-25
+ 221 00c0 9D       		.byte	-99
+ 222 00c1 08       		.byte	8
+ 223 00c2 9E       		.byte	-98
+ 224 00c3 18       		.byte	24
+ 225 00c4 A0       		.byte	-96
+ 226 00c5 10       		.byte	16
+ 227 00c6 A1       		.byte	-95
+ 228 00c7 1C       		.byte	28
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccWlTsVT.s 			page 5
+
+
+ 229 00c8 A3       		.byte	-93
+ 230 00c9 63       		.byte	99
+ 231 00ca A4       		.byte	-92
+ 232 00cb 08       		.byte	8
+ 233 00cc A7       		.byte	-89
+ 234 00cd 63       		.byte	99
+ 235 00ce A8       		.byte	-88
+ 236 00cf 18       		.byte	24
+ 237 00d0 A9       		.byte	-87
+ 238 00d1 1F       		.byte	31
+ 239 00d2 AB       		.byte	-85
+ 240 00d3 60       		.byte	96
+ 241 00d4 AD       		.byte	-83
+ 242 00d5 21       		.byte	33
+ 243 00d6 AF       		.byte	-81
+ 244 00d7 80       		.byte	-128
+ 245 00d8 B0       		.byte	-80
+ 246 00d9 1F       		.byte	31
+ 247 00da B1       		.byte	-79
+ 248 00db 0F       		.byte	15
+ 249 00dc B2       		.byte	-78
+ 250 00dd 58       		.byte	88
+ 251 00de B3       		.byte	-77
+ 252 00df 10       		.byte	16
+ 253 00e0 B4       		.byte	-76
+ 254 00e1 38       		.byte	56
+ 255 00e2 B5       		.byte	-75
+ 256 00e3 80       		.byte	-128
+ 257 00e4 B6       		.byte	-74
+ 258 00e5 80       		.byte	-128
+ 259 00e6 B7       		.byte	-73
+ 260 00e7 60       		.byte	96
+ 261 00e8 B8       		.byte	-72
+ 262 00e9 80       		.byte	-128
+ 263 00ea BA       		.byte	-70
+ 264 00eb 0A       		.byte	10
+ 265 00ec BB       		.byte	-69
+ 266 00ed 02       		.byte	2
+ 267 00ee BF       		.byte	-65
+ 268 00ef 04       		.byte	4
+ 269 00f0 D6       		.byte	-42
+ 270 00f1 02       		.byte	2
+ 271 00f2 D7       		.byte	-41
+ 272 00f3 12       		.byte	18
+ 273 00f4 D8       		.byte	-40
+ 274 00f5 04       		.byte	4
+ 275 00f6 D9       		.byte	-39
+ 276 00f7 04       		.byte	4
+ 277 00f8 DB       		.byte	-37
+ 278 00f9 04       		.byte	4
+ 279 00fa DF       		.byte	-33
+ 280 00fb 01       		.byte	1
+ 281 00fc 01       		.byte	1
+ 282 00fd 02       		.byte	2
+ 283 00fe 02       		.byte	2
+ 284 00ff 14       		.byte	20
+ 285 0100 05       		.byte	5
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccWlTsVT.s 			page 6
+
+
+ 286 0101 10       		.byte	16
+ 287 0102 07       		.byte	7
+ 288 0103 44       		.byte	68
+ 289 0104 08       		.byte	8
+ 290 0105 04       		.byte	4
+ 291 0106 09       		.byte	9
+ 292 0107 20       		.byte	32
+ 293 0108 0A       		.byte	10
+ 294 0109 42       		.byte	66
+ 295 010a 0E       		.byte	14
+ 296 010b 80       		.byte	-128
+ 297 010c 0F       		.byte	15
+ 298 010d 01       		.byte	1
+ 299 010e 10       		.byte	16
+ 300 010f 80       		.byte	-128
+ 301 0110 13       		.byte	19
+ 302 0111 18       		.byte	24
+ 303 0112 16       		.byte	22
+ 304 0113 40       		.byte	64
+ 305 0114 17       		.byte	23
+ 306 0115 20       		.byte	32
+ 307 0116 19       		.byte	25
+ 308 0117 01       		.byte	1
+ 309 0118 1A       		.byte	26
+ 310 0119 41       		.byte	65
+ 311 011a 1B       		.byte	27
+ 312 011b 28       		.byte	40
+ 313 011c 1D       		.byte	29
+ 314 011d 18       		.byte	24
+ 315 011e 1E       		.byte	30
+ 316 011f 80       		.byte	-128
+ 317 0120 1F       		.byte	31
+ 318 0121 01       		.byte	1
+ 319 0122 21       		.byte	33
+ 320 0123 23       		.byte	35
+ 321 0124 22       		.byte	34
+ 322 0125 05       		.byte	5
+ 323 0126 23       		.byte	35
+ 324 0127 02       		.byte	2
+ 325 0128 27       		.byte	39
+ 326 0129 01       		.byte	1
+ 327 012a 28       		.byte	40
+ 328 012b 02       		.byte	2
+ 329 012c 29       		.byte	41
+ 330 012d 05       		.byte	5
+ 331 012e 2A       		.byte	42
+ 332 012f 14       		.byte	20
+ 333 0130 2B       		.byte	43
+ 334 0131 08       		.byte	8
+ 335 0132 2F       		.byte	47
+ 336 0133 20       		.byte	32
+ 337 0134 30       		.byte	48
+ 338 0135 84       		.byte	-124
+ 339 0136 31       		.byte	49
+ 340 0137 02       		.byte	2
+ 341 0138 32       		.byte	50
+ 342 0139 18       		.byte	24
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccWlTsVT.s 			page 7
+
+
+ 343 013a 38       		.byte	56
+ 344 013b 68       		.byte	104
+ 345 013c 3F       		.byte	63
+ 346 013d 04       		.byte	4
+ 347 013e 45       		.byte	69
+ 348 013f 08       		.byte	8
+ 349 0140 46       		.byte	70
+ 350 0141 80       		.byte	-128
+ 351 0142 47       		.byte	71
+ 352 0143 01       		.byte	1
+ 353 0144 4F       		.byte	79
+ 354 0145 03       		.byte	3
+ 355 0146 56       		.byte	86
+ 356 0147 40       		.byte	64
+ 357 0148 5A       		.byte	90
+ 358 0149 08       		.byte	8
+ 359 014a 5F       		.byte	95
+ 360 014b 02       		.byte	2
+ 361 014c 65       		.byte	101
+ 362 014d 20       		.byte	32
+ 363 014e 66       		.byte	102
+ 364 014f 80       		.byte	-128
+ 365 0150 67       		.byte	103
+ 366 0151 40       		.byte	64
+ 367 0152 69       		.byte	105
+ 368 0153 50       		.byte	80
+ 369 0154 6B       		.byte	107
+ 370 0155 10       		.byte	16
+ 371 0156 70       		.byte	112
+ 372 0157 94       		.byte	-108
+ 373 0158 73       		.byte	115
+ 374 0159 18       		.byte	24
+ 375 015a 87       		.byte	-121
+ 376 015b 40       		.byte	64
+ 377 015c 90       		.byte	-112
+ 378 015d 40       		.byte	64
+ 379 015e 92       		.byte	-110
+ 380 015f 20       		.byte	32
+ 381 0160 93       		.byte	-109
+ 382 0161 24       		.byte	36
+ 383 0162 95       		.byte	-107
+ 384 0163 52       		.byte	82
+ 385 0164 96       		.byte	-106
+ 386 0165 01       		.byte	1
+ 387 0166 97       		.byte	-105
+ 388 0167 02       		.byte	2
+ 389 0168 99       		.byte	-103
+ 390 0169 24       		.byte	36
+ 391 016a 9B       		.byte	-101
+ 392 016b 60       		.byte	96
+ 393 016c 9C       		.byte	-100
+ 394 016d 02       		.byte	2
+ 395 016e 9E       		.byte	-98
+ 396 016f 40       		.byte	64
+ 397 0170 9F       		.byte	-97
+ 398 0171 14       		.byte	20
+ 399 0172 A2       		.byte	-94
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccWlTsVT.s 			page 8
+
+
+ 400 0173 08       		.byte	8
+ 401 0174 A7       		.byte	-89
+ 402 0175 21       		.byte	33
+ 403 0176 AA       		.byte	-86
+ 404 0177 01       		.byte	1
+ 405 0178 AB       		.byte	-85
+ 406 0179 08       		.byte	8
+ 407 017a C0       		.byte	-64
+ 408 017b 5E       		.byte	94
+ 409 017c C2       		.byte	-62
+ 410 017d 9F       		.byte	-97
+ 411 017e C4       		.byte	-60
+ 412 017f 5E       		.byte	94
+ 413 0180 CA       		.byte	-54
+ 414 0181 4F       		.byte	79
+ 415 0182 CC       		.byte	-52
+ 416 0183 0F       		.byte	15
+ 417 0184 CE       		.byte	-50
+ 418 0185 4E       		.byte	78
+ 419 0186 D0       		.byte	-48
+ 420 0187 40       		.byte	64
+ 421 0188 D6       		.byte	-42
+ 422 0189 82       		.byte	-126
+ 423 018a D8       		.byte	-40
+ 424 018b B0       		.byte	-80
+ 425 018c 05       		.byte	5
+ 426 018d 50       		.byte	80
+ 427 018e 07       		.byte	7
+ 428 018f 26       		.byte	38
+ 429 0190 09       		.byte	9
+ 430 0191 7C       		.byte	124
+ 431 0192 0C       		.byte	12
+ 432 0193 01       		.byte	1
+ 433 0194 0D       		.byte	13
+ 434 0195 04       		.byte	4
+ 435 0196 0F       		.byte	15
+ 436 0197 19       		.byte	25
+ 437 0198 19       		.byte	25
+ 438 0199 7C       		.byte	124
+ 439 019a 1E       		.byte	30
+ 440 019b 02       		.byte	2
+ 441 019c 24       		.byte	36
+ 442 019d 01       		.byte	1
+ 443 019e 28       		.byte	40
+ 444 019f 01       		.byte	1
+ 445 01a0 2D       		.byte	45
+ 446 01a1 28       		.byte	40
+ 447 01a2 2E       		.byte	46
+ 448 01a3 02       		.byte	2
+ 449 01a4 2F       		.byte	47
+ 450 01a5 46       		.byte	70
+ 451 01a6 31       		.byte	49
+ 452 01a7 1C       		.byte	28
+ 453 01a8 32       		.byte	50
+ 454 01a9 01       		.byte	1
+ 455 01aa 34       		.byte	52
+ 456 01ab 02       		.byte	2
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccWlTsVT.s 			page 9
+
+
+ 457 01ac 35       		.byte	53
+ 458 01ad 60       		.byte	96
+ 459 01ae 37       		.byte	55
+ 460 01af 03       		.byte	3
+ 461 01b0 3B       		.byte	59
+ 462 01b1 08       		.byte	8
+ 463 01b2 3E       		.byte	62
+ 464 01b3 10       		.byte	16
+ 465 01b4 3F       		.byte	63
+ 466 01b5 40       		.byte	64
+ 467 01b6 40       		.byte	64
+ 468 01b7 43       		.byte	67
+ 469 01b8 41       		.byte	65
+ 470 01b9 06       		.byte	6
+ 471 01ba 42       		.byte	66
+ 472 01bb 02       		.byte	2
+ 473 01bc 44       		.byte	68
+ 474 01bd 01       		.byte	1
+ 475 01be 45       		.byte	69
+ 476 01bf 0C       		.byte	12
+ 477 01c0 47       		.byte	71
+ 478 01c1 E0       		.byte	-32
+ 479 01c2 48       		.byte	72
+ 480 01c3 21       		.byte	33
+ 481 01c4 49       		.byte	73
+ 482 01c5 FF       		.byte	-1
+ 483 01c6 4A       		.byte	74
+ 484 01c7 FF       		.byte	-1
+ 485 01c8 4B       		.byte	75
+ 486 01c9 FF       		.byte	-1
+ 487 01ca 4C       		.byte	76
+ 488 01cb 62       		.byte	98
+ 489 01cc 4D       		.byte	77
+ 490 01cd A0       		.byte	-96
+ 491 01ce 4E       		.byte	78
+ 492 01cf F0       		.byte	-16
+ 493 01d0 4F       		.byte	79
+ 494 01d1 41       		.byte	65
+ 495 01d2 50       		.byte	80
+ 496 01d3 0C       		.byte	12
+ 497 01d4 58       		.byte	88
+ 498 01d5 04       		.byte	4
+ 499 01d6 59       		.byte	89
+ 500 01d7 04       		.byte	4
+ 501 01d8 5A       		.byte	90
+ 502 01d9 04       		.byte	4
+ 503 01da 5F       		.byte	95
+ 504 01db 01       		.byte	1
+ 505 01dc 66       		.byte	102
+ 506 01dd 40       		.byte	64
+ 507 01de 67       		.byte	103
+ 508 01df 02       		.byte	2
+ 509 01e0 69       		.byte	105
+ 510 01e1 10       		.byte	16
+ 511 01e2 6A       		.byte	106
+ 512 01e3 30       		.byte	48
+ 513 01e4 6B       		.byte	107
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccWlTsVT.s 			page 10
+
+
+ 514 01e5 10       		.byte	16
+ 515 01e6 6D       		.byte	109
+ 516 01e7 10       		.byte	16
+ 517 01e8 6E       		.byte	110
+ 518 01e9 10       		.byte	16
+ 519 01ea 6F       		.byte	111
+ 520 01eb 12       		.byte	18
+ 521 01ec 80       		.byte	-128
+ 522 01ed 1C       		.byte	28
+ 523 01ee 81       		.byte	-127
+ 524 01ef 20       		.byte	32
+ 525 01f0 82       		.byte	-126
+ 526 01f1 02       		.byte	2
+ 527 01f2 83       		.byte	-125
+ 528 01f3 45       		.byte	69
+ 529 01f4 84       		.byte	-124
+ 530 01f5 10       		.byte	16
+ 531 01f6 86       		.byte	-122
+ 532 01f7 0C       		.byte	12
+ 533 01f8 89       		.byte	-119
+ 534 01f9 03       		.byte	3
+ 535 01fa 8B       		.byte	-117
+ 536 01fb 44       		.byte	68
+ 537 01fc 90       		.byte	-112
+ 538 01fd 20       		.byte	32
+ 539 01fe 92       		.byte	-110
+ 540 01ff 03       		.byte	3
+ 541 0200 95       		.byte	-107
+ 542 0201 53       		.byte	83
+ 543 0202 97       		.byte	-105
+ 544 0203 04       		.byte	4
+ 545 0204 98       		.byte	-104
+ 546 0205 14       		.byte	20
+ 547 0206 99       		.byte	-103
+ 548 0207 53       		.byte	83
+ 549 0208 9B       		.byte	-101
+ 550 0209 0C       		.byte	12
+ 551 020a 9F       		.byte	-97
+ 552 020b 08       		.byte	8
+ 553 020c A0       		.byte	-96
+ 554 020d 10       		.byte	16
+ 555 020e A4       		.byte	-92
+ 556 020f 0C       		.byte	12
+ 557 0210 A6       		.byte	-90
+ 558 0211 11       		.byte	17
+ 559 0212 A9       		.byte	-87
+ 560 0213 80       		.byte	-128
+ 561 0214 AC       		.byte	-84
+ 562 0215 09       		.byte	9
+ 563 0216 AD       		.byte	-83
+ 564 0217 0A       		.byte	10
+ 565 0218 AE       		.byte	-82
+ 566 0219 10       		.byte	16
+ 567 021a AF       		.byte	-81
+ 568 021b 54       		.byte	84
+ 569 021c B0       		.byte	-80
+ 570 021d 1F       		.byte	31
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccWlTsVT.s 			page 11
+
+
+ 571 021e B1       		.byte	-79
+ 572 021f 30       		.byte	48
+ 573 0220 B3       		.byte	-77
+ 574 0221 0F       		.byte	15
+ 575 0222 B4       		.byte	-76
+ 576 0223 20       		.byte	32
+ 577 0224 B5       		.byte	-75
+ 578 0225 80       		.byte	-128
+ 579 0226 B7       		.byte	-73
+ 580 0227 40       		.byte	64
+ 581 0228 B9       		.byte	-71
+ 582 0229 02       		.byte	2
+ 583 022a BB       		.byte	-69
+ 584 022b 08       		.byte	8
+ 585 022c BE       		.byte	-66
+ 586 022d 10       		.byte	16
+ 587 022e BF       		.byte	-65
+ 588 022f 50       		.byte	80
+ 589 0230 C0       		.byte	-64
+ 590 0231 24       		.byte	36
+ 591 0232 C1       		.byte	-63
+ 592 0233 03       		.byte	3
+ 593 0234 C5       		.byte	-59
+ 594 0235 0B       		.byte	11
+ 595 0236 C6       		.byte	-58
+ 596 0237 C0       		.byte	-64
+ 597 0238 C7       		.byte	-57
+ 598 0239 0E       		.byte	14
+ 599 023a C8       		.byte	-56
+ 600 023b 19       		.byte	25
+ 601 023c C9       		.byte	-55
+ 602 023d FF       		.byte	-1
+ 603 023e CA       		.byte	-54
+ 604 023f FF       		.byte	-1
+ 605 0240 CB       		.byte	-53
+ 606 0241 FF       		.byte	-1
+ 607 0242 CE       		.byte	-50
+ 608 0243 F0       		.byte	-16
+ 609 0244 CF       		.byte	-49
+ 610 0245 44       		.byte	68
+ 611 0246 D0       		.byte	-48
+ 612 0247 0C       		.byte	12
+ 613 0248 D4       		.byte	-44
+ 614 0249 01       		.byte	1
+ 615 024a D8       		.byte	-40
+ 616 024b 04       		.byte	4
+ 617 024c D9       		.byte	-39
+ 618 024d 04       		.byte	4
+ 619 024e DA       		.byte	-38
+ 620 024f 04       		.byte	4
+ 621 0250 DB       		.byte	-37
+ 622 0251 04       		.byte	4
+ 623 0252 DF       		.byte	-33
+ 624 0253 01       		.byte	1
+ 625 0254 E6       		.byte	-26
+ 626 0255 C0       		.byte	-64
+ 627 0256 EA       		.byte	-22
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccWlTsVT.s 			page 12
+
+
+ 628 0257 40       		.byte	64
+ 629 0258 EB       		.byte	-21
+ 630 0259 02       		.byte	2
+ 631 025a 01       		.byte	1
+ 632 025b 40       		.byte	64
+ 633 025c 06       		.byte	6
+ 634 025d 80       		.byte	-128
+ 635 025e 07       		.byte	7
+ 636 025f 20       		.byte	32
+ 637 0260 0A       		.byte	10
+ 638 0261 01       		.byte	1
+ 639 0262 0E       		.byte	14
+ 640 0263 40       		.byte	64
+ 641 0264 0F       		.byte	15
+ 642 0265 08       		.byte	8
+ 643 0266 10       		.byte	16
+ 644 0267 12       		.byte	18
+ 645 0268 11       		.byte	17
+ 646 0269 10       		.byte	16
+ 647 026a 16       		.byte	22
+ 648 026b 40       		.byte	64
+ 649 026c 17       		.byte	23
+ 650 026d 44       		.byte	68
+ 651 026e 18       		.byte	24
+ 652 026f 10       		.byte	16
+ 653 0270 19       		.byte	25
+ 654 0271 24       		.byte	36
+ 655 0272 1E       		.byte	30
+ 656 0273 40       		.byte	64
+ 657 0274 1F       		.byte	31
+ 658 0275 10       		.byte	16
+ 659 0276 20       		.byte	32
+ 660 0277 45       		.byte	69
+ 661 0278 22       		.byte	34
+ 662 0279 18       		.byte	24
+ 663 027a 26       		.byte	38
+ 664 027b 40       		.byte	64
+ 665 027c 27       		.byte	39
+ 666 027d 68       		.byte	104
+ 667 027e 28       		.byte	40
+ 668 027f 02       		.byte	2
+ 669 0280 2E       		.byte	46
+ 670 0281 80       		.byte	-128
+ 671 0282 2F       		.byte	47
+ 672 0283 09       		.byte	9
+ 673 0284 30       		.byte	48
+ 674 0285 10       		.byte	16
+ 675 0286 33       		.byte	51
+ 676 0287 10       		.byte	16
+ 677 0288 37       		.byte	55
+ 678 0289 64       		.byte	100
+ 679 028a 38       		.byte	56
+ 680 028b 44       		.byte	68
+ 681 028c 39       		.byte	57
+ 682 028d 10       		.byte	16
+ 683 028e 3D       		.byte	61
+ 684 028f 02       		.byte	2
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccWlTsVT.s 			page 13
+
+
+ 685 0290 3E       		.byte	62
+ 686 0291 30       		.byte	48
+ 687 0292 3F       		.byte	63
+ 688 0293 02       		.byte	2
+ 689 0294 40       		.byte	64
+ 690 0295 11       		.byte	17
+ 691 0296 41       		.byte	65
+ 692 0297 01       		.byte	1
+ 693 0298 43       		.byte	67
+ 694 0299 20       		.byte	32
+ 695 029a 45       		.byte	69
+ 696 029b 01       		.byte	1
+ 697 029c 47       		.byte	71
+ 698 029d 24       		.byte	36
+ 699 029e 4A       		.byte	74
+ 700 029f 08       		.byte	8
+ 701 02a0 4B       		.byte	75
+ 702 02a1 04       		.byte	4
+ 703 02a2 4F       		.byte	79
+ 704 02a3 08       		.byte	8
+ 705 02a4 50       		.byte	80
+ 706 02a5 02       		.byte	2
+ 707 02a6 56       		.byte	86
+ 708 02a7 20       		.byte	32
+ 709 02a8 57       		.byte	87
+ 710 02a9 08       		.byte	8
+ 711 02aa 5E       		.byte	94
+ 712 02ab 92       		.byte	-110
+ 713 02ac 5F       		.byte	95
+ 714 02ad 08       		.byte	8
+ 715 02ae C0       		.byte	-64
+ 716 02af 31       		.byte	49
+ 717 02b0 C2       		.byte	-62
+ 718 02b1 51       		.byte	81
+ 719 02b2 C4       		.byte	-60
+ 720 02b3 B7       		.byte	-73
+ 721 02b4 CA       		.byte	-54
+ 722 02b5 38       		.byte	56
+ 723 02b6 CC       		.byte	-52
+ 724 02b7 74       		.byte	116
+ 725 02b8 CE       		.byte	-50
+ 726 02b9 AE       		.byte	-82
+ 727 02ba D0       		.byte	-48
+ 728 02bb EF       		.byte	-17
+ 729 02bc D2       		.byte	-46
+ 730 02bd 04       		.byte	4
+ 731 02be D6       		.byte	-42
+ 732 02bf F0       		.byte	-16
+ 733 02c0 32       		.byte	50
+ 734 02c1 20       		.byte	32
+ 735 02c2 CC       		.byte	-52
+ 736 02c3 10       		.byte	16
+ 737 02c4 86       		.byte	-122
+ 738 02c5 20       		.byte	32
+ 739 02c6 A6       		.byte	-90
+ 740 02c7 20       		.byte	32
+ 741 02c8 E6       		.byte	-26
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccWlTsVT.s 			page 14
+
+
+ 742 02c9 40       		.byte	64
+ 743 02ca 00       		.byte	0
+ 744 02cb 08       		.byte	8
+ 745 02cc 01       		.byte	1
+ 746 02cd 08       		.byte	8
+ 747 02ce 52       		.byte	82
+ 748 02cf 20       		.byte	32
+ 749 02d0 C0       		.byte	-64
+ 750 02d1 08       		.byte	8
+ 751 02d2 D4       		.byte	-44
+ 752 02d3 04       		.byte	4
+ 753 02d4 AE       		.byte	-82
+ 754 02d5 20       		.byte	32
+ 755 02d6 B0       		.byte	-80
+ 756 02d7 04       		.byte	4
+ 757 02d8 B5       		.byte	-75
+ 758 02d9 08       		.byte	8
+ 759 02da EA       		.byte	-22
+ 760 02db 06       		.byte	6
+ 761 02dc 00       		.byte	0
+ 762 02dd 01       		.byte	1
+ 763 02de 0E       		.byte	14
+ 764 02df 01       		.byte	1
+ 765 02e0 00       		.byte	0
+ 766 02e1 03       		.byte	3
+ 767 02e2 00       		.byte	0
+ 768 02e3 00       		.byte	0
+ 769 02e4 00       		.byte	0
+ 770 02e5 20       		.byte	32
+ 771 02e6 20       		.byte	32
+ 772 02e7 00       		.byte	0
+ 773 02e8 00       		.byte	0
+ 774 02e9 00       		.byte	0
+ 775 02ea 00       		.byte	0
+ 776 02eb 00       		.byte	0
+ 777 02ec 00       		.byte	0
+ 778 02ed 0B       		.byte	11
+ 779 02ee 0B       		.byte	11
+ 780 02ef 00       		.byte	0
+ 781 02f0 00       		.byte	0
+ 782 02f1 00       		.byte	0
+ 783 02f2 00       		.byte	0
+ 784 02f3 00       		.byte	0
+ 785 02f4 82       		.byte	-126
+ 786 02f5 00       		.byte	0
+ 787 02f6 01       		.byte	1
+ 788 02f7 82       		.byte	-126
+ 789 02f8 82       		.byte	-126
+ 790 02f9 00       		.byte	0
+ 791 02fa 02       		.byte	2
+ 792 02fb 00       		.byte	0
+ 793 02fc 00       		.byte	0
+ 794 02fd 00       		.byte	0
+ 795 02fe 00       		.byte	0
+ 796 02ff 00       		.byte	0
+ 797 0300 2C       		.byte	44
+ 798 0301 00       		.byte	0
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccWlTsVT.s 			page 15
+
+
+ 799 0302 00       		.byte	0
+ 800 0303 2C       		.byte	44
+ 801 0304 0C       		.byte	12
+ 802 0305 00       		.byte	0
+ 803 0306 00       		.byte	0
+ 804 0307 00       		.byte	0
+ 805 0308 00       		.byte	0
+ 806 0309 00       		.byte	0
+ 807 030a 00       		.byte	0
+ 808 030b 00       		.byte	0
+ 809              		.section	.cywolatch,"a",%progbits
+ 810              		.align	2
+ 811              		.type	cy_meta_wonvl, %object
+ 812              		.size	cy_meta_wonvl, 4
+ 813              	cy_meta_wonvl:
+ 814 0000 BC       		.byte	-68
+ 815 0001 90       		.byte	-112
+ 816 0002 AC       		.byte	-84
+ 817 0003 AF       		.byte	-81
+ 818              		.section	.cycustnvl,"a",%progbits
+ 819              		.align	2
+ 820              		.type	cy_meta_custnvl, %object
+ 821              		.size	cy_meta_custnvl, 4
+ 822              	cy_meta_custnvl:
+ 823 0000 00       		.byte	0
+ 824 0001 00       		.byte	0
+ 825 0002 40       		.byte	64
+ 826 0003 05       		.byte	5
+ 827              		.section	.cymeta,"a",%progbits
+ 828              		.align	2
+ 829              		.type	cy_metadata, %object
+ 830              		.size	cy_metadata, 12
+ 831              	cy_metadata:
+ 832 0000 00       		.byte	0
+ 833 0001 01       		.byte	1
+ 834 0002 2E       		.byte	46
+ 835 0003 16       		.byte	22
+ 836 0004 00       		.byte	0
+ 837 0005 69       		.byte	105
+ 838 0006 00       		.byte	0
+ 839 0007 01       		.byte	1
+ 840 0008 00       		.byte	0
+ 841 0009 00       		.byte	0
+ 842 000a 00       		.byte	0
+ 843 000b 00       		.byte	0
+ 844              		.section	.cyflashprotect,"a",%progbits
+ 845              		.align	2
+ 846              		.type	cy_meta_flashprotect, %object
+ 847              		.size	cy_meta_flashprotect, 256
+ 848              	cy_meta_flashprotect:
+ 849 0000 00000000 		.space	256
+ 849      00000000 
+ 849      00000000 
+ 849      00000000 
+ 849      00000000 
+ 850              		.text
+ 851              	.Letext0:
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccWlTsVT.s 			page 16
+
+
+ 852              		.file 1 "d:\\tools\\psoc creator\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.1\\arm-no
+ 853              		.file 2 "d:\\tools\\psoc creator\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.1\\arm-no
+ 854              		.file 3 "Generated_Source\\PSoC5\\cymetadata.c"
+ 855              		.section	.debug_info,"",%progbits
+ 856              	.Ldebug_info0:
+ 857 0000 31010000 		.4byte	0x131
+ 858 0004 0400     		.2byte	0x4
+ 859 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 860 000a 04       		.byte	0x4
+ 861 000b 01       		.uleb128 0x1
+ 862 000c 24000000 		.4byte	.LASF17
+ 863 0010 0C       		.byte	0xc
+ 864 0011 B3010000 		.4byte	.LASF18
+ 865 0015 5F010000 		.4byte	.LASF19
+ 866 0019 00000000 		.4byte	.Ldebug_line0
+ 867 001d 02       		.uleb128 0x2
+ 868 001e 01       		.byte	0x1
+ 869 001f 06       		.byte	0x6
+ 870 0020 A7010000 		.4byte	.LASF0
+ 871 0024 03       		.uleb128 0x3
+ 872 0025 00000000 		.4byte	.LASF9
+ 873 0029 01       		.byte	0x1
+ 874 002a 1D       		.byte	0x1d
+ 875 002b 2F000000 		.4byte	0x2f
+ 876 002f 02       		.uleb128 0x2
+ 877 0030 01       		.byte	0x1
+ 878 0031 08       		.byte	0x8
+ 879 0032 16000000 		.4byte	.LASF1
+ 880 0036 02       		.uleb128 0x2
+ 881 0037 02       		.byte	0x2
+ 882 0038 05       		.byte	0x5
+ 883 0039 94010000 		.4byte	.LASF2
+ 884 003d 02       		.uleb128 0x2
+ 885 003e 02       		.byte	0x2
+ 886 003f 07       		.byte	0x7
+ 887 0040 C4000000 		.4byte	.LASF3
+ 888 0044 02       		.uleb128 0x2
+ 889 0045 04       		.byte	0x4
+ 890 0046 05       		.byte	0x5
+ 891 0047 9E010000 		.4byte	.LASF4
+ 892 004b 02       		.uleb128 0x2
+ 893 004c 04       		.byte	0x4
+ 894 004d 07       		.byte	0x7
+ 895 004e B2000000 		.4byte	.LASF5
+ 896 0052 02       		.uleb128 0x2
+ 897 0053 08       		.byte	0x8
+ 898 0054 05       		.byte	0x5
+ 899 0055 51010000 		.4byte	.LASF6
+ 900 0059 02       		.uleb128 0x2
+ 901 005a 08       		.byte	0x8
+ 902 005b 07       		.byte	0x7
+ 903 005c 06010000 		.4byte	.LASF7
+ 904 0060 04       		.uleb128 0x4
+ 905 0061 04       		.byte	0x4
+ 906 0062 05       		.byte	0x5
+ 907 0063 696E7400 		.ascii	"int\000"
+ 908 0067 02       		.uleb128 0x2
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccWlTsVT.s 			page 17
+
+
+ 909 0068 04       		.byte	0x4
+ 910 0069 07       		.byte	0x7
+ 911 006a F9000000 		.4byte	.LASF8
+ 912 006e 03       		.uleb128 0x3
+ 913 006f 1D010000 		.4byte	.LASF10
+ 914 0073 02       		.byte	0x2
+ 915 0074 18       		.byte	0x18
+ 916 0075 24000000 		.4byte	0x24
+ 917 0079 05       		.uleb128 0x5
+ 918 007a 91000000 		.4byte	0x91
+ 919 007e 8A000000 		.4byte	0x8a
+ 920 0082 06       		.uleb128 0x6
+ 921 0083 8A000000 		.4byte	0x8a
+ 922 0087 0B03     		.2byte	0x30b
+ 923 0089 00       		.byte	0
+ 924 008a 02       		.uleb128 0x2
+ 925 008b 04       		.byte	0x4
+ 926 008c 07       		.byte	0x7
+ 927 008d 48010000 		.4byte	.LASF11
+ 928 0091 07       		.uleb128 0x7
+ 929 0092 6E000000 		.4byte	0x6e
+ 930 0096 08       		.uleb128 0x8
+ 931 0097 E7000000 		.4byte	.LASF12
+ 932 009b 03       		.byte	0x3
+ 933 009c 1F       		.byte	0x1f
+ 934 009d A7000000 		.4byte	0xa7
+ 935 00a1 05       		.uleb128 0x5
+ 936 00a2 03       		.byte	0x3
+ 937 00a3 00000000 		.4byte	cy_meta_configecc
+ 938 00a7 07       		.uleb128 0x7
+ 939 00a8 79000000 		.4byte	0x79
+ 940 00ac 05       		.uleb128 0x5
+ 941 00ad 91000000 		.4byte	0x91
+ 942 00b1 BC000000 		.4byte	0xbc
+ 943 00b5 09       		.uleb128 0x9
+ 944 00b6 8A000000 		.4byte	0x8a
+ 945 00ba 03       		.byte	0x3
+ 946 00bb 00       		.byte	0
+ 947 00bc 08       		.uleb128 0x8
+ 948 00bd D7000000 		.4byte	.LASF13
+ 949 00c1 03       		.byte	0x3
+ 950 00c2 8E       		.byte	0x8e
+ 951 00c3 CD000000 		.4byte	0xcd
+ 952 00c7 05       		.uleb128 0x5
+ 953 00c8 03       		.byte	0x3
+ 954 00c9 00000000 		.4byte	cy_meta_custnvl
+ 955 00cd 07       		.uleb128 0x7
+ 956 00ce AC000000 		.4byte	0xac
+ 957 00d2 08       		.uleb128 0x8
+ 958 00d3 3A010000 		.4byte	.LASF14
+ 959 00d7 03       		.byte	0x3
+ 960 00d8 9C       		.byte	0x9c
+ 961 00d9 E3000000 		.4byte	0xe3
+ 962 00dd 05       		.uleb128 0x5
+ 963 00de 03       		.byte	0x3
+ 964 00df 00000000 		.4byte	cy_meta_wonvl
+ 965 00e3 07       		.uleb128 0x7
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccWlTsVT.s 			page 18
+
+
+ 966 00e4 AC000000 		.4byte	0xac
+ 967 00e8 05       		.uleb128 0x5
+ 968 00e9 91000000 		.4byte	0x91
+ 969 00ed F8000000 		.4byte	0xf8
+ 970 00f1 09       		.uleb128 0x9
+ 971 00f2 8A000000 		.4byte	0x8a
+ 972 00f6 FF       		.byte	0xff
+ 973 00f7 00       		.byte	0
+ 974 00f8 08       		.uleb128 0x8
+ 975 00f9 25010000 		.4byte	.LASF15
+ 976 00fd 03       		.byte	0x3
+ 977 00fe AA       		.byte	0xaa
+ 978 00ff 09010000 		.4byte	0x109
+ 979 0103 05       		.uleb128 0x5
+ 980 0104 03       		.byte	0x3
+ 981 0105 00000000 		.4byte	cy_meta_flashprotect
+ 982 0109 07       		.uleb128 0x7
+ 983 010a E8000000 		.4byte	0xe8
+ 984 010e 05       		.uleb128 0x5
+ 985 010f 91000000 		.4byte	0x91
+ 986 0113 1E010000 		.4byte	0x11e
+ 987 0117 09       		.uleb128 0x9
+ 988 0118 8A000000 		.4byte	0x8a
+ 989 011c 0B       		.byte	0xb
+ 990 011d 00       		.byte	0
+ 991 011e 08       		.uleb128 0x8
+ 992 011f 0A000000 		.4byte	.LASF16
+ 993 0123 03       		.byte	0x3
+ 994 0124 D7       		.byte	0xd7
+ 995 0125 2F010000 		.4byte	0x12f
+ 996 0129 05       		.uleb128 0x5
+ 997 012a 03       		.byte	0x3
+ 998 012b 00000000 		.4byte	cy_metadata
+ 999 012f 07       		.uleb128 0x7
+ 1000 0130 0E010000 		.4byte	0x10e
+ 1001 0134 00       		.byte	0
+ 1002              		.section	.debug_abbrev,"",%progbits
+ 1003              	.Ldebug_abbrev0:
+ 1004 0000 01       		.uleb128 0x1
+ 1005 0001 11       		.uleb128 0x11
+ 1006 0002 01       		.byte	0x1
+ 1007 0003 25       		.uleb128 0x25
+ 1008 0004 0E       		.uleb128 0xe
+ 1009 0005 13       		.uleb128 0x13
+ 1010 0006 0B       		.uleb128 0xb
+ 1011 0007 03       		.uleb128 0x3
+ 1012 0008 0E       		.uleb128 0xe
+ 1013 0009 1B       		.uleb128 0x1b
+ 1014 000a 0E       		.uleb128 0xe
+ 1015 000b 10       		.uleb128 0x10
+ 1016 000c 17       		.uleb128 0x17
+ 1017 000d 00       		.byte	0
+ 1018 000e 00       		.byte	0
+ 1019 000f 02       		.uleb128 0x2
+ 1020 0010 24       		.uleb128 0x24
+ 1021 0011 00       		.byte	0
+ 1022 0012 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccWlTsVT.s 			page 19
+
+
+ 1023 0013 0B       		.uleb128 0xb
+ 1024 0014 3E       		.uleb128 0x3e
+ 1025 0015 0B       		.uleb128 0xb
+ 1026 0016 03       		.uleb128 0x3
+ 1027 0017 0E       		.uleb128 0xe
+ 1028 0018 00       		.byte	0
+ 1029 0019 00       		.byte	0
+ 1030 001a 03       		.uleb128 0x3
+ 1031 001b 16       		.uleb128 0x16
+ 1032 001c 00       		.byte	0
+ 1033 001d 03       		.uleb128 0x3
+ 1034 001e 0E       		.uleb128 0xe
+ 1035 001f 3A       		.uleb128 0x3a
+ 1036 0020 0B       		.uleb128 0xb
+ 1037 0021 3B       		.uleb128 0x3b
+ 1038 0022 0B       		.uleb128 0xb
+ 1039 0023 49       		.uleb128 0x49
+ 1040 0024 13       		.uleb128 0x13
+ 1041 0025 00       		.byte	0
+ 1042 0026 00       		.byte	0
+ 1043 0027 04       		.uleb128 0x4
+ 1044 0028 24       		.uleb128 0x24
+ 1045 0029 00       		.byte	0
+ 1046 002a 0B       		.uleb128 0xb
+ 1047 002b 0B       		.uleb128 0xb
+ 1048 002c 3E       		.uleb128 0x3e
+ 1049 002d 0B       		.uleb128 0xb
+ 1050 002e 03       		.uleb128 0x3
+ 1051 002f 08       		.uleb128 0x8
+ 1052 0030 00       		.byte	0
+ 1053 0031 00       		.byte	0
+ 1054 0032 05       		.uleb128 0x5
+ 1055 0033 01       		.uleb128 0x1
+ 1056 0034 01       		.byte	0x1
+ 1057 0035 49       		.uleb128 0x49
+ 1058 0036 13       		.uleb128 0x13
+ 1059 0037 01       		.uleb128 0x1
+ 1060 0038 13       		.uleb128 0x13
+ 1061 0039 00       		.byte	0
+ 1062 003a 00       		.byte	0
+ 1063 003b 06       		.uleb128 0x6
+ 1064 003c 21       		.uleb128 0x21
+ 1065 003d 00       		.byte	0
+ 1066 003e 49       		.uleb128 0x49
+ 1067 003f 13       		.uleb128 0x13
+ 1068 0040 2F       		.uleb128 0x2f
+ 1069 0041 05       		.uleb128 0x5
+ 1070 0042 00       		.byte	0
+ 1071 0043 00       		.byte	0
+ 1072 0044 07       		.uleb128 0x7
+ 1073 0045 26       		.uleb128 0x26
+ 1074 0046 00       		.byte	0
+ 1075 0047 49       		.uleb128 0x49
+ 1076 0048 13       		.uleb128 0x13
+ 1077 0049 00       		.byte	0
+ 1078 004a 00       		.byte	0
+ 1079 004b 08       		.uleb128 0x8
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccWlTsVT.s 			page 20
+
+
+ 1080 004c 34       		.uleb128 0x34
+ 1081 004d 00       		.byte	0
+ 1082 004e 03       		.uleb128 0x3
+ 1083 004f 0E       		.uleb128 0xe
+ 1084 0050 3A       		.uleb128 0x3a
+ 1085 0051 0B       		.uleb128 0xb
+ 1086 0052 3B       		.uleb128 0x3b
+ 1087 0053 0B       		.uleb128 0xb
+ 1088 0054 49       		.uleb128 0x49
+ 1089 0055 13       		.uleb128 0x13
+ 1090 0056 3F       		.uleb128 0x3f
+ 1091 0057 19       		.uleb128 0x19
+ 1092 0058 02       		.uleb128 0x2
+ 1093 0059 18       		.uleb128 0x18
+ 1094 005a 00       		.byte	0
+ 1095 005b 00       		.byte	0
+ 1096 005c 09       		.uleb128 0x9
+ 1097 005d 21       		.uleb128 0x21
+ 1098 005e 00       		.byte	0
+ 1099 005f 49       		.uleb128 0x49
+ 1100 0060 13       		.uleb128 0x13
+ 1101 0061 2F       		.uleb128 0x2f
+ 1102 0062 0B       		.uleb128 0xb
+ 1103 0063 00       		.byte	0
+ 1104 0064 00       		.byte	0
+ 1105 0065 00       		.byte	0
+ 1106              		.section	.debug_aranges,"",%progbits
+ 1107 0000 14000000 		.4byte	0x14
+ 1108 0004 0200     		.2byte	0x2
+ 1109 0006 00000000 		.4byte	.Ldebug_info0
+ 1110 000a 04       		.byte	0x4
+ 1111 000b 00       		.byte	0
+ 1112 000c 0000     		.2byte	0
+ 1113 000e 0000     		.2byte	0
+ 1114 0010 00000000 		.4byte	0
+ 1115 0014 00000000 		.4byte	0
+ 1116              		.section	.debug_line,"",%progbits
+ 1117              	.Ldebug_line0:
+ 1118 0000 2B010000 		.section	.debug_str,"MS",%progbits,1
+ 1118      02002501 
+ 1118      00000201 
+ 1118      FB0E0D00 
+ 1118      01010101 
+ 1119              	.LASF9:
+ 1120 0000 5F5F7569 		.ascii	"__uint8_t\000"
+ 1120      6E74385F 
+ 1120      7400
+ 1121              	.LASF16:
+ 1122 000a 63795F6D 		.ascii	"cy_metadata\000"
+ 1122      65746164 
+ 1122      61746100 
+ 1123              	.LASF1:
+ 1124 0016 756E7369 		.ascii	"unsigned char\000"
+ 1124      676E6564 
+ 1124      20636861 
+ 1124      7200
+ 1125              	.LASF17:
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccWlTsVT.s 			page 21
+
+
+ 1126 0024 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1126      43313120 
+ 1126      352E342E 
+ 1126      31203230 
+ 1126      31363036 
+ 1127 0057 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 1127      20726576 
+ 1127      6973696F 
+ 1127      6E203233 
+ 1127      37373135 
+ 1128 008a 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 1128      66756E63 
+ 1128      74696F6E 
+ 1128      2D736563 
+ 1128      74696F6E 
+ 1129              	.LASF5:
+ 1130 00b2 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1130      20756E73 
+ 1130      69676E65 
+ 1130      6420696E 
+ 1130      7400
+ 1131              	.LASF3:
+ 1132 00c4 73686F72 		.ascii	"short unsigned int\000"
+ 1132      7420756E 
+ 1132      7369676E 
+ 1132      65642069 
+ 1132      6E7400
+ 1133              	.LASF13:
+ 1134 00d7 63795F6D 		.ascii	"cy_meta_custnvl\000"
+ 1134      6574615F 
+ 1134      63757374 
+ 1134      6E766C00 
+ 1135              	.LASF12:
+ 1136 00e7 63795F6D 		.ascii	"cy_meta_configecc\000"
+ 1136      6574615F 
+ 1136      636F6E66 
+ 1136      69676563 
+ 1136      6300
+ 1137              	.LASF8:
+ 1138 00f9 756E7369 		.ascii	"unsigned int\000"
+ 1138      676E6564 
+ 1138      20696E74 
+ 1138      00
+ 1139              	.LASF7:
+ 1140 0106 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1140      206C6F6E 
+ 1140      6720756E 
+ 1140      7369676E 
+ 1140      65642069 
+ 1141              	.LASF10:
+ 1142 011d 75696E74 		.ascii	"uint8_t\000"
+ 1142      385F7400 
+ 1143              	.LASF15:
+ 1144 0125 63795F6D 		.ascii	"cy_meta_flashprotect\000"
+ 1144      6574615F 
+ 1144      666C6173 
+ 1144      6870726F 
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccWlTsVT.s 			page 22
+
+
+ 1144      74656374 
+ 1145              	.LASF14:
+ 1146 013a 63795F6D 		.ascii	"cy_meta_wonvl\000"
+ 1146      6574615F 
+ 1146      776F6E76 
+ 1146      6C00
+ 1147              	.LASF11:
+ 1148 0148 73697A65 		.ascii	"sizetype\000"
+ 1148      74797065 
+ 1148      00
+ 1149              	.LASF6:
+ 1150 0151 6C6F6E67 		.ascii	"long long int\000"
+ 1150      206C6F6E 
+ 1150      6720696E 
+ 1150      7400
+ 1151              	.LASF19:
+ 1152 015f 453A5C56 		.ascii	"E:\\Vorlesung\\Video\\3rd Sem\\MPS\\MPS-W22_Prakt_1"
+ 1152      6F726C65 
+ 1152      73756E67 
+ 1152      5C566964 
+ 1152      656F5C33 
+ 1153 018d 2E637964 		.ascii	".cydsn\000"
+ 1153      736E00
+ 1154              	.LASF2:
+ 1155 0194 73686F72 		.ascii	"short int\000"
+ 1155      7420696E 
+ 1155      7400
+ 1156              	.LASF4:
+ 1157 019e 6C6F6E67 		.ascii	"long int\000"
+ 1157      20696E74 
+ 1157      00
+ 1158              	.LASF0:
+ 1159 01a7 7369676E 		.ascii	"signed char\000"
+ 1159      65642063 
+ 1159      68617200 
+ 1160              	.LASF18:
+ 1161 01b3 47656E65 		.ascii	"Generated_Source\\PSoC5\\cymetadata.c\000"
+ 1161      72617465 
+ 1161      645F536F 
+ 1161      75726365 
+ 1161      5C50536F 
+ 1162              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
