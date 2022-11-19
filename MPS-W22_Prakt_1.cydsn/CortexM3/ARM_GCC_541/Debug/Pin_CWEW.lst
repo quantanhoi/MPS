@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccTdNZwa.s 			page 1
+ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccSvtPjM.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccTdNZwa.s 			page 1
   28:Generated_Source\PSoC5/Pin_CWEW.c **** *
   29:Generated_Source\PSoC5/Pin_CWEW.c **** * \brief Writes the value to the physical port (data output register), masking
   30:Generated_Source\PSoC5/Pin_CWEW.c **** *  and shifting the bits appropriately. 
-ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccTdNZwa.s 			page 2
+ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccSvtPjM.s 			page 2
 
 
   31:Generated_Source\PSoC5/Pin_CWEW.c **** *
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccTdNZwa.s 			page 1
   52              		.size	Pin_CWEW_Write, .-Pin_CWEW_Write
   53              		.section	.text.Pin_CWEW_SetDriveMode,"ax",%progbits
   54              		.align	2
-ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccTdNZwa.s 			page 3
+ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccSvtPjM.s 			page 3
 
 
   55              		.global	Pin_CWEW_SetDriveMode
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccTdNZwa.s 			page 1
   77 0012 00BF     		.align	2
   78              	.L5:
   79 0014 35500040 		.word	1073762357
-ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccTdNZwa.s 			page 4
+ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccSvtPjM.s 			page 4
 
 
   80              		.cfi_endproc
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccTdNZwa.s 			page 1
  110              		.align	2
  111              		.global	Pin_CWEW_ReadDataReg
  112              		.thumb
-ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccTdNZwa.s 			page 5
+ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccSvtPjM.s 			page 5
 
 
  113              		.thumb_func
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccTdNZwa.s 			page 1
  139              		.thumb_func
  140              		.type	Pin_CWEW_SetInterruptMode, %function
  141              	Pin_CWEW_SetInterruptMode:
-ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccTdNZwa.s 			page 6
+ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccSvtPjM.s 			page 6
 
 
  142              	.LFB4:
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccTdNZwa.s 			page 1
  151              	.LVL6:
  152 0004 80B2     		uxth	r0, r0
  153 0006 10B1     		cbz	r0, .L13
-ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccTdNZwa.s 			page 7
+ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccSvtPjM.s 			page 7
 
 
  190:Generated_Source\PSoC5/Pin_CWEW.c **** 		{ 
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccTdNZwa.s 			page 1
  180              		@ link register save eliminated.
  218:Generated_Source\PSoC5/Pin_CWEW.c ****         return (Pin_CWEW_INTSTAT & Pin_CWEW_MASK) >> Pin_CWEW_SHIFT;
  181              		.loc 1 218 0
-ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccTdNZwa.s 			page 8
+ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccSvtPjM.s 			page 8
 
 
  182 0000 024B     		ldr	r3, .L18
@@ -444,48 +444,48 @@ ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccTdNZwa.s 			page 1
  201 0006 00000000 		.4byte	.Ldebug_abbrev0
  202 000a 04       		.byte	0x4
  203 000b 01       		.uleb128 0x1
- 204 000c 50000000 		.4byte	.LASF24
+ 204 000c 74000000 		.4byte	.LASF24
  205 0010 0C       		.byte	0xc
- 206 0011 46010000 		.4byte	.LASF25
- 207 0015 9F010000 		.4byte	.LASF26
+ 206 0011 6A010000 		.4byte	.LASF25
+ 207 0015 06000000 		.4byte	.LASF26
  208 0019 00000000 		.4byte	.Ldebug_ranges0+0
  209 001d 00000000 		.4byte	0
  210 0021 00000000 		.4byte	.Ldebug_line0
  211 0025 02       		.uleb128 0x2
  212 0026 01       		.byte	0x1
  213 0027 06       		.byte	0x6
- 214 0028 F2010000 		.4byte	.LASF0
+ 214 0028 E1010000 		.4byte	.LASF0
  215 002c 02       		.uleb128 0x2
  216 002d 01       		.byte	0x1
  217 002e 08       		.byte	0x8
- 218 002f 42000000 		.4byte	.LASF1
+ 218 002f 66000000 		.4byte	.LASF1
  219 0033 02       		.uleb128 0x2
  220 0034 02       		.byte	0x2
  221 0035 05       		.byte	0x5
- 222 0036 D4010000 		.4byte	.LASF2
+ 222 0036 C8010000 		.4byte	.LASF2
  223 003a 02       		.uleb128 0x2
  224 003b 02       		.byte	0x2
  225 003c 07       		.byte	0x7
- 226 003d 04010000 		.4byte	.LASF3
+ 226 003d 28010000 		.4byte	.LASF3
  227 0041 02       		.uleb128 0x2
  228 0042 04       		.byte	0x4
  229 0043 05       		.byte	0x5
- 230 0044 E4010000 		.4byte	.LASF4
+ 230 0044 D8010000 		.4byte	.LASF4
  231 0048 02       		.uleb128 0x2
  232 0049 04       		.byte	0x4
  233 004a 07       		.byte	0x7
- 234 004b E3000000 		.4byte	.LASF5
+ 234 004b 07010000 		.4byte	.LASF5
  235 004f 02       		.uleb128 0x2
  236 0050 08       		.byte	0x8
  237 0051 05       		.byte	0x5
-ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccTdNZwa.s 			page 9
+ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccSvtPjM.s 			page 9
 
 
- 238 0052 91010000 		.4byte	.LASF6
+ 238 0052 B5010000 		.4byte	.LASF6
  239 0056 02       		.uleb128 0x2
  240 0057 08       		.byte	0x8
  241 0058 07       		.byte	0x7
- 242 0059 75010000 		.4byte	.LASF7
+ 242 0059 99010000 		.4byte	.LASF7
  243 005d 03       		.uleb128 0x3
  244 005e 04       		.byte	0x4
  245 005f 05       		.byte	0x5
@@ -493,38 +493,38 @@ ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccTdNZwa.s 			page 1
  247 0064 02       		.uleb128 0x2
  248 0065 04       		.byte	0x4
  249 0066 07       		.byte	0x7
- 250 0067 68010000 		.4byte	.LASF8
+ 250 0067 8C010000 		.4byte	.LASF8
  251 006b 04       		.uleb128 0x4
- 252 006c DE010000 		.4byte	.LASF9
+ 252 006c D2010000 		.4byte	.LASF9
  253 0070 02       		.byte	0x2
  254 0071 E401     		.2byte	0x1e4
  255 0073 2C000000 		.4byte	0x2c
  256 0077 04       		.uleb128 0x4
- 257 0078 36010000 		.4byte	.LASF10
+ 257 0078 5A010000 		.4byte	.LASF10
  258 007c 02       		.byte	0x2
  259 007d E501     		.2byte	0x1e5
  260 007f 3A000000 		.4byte	0x3a
  261 0083 02       		.uleb128 0x2
  262 0084 04       		.byte	0x4
  263 0085 04       		.byte	0x4
- 264 0086 3C000000 		.4byte	.LASF11
+ 264 0086 60000000 		.4byte	.LASF11
  265 008a 02       		.uleb128 0x2
  266 008b 08       		.byte	0x8
  267 008c 04       		.byte	0x4
- 268 008d 2F010000 		.4byte	.LASF12
+ 268 008d 53010000 		.4byte	.LASF12
  269 0091 02       		.uleb128 0x2
  270 0092 01       		.byte	0x1
  271 0093 08       		.byte	0x8
- 272 0094 ED010000 		.4byte	.LASF13
+ 272 0094 C3010000 		.4byte	.LASF13
  273 0098 04       		.uleb128 0x4
- 274 0099 DE000000 		.4byte	.LASF14
+ 274 0099 02010000 		.4byte	.LASF14
  275 009d 02       		.byte	0x2
  276 009e 8E02     		.2byte	0x28e
  277 00a0 A4000000 		.4byte	0xa4
  278 00a4 05       		.uleb128 0x5
  279 00a5 6B000000 		.4byte	0x6b
  280 00a9 06       		.uleb128 0x6
- 281 00aa F5000000 		.4byte	.LASF15
+ 281 00aa 19010000 		.4byte	.LASF15
  282 00ae 01       		.byte	0x1
  283 00af 39       		.byte	0x39
  284 00b0 00000000 		.4byte	.LFB0
@@ -538,11 +538,11 @@ ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccTdNZwa.s 			page 1
  292 00c4 39       		.byte	0x39
  293 00c5 6B000000 		.4byte	0x6b
  294 00c9 00000000 		.4byte	.LLST0
-ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccTdNZwa.s 			page 10
+ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccSvtPjM.s 			page 10
 
 
  295 00cd 08       		.uleb128 0x8
- 296 00ce 06000000 		.4byte	.LASF27
+ 296 00ce 2A000000 		.4byte	.LASF27
  297 00d2 01       		.byte	0x1
  298 00d3 3B       		.byte	0x3b
  299 00d4 6B000000 		.4byte	0x6b
@@ -550,7 +550,7 @@ ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccTdNZwa.s 			page 1
  301 00d9 53       		.byte	0x53
  302 00da 00       		.byte	0
  303 00db 06       		.uleb128 0x6
- 304 00dc 11000000 		.4byte	.LASF16
+ 304 00dc 35000000 		.4byte	.LASF16
  305 00e0 01       		.byte	0x1
  306 00e1 5A       		.byte	0x5a
  307 00e2 00000000 		.4byte	.LFB1
@@ -559,14 +559,14 @@ ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccTdNZwa.s 			page 1
  310 00eb 9C       		.byte	0x9c
  311 00ec 00010000 		.4byte	0x100
  312 00f0 07       		.uleb128 0x7
- 313 00f1 8C010000 		.4byte	.LASF18
+ 313 00f1 B0010000 		.4byte	.LASF18
  314 00f5 01       		.byte	0x1
  315 00f6 5A       		.byte	0x5a
  316 00f7 6B000000 		.4byte	0x6b
  317 00fb 21000000 		.4byte	.LLST1
  318 00ff 00       		.byte	0
  319 0100 09       		.uleb128 0x9
- 320 0101 18020000 		.4byte	.LASF19
+ 320 0101 07020000 		.4byte	.LASF19
  321 0105 01       		.byte	0x1
  322 0106 71       		.byte	0x71
  323 0107 6B000000 		.4byte	0x6b
@@ -575,7 +575,7 @@ ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccTdNZwa.s 			page 1
  326 0113 01       		.uleb128 0x1
  327 0114 9C       		.byte	0x9c
  328 0115 09       		.uleb128 0x9
- 329 0116 27000000 		.4byte	.LASF20
+ 329 0116 4B000000 		.4byte	.LASF20
  330 011a 01       		.byte	0x1
  331 011b 8D       		.byte	0x8d
  332 011c 6B000000 		.4byte	0x6b
@@ -584,7 +584,7 @@ ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccTdNZwa.s 			page 1
  335 0128 01       		.uleb128 0x1
  336 0129 9C       		.byte	0x9c
  337 012a 06       		.uleb128 0x6
- 338 012b FE010000 		.4byte	.LASF21
+ 338 012b ED010000 		.4byte	.LASF21
  339 012f 01       		.byte	0x1
  340 0130 BB       		.byte	0xbb
  341 0131 00000000 		.4byte	.LFB4
@@ -593,23 +593,23 @@ ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccTdNZwa.s 			page 1
  344 013a 9C       		.byte	0x9c
  345 013b 5E010000 		.4byte	0x15e
  346 013f 07       		.uleb128 0x7
- 347 0140 3D010000 		.4byte	.LASF22
+ 347 0140 61010000 		.4byte	.LASF22
  348 0144 01       		.byte	0x1
  349 0145 BB       		.byte	0xbb
  350 0146 77000000 		.4byte	0x77
  351 014a 42000000 		.4byte	.LLST2
-ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccTdNZwa.s 			page 11
+ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccSvtPjM.s 			page 11
 
 
  352 014e 07       		.uleb128 0x7
- 353 014f 8C010000 		.4byte	.LASF18
+ 353 014f B0010000 		.4byte	.LASF18
  354 0153 01       		.byte	0x1
  355 0154 BB       		.byte	0xbb
  356 0155 77000000 		.4byte	0x77
  357 0159 63000000 		.4byte	.LLST3
  358 015d 00       		.byte	0
  359 015e 09       		.uleb128 0x9
- 360 015f 17010000 		.4byte	.LASF23
+ 360 015f 3B010000 		.4byte	.LASF23
  361 0163 01       		.byte	0x1
  362 0164 D8       		.byte	0xd8
  363 0165 6B000000 		.4byte	0x6b
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccTdNZwa.s 			page 1
  406 0023 3E       		.uleb128 0x3e
  407 0024 0B       		.uleb128 0xb
  408 0025 03       		.uleb128 0x3
-ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccTdNZwa.s 			page 12
+ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccSvtPjM.s 			page 12
 
 
  409 0026 08       		.uleb128 0x8
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccTdNZwa.s 			page 1
  463 005d 0B       		.uleb128 0xb
  464 005e 3B       		.uleb128 0x3b
  465 005f 0B       		.uleb128 0xb
-ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccTdNZwa.s 			page 13
+ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccSvtPjM.s 			page 13
 
 
  466 0060 49       		.uleb128 0x49
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccTdNZwa.s 			page 1
  520 000b 0A000000 		.4byte	.LVL2
  521 000f 18000000 		.4byte	.LFE0
  522 0013 0400     		.2byte	0x4
-ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccTdNZwa.s 			page 14
+ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccSvtPjM.s 			page 14
 
 
  523 0015 F3       		.byte	0xf3
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccTdNZwa.s 			page 1
  577 000c 0000     		.2byte	0
  578 000e 0000     		.2byte	0
  579 0010 00000000 		.4byte	.LFB0
-ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccTdNZwa.s 			page 15
+ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccSvtPjM.s 			page 15
 
 
  580 0014 18000000 		.4byte	.LFE0-.LFB0
@@ -880,151 +880,149 @@ ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccTdNZwa.s 			page 1
  612              	.LASF17:
  613 0000 76616C75 		.ascii	"value\000"
  613      6500
- 614              	.LASF27:
- 615 0006 73746174 		.ascii	"staticBits\000"
- 615      69634269 
- 615      747300
- 616              	.LASF16:
- 617 0011 50696E5F 		.ascii	"Pin_CWEW_SetDriveMode\000"
- 617      43574557 
- 617      5F536574 
- 617      44726976 
- 617      654D6F64 
- 618              	.LASF20:
- 619 0027 50696E5F 		.ascii	"Pin_CWEW_ReadDataReg\000"
+ 614              	.LASF26:
+ 615 0006 453A5C67 		.ascii	"E:\\github\\MPS\\MPS-W22_Prakt_1.cydsn\000"
+ 615      69746875 
+ 615      625C4D50 
+ 615      535C4D50 
+ 615      532D5732 
+ 616              	.LASF27:
+ 617 002a 73746174 		.ascii	"staticBits\000"
+ 617      69634269 
+ 617      747300
+ 618              	.LASF16:
+ 619 0035 50696E5F 		.ascii	"Pin_CWEW_SetDriveMode\000"
  619      43574557 
- 619      5F526561 
- 619      64446174 
- 619      61526567 
- 620              	.LASF11:
- 621 003c 666C6F61 		.ascii	"float\000"
-ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccTdNZwa.s 			page 16
+ 619      5F536574 
+ 619      44726976 
+ 619      654D6F64 
+ 620              	.LASF20:
+ 621 004b 50696E5F 		.ascii	"Pin_CWEW_ReadDataReg\000"
+ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccSvtPjM.s 			page 16
 
 
- 621      7400
- 622              	.LASF1:
- 623 0042 756E7369 		.ascii	"unsigned char\000"
- 623      676E6564 
- 623      20636861 
- 623      7200
- 624              	.LASF24:
- 625 0050 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
- 625      43313120 
- 625      352E342E 
- 625      31203230 
- 625      31363036 
- 626 0083 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
- 626      20726576 
- 626      6973696F 
- 626      6E203233 
- 626      37373135 
- 627 00b6 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
- 627      66756E63 
- 627      74696F6E 
- 627      2D736563 
- 627      74696F6E 
- 628              	.LASF14:
- 629 00de 72656738 		.ascii	"reg8\000"
- 629      00
- 630              	.LASF5:
- 631 00e3 6C6F6E67 		.ascii	"long unsigned int\000"
- 631      20756E73 
- 631      69676E65 
- 631      6420696E 
- 631      7400
- 632              	.LASF15:
- 633 00f5 50696E5F 		.ascii	"Pin_CWEW_Write\000"
- 633      43574557 
- 633      5F577269 
- 633      746500
- 634              	.LASF3:
- 635 0104 73686F72 		.ascii	"short unsigned int\000"
- 635      7420756E 
- 635      7369676E 
- 635      65642069 
- 635      6E7400
- 636              	.LASF23:
- 637 0117 50696E5F 		.ascii	"Pin_CWEW_ClearInterrupt\000"
- 637      43574557 
- 637      5F436C65 
- 637      6172496E 
- 637      74657272 
- 638              	.LASF12:
- 639 012f 646F7562 		.ascii	"double\000"
- 639      6C6500
- 640              	.LASF10:
- 641 0136 75696E74 		.ascii	"uint16\000"
- 641      313600
- 642              	.LASF22:
- 643 013d 706F7369 		.ascii	"position\000"
- 643      74696F6E 
-ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccTdNZwa.s 			page 17
+ 621      43574557 
+ 621      5F526561 
+ 621      64446174 
+ 621      61526567 
+ 622              	.LASF11:
+ 623 0060 666C6F61 		.ascii	"float\000"
+ 623      7400
+ 624              	.LASF1:
+ 625 0066 756E7369 		.ascii	"unsigned char\000"
+ 625      676E6564 
+ 625      20636861 
+ 625      7200
+ 626              	.LASF24:
+ 627 0074 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 627      43313120 
+ 627      352E342E 
+ 627      31203230 
+ 627      31363036 
+ 628 00a7 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 628      20726576 
+ 628      6973696F 
+ 628      6E203233 
+ 628      37373135 
+ 629 00da 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 629      66756E63 
+ 629      74696F6E 
+ 629      2D736563 
+ 629      74696F6E 
+ 630              	.LASF14:
+ 631 0102 72656738 		.ascii	"reg8\000"
+ 631      00
+ 632              	.LASF5:
+ 633 0107 6C6F6E67 		.ascii	"long unsigned int\000"
+ 633      20756E73 
+ 633      69676E65 
+ 633      6420696E 
+ 633      7400
+ 634              	.LASF15:
+ 635 0119 50696E5F 		.ascii	"Pin_CWEW_Write\000"
+ 635      43574557 
+ 635      5F577269 
+ 635      746500
+ 636              	.LASF3:
+ 637 0128 73686F72 		.ascii	"short unsigned int\000"
+ 637      7420756E 
+ 637      7369676E 
+ 637      65642069 
+ 637      6E7400
+ 638              	.LASF23:
+ 639 013b 50696E5F 		.ascii	"Pin_CWEW_ClearInterrupt\000"
+ 639      43574557 
+ 639      5F436C65 
+ 639      6172496E 
+ 639      74657272 
+ 640              	.LASF12:
+ 641 0153 646F7562 		.ascii	"double\000"
+ 641      6C6500
+ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccSvtPjM.s 			page 17
 
 
- 643      00
- 644              	.LASF25:
- 645 0146 47656E65 		.ascii	"Generated_Source\\PSoC5\\Pin_CWEW.c\000"
- 645      72617465 
- 645      645F536F 
- 645      75726365 
- 645      5C50536F 
- 646              	.LASF8:
- 647 0168 756E7369 		.ascii	"unsigned int\000"
- 647      676E6564 
- 647      20696E74 
- 647      00
- 648              	.LASF7:
- 649 0175 6C6F6E67 		.ascii	"long long unsigned int\000"
- 649      206C6F6E 
- 649      6720756E 
- 649      7369676E 
- 649      65642069 
- 650              	.LASF18:
- 651 018c 6D6F6465 		.ascii	"mode\000"
- 651      00
- 652              	.LASF6:
- 653 0191 6C6F6E67 		.ascii	"long long int\000"
- 653      206C6F6E 
- 653      6720696E 
- 653      7400
- 654              	.LASF26:
- 655 019f 453A5C56 		.ascii	"E:\\Vorlesung\\Video\\3rd Sem\\MPS\\MPS-W22_Prakt_1"
- 655      6F726C65 
- 655      73756E67 
- 655      5C566964 
- 655      656F5C33 
- 656 01cd 2E637964 		.ascii	".cydsn\000"
- 656      736E00
- 657              	.LASF2:
- 658 01d4 73686F72 		.ascii	"short int\000"
- 658      7420696E 
- 658      7400
- 659              	.LASF9:
- 660 01de 75696E74 		.ascii	"uint8\000"
- 660      3800
- 661              	.LASF4:
- 662 01e4 6C6F6E67 		.ascii	"long int\000"
- 662      20696E74 
- 662      00
- 663              	.LASF13:
- 664 01ed 63686172 		.ascii	"char\000"
- 664      00
- 665              	.LASF0:
- 666 01f2 7369676E 		.ascii	"signed char\000"
- 666      65642063 
- 666      68617200 
- 667              	.LASF21:
- 668 01fe 50696E5F 		.ascii	"Pin_CWEW_SetInterruptMode\000"
- 668      43574557 
- 668      5F536574 
- 668      496E7465 
-ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccTdNZwa.s 			page 18
+ 642              	.LASF10:
+ 643 015a 75696E74 		.ascii	"uint16\000"
+ 643      313600
+ 644              	.LASF22:
+ 645 0161 706F7369 		.ascii	"position\000"
+ 645      74696F6E 
+ 645      00
+ 646              	.LASF25:
+ 647 016a 47656E65 		.ascii	"Generated_Source\\PSoC5\\Pin_CWEW.c\000"
+ 647      72617465 
+ 647      645F536F 
+ 647      75726365 
+ 647      5C50536F 
+ 648              	.LASF8:
+ 649 018c 756E7369 		.ascii	"unsigned int\000"
+ 649      676E6564 
+ 649      20696E74 
+ 649      00
+ 650              	.LASF7:
+ 651 0199 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 651      206C6F6E 
+ 651      6720756E 
+ 651      7369676E 
+ 651      65642069 
+ 652              	.LASF18:
+ 653 01b0 6D6F6465 		.ascii	"mode\000"
+ 653      00
+ 654              	.LASF6:
+ 655 01b5 6C6F6E67 		.ascii	"long long int\000"
+ 655      206C6F6E 
+ 655      6720696E 
+ 655      7400
+ 656              	.LASF13:
+ 657 01c3 63686172 		.ascii	"char\000"
+ 657      00
+ 658              	.LASF2:
+ 659 01c8 73686F72 		.ascii	"short int\000"
+ 659      7420696E 
+ 659      7400
+ 660              	.LASF9:
+ 661 01d2 75696E74 		.ascii	"uint8\000"
+ 661      3800
+ 662              	.LASF4:
+ 663 01d8 6C6F6E67 		.ascii	"long int\000"
+ 663      20696E74 
+ 663      00
+ 664              	.LASF0:
+ 665 01e1 7369676E 		.ascii	"signed char\000"
+ 665      65642063 
+ 665      68617200 
+ 666              	.LASF21:
+ 667 01ed 50696E5F 		.ascii	"Pin_CWEW_SetInterruptMode\000"
+ 667      43574557 
+ 667      5F536574 
+ 667      496E7465 
+ 667      72727570 
+ 668              	.LASF19:
+ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccSvtPjM.s 			page 18
 
 
- 668      72727570 
- 669              	.LASF19:
- 670 0218 50696E5F 		.ascii	"Pin_CWEW_Read\000"
- 670      43574557 
- 670      5F526561 
- 670      6400
- 671              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
+ 669 0207 50696E5F 		.ascii	"Pin_CWEW_Read\000"
+ 669      43574557 
+ 669      5F526561 
+ 669      6400
+ 670              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

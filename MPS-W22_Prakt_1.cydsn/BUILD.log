@@ -1,14 +1,18 @@
---------------- Build Started: 11/13/2022 05:40:05 Project: MPS-W22_Prakt_1, Configuration: ARM GCC 5.4-2016-q2-update Debug ---------------
+--------------- Build Started: 11/14/2022 17:29:07 Project: MPS-W22_Prakt_1, Configuration: ARM GCC 5.4-2016-q2-update Debug ---------------
 The code generation step is up to date.
 arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/main.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -Og -c main.c -o .\CortexM3\ARM_GCC_541\Debug\main.o
+main.c: In function 'main':
+main.c:128:27: warning: unused variable 'loop' [-Wunused-variable]
+         volatile uint32_t loop;                  // geht mit DEBUG, aber nicht mit RELEASE
+                           ^
 arm-none-eabi-ar.exe -rs .\CortexM3\ARM_GCC_541\Debug\MPS-W22_Prakt_1.a .\CortexM3\ARM_GCC_541\Debug\UART.o .\CortexM3\ARM_GCC_541\Debug\UART_PM.o .\CortexM3\ARM_GCC_541\Debug\UART_INT.o .\CortexM3\ARM_GCC_541\Debug\UART_BOOT.o .\CortexM3\ARM_GCC_541\Debug\isr_UART_RX.o .\CortexM3\ARM_GCC_541\Debug\Pin_N_R.o .\CortexM3\ARM_GCC_541\Debug\Pin_N_Y.o .\CortexM3\ARM_GCC_541\Debug\Pin_N_G.o .\CortexM3\ARM_GCC_541\Debug\Pin_E_CW.o .\CortexM3\ARM_GCC_541\Debug\Pin_CWEW.o .\CortexM3\ARM_GCC_541\Debug\isr_CWEW.o .\CortexM3\ARM_GCC_541\Debug\UART_IntClock.o .\CortexM3\ARM_GCC_541\Debug\CyDmac.o .\CortexM3\ARM_GCC_541\Debug\CyFlash.o .\CortexM3\ARM_GCC_541\Debug\CyLib.o .\CortexM3\ARM_GCC_541\Debug\cyPm.o .\CortexM3\ARM_GCC_541\Debug\CySpc.o .\CortexM3\ARM_GCC_541\Debug\cyutils.o .\CortexM3\ARM_GCC_541\Debug\cy_em_eeprom.o .\CortexM3\ARM_GCC_541\Debug\CyBootAsmGnu.o
 arm-none-eabi-ar.exe: creating .\CortexM3\ARM_GCC_541\Debug\MPS-W22_Prakt_1.a
-arm-none-eabi-gcc.exe -Wl,--start-group -o "E:\Vorlesung\Video\3rd Sem\MPS\MPS-W22_Prakt_1.cydsn\CortexM3\ARM_GCC_541\Debug\MPS-W22_Prakt_1.elf" .\CortexM3\ARM_GCC_541\Debug\main.o .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o .\CortexM3\ARM_GCC_541\Debug\cymetadata.o .\CortexM3\ARM_GCC_541\Debug\Cm3Start.o .\CortexM3\ARM_GCC_541\Debug\MPS-W22_Prakt_1.a "D:\Tools\PSoc Creator\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CortexM3\ARM_GCC_541\Debug\CyComponentLibrary.a" -mcpu=cortex-m3 -mthumb -L Generated_Source\PSoC5 -Wl,-Map,.\CortexM3\ARM_GCC_541\Debug/MPS-W22_Prakt_1.map -T Generated_Source\PSoC5\cm3gcc.ld -specs=nano.specs -Wl,--gc-sections -g -ffunction-sections -Og -ffat-lto-objects -Wl,--end-group
-cyelftool.exe -C "E:\Vorlesung\Video\3rd Sem\MPS\MPS-W22_Prakt_1.cydsn\CortexM3\ARM_GCC_541\Debug\MPS-W22_Prakt_1.elf" --flash_row_size 256 --flash_size 262144 --flash_offset 0x00000000
+arm-none-eabi-gcc.exe -Wl,--start-group -o E:\github\MPS\MPS-W22_Prakt_1.cydsn\CortexM3\ARM_GCC_541\Debug\MPS-W22_Prakt_1.elf .\CortexM3\ARM_GCC_541\Debug\main.o .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o .\CortexM3\ARM_GCC_541\Debug\cymetadata.o .\CortexM3\ARM_GCC_541\Debug\Cm3Start.o .\CortexM3\ARM_GCC_541\Debug\MPS-W22_Prakt_1.a "E:\PSoc Creator\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CortexM3\ARM_GCC_541\Debug\CyComponentLibrary.a" -mcpu=cortex-m3 -mthumb -L Generated_Source\PSoC5 -Wl,-Map,.\CortexM3\ARM_GCC_541\Debug/MPS-W22_Prakt_1.map -T Generated_Source\PSoC5\cm3gcc.ld -specs=nano.specs -Wl,--gc-sections -g -ffunction-sections -Og -ffat-lto-objects -Wl,--end-group
+cyelftool.exe -C E:\github\MPS\MPS-W22_Prakt_1.cydsn\CortexM3\ARM_GCC_541\Debug\MPS-W22_Prakt_1.elf --flash_row_size 256 --flash_size 262144 --flash_offset 0x00000000
 No ELF section .cychecksum found, creating one
 Application checksum calculated and stored in ELF section .cychecksum
 Checksum calculated and stored in ELF section .cymeta
-cyelftool.exe -S "E:\Vorlesung\Video\3rd Sem\MPS\MPS-W22_Prakt_1.cydsn\CortexM3\ARM_GCC_541\Debug\MPS-W22_Prakt_1.elf"
-Flash used: 4344 of 262144 bytes (1.7%).
+cyelftool.exe -S E:\github\MPS\MPS-W22_Prakt_1.cydsn\CortexM3\ARM_GCC_541\Debug\MPS-W22_Prakt_1.elf
+Flash used: 4304 of 262144 bytes (1.6%).
 SRAM used: 2657 of 65536 bytes (4.1%). Stack: 2048 bytes. Heap: 128 bytes.
---------------- Build Succeeded: 11/13/2022 05:40:07 ---------------
+--------------- Build Succeeded: 11/14/2022 17:29:08 ---------------

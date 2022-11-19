@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Trung\AppData\Local\Temp\cc52uHeO.s 			page 1
+ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccVoxRyt.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Trung\AppData\Local\Temp\cc52uHeO.s 			page 1
   28:main.c        **** _AUTHOR_" ("_COMPANY"), "__DATE__" "__TIME__)
   29:main.c        **** 
   30:main.c        **** /* Macros for I/O */
-ARM GAS  C:\Users\Trung\AppData\Local\Temp\cc52uHeO.s 			page 2
+ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccVoxRyt.s 			page 2
 
 
   31:main.c        **** #define LED_ON  (0u)                //!< LED on (active low)
@@ -83,48 +83,46 @@ ARM GAS  C:\Users\Trung\AppData\Local\Temp\cc52uHeO.s 			page 1
   50:main.c        **** {
   28              		.loc 1 50 0
   29              		.cfi_startproc
-  30              		@ args = 0, pretend = 0, frame = 8
+  30              		@ args = 0, pretend = 0, frame = 0
   31              		@ frame_needed = 0, uses_anonymous_args = 0
   32 0000 10B5     		push	{r4, lr}
   33              		.cfi_def_cfa_offset 8
   34              		.cfi_offset 4, -8
   35              		.cfi_offset 14, -4
-  36 0002 82B0     		sub	sp, sp, #8
-  37              		.cfi_def_cfa_offset 16
   51:main.c        ****     /* Initialisierung */
   52:main.c        ****     UART_Start();                       // start UART
-  38              		.loc 1 52 0
-  39 0004 FFF7FEFF 		bl	UART_Start
-  40              	.LVL0:
+  36              		.loc 1 52 0
+  37 0002 FFF7FEFF 		bl	UART_Start
+  38              	.LVL0:
   53:main.c        **** 
   54:main.c        ****     CyGlobalIntEnable; /* Enable global interrupts. */
-  41              		.loc 1 54 0
-  42              		.syntax unified
-  43              	@ 54 "main.c" 1
-  44 0008 62B6     		CPSIE   i
-  45              	@ 0 "" 2
+  39              		.loc 1 54 0
+  40              		.syntax unified
+  41              	@ 54 "main.c" 1
+  42 0006 62B6     		CPSIE   i
+  43              	@ 0 "" 2
   55:main.c        **** 
   56:main.c        ****     /* Welcome and info text Ausgabe */
   57:main.c        ****     sprintf( buffer, "\n\rWelcome! %s\n\r", _VERSTR_);  // formatiert in Buffer
-  46              		.loc 1 57 0
-  47              		.thumb
-  48              		.syntax unified
-  49 000a 3D4C     		ldr	r4, .L20
-  50 000c 3D4A     		ldr	r2, .L20+4
-  51 000e 3E49     		ldr	r1, .L20+8
-  52 0010 2046     		mov	r0, r4
-  53 0012 FFF7FEFF 		bl	sprintf
-  54              	.LVL1:
+  44              		.loc 1 57 0
+  45              		.thumb
+  46              		.syntax unified
+  47 0008 344C     		ldr	r4, .L18
+  48 000a 354A     		ldr	r2, .L18+4
+  49 000c 3549     		ldr	r1, .L18+8
+  50 000e 2046     		mov	r0, r4
+  51 0010 FFF7FEFF 		bl	sprintf
+  52              	.LVL1:
   58:main.c        ****     UART_PutString( buffer );                           // Ausgabe auf UART
-  55              		.loc 1 58 0
-  56 0016 2046     		mov	r0, r4
-ARM GAS  C:\Users\Trung\AppData\Local\Temp\cc52uHeO.s 			page 3
+  53              		.loc 1 58 0
+  54 0014 2046     		mov	r0, r4
+  55 0016 FFF7FEFF 		bl	UART_PutString
+  56              	.LVL2:
+ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccVoxRyt.s 			page 3
 
 
-  57 0018 FFF7FEFF 		bl	UART_PutString
-  58              	.LVL2:
-  59              	.L18:
-  60              	.LBB2:
+  57              	.L14:
+  58              	.LBB2:
   59:main.c        ****     
   60:main.c        ****     /* +++ Declarationen +++ */
   61:main.c        ****     uint8_t chr = 0;                       // for char von der UART
@@ -135,1229 +133,1219 @@ ARM GAS  C:\Users\Trung\AppData\Local\Temp\cc52uHeO.s 			page 1
   66:main.c        ****     {
   67:main.c        ****         /* +++ Character aus Uart mit Polling abfragen +++ */
   68:main.c        ****         chr = UART_GetChar();           // fragt UART nach empfangene char ab
-  61              		.loc 1 68 0
-  62 001c FFF7FEFF 		bl	UART_GetChar
-  63              	.LVL3:
+  59              		.loc 1 68 0
+  60 001a FFF7FEFF 		bl	UART_GetChar
+  61              	.LVL3:
   69:main.c        ****                                         //  = 0: wenn nichts empfangen
   70:main.c        ****                                         // != 0: empfangenes Zeichen
   71:main.c        ****                                         // Polling, nicht wartend
   72:main.c        ****         // chr auswerten falls != 0
   73:main.c        ****         if ( chr != 0 ) {               // da kam ein Zeichen ...
-  64              		.loc 1 73 0
-  65 0020 0246     		mov	r2, r0
-  66 0022 0028     		cmp	r0, #0
-  67 0024 43D0     		beq	.L2
+  62              		.loc 1 73 0
+  63 001e 0246     		mov	r2, r0
+  64 0020 0028     		cmp	r0, #0
+  65 0022 4BD0     		beq	.L2
   74:main.c        ****             // ein kleines Menu ... 
   75:main.c        ****             // >>> (TODO um Einträg erweitern!) <<<
   76:main.c        ****             //  z.B. grüne LED ein- 'G' und 'g' ausschalten
   77:main.c        ****             switch (chr) {              // Zeichen auswerten
-  68              		.loc 1 77 0
-  69 0026 A0F14703 		sub	r3, r0, #71
-  70 002a 322B     		cmp	r3, #50
-  71 002c 37D8     		bhi	.L3
-  72 002e DFE803F0 		tbb	[pc, r3]
-  73              	.L5:
-  74 0032 26       		.byte	(.L4-.L5)/2
-  75 0033 36       		.byte	(.L3-.L5)/2
-  76 0034 36       		.byte	(.L3-.L5)/2
-  77 0035 36       		.byte	(.L3-.L5)/2
-  78 0036 36       		.byte	(.L3-.L5)/2
-  79 0037 36       		.byte	(.L3-.L5)/2
-  80 0038 36       		.byte	(.L3-.L5)/2
-  81 0039 36       		.byte	(.L3-.L5)/2
-  82 003a 36       		.byte	(.L3-.L5)/2
-  83 003b 36       		.byte	(.L3-.L5)/2
-  84 003c 36       		.byte	(.L3-.L5)/2
-  85 003d 1E       		.byte	(.L6-.L5)/2
-  86 003e 36       		.byte	(.L3-.L5)/2
-  87 003f 36       		.byte	(.L3-.L5)/2
-  88 0040 36       		.byte	(.L3-.L5)/2
-  89 0041 36       		.byte	(.L3-.L5)/2
-  90 0042 36       		.byte	(.L3-.L5)/2
-  91 0043 36       		.byte	(.L3-.L5)/2
-  92 0044 22       		.byte	(.L7-.L5)/2
-  93 0045 36       		.byte	(.L3-.L5)/2
-  94 0046 36       		.byte	(.L3-.L5)/2
-ARM GAS  C:\Users\Trung\AppData\Local\Temp\cc52uHeO.s 			page 4
+  66              		.loc 1 77 0
+  67 0024 A0F14703 		sub	r3, r0, #71
+  68 0028 322B     		cmp	r3, #50
+  69 002a 3FD8     		bhi	.L3
+  70 002c DFE803F0 		tbb	[pc, r3]
+  71              	.L5:
+  72 0030 2E       		.byte	(.L4-.L5)/2
+  73 0031 3E       		.byte	(.L3-.L5)/2
+  74 0032 3E       		.byte	(.L3-.L5)/2
+  75 0033 3E       		.byte	(.L3-.L5)/2
+  76 0034 3E       		.byte	(.L3-.L5)/2
+  77 0035 3E       		.byte	(.L3-.L5)/2
+  78 0036 3E       		.byte	(.L3-.L5)/2
+  79 0037 3E       		.byte	(.L3-.L5)/2
+  80 0038 3E       		.byte	(.L3-.L5)/2
+  81 0039 3E       		.byte	(.L3-.L5)/2
+  82 003a 22       		.byte	(.L6-.L5)/2
+  83 003b 26       		.byte	(.L7-.L5)/2
+  84 003c 3E       		.byte	(.L3-.L5)/2
+  85 003d 3E       		.byte	(.L3-.L5)/2
+  86 003e 3E       		.byte	(.L3-.L5)/2
+  87 003f 3E       		.byte	(.L3-.L5)/2
+  88 0040 3E       		.byte	(.L3-.L5)/2
+  89 0041 3E       		.byte	(.L3-.L5)/2
+  90 0042 2A       		.byte	(.L8-.L5)/2
+  91 0043 3E       		.byte	(.L3-.L5)/2
+  92 0044 3E       		.byte	(.L3-.L5)/2
+  93 0045 3E       		.byte	(.L3-.L5)/2
+  94 0046 3E       		.byte	(.L3-.L5)/2
+ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccVoxRyt.s 			page 4
 
 
-  95 0047 36       		.byte	(.L3-.L5)/2
-  96 0048 36       		.byte	(.L3-.L5)/2
-  97 0049 36       		.byte	(.L3-.L5)/2
-  98 004a 36       		.byte	(.L3-.L5)/2
-  99 004b 36       		.byte	(.L3-.L5)/2
- 100 004c 36       		.byte	(.L3-.L5)/2
- 101 004d 36       		.byte	(.L3-.L5)/2
- 102 004e 36       		.byte	(.L3-.L5)/2
- 103 004f 36       		.byte	(.L3-.L5)/2
- 104 0050 36       		.byte	(.L3-.L5)/2
- 105 0051 36       		.byte	(.L3-.L5)/2
- 106 0052 32       		.byte	(.L8-.L5)/2
- 107 0053 36       		.byte	(.L3-.L5)/2
- 108 0054 36       		.byte	(.L3-.L5)/2
- 109 0055 36       		.byte	(.L3-.L5)/2
- 110 0056 36       		.byte	(.L3-.L5)/2
- 111 0057 36       		.byte	(.L3-.L5)/2
- 112 0058 36       		.byte	(.L3-.L5)/2
- 113 0059 36       		.byte	(.L3-.L5)/2
- 114 005a 36       		.byte	(.L3-.L5)/2
- 115 005b 36       		.byte	(.L3-.L5)/2
- 116 005c 36       		.byte	(.L3-.L5)/2
- 117 005d 2A       		.byte	(.L9-.L5)/2
- 118 005e 36       		.byte	(.L3-.L5)/2
- 119 005f 36       		.byte	(.L3-.L5)/2
- 120 0060 36       		.byte	(.L3-.L5)/2
- 121 0061 36       		.byte	(.L3-.L5)/2
- 122 0062 36       		.byte	(.L3-.L5)/2
- 123 0063 1A       		.byte	(.L10-.L5)/2
- 124 0064 2E       		.byte	(.L11-.L5)/2
- 125 0065 00       		.p2align 1
- 126              	.L10:
+  95 0047 3E       		.byte	(.L3-.L5)/2
+  96 0048 3E       		.byte	(.L3-.L5)/2
+  97 0049 3E       		.byte	(.L3-.L5)/2
+  98 004a 3E       		.byte	(.L3-.L5)/2
+  99 004b 3E       		.byte	(.L3-.L5)/2
+ 100 004c 3E       		.byte	(.L3-.L5)/2
+ 101 004d 3E       		.byte	(.L3-.L5)/2
+ 102 004e 3E       		.byte	(.L3-.L5)/2
+ 103 004f 3E       		.byte	(.L3-.L5)/2
+ 104 0050 3A       		.byte	(.L9-.L5)/2
+ 105 0051 3E       		.byte	(.L3-.L5)/2
+ 106 0052 3E       		.byte	(.L3-.L5)/2
+ 107 0053 3E       		.byte	(.L3-.L5)/2
+ 108 0054 3E       		.byte	(.L3-.L5)/2
+ 109 0055 3E       		.byte	(.L3-.L5)/2
+ 110 0056 3E       		.byte	(.L3-.L5)/2
+ 111 0057 3E       		.byte	(.L3-.L5)/2
+ 112 0058 3E       		.byte	(.L3-.L5)/2
+ 113 0059 3E       		.byte	(.L3-.L5)/2
+ 114 005a 1E       		.byte	(.L10-.L5)/2
+ 115 005b 32       		.byte	(.L11-.L5)/2
+ 116 005c 3E       		.byte	(.L3-.L5)/2
+ 117 005d 3E       		.byte	(.L3-.L5)/2
+ 118 005e 3E       		.byte	(.L3-.L5)/2
+ 119 005f 3E       		.byte	(.L3-.L5)/2
+ 120 0060 3E       		.byte	(.L3-.L5)/2
+ 121 0061 1A       		.byte	(.L12-.L5)/2
+ 122 0062 36       		.byte	(.L13-.L5)/2
+ 123 0063 00       		.p2align 1
+ 124              	.L12:
   78:main.c        ****                 case 'x':               // 'x' auswerten
   79:main.c        ****                     UART_PutString( "... da ist ein <x>'\n\r" );
- 127              		.loc 1 79 0
- 128 0066 2948     		ldr	r0, .L20+12
- 129              	.LVL4:
- 130 0068 FFF7FEFF 		bl	UART_PutString
- 131              	.LVL5:
+ 125              		.loc 1 79 0
+ 126 0064 2048     		ldr	r0, .L18+12
+ 127              	.LVL4:
+ 128 0066 FFF7FEFF 		bl	UART_PutString
+ 129              	.LVL5:
   80:main.c        ****                                         // String Ausgabe, Zeilenabschluss LF CR
   81:main.c        ****                     break;
- 132              		.loc 1 81 0
- 133 006c 1FE0     		b	.L2
- 134              	.LVL6:
- 135              	.L6:
-  82:main.c        ****                 case 'R': 
-  83:main.c        ****                     Pin_N_R_Write(LED_ON);
- 136              		.loc 1 83 0
- 137 006e 0020     		movs	r0, #0
- 138              	.LVL7:
- 139 0070 FFF7FEFF 		bl	Pin_N_R_Write
- 140              	.LVL8:
-  84:main.c        ****                     break;
- 141              		.loc 1 84 0
- 142 0074 1BE0     		b	.L2
- 143              	.LVL9:
- 144              	.L7:
-ARM GAS  C:\Users\Trung\AppData\Local\Temp\cc52uHeO.s 			page 5
+ 130              		.loc 1 81 0
+ 131 006a 27E0     		b	.L2
+ 132              	.LVL6:
+ 133              	.L10:
+  82:main.c        ****                 case 'q':
+  83:main.c        ****                     Pin_E_CW_Write(LED_OFF);        //led on
+ 134              		.loc 1 83 0
+ 135 006c 0120     		movs	r0, #1
+ 136              	.LVL7:
+ 137 006e FFF7FEFF 		bl	Pin_E_CW_Write
+ 138              	.LVL8:
+  84:main.c        ****                     break; 
+ 139              		.loc 1 84 0
+ 140 0072 23E0     		b	.L2
+ 141              	.LVL9:
+ 142              	.L6:
+  85:main.c        ****                 case 'Q':
+  86:main.c        ****                     Pin_E_CW_Write(LED_ON);     //led off
+ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccVoxRyt.s 			page 5
 
 
-  85:main.c        ****                 case 'Y':
-  86:main.c        ****                     Pin_N_Y_Write(LED_ON);
- 145              		.loc 1 86 0
- 146 0076 0020     		movs	r0, #0
- 147              	.LVL10:
- 148 0078 FFF7FEFF 		bl	Pin_N_Y_Write
- 149              	.LVL11:
+ 143              		.loc 1 86 0
+ 144 0074 0020     		movs	r0, #0
+ 145              	.LVL10:
+ 146 0076 FFF7FEFF 		bl	Pin_E_CW_Write
+ 147              	.LVL11:
   87:main.c        ****                     break;
- 150              		.loc 1 87 0
- 151 007c 17E0     		b	.L2
- 152              	.LVL12:
- 153              	.L4:
-  88:main.c        ****                 case 'G':
-  89:main.c        ****                     Pin_N_G_Write(LED_ON);
- 154              		.loc 1 89 0
- 155 007e 0020     		movs	r0, #0
- 156              	.LVL13:
- 157 0080 FFF7FEFF 		bl	Pin_N_G_Write
- 158              	.LVL14:
+ 148              		.loc 1 87 0
+ 149 007a 1FE0     		b	.L2
+ 150              	.LVL12:
+ 151              	.L7:
+  88:main.c        ****                 case 'R': 
+  89:main.c        ****                     Pin_N_R_Write(LED_ON);
+ 152              		.loc 1 89 0
+ 153 007c 0020     		movs	r0, #0
+ 154              	.LVL13:
+ 155 007e FFF7FEFF 		bl	Pin_N_R_Write
+ 156              	.LVL14:
   90:main.c        ****                     break;
- 159              		.loc 1 90 0
- 160 0084 13E0     		b	.L2
- 161              	.LVL15:
- 162              	.L9:
-  91:main.c        ****                 case 'r':
-  92:main.c        ****                     Pin_N_G_Write(LED_OFF);
- 163              		.loc 1 92 0
- 164 0086 0120     		movs	r0, #1
- 165              	.LVL16:
- 166 0088 FFF7FEFF 		bl	Pin_N_G_Write
- 167              	.LVL17:
+ 157              		.loc 1 90 0
+ 158 0082 1BE0     		b	.L2
+ 159              	.LVL15:
+ 160              	.L8:
+  91:main.c        ****                 case 'Y':
+  92:main.c        ****                     Pin_N_Y_Write(LED_ON);
+ 161              		.loc 1 92 0
+ 162 0084 0020     		movs	r0, #0
+ 163              	.LVL16:
+ 164 0086 FFF7FEFF 		bl	Pin_N_Y_Write
+ 165              	.LVL17:
   93:main.c        ****                     break;
- 168              		.loc 1 93 0
- 169 008c 0FE0     		b	.L2
- 170              	.LVL18:
- 171              	.L11:
-  94:main.c        ****                 case 'y':
-  95:main.c        ****                     Pin_N_G_Write(LED_OFF);
- 172              		.loc 1 95 0
- 173 008e 0120     		movs	r0, #1
- 174              	.LVL19:
- 175 0090 FFF7FEFF 		bl	Pin_N_G_Write
- 176              	.LVL20:
+ 166              		.loc 1 93 0
+ 167 008a 17E0     		b	.L2
+ 168              	.LVL18:
+ 169              	.L4:
+  94:main.c        ****                 case 'G':
+  95:main.c        ****                     Pin_N_G_Write(LED_ON);
+ 170              		.loc 1 95 0
+ 171 008c 0020     		movs	r0, #0
+ 172              	.LVL19:
+ 173 008e FFF7FEFF 		bl	Pin_N_G_Write
+ 174              	.LVL20:
   96:main.c        ****                     break;
- 177              		.loc 1 96 0
- 178 0094 0BE0     		b	.L2
- 179              	.LVL21:
- 180              	.L8:
-  97:main.c        ****                 case 'g':
-  98:main.c        ****                     Pin_N_G_Write(LED_OFF);
- 181              		.loc 1 98 0
- 182 0096 0120     		movs	r0, #1
- 183              	.LVL22:
- 184 0098 FFF7FEFF 		bl	Pin_N_G_Write
- 185              	.LVL23:
+ 175              		.loc 1 96 0
+ 176 0092 13E0     		b	.L2
+ 177              	.LVL21:
+ 178              	.L11:
+  97:main.c        ****                 case 'r':
+  98:main.c        ****                     Pin_N_R_Write(LED_OFF);
+ 179              		.loc 1 98 0
+ 180 0094 0120     		movs	r0, #1
+ 181              	.LVL22:
+ 182 0096 FFF7FEFF 		bl	Pin_N_R_Write
+ 183              	.LVL23:
   99:main.c        ****                     break;
- 186              		.loc 1 99 0
-ARM GAS  C:\Users\Trung\AppData\Local\Temp\cc52uHeO.s 			page 6
+ 184              		.loc 1 99 0
+ 185 009a 0FE0     		b	.L2
+ 186              	.LVL24:
+ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccVoxRyt.s 			page 6
 
 
- 187 009c 07E0     		b	.L2
- 188              	.LVL24:
- 189              	.L3:
- 100:main.c        ****                 default:
- 101:main.c        ****                     sprintf( buffer, "erwarte ein <x>, aber <%c> wurde eingegeben\n\r", chr );
- 190              		.loc 1 101 0
- 191 009e 184C     		ldr	r4, .L20
- 192 00a0 1B49     		ldr	r1, .L20+16
- 193 00a2 2046     		mov	r0, r4
- 194              	.LVL25:
- 195 00a4 FFF7FEFF 		bl	sprintf
- 196              	.LVL26:
- 102:main.c        ****                     UART_PutString( buffer );
- 197              		.loc 1 102 0
- 198 00a8 2046     		mov	r0, r4
- 199 00aa FFF7FEFF 		bl	UART_PutString
- 200              	.LVL27:
- 201              	.L2:
- 103:main.c        ****                     break;
- 104:main.c        ****             } // end switch
- 105:main.c        ****             chr = 0;                    // nicht vergessen (mit ISR)
- 106:main.c        ****         }
- 107:main.c        **** 
- 108:main.c        **** 
- 109:main.c        ****         /* +++ Taste CWEW abfragen +++ */
- 110:main.c        ****         if ( Pin_CWEW_Read() == 0 ) {   // warum auf 0 abfragen?
- 202              		.loc 1 110 0
- 203 00ae FFF7FEFF 		bl	Pin_CWEW_Read
- 204              	.LVL28:
- 205 00b2 50B9     		cbnz	r0, .L12
- 206              	.L13:
- 111:main.c        ****             while(!Pin_CWEW_Read()) {       // warte auf loslegen
- 207              		.loc 1 111 0 discriminator 1
- 208 00b4 FFF7FEFF 		bl	Pin_CWEW_Read
- 209              	.LVL29:
- 210 00b8 0028     		cmp	r0, #0
- 211 00ba FBD0     		beq	.L13
- 112:main.c        ****             }
- 113:main.c        ****             Pin_E_CW_Write( !Pin_E_CW_Read() ); // toggle
- 212              		.loc 1 113 0
- 213 00bc FFF7FEFF 		bl	Pin_E_CW_Read
- 214              	.LVL30:
- 215 00c0 B0FA80F0 		clz	r0, r0
- 216 00c4 4009     		lsrs	r0, r0, #5
- 217 00c6 FFF7FEFF 		bl	Pin_E_CW_Write
- 218              	.LVL31:
- 219              	.L12:
- 114:main.c        ****         }           
+ 187              	.L13:
+ 100:main.c        ****                 case 'y':
+ 101:main.c        ****                     Pin_N_Y_Write(LED_OFF);
+ 188              		.loc 1 101 0
+ 189 009c 0120     		movs	r0, #1
+ 190              	.LVL25:
+ 191 009e FFF7FEFF 		bl	Pin_N_Y_Write
+ 192              	.LVL26:
+ 102:main.c        ****                     break;
+ 193              		.loc 1 102 0
+ 194 00a2 0BE0     		b	.L2
+ 195              	.LVL27:
+ 196              	.L9:
+ 103:main.c        ****                 case 'g':
+ 104:main.c        ****                     Pin_N_G_Write(LED_OFF);
+ 197              		.loc 1 104 0
+ 198 00a4 0120     		movs	r0, #1
+ 199              	.LVL28:
+ 200 00a6 FFF7FEFF 		bl	Pin_N_G_Write
+ 201              	.LVL29:
+ 105:main.c        ****                     break;
+ 202              		.loc 1 105 0
+ 203 00aa 07E0     		b	.L2
+ 204              	.LVL30:
+ 205              	.L3:
+ 106:main.c        ****                 default:
+ 107:main.c        ****                      //sprintf( buffer, "\n\rWelcome! %s\n\r", _VERSTR_);  // formatiert in Buffer
+ 108:main.c        ****                      //UART_PutString( buffer );                           // Ausgabe auf UART
+ 109:main.c        ****                      sprintf( buffer, "erwarte ein <x>, aber <%c> wurde eingegeben\n\r", chr );
+ 206              		.loc 1 109 0
+ 207 00ac 0B4C     		ldr	r4, .L18
+ 208 00ae 0F49     		ldr	r1, .L18+16
+ 209 00b0 2046     		mov	r0, r4
+ 210              	.LVL31:
+ 211 00b2 FFF7FEFF 		bl	sprintf
+ 212              	.LVL32:
+ 110:main.c        ****                      UART_PutString( buffer );
+ 213              		.loc 1 110 0
+ 214 00b6 2046     		mov	r0, r4
+ 215 00b8 FFF7FEFF 		bl	UART_PutString
+ 216              	.LVL33:
+ 217              	.L2:
+ 111:main.c        ****                     break;
+ 112:main.c        ****             } // end switch
+ 113:main.c        ****             chr = 0;                    // nicht vergessen (mit ISR)
+ 114:main.c        ****         }
  115:main.c        **** 
- 116:main.c        ****         /* +++ LED blinken lassen, warten mit Schleife +++ */
- 117:main.c        ****         
- 118:main.c        ****         // für Teilaufgabe 6 Kommentare entfernen
- 119:main.c        ****         // Testen mit DEBUG und RELEASE
- 120:main.c        ****         volatile uint32_t loop;                  // geht mit DEBUG, aber nicht mit RELEASE
- 121:main.c        ****                                         // warum??? 
- 122:main.c        ****                                         // Frage, was macht 'volatile'?
- 123:main.c        ****         Pin_N_R_Write( LED_ON );        // anschalten
-ARM GAS  C:\Users\Trung\AppData\Local\Temp\cc52uHeO.s 			page 7
+ 116:main.c        **** 
+ 117:main.c        ****         /* +++ Taste CWEW abfragen +++ */
+ 118:main.c        ****         if ( Pin_CWEW_Read() == 0 ) {   // warum auf 0 abfragen? beim 0 wird kein signal gesendet
+ 218              		.loc 1 118 0
+ 219 00bc FFF7FEFF 		bl	Pin_CWEW_Read
+ 220              	.LVL34:
+ 221 00c0 0028     		cmp	r0, #0
+ 222 00c2 AAD1     		bne	.L14
+ 223              	.L15:
+ 119:main.c        ****             while(!Pin_CWEW_Read()) {       // warte auf loslegen
+ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccVoxRyt.s 			page 7
 
 
- 220              		.loc 1 123 0
- 221 00ca 0020     		movs	r0, #0
- 222 00cc FFF7FEFF 		bl	Pin_N_R_Write
- 223              	.LVL32:
- 124:main.c        ****         for ( loop = 0; loop < 1000000; loop++ )    // warten mit Schleife
- 224              		.loc 1 124 0
- 225 00d0 0023     		movs	r3, #0
- 226 00d2 0193     		str	r3, [sp, #4]
- 227 00d4 02E0     		b	.L14
- 228              	.L15:
- 229              		.loc 1 124 0 is_stmt 0 discriminator 3
- 230 00d6 019B     		ldr	r3, [sp, #4]
- 231 00d8 0133     		adds	r3, r3, #1
- 232 00da 0193     		str	r3, [sp, #4]
- 233              	.L14:
- 234              		.loc 1 124 0 discriminator 1
- 235 00dc 019A     		ldr	r2, [sp, #4]
- 236 00de 0D4B     		ldr	r3, .L20+20
- 237 00e0 9A42     		cmp	r2, r3
- 238 00e2 F8D9     		bls	.L15
- 125:main.c        ****             ;
- 126:main.c        ****         Pin_N_R_Write( LED_OFF );       // ausschalten
- 239              		.loc 1 126 0 is_stmt 1
- 240 00e4 0120     		movs	r0, #1
- 241 00e6 FFF7FEFF 		bl	Pin_N_R_Write
- 242              	.LVL33:
- 127:main.c        ****         for ( loop = 0; loop < 1000000; loop++ )    // warten mit Schleife
- 243              		.loc 1 127 0
- 244 00ea 0023     		movs	r3, #0
- 245 00ec 0193     		str	r3, [sp, #4]
- 246 00ee 02E0     		b	.L16
- 247              	.L17:
- 248              		.loc 1 127 0 is_stmt 0 discriminator 3
- 249 00f0 019B     		ldr	r3, [sp, #4]
- 250 00f2 0133     		adds	r3, r3, #1
- 251 00f4 0193     		str	r3, [sp, #4]
- 252              	.L16:
- 253              		.loc 1 127 0 discriminator 1
- 254 00f6 019A     		ldr	r2, [sp, #4]
- 255 00f8 064B     		ldr	r3, .L20+20
- 256 00fa 9A42     		cmp	r2, r3
- 257 00fc F8D9     		bls	.L17
- 258 00fe 8DE7     		b	.L18
- 259              	.L21:
- 260              		.align	2
- 261              	.L20:
- 262 0100 00000000 		.word	.LANCHOR0
- 263 0104 00000000 		.word	.LC0
- 264 0108 70000000 		.word	.LC1
- 265 010c 80000000 		.word	.LC2
- 266 0110 98000000 		.word	.LC3
- 267 0114 3F420F00 		.word	999999
- 268              	.LBE2:
- 269              		.cfi_endproc
- 270              	.LFE64:
- 271              		.size	main, .-main
- 272              		.section	.rodata.str1.4,"aMS",%progbits,1
-ARM GAS  C:\Users\Trung\AppData\Local\Temp\cc52uHeO.s 			page 8
+ 224              		.loc 1 119 0 discriminator 1
+ 225 00c4 FFF7FEFF 		bl	Pin_CWEW_Read
+ 226              	.LVL35:
+ 227 00c8 0028     		cmp	r0, #0
+ 228 00ca FBD0     		beq	.L15
+ 120:main.c        ****             }
+ 121:main.c        ****             Pin_E_CW_Write( !Pin_E_CW_Read() ); // toggle
+ 229              		.loc 1 121 0
+ 230 00cc FFF7FEFF 		bl	Pin_E_CW_Read
+ 231              	.LVL36:
+ 232 00d0 B0FA80F0 		clz	r0, r0
+ 233 00d4 4009     		lsrs	r0, r0, #5
+ 234 00d6 FFF7FEFF 		bl	Pin_E_CW_Write
+ 235              	.LVL37:
+ 236 00da 9EE7     		b	.L14
+ 237              	.L19:
+ 238              		.align	2
+ 239              	.L18:
+ 240 00dc 00000000 		.word	.LANCHOR0
+ 241 00e0 00000000 		.word	.LC0
+ 242 00e4 70000000 		.word	.LC1
+ 243 00e8 80000000 		.word	.LC2
+ 244 00ec 98000000 		.word	.LC3
+ 245              	.LBE2:
+ 246              		.cfi_endproc
+ 247              	.LFE64:
+ 248              		.size	main, .-main
+ 249              		.section	.rodata.str1.4,"aMS",%progbits,1
+ 250              		.align	2
+ 251              	.LC0:
+ 252 0000 4D50532D 		.ascii	"MPS-W22_Prakt_1, FreeSoC2, PSoC 5LP, ver. 1.0\012\015"
+ 252      5732325F 
+ 252      5072616B 
+ 252      745F312C 
+ 252      20467265 
+ 253 002f 4D617267 		.ascii	"Marge Rite, Peter Silie (FbI Template MPS), Nov 14 "
+ 253      65205269 
+ 253      74652C20 
+ 253      50657465 
+ 253      72205369 
+ 254 0062 32303232 		.ascii	"2022 17:29:07\000"
+ 254      2031373A 
+ 254      32393A30 
+ 254      3700
+ 255              	.LC1:
+ 256 0070 0A0D5765 		.ascii	"\012\015Welcome! %s\012\015\000"
+ 256      6C636F6D 
+ 256      65212025 
+ 256      730A0D00 
+ 257              	.LC2:
+ 258 0080 2E2E2E20 		.ascii	"... da ist ein <x>'\012\015\000"
+ 258      64612069 
+ 258      73742065 
+ 258      696E203C 
+ 258      783E270A 
+ 259 0096 0000     		.space	2
+ 260              	.LC3:
+ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccVoxRyt.s 			page 8
 
 
- 273              		.align	2
- 274              	.LC0:
- 275 0000 4D50532D 		.ascii	"MPS-W22_Prakt_1, FreeSoC2, PSoC 5LP, ver. 1.0\012\015"
- 275      5732325F 
- 275      5072616B 
- 275      745F312C 
- 275      20467265 
- 276 002f 4D617267 		.ascii	"Marge Rite, Peter Silie (FbI Template MPS), Nov 13 "
- 276      65205269 
- 276      74652C20 
- 276      50657465 
- 276      72205369 
- 277 0062 32303232 		.ascii	"2022 05:40:06\000"
- 277      2030353A 
- 277      34303A30 
- 277      3600
- 278              	.LC1:
- 279 0070 0A0D5765 		.ascii	"\012\015Welcome! %s\012\015\000"
- 279      6C636F6D 
- 279      65212025 
- 279      730A0D00 
- 280              	.LC2:
- 281 0080 2E2E2E20 		.ascii	"... da ist ein <x>'\012\015\000"
- 281      64612069 
- 281      73742065 
- 281      696E203C 
- 281      783E270A 
- 282 0096 0000     		.space	2
- 283              	.LC3:
- 284 0098 65727761 		.ascii	"erwarte ein <x>, aber <%c> wurde eingegeben\012\015"
- 284      72746520 
- 284      65696E20 
- 284      3C783E2C 
- 284      20616265 
- 285 00c5 00       		.ascii	"\000"
- 286              		.bss
- 287              		.align	2
- 288              		.set	.LANCHOR0,. + 0
- 289              		.type	buffer, %object
- 290              		.size	buffer, 128
- 291              	buffer:
- 292 0000 00000000 		.space	128
- 292      00000000 
- 292      00000000 
- 292      00000000 
- 292      00000000 
- 293              		.text
- 294              	.Letext0:
- 295              		.file 2 "d:\\tools\\psoc creator\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.1\\arm-no
- 296              		.file 3 "d:\\tools\\psoc creator\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.1\\arm-no
- 297              		.file 4 "Generated_Source\\PSoC5/UART.h"
- 298              		.file 5 "Generated_Source\\PSoC5/Pin_N_R.h"
- 299              		.file 6 "Generated_Source\\PSoC5/Pin_N_Y.h"
- 300              		.file 7 "Generated_Source\\PSoC5/Pin_N_G.h"
- 301              		.file 8 "d:\\tools\\psoc creator\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.1\\arm-no
- 302              		.file 9 "Generated_Source\\PSoC5/Pin_CWEW.h"
- 303              		.file 10 "Generated_Source\\PSoC5/Pin_E_CW.h"
-ARM GAS  C:\Users\Trung\AppData\Local\Temp\cc52uHeO.s 			page 9
+ 261 0098 65727761 		.ascii	"erwarte ein <x>, aber <%c> wurde eingegeben\012\015"
+ 261      72746520 
+ 261      65696E20 
+ 261      3C783E2C 
+ 261      20616265 
+ 262 00c5 00       		.ascii	"\000"
+ 263              		.bss
+ 264              		.align	2
+ 265              		.set	.LANCHOR0,. + 0
+ 266              		.type	buffer, %object
+ 267              		.size	buffer, 128
+ 268              	buffer:
+ 269 0000 00000000 		.space	128
+ 269      00000000 
+ 269      00000000 
+ 269      00000000 
+ 269      00000000 
+ 270              		.text
+ 271              	.Letext0:
+ 272              		.file 2 "e:\\psoc creator\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.1\\arm-none-eabi
+ 273              		.file 3 "e:\\psoc creator\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.1\\arm-none-eabi
+ 274              		.file 4 "Generated_Source\\PSoC5/UART.h"
+ 275              		.file 5 "Generated_Source\\PSoC5/Pin_E_CW.h"
+ 276              		.file 6 "Generated_Source\\PSoC5/Pin_N_R.h"
+ 277              		.file 7 "Generated_Source\\PSoC5/Pin_N_Y.h"
+ 278              		.file 8 "Generated_Source\\PSoC5/Pin_N_G.h"
+ 279              		.file 9 "e:\\psoc creator\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.1\\arm-none-eabi
+ 280              		.file 10 "Generated_Source\\PSoC5/Pin_CWEW.h"
+ 281              		.file 11 "Generated_Source\\PSoC5/core_cm3.h"
+ 282              		.section	.debug_info,"",%progbits
+ 283              	.Ldebug_info0:
+ 284 0000 00030000 		.4byte	0x300
+ 285 0004 0400     		.2byte	0x4
+ 286 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 287 000a 04       		.byte	0x4
+ 288 000b 01       		.uleb128 0x1
+ 289 000c 6D000000 		.4byte	.LASF31
+ 290 0010 0C       		.byte	0xc
+ 291 0011 C5010000 		.4byte	.LASF32
+ 292 0015 30000000 		.4byte	.LASF33
+ 293 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 294 001d 00000000 		.4byte	0
+ 295 0021 00000000 		.4byte	.Ldebug_line0
+ 296 0025 02       		.uleb128 0x2
+ 297 0026 01       		.byte	0x1
+ 298 0027 06       		.byte	0x6
+ 299 0028 0D020000 		.4byte	.LASF0
+ 300 002c 03       		.uleb128 0x3
+ 301 002d 00000000 		.4byte	.LASF4
+ 302 0031 02       		.byte	0x2
+ 303 0032 1D       		.byte	0x1d
+ 304 0033 37000000 		.4byte	0x37
+ 305 0037 02       		.uleb128 0x2
+ 306 0038 01       		.byte	0x1
+ 307 0039 08       		.byte	0x8
+ 308 003a 38010000 		.4byte	.LASF1
+ 309 003e 02       		.uleb128 0x2
+ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccVoxRyt.s 			page 9
 
 
- 304              		.file 11 "Generated_Source\\PSoC5/core_cm3.h"
- 305              		.section	.debug_info,"",%progbits
- 306              	.Ldebug_info0:
- 307 0000 FF020000 		.4byte	0x2ff
- 308 0004 0400     		.2byte	0x4
- 309 0006 00000000 		.4byte	.Ldebug_abbrev0
- 310 000a 04       		.byte	0x4
- 311 000b 01       		.uleb128 0x1
- 312 000c 49000000 		.4byte	.LASF32
- 313 0010 0C       		.byte	0xc
- 314 0011 A1010000 		.4byte	.LASF33
- 315 0015 A8010000 		.4byte	.LASF34
- 316 0019 00000000 		.4byte	.Ldebug_ranges0+0
- 317 001d 00000000 		.4byte	0
- 318 0021 00000000 		.4byte	.Ldebug_line0
- 319 0025 02       		.uleb128 0x2
- 320 0026 01       		.byte	0x1
- 321 0027 06       		.byte	0x6
- 322 0028 1E020000 		.4byte	.LASF0
- 323 002c 03       		.uleb128 0x3
- 324 002d 00000000 		.4byte	.LASF4
- 325 0031 02       		.byte	0x2
- 326 0032 1D       		.byte	0x1d
- 327 0033 37000000 		.4byte	0x37
- 328 0037 02       		.uleb128 0x2
- 329 0038 01       		.byte	0x1
- 330 0039 08       		.byte	0x8
- 331 003a 14010000 		.4byte	.LASF1
- 332 003e 02       		.uleb128 0x2
- 333 003f 02       		.byte	0x2
- 334 0040 05       		.byte	0x5
- 335 0041 EA010000 		.4byte	.LASF2
- 336 0045 02       		.uleb128 0x2
- 337 0046 02       		.byte	0x2
- 338 0047 07       		.byte	0x7
- 339 0048 E9000000 		.4byte	.LASF3
- 340 004c 03       		.uleb128 0x3
- 341 004d 26000000 		.4byte	.LASF5
- 342 0051 02       		.byte	0x2
- 343 0052 3F       		.byte	0x3f
- 344 0053 57000000 		.4byte	0x57
- 345 0057 02       		.uleb128 0x2
- 346 0058 04       		.byte	0x4
- 347 0059 05       		.byte	0x5
- 348 005a 04020000 		.4byte	.LASF6
- 349 005e 03       		.uleb128 0x3
- 350 005f 29010000 		.4byte	.LASF7
- 351 0063 02       		.byte	0x2
- 352 0064 41       		.byte	0x41
- 353 0065 69000000 		.4byte	0x69
- 354 0069 02       		.uleb128 0x2
- 355 006a 04       		.byte	0x4
- 356 006b 07       		.byte	0x7
- 357 006c D7000000 		.4byte	.LASF8
- 358 0070 02       		.uleb128 0x2
- 359 0071 08       		.byte	0x8
- 360 0072 05       		.byte	0x5
-ARM GAS  C:\Users\Trung\AppData\Local\Temp\cc52uHeO.s 			page 10
+ 310 003f 02       		.byte	0x2
+ 311 0040 05       		.byte	0x5
+ 312 0041 DE010000 		.4byte	.LASF2
+ 313 0045 02       		.uleb128 0x2
+ 314 0046 02       		.byte	0x2
+ 315 0047 07       		.byte	0x7
+ 316 0048 0D010000 		.4byte	.LASF3
+ 317 004c 03       		.uleb128 0x3
+ 318 004d 26000000 		.4byte	.LASF5
+ 319 0051 02       		.byte	0x2
+ 320 0052 3F       		.byte	0x3f
+ 321 0053 57000000 		.4byte	0x57
+ 322 0057 02       		.uleb128 0x2
+ 323 0058 04       		.byte	0x4
+ 324 0059 05       		.byte	0x5
+ 325 005a F8010000 		.4byte	.LASF6
+ 326 005e 03       		.uleb128 0x3
+ 327 005f 4D010000 		.4byte	.LASF7
+ 328 0063 02       		.byte	0x2
+ 329 0064 41       		.byte	0x41
+ 330 0065 69000000 		.4byte	0x69
+ 331 0069 02       		.uleb128 0x2
+ 332 006a 04       		.byte	0x4
+ 333 006b 07       		.byte	0x7
+ 334 006c FB000000 		.4byte	.LASF8
+ 335 0070 02       		.uleb128 0x2
+ 336 0071 08       		.byte	0x8
+ 337 0072 05       		.byte	0x5
+ 338 0073 B7010000 		.4byte	.LASF9
+ 339 0077 02       		.uleb128 0x2
+ 340 0078 08       		.byte	0x8
+ 341 0079 07       		.byte	0x7
+ 342 007a 6A010000 		.4byte	.LASF10
+ 343 007e 04       		.uleb128 0x4
+ 344 007f 04       		.byte	0x4
+ 345 0080 05       		.byte	0x5
+ 346 0081 696E7400 		.ascii	"int\000"
+ 347 0085 02       		.uleb128 0x2
+ 348 0086 04       		.byte	0x4
+ 349 0087 07       		.byte	0x7
+ 350 0088 5D010000 		.4byte	.LASF11
+ 351 008c 03       		.uleb128 0x3
+ 352 008d 81010000 		.4byte	.LASF12
+ 353 0091 03       		.byte	0x3
+ 354 0092 18       		.byte	0x18
+ 355 0093 2C000000 		.4byte	0x2c
+ 356 0097 03       		.uleb128 0x3
+ 357 0098 A6010000 		.4byte	.LASF13
+ 358 009c 03       		.byte	0x3
+ 359 009d 2C       		.byte	0x2c
+ 360 009e 4C000000 		.4byte	0x4c
+ 361 00a2 03       		.uleb128 0x3
+ 362 00a3 EF010000 		.4byte	.LASF14
+ 363 00a7 03       		.byte	0x3
+ 364 00a8 30       		.byte	0x30
+ 365 00a9 5E000000 		.4byte	0x5e
+ 366 00ad 02       		.uleb128 0x2
+ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccVoxRyt.s 			page 10
 
 
- 361 0073 93010000 		.4byte	.LASF9
- 362 0077 02       		.uleb128 0x2
- 363 0078 08       		.byte	0x8
- 364 0079 07       		.byte	0x7
- 365 007a 46010000 		.4byte	.LASF10
- 366 007e 04       		.uleb128 0x4
- 367 007f 04       		.byte	0x4
- 368 0080 05       		.byte	0x5
- 369 0081 696E7400 		.ascii	"int\000"
- 370 0085 02       		.uleb128 0x2
- 371 0086 04       		.byte	0x4
- 372 0087 07       		.byte	0x7
- 373 0088 39010000 		.4byte	.LASF11
- 374 008c 03       		.uleb128 0x3
- 375 008d 5D010000 		.4byte	.LASF12
- 376 0091 03       		.byte	0x3
- 377 0092 18       		.byte	0x18
- 378 0093 2C000000 		.4byte	0x2c
- 379 0097 03       		.uleb128 0x3
- 380 0098 82010000 		.4byte	.LASF13
- 381 009c 03       		.byte	0x3
- 382 009d 2C       		.byte	0x2c
- 383 009e 4C000000 		.4byte	0x4c
- 384 00a2 03       		.uleb128 0x3
- 385 00a3 FB010000 		.4byte	.LASF14
- 386 00a7 03       		.byte	0x3
- 387 00a8 30       		.byte	0x30
- 388 00a9 5E000000 		.4byte	0x5e
- 389 00ad 02       		.uleb128 0x2
- 390 00ae 04       		.byte	0x4
- 391 00af 04       		.byte	0x4
- 392 00b0 3E000000 		.4byte	.LASF15
- 393 00b4 02       		.uleb128 0x2
- 394 00b5 08       		.byte	0x8
- 395 00b6 04       		.byte	0x4
- 396 00b7 22010000 		.4byte	.LASF16
- 397 00bb 02       		.uleb128 0x2
- 398 00bc 01       		.byte	0x1
- 399 00bd 08       		.byte	0x8
- 400 00be 0D020000 		.4byte	.LASF17
- 401 00c2 02       		.uleb128 0x2
- 402 00c3 08       		.byte	0x8
- 403 00c4 04       		.byte	0x4
- 404 00c5 12020000 		.4byte	.LASF18
- 405 00c9 02       		.uleb128 0x2
- 406 00ca 04       		.byte	0x4
- 407 00cb 07       		.byte	0x7
- 408 00cc 8A010000 		.4byte	.LASF19
- 409 00d0 05       		.uleb128 0x5
- 410 00d1 A2000000 		.4byte	0xa2
- 411 00d5 06       		.uleb128 0x6
- 412 00d6 34010000 		.4byte	.LASF35
- 413 00da 01       		.byte	0x1
- 414 00db 31       		.byte	0x31
- 415 00dc 7E000000 		.4byte	0x7e
- 416 00e0 00000000 		.4byte	.LFB64
- 417 00e4 18010000 		.4byte	.LFE64-.LFB64
-ARM GAS  C:\Users\Trung\AppData\Local\Temp\cc52uHeO.s 			page 11
+ 367 00ae 04       		.byte	0x4
+ 368 00af 04       		.byte	0x4
+ 369 00b0 62000000 		.4byte	.LASF15
+ 370 00b4 02       		.uleb128 0x2
+ 371 00b5 08       		.byte	0x8
+ 372 00b6 04       		.byte	0x4
+ 373 00b7 46010000 		.4byte	.LASF16
+ 374 00bb 02       		.uleb128 0x2
+ 375 00bc 01       		.byte	0x1
+ 376 00bd 08       		.byte	0x8
+ 377 00be CC010000 		.4byte	.LASF17
+ 378 00c2 02       		.uleb128 0x2
+ 379 00c3 08       		.byte	0x8
+ 380 00c4 04       		.byte	0x4
+ 381 00c5 01020000 		.4byte	.LASF18
+ 382 00c9 02       		.uleb128 0x2
+ 383 00ca 04       		.byte	0x4
+ 384 00cb 07       		.byte	0x7
+ 385 00cc AE010000 		.4byte	.LASF19
+ 386 00d0 05       		.uleb128 0x5
+ 387 00d1 A2000000 		.4byte	0xa2
+ 388 00d5 06       		.uleb128 0x6
+ 389 00d6 58010000 		.4byte	.LASF34
+ 390 00da 01       		.byte	0x1
+ 391 00db 31       		.byte	0x31
+ 392 00dc 7E000000 		.4byte	0x7e
+ 393 00e0 00000000 		.4byte	.LFB64
+ 394 00e4 F0000000 		.4byte	.LFE64-.LFB64
+ 395 00e8 01       		.uleb128 0x1
+ 396 00e9 9C       		.byte	0x9c
+ 397 00ea 63020000 		.4byte	0x263
+ 398 00ee 07       		.uleb128 0x7
+ 399 00ef 63687200 		.ascii	"chr\000"
+ 400 00f3 01       		.byte	0x1
+ 401 00f4 3D       		.byte	0x3d
+ 402 00f5 8C000000 		.4byte	0x8c
+ 403 00f9 00000000 		.4byte	.LLST0
+ 404 00fd 08       		.uleb128 0x8
+ 405 00fe 1A000000 		.4byte	.LBB2
+ 406 0102 D6000000 		.4byte	.LBE2-.LBB2
+ 407 0106 23020000 		.4byte	0x223
+ 408 010a 09       		.uleb128 0x9
+ 409 010b 68000000 		.4byte	.LASF35
+ 410 010f 01       		.byte	0x1
+ 411 0110 80       		.byte	0x80
+ 412 0111 D0000000 		.4byte	0xd0
+ 413 0115 0A       		.uleb128 0xa
+ 414 0116 1E000000 		.4byte	.LVL3
+ 415 011a 95020000 		.4byte	0x295
+ 416 011e 0B       		.uleb128 0xb
+ 417 011f 6A000000 		.4byte	.LVL5
+ 418 0123 A0020000 		.4byte	0x2a0
+ 419 0127 35010000 		.4byte	0x135
+ 420 012b 0C       		.uleb128 0xc
+ 421 012c 01       		.uleb128 0x1
+ 422 012d 50       		.byte	0x50
+ 423 012e 05       		.uleb128 0x5
+ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccVoxRyt.s 			page 11
 
 
- 418 00e8 01       		.uleb128 0x1
- 419 00e9 9C       		.byte	0x9c
- 420 00ea 62020000 		.4byte	0x262
- 421 00ee 07       		.uleb128 0x7
- 422 00ef 63687200 		.ascii	"chr\000"
- 423 00f3 01       		.byte	0x1
- 424 00f4 3D       		.byte	0x3d
- 425 00f5 8C000000 		.4byte	0x8c
- 426 00f9 00000000 		.4byte	.LLST0
- 427 00fd 08       		.uleb128 0x8
- 428 00fe 1C000000 		.4byte	.LBB2
- 429 0102 FC000000 		.4byte	.LBE2-.LBB2
- 430 0106 22020000 		.4byte	0x222
- 431 010a 09       		.uleb128 0x9
- 432 010b 44000000 		.4byte	.LASF20
- 433 010f 01       		.byte	0x1
- 434 0110 78       		.byte	0x78
- 435 0111 D0000000 		.4byte	0xd0
- 436 0115 02       		.uleb128 0x2
- 437 0116 91       		.byte	0x91
- 438 0117 74       		.sleb128 -12
- 439 0118 0A       		.uleb128 0xa
- 440 0119 20000000 		.4byte	.LVL3
- 441 011d 94020000 		.4byte	0x294
- 442 0121 0B       		.uleb128 0xb
- 443 0122 6C000000 		.4byte	.LVL5
- 444 0126 9F020000 		.4byte	0x29f
- 445 012a 38010000 		.4byte	0x138
- 446 012e 0C       		.uleb128 0xc
- 447 012f 01       		.uleb128 0x1
- 448 0130 50       		.byte	0x50
- 449 0131 05       		.uleb128 0x5
- 450 0132 03       		.byte	0x3
- 451 0133 80000000 		.4byte	.LC2
- 452 0137 00       		.byte	0
- 453 0138 0B       		.uleb128 0xb
- 454 0139 74000000 		.4byte	.LVL8
- 455 013d AA020000 		.4byte	0x2aa
- 456 0141 4B010000 		.4byte	0x14b
- 457 0145 0C       		.uleb128 0xc
- 458 0146 01       		.uleb128 0x1
- 459 0147 50       		.byte	0x50
- 460 0148 01       		.uleb128 0x1
- 461 0149 30       		.byte	0x30
- 462 014a 00       		.byte	0
- 463 014b 0B       		.uleb128 0xb
- 464 014c 7C000000 		.4byte	.LVL11
- 465 0150 B5020000 		.4byte	0x2b5
- 466 0154 5E010000 		.4byte	0x15e
- 467 0158 0C       		.uleb128 0xc
- 468 0159 01       		.uleb128 0x1
- 469 015a 50       		.byte	0x50
- 470 015b 01       		.uleb128 0x1
- 471 015c 30       		.byte	0x30
- 472 015d 00       		.byte	0
- 473 015e 0B       		.uleb128 0xb
- 474 015f 84000000 		.4byte	.LVL14
-ARM GAS  C:\Users\Trung\AppData\Local\Temp\cc52uHeO.s 			page 12
+ 424 012f 03       		.byte	0x3
+ 425 0130 80000000 		.4byte	.LC2
+ 426 0134 00       		.byte	0
+ 427 0135 0B       		.uleb128 0xb
+ 428 0136 72000000 		.4byte	.LVL8
+ 429 013a AB020000 		.4byte	0x2ab
+ 430 013e 48010000 		.4byte	0x148
+ 431 0142 0C       		.uleb128 0xc
+ 432 0143 01       		.uleb128 0x1
+ 433 0144 50       		.byte	0x50
+ 434 0145 01       		.uleb128 0x1
+ 435 0146 31       		.byte	0x31
+ 436 0147 00       		.byte	0
+ 437 0148 0B       		.uleb128 0xb
+ 438 0149 7A000000 		.4byte	.LVL11
+ 439 014d AB020000 		.4byte	0x2ab
+ 440 0151 5B010000 		.4byte	0x15b
+ 441 0155 0C       		.uleb128 0xc
+ 442 0156 01       		.uleb128 0x1
+ 443 0157 50       		.byte	0x50
+ 444 0158 01       		.uleb128 0x1
+ 445 0159 30       		.byte	0x30
+ 446 015a 00       		.byte	0
+ 447 015b 0B       		.uleb128 0xb
+ 448 015c 82000000 		.4byte	.LVL14
+ 449 0160 B6020000 		.4byte	0x2b6
+ 450 0164 6E010000 		.4byte	0x16e
+ 451 0168 0C       		.uleb128 0xc
+ 452 0169 01       		.uleb128 0x1
+ 453 016a 50       		.byte	0x50
+ 454 016b 01       		.uleb128 0x1
+ 455 016c 30       		.byte	0x30
+ 456 016d 00       		.byte	0
+ 457 016e 0B       		.uleb128 0xb
+ 458 016f 8A000000 		.4byte	.LVL17
+ 459 0173 C1020000 		.4byte	0x2c1
+ 460 0177 81010000 		.4byte	0x181
+ 461 017b 0C       		.uleb128 0xc
+ 462 017c 01       		.uleb128 0x1
+ 463 017d 50       		.byte	0x50
+ 464 017e 01       		.uleb128 0x1
+ 465 017f 30       		.byte	0x30
+ 466 0180 00       		.byte	0
+ 467 0181 0B       		.uleb128 0xb
+ 468 0182 92000000 		.4byte	.LVL20
+ 469 0186 CC020000 		.4byte	0x2cc
+ 470 018a 94010000 		.4byte	0x194
+ 471 018e 0C       		.uleb128 0xc
+ 472 018f 01       		.uleb128 0x1
+ 473 0190 50       		.byte	0x50
+ 474 0191 01       		.uleb128 0x1
+ 475 0192 30       		.byte	0x30
+ 476 0193 00       		.byte	0
+ 477 0194 0B       		.uleb128 0xb
+ 478 0195 9A000000 		.4byte	.LVL23
+ 479 0199 B6020000 		.4byte	0x2b6
+ 480 019d A7010000 		.4byte	0x1a7
+ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccVoxRyt.s 			page 12
 
 
- 475 0163 C0020000 		.4byte	0x2c0
- 476 0167 71010000 		.4byte	0x171
- 477 016b 0C       		.uleb128 0xc
- 478 016c 01       		.uleb128 0x1
- 479 016d 50       		.byte	0x50
- 480 016e 01       		.uleb128 0x1
- 481 016f 30       		.byte	0x30
- 482 0170 00       		.byte	0
- 483 0171 0B       		.uleb128 0xb
- 484 0172 8C000000 		.4byte	.LVL17
- 485 0176 C0020000 		.4byte	0x2c0
- 486 017a 84010000 		.4byte	0x184
- 487 017e 0C       		.uleb128 0xc
- 488 017f 01       		.uleb128 0x1
- 489 0180 50       		.byte	0x50
- 490 0181 01       		.uleb128 0x1
- 491 0182 31       		.byte	0x31
- 492 0183 00       		.byte	0
- 493 0184 0B       		.uleb128 0xb
- 494 0185 94000000 		.4byte	.LVL20
- 495 0189 C0020000 		.4byte	0x2c0
- 496 018d 97010000 		.4byte	0x197
- 497 0191 0C       		.uleb128 0xc
- 498 0192 01       		.uleb128 0x1
- 499 0193 50       		.byte	0x50
- 500 0194 01       		.uleb128 0x1
- 501 0195 31       		.byte	0x31
- 502 0196 00       		.byte	0
- 503 0197 0B       		.uleb128 0xb
- 504 0198 9C000000 		.4byte	.LVL23
- 505 019c C0020000 		.4byte	0x2c0
- 506 01a0 AA010000 		.4byte	0x1aa
- 507 01a4 0C       		.uleb128 0xc
- 508 01a5 01       		.uleb128 0x1
- 509 01a6 50       		.byte	0x50
- 510 01a7 01       		.uleb128 0x1
- 511 01a8 31       		.byte	0x31
- 512 01a9 00       		.byte	0
- 513 01aa 0B       		.uleb128 0xb
- 514 01ab A8000000 		.4byte	.LVL26
- 515 01af CB020000 		.4byte	0x2cb
- 516 01b3 C7010000 		.4byte	0x1c7
- 517 01b7 0C       		.uleb128 0xc
- 518 01b8 01       		.uleb128 0x1
- 519 01b9 50       		.byte	0x50
- 520 01ba 02       		.uleb128 0x2
- 521 01bb 74       		.byte	0x74
- 522 01bc 00       		.sleb128 0
- 523 01bd 0C       		.uleb128 0xc
- 524 01be 01       		.uleb128 0x1
- 525 01bf 51       		.byte	0x51
- 526 01c0 05       		.uleb128 0x5
- 527 01c1 03       		.byte	0x3
- 528 01c2 98000000 		.4byte	.LC3
- 529 01c6 00       		.byte	0
- 530 01c7 0B       		.uleb128 0xb
- 531 01c8 AE000000 		.4byte	.LVL27
-ARM GAS  C:\Users\Trung\AppData\Local\Temp\cc52uHeO.s 			page 13
+ 481 01a1 0C       		.uleb128 0xc
+ 482 01a2 01       		.uleb128 0x1
+ 483 01a3 50       		.byte	0x50
+ 484 01a4 01       		.uleb128 0x1
+ 485 01a5 31       		.byte	0x31
+ 486 01a6 00       		.byte	0
+ 487 01a7 0B       		.uleb128 0xb
+ 488 01a8 A2000000 		.4byte	.LVL26
+ 489 01ac C1020000 		.4byte	0x2c1
+ 490 01b0 BA010000 		.4byte	0x1ba
+ 491 01b4 0C       		.uleb128 0xc
+ 492 01b5 01       		.uleb128 0x1
+ 493 01b6 50       		.byte	0x50
+ 494 01b7 01       		.uleb128 0x1
+ 495 01b8 31       		.byte	0x31
+ 496 01b9 00       		.byte	0
+ 497 01ba 0B       		.uleb128 0xb
+ 498 01bb AA000000 		.4byte	.LVL29
+ 499 01bf CC020000 		.4byte	0x2cc
+ 500 01c3 CD010000 		.4byte	0x1cd
+ 501 01c7 0C       		.uleb128 0xc
+ 502 01c8 01       		.uleb128 0x1
+ 503 01c9 50       		.byte	0x50
+ 504 01ca 01       		.uleb128 0x1
+ 505 01cb 31       		.byte	0x31
+ 506 01cc 00       		.byte	0
+ 507 01cd 0B       		.uleb128 0xb
+ 508 01ce B6000000 		.4byte	.LVL32
+ 509 01d2 D7020000 		.4byte	0x2d7
+ 510 01d6 EA010000 		.4byte	0x1ea
+ 511 01da 0C       		.uleb128 0xc
+ 512 01db 01       		.uleb128 0x1
+ 513 01dc 50       		.byte	0x50
+ 514 01dd 02       		.uleb128 0x2
+ 515 01de 74       		.byte	0x74
+ 516 01df 00       		.sleb128 0
+ 517 01e0 0C       		.uleb128 0xc
+ 518 01e1 01       		.uleb128 0x1
+ 519 01e2 51       		.byte	0x51
+ 520 01e3 05       		.uleb128 0x5
+ 521 01e4 03       		.byte	0x3
+ 522 01e5 98000000 		.4byte	.LC3
+ 523 01e9 00       		.byte	0
+ 524 01ea 0B       		.uleb128 0xb
+ 525 01eb BC000000 		.4byte	.LVL33
+ 526 01ef A0020000 		.4byte	0x2a0
+ 527 01f3 FE010000 		.4byte	0x1fe
+ 528 01f7 0C       		.uleb128 0xc
+ 529 01f8 01       		.uleb128 0x1
+ 530 01f9 50       		.byte	0x50
+ 531 01fa 02       		.uleb128 0x2
+ 532 01fb 74       		.byte	0x74
+ 533 01fc 00       		.sleb128 0
+ 534 01fd 00       		.byte	0
+ 535 01fe 0A       		.uleb128 0xa
+ 536 01ff C0000000 		.4byte	.LVL34
+ 537 0203 E2020000 		.4byte	0x2e2
+ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccVoxRyt.s 			page 13
 
 
- 532 01cc 9F020000 		.4byte	0x29f
- 533 01d0 DB010000 		.4byte	0x1db
- 534 01d4 0C       		.uleb128 0xc
- 535 01d5 01       		.uleb128 0x1
- 536 01d6 50       		.byte	0x50
- 537 01d7 02       		.uleb128 0x2
- 538 01d8 74       		.byte	0x74
- 539 01d9 00       		.sleb128 0
- 540 01da 00       		.byte	0
- 541 01db 0A       		.uleb128 0xa
- 542 01dc B2000000 		.4byte	.LVL28
- 543 01e0 D6020000 		.4byte	0x2d6
- 544 01e4 0A       		.uleb128 0xa
- 545 01e5 B8000000 		.4byte	.LVL29
- 546 01e9 D6020000 		.4byte	0x2d6
- 547 01ed 0A       		.uleb128 0xa
- 548 01ee C0000000 		.4byte	.LVL30
- 549 01f2 E1020000 		.4byte	0x2e1
- 550 01f6 0A       		.uleb128 0xa
- 551 01f7 CA000000 		.4byte	.LVL31
- 552 01fb EC020000 		.4byte	0x2ec
- 553 01ff 0B       		.uleb128 0xb
- 554 0200 D0000000 		.4byte	.LVL32
- 555 0204 AA020000 		.4byte	0x2aa
- 556 0208 12020000 		.4byte	0x212
- 557 020c 0C       		.uleb128 0xc
- 558 020d 01       		.uleb128 0x1
- 559 020e 50       		.byte	0x50
- 560 020f 01       		.uleb128 0x1
- 561 0210 30       		.byte	0x30
- 562 0211 00       		.byte	0
- 563 0212 0D       		.uleb128 0xd
- 564 0213 EA000000 		.4byte	.LVL33
- 565 0217 AA020000 		.4byte	0x2aa
- 566 021b 0C       		.uleb128 0xc
- 567 021c 01       		.uleb128 0x1
- 568 021d 50       		.byte	0x50
- 569 021e 01       		.uleb128 0x1
- 570 021f 31       		.byte	0x31
- 571 0220 00       		.byte	0
- 572 0221 00       		.byte	0
- 573 0222 0A       		.uleb128 0xa
- 574 0223 08000000 		.4byte	.LVL0
- 575 0227 F7020000 		.4byte	0x2f7
- 576 022b 0B       		.uleb128 0xb
- 577 022c 16000000 		.4byte	.LVL1
- 578 0230 CB020000 		.4byte	0x2cb
- 579 0234 51020000 		.4byte	0x251
- 580 0238 0C       		.uleb128 0xc
- 581 0239 01       		.uleb128 0x1
- 582 023a 50       		.byte	0x50
- 583 023b 02       		.uleb128 0x2
- 584 023c 74       		.byte	0x74
- 585 023d 00       		.sleb128 0
- 586 023e 0C       		.uleb128 0xc
- 587 023f 01       		.uleb128 0x1
- 588 0240 51       		.byte	0x51
-ARM GAS  C:\Users\Trung\AppData\Local\Temp\cc52uHeO.s 			page 14
+ 538 0207 0A       		.uleb128 0xa
+ 539 0208 C8000000 		.4byte	.LVL35
+ 540 020c E2020000 		.4byte	0x2e2
+ 541 0210 0A       		.uleb128 0xa
+ 542 0211 D0000000 		.4byte	.LVL36
+ 543 0215 ED020000 		.4byte	0x2ed
+ 544 0219 0A       		.uleb128 0xa
+ 545 021a DA000000 		.4byte	.LVL37
+ 546 021e AB020000 		.4byte	0x2ab
+ 547 0222 00       		.byte	0
+ 548 0223 0A       		.uleb128 0xa
+ 549 0224 06000000 		.4byte	.LVL0
+ 550 0228 F8020000 		.4byte	0x2f8
+ 551 022c 0B       		.uleb128 0xb
+ 552 022d 14000000 		.4byte	.LVL1
+ 553 0231 D7020000 		.4byte	0x2d7
+ 554 0235 52020000 		.4byte	0x252
+ 555 0239 0C       		.uleb128 0xc
+ 556 023a 01       		.uleb128 0x1
+ 557 023b 50       		.byte	0x50
+ 558 023c 02       		.uleb128 0x2
+ 559 023d 74       		.byte	0x74
+ 560 023e 00       		.sleb128 0
+ 561 023f 0C       		.uleb128 0xc
+ 562 0240 01       		.uleb128 0x1
+ 563 0241 51       		.byte	0x51
+ 564 0242 05       		.uleb128 0x5
+ 565 0243 03       		.byte	0x3
+ 566 0244 70000000 		.4byte	.LC1
+ 567 0248 0C       		.uleb128 0xc
+ 568 0249 01       		.uleb128 0x1
+ 569 024a 52       		.byte	0x52
+ 570 024b 05       		.uleb128 0x5
+ 571 024c 03       		.byte	0x3
+ 572 024d 00000000 		.4byte	.LC0
+ 573 0251 00       		.byte	0
+ 574 0252 0D       		.uleb128 0xd
+ 575 0253 1A000000 		.4byte	.LVL2
+ 576 0257 A0020000 		.4byte	0x2a0
+ 577 025b 0C       		.uleb128 0xc
+ 578 025c 01       		.uleb128 0x1
+ 579 025d 50       		.byte	0x50
+ 580 025e 02       		.uleb128 0x2
+ 581 025f 74       		.byte	0x74
+ 582 0260 00       		.sleb128 0
+ 583 0261 00       		.byte	0
+ 584 0262 00       		.byte	0
+ 585 0263 0E       		.uleb128 0xe
+ 586 0264 BB000000 		.4byte	0xbb
+ 587 0268 73020000 		.4byte	0x273
+ 588 026c 0F       		.uleb128 0xf
+ 589 026d C9000000 		.4byte	0xc9
+ 590 0271 7F       		.byte	0x7f
+ 591 0272 00       		.byte	0
+ 592 0273 10       		.uleb128 0x10
+ 593 0274 E8010000 		.4byte	.LASF20
+ 594 0278 01       		.byte	0x1
+ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccVoxRyt.s 			page 14
 
 
- 589 0241 05       		.uleb128 0x5
- 590 0242 03       		.byte	0x3
- 591 0243 70000000 		.4byte	.LC1
- 592 0247 0C       		.uleb128 0xc
- 593 0248 01       		.uleb128 0x1
- 594 0249 52       		.byte	0x52
- 595 024a 05       		.uleb128 0x5
- 596 024b 03       		.byte	0x3
- 597 024c 00000000 		.4byte	.LC0
- 598 0250 00       		.byte	0
- 599 0251 0D       		.uleb128 0xd
- 600 0252 1C000000 		.4byte	.LVL2
- 601 0256 9F020000 		.4byte	0x29f
- 602 025a 0C       		.uleb128 0xc
- 603 025b 01       		.uleb128 0x1
- 604 025c 50       		.byte	0x50
- 605 025d 02       		.uleb128 0x2
- 606 025e 74       		.byte	0x74
- 607 025f 00       		.sleb128 0
- 608 0260 00       		.byte	0
- 609 0261 00       		.byte	0
- 610 0262 0E       		.uleb128 0xe
- 611 0263 BB000000 		.4byte	0xbb
- 612 0267 72020000 		.4byte	0x272
- 613 026b 0F       		.uleb128 0xf
- 614 026c C9000000 		.4byte	0xc9
- 615 0270 7F       		.byte	0x7f
- 616 0271 00       		.byte	0
- 617 0272 09       		.uleb128 0x9
- 618 0273 F4010000 		.4byte	.LASF21
- 619 0277 01       		.byte	0x1
- 620 0278 27       		.byte	0x27
- 621 0279 62020000 		.4byte	0x262
- 622 027d 05       		.uleb128 0x5
- 623 027e 03       		.byte	0x3
- 624 027f 00000000 		.4byte	buffer
- 625 0283 10       		.uleb128 0x10
- 626 0284 07010000 		.4byte	.LASF36
- 627 0288 0B       		.byte	0xb
- 628 0289 1207     		.2byte	0x712
- 629 028b 8F020000 		.4byte	0x28f
- 630 028f 05       		.uleb128 0x5
- 631 0290 97000000 		.4byte	0x97
- 632 0294 11       		.uleb128 0x11
- 633 0295 DD010000 		.4byte	.LASF22
- 634 0299 DD010000 		.4byte	.LASF22
- 635 029d 04       		.byte	0x4
- 636 029e 71       		.byte	0x71
- 637 029f 11       		.uleb128 0x11
- 638 02a0 2A020000 		.4byte	.LASF23
- 639 02a4 2A020000 		.4byte	.LASF23
- 640 02a8 04       		.byte	0x4
- 641 02a9 8B       		.byte	0x8b
- 642 02aa 11       		.uleb128 0x11
- 643 02ab 74010000 		.4byte	.LASF24
- 644 02af 74010000 		.4byte	.LASF24
- 645 02b3 05       		.byte	0x5
-ARM GAS  C:\Users\Trung\AppData\Local\Temp\cc52uHeO.s 			page 15
+ 595 0279 27       		.byte	0x27
+ 596 027a 63020000 		.4byte	0x263
+ 597 027e 05       		.uleb128 0x5
+ 598 027f 03       		.byte	0x3
+ 599 0280 00000000 		.4byte	buffer
+ 600 0284 11       		.uleb128 0x11
+ 601 0285 2B010000 		.4byte	.LASF36
+ 602 0289 0B       		.byte	0xb
+ 603 028a 1207     		.2byte	0x712
+ 604 028c 90020000 		.4byte	0x290
+ 605 0290 05       		.uleb128 0x5
+ 606 0291 97000000 		.4byte	0x97
+ 607 0295 12       		.uleb128 0x12
+ 608 0296 D1010000 		.4byte	.LASF21
+ 609 029a D1010000 		.4byte	.LASF21
+ 610 029e 04       		.byte	0x4
+ 611 029f 71       		.byte	0x71
+ 612 02a0 12       		.uleb128 0x12
+ 613 02a1 19020000 		.4byte	.LASF22
+ 614 02a5 19020000 		.4byte	.LASF22
+ 615 02a9 04       		.byte	0x4
+ 616 02aa 8B       		.byte	0x8b
+ 617 02ab 12       		.uleb128 0x12
+ 618 02ac 89010000 		.4byte	.LASF23
+ 619 02b0 89010000 		.4byte	.LASF23
+ 620 02b4 05       		.byte	0x5
+ 621 02b5 26       		.byte	0x26
+ 622 02b6 12       		.uleb128 0x12
+ 623 02b7 98010000 		.4byte	.LASF24
+ 624 02bb 98010000 		.4byte	.LASF24
+ 625 02bf 06       		.byte	0x6
+ 626 02c0 26       		.byte	0x26
+ 627 02c1 12       		.uleb128 0x12
+ 628 02c2 54000000 		.4byte	.LASF25
+ 629 02c6 54000000 		.4byte	.LASF25
+ 630 02ca 07       		.byte	0x7
+ 631 02cb 26       		.byte	0x26
+ 632 02cc 12       		.uleb128 0x12
+ 633 02cd 0A000000 		.4byte	.LASF26
+ 634 02d1 0A000000 		.4byte	.LASF26
+ 635 02d5 08       		.byte	0x8
+ 636 02d6 26       		.byte	0x26
+ 637 02d7 12       		.uleb128 0x12
+ 638 02d8 28020000 		.4byte	.LASF27
+ 639 02dc 28020000 		.4byte	.LASF27
+ 640 02e0 09       		.byte	0x9
+ 641 02e1 E7       		.byte	0xe7
+ 642 02e2 12       		.uleb128 0x12
+ 643 02e3 30020000 		.4byte	.LASF28
+ 644 02e7 30020000 		.4byte	.LASF28
+ 645 02eb 0A       		.byte	0xa
+ 646 02ec 29       		.byte	0x29
+ 647 02ed 12       		.uleb128 0x12
+ 648 02ee 18000000 		.4byte	.LASF29
+ 649 02f2 18000000 		.4byte	.LASF29
+ 650 02f6 05       		.byte	0x5
+ 651 02f7 29       		.byte	0x29
+ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccVoxRyt.s 			page 15
 
 
- 646 02b4 26       		.byte	0x26
- 647 02b5 11       		.uleb128 0x11
- 648 02b6 30000000 		.4byte	.LASF25
- 649 02ba 30000000 		.4byte	.LASF25
- 650 02be 06       		.byte	0x6
- 651 02bf 26       		.byte	0x26
- 652 02c0 11       		.uleb128 0x11
- 653 02c1 0A000000 		.4byte	.LASF26
- 654 02c5 0A000000 		.4byte	.LASF26
- 655 02c9 07       		.byte	0x7
- 656 02ca 26       		.byte	0x26
- 657 02cb 11       		.uleb128 0x11
- 658 02cc 39020000 		.4byte	.LASF27
- 659 02d0 39020000 		.4byte	.LASF27
- 660 02d4 08       		.byte	0x8
- 661 02d5 E7       		.byte	0xe7
- 662 02d6 11       		.uleb128 0x11
- 663 02d7 41020000 		.4byte	.LASF28
- 664 02db 41020000 		.4byte	.LASF28
- 665 02df 09       		.byte	0x9
- 666 02e0 29       		.byte	0x29
- 667 02e1 11       		.uleb128 0x11
- 668 02e2 18000000 		.4byte	.LASF29
- 669 02e6 18000000 		.4byte	.LASF29
- 670 02ea 0A       		.byte	0xa
- 671 02eb 29       		.byte	0x29
- 672 02ec 11       		.uleb128 0x11
- 673 02ed 65010000 		.4byte	.LASF30
- 674 02f1 65010000 		.4byte	.LASF30
- 675 02f5 0A       		.byte	0xa
- 676 02f6 26       		.byte	0x26
- 677 02f7 11       		.uleb128 0x11
- 678 02f8 FC000000 		.4byte	.LASF31
- 679 02fc FC000000 		.4byte	.LASF31
- 680 0300 04       		.byte	0x4
- 681 0301 54       		.byte	0x54
- 682 0302 00       		.byte	0
- 683              		.section	.debug_abbrev,"",%progbits
- 684              	.Ldebug_abbrev0:
- 685 0000 01       		.uleb128 0x1
- 686 0001 11       		.uleb128 0x11
- 687 0002 01       		.byte	0x1
- 688 0003 25       		.uleb128 0x25
- 689 0004 0E       		.uleb128 0xe
- 690 0005 13       		.uleb128 0x13
- 691 0006 0B       		.uleb128 0xb
- 692 0007 03       		.uleb128 0x3
- 693 0008 0E       		.uleb128 0xe
- 694 0009 1B       		.uleb128 0x1b
- 695 000a 0E       		.uleb128 0xe
- 696 000b 55       		.uleb128 0x55
- 697 000c 17       		.uleb128 0x17
- 698 000d 11       		.uleb128 0x11
- 699 000e 01       		.uleb128 0x1
- 700 000f 10       		.uleb128 0x10
- 701 0010 17       		.uleb128 0x17
- 702 0011 00       		.byte	0
-ARM GAS  C:\Users\Trung\AppData\Local\Temp\cc52uHeO.s 			page 16
+ 652 02f8 12       		.uleb128 0x12
+ 653 02f9 20010000 		.4byte	.LASF30
+ 654 02fd 20010000 		.4byte	.LASF30
+ 655 0301 04       		.byte	0x4
+ 656 0302 54       		.byte	0x54
+ 657 0303 00       		.byte	0
+ 658              		.section	.debug_abbrev,"",%progbits
+ 659              	.Ldebug_abbrev0:
+ 660 0000 01       		.uleb128 0x1
+ 661 0001 11       		.uleb128 0x11
+ 662 0002 01       		.byte	0x1
+ 663 0003 25       		.uleb128 0x25
+ 664 0004 0E       		.uleb128 0xe
+ 665 0005 13       		.uleb128 0x13
+ 666 0006 0B       		.uleb128 0xb
+ 667 0007 03       		.uleb128 0x3
+ 668 0008 0E       		.uleb128 0xe
+ 669 0009 1B       		.uleb128 0x1b
+ 670 000a 0E       		.uleb128 0xe
+ 671 000b 55       		.uleb128 0x55
+ 672 000c 17       		.uleb128 0x17
+ 673 000d 11       		.uleb128 0x11
+ 674 000e 01       		.uleb128 0x1
+ 675 000f 10       		.uleb128 0x10
+ 676 0010 17       		.uleb128 0x17
+ 677 0011 00       		.byte	0
+ 678 0012 00       		.byte	0
+ 679 0013 02       		.uleb128 0x2
+ 680 0014 24       		.uleb128 0x24
+ 681 0015 00       		.byte	0
+ 682 0016 0B       		.uleb128 0xb
+ 683 0017 0B       		.uleb128 0xb
+ 684 0018 3E       		.uleb128 0x3e
+ 685 0019 0B       		.uleb128 0xb
+ 686 001a 03       		.uleb128 0x3
+ 687 001b 0E       		.uleb128 0xe
+ 688 001c 00       		.byte	0
+ 689 001d 00       		.byte	0
+ 690 001e 03       		.uleb128 0x3
+ 691 001f 16       		.uleb128 0x16
+ 692 0020 00       		.byte	0
+ 693 0021 03       		.uleb128 0x3
+ 694 0022 0E       		.uleb128 0xe
+ 695 0023 3A       		.uleb128 0x3a
+ 696 0024 0B       		.uleb128 0xb
+ 697 0025 3B       		.uleb128 0x3b
+ 698 0026 0B       		.uleb128 0xb
+ 699 0027 49       		.uleb128 0x49
+ 700 0028 13       		.uleb128 0x13
+ 701 0029 00       		.byte	0
+ 702 002a 00       		.byte	0
+ 703 002b 04       		.uleb128 0x4
+ 704 002c 24       		.uleb128 0x24
+ 705 002d 00       		.byte	0
+ 706 002e 0B       		.uleb128 0xb
+ 707 002f 0B       		.uleb128 0xb
+ 708 0030 3E       		.uleb128 0x3e
+ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccVoxRyt.s 			page 16
 
 
- 703 0012 00       		.byte	0
- 704 0013 02       		.uleb128 0x2
- 705 0014 24       		.uleb128 0x24
- 706 0015 00       		.byte	0
- 707 0016 0B       		.uleb128 0xb
- 708 0017 0B       		.uleb128 0xb
- 709 0018 3E       		.uleb128 0x3e
- 710 0019 0B       		.uleb128 0xb
- 711 001a 03       		.uleb128 0x3
- 712 001b 0E       		.uleb128 0xe
- 713 001c 00       		.byte	0
- 714 001d 00       		.byte	0
- 715 001e 03       		.uleb128 0x3
- 716 001f 16       		.uleb128 0x16
- 717 0020 00       		.byte	0
- 718 0021 03       		.uleb128 0x3
- 719 0022 0E       		.uleb128 0xe
- 720 0023 3A       		.uleb128 0x3a
- 721 0024 0B       		.uleb128 0xb
- 722 0025 3B       		.uleb128 0x3b
- 723 0026 0B       		.uleb128 0xb
- 724 0027 49       		.uleb128 0x49
- 725 0028 13       		.uleb128 0x13
- 726 0029 00       		.byte	0
- 727 002a 00       		.byte	0
- 728 002b 04       		.uleb128 0x4
- 729 002c 24       		.uleb128 0x24
- 730 002d 00       		.byte	0
- 731 002e 0B       		.uleb128 0xb
- 732 002f 0B       		.uleb128 0xb
- 733 0030 3E       		.uleb128 0x3e
- 734 0031 0B       		.uleb128 0xb
- 735 0032 03       		.uleb128 0x3
- 736 0033 08       		.uleb128 0x8
- 737 0034 00       		.byte	0
- 738 0035 00       		.byte	0
- 739 0036 05       		.uleb128 0x5
- 740 0037 35       		.uleb128 0x35
- 741 0038 00       		.byte	0
- 742 0039 49       		.uleb128 0x49
- 743 003a 13       		.uleb128 0x13
- 744 003b 00       		.byte	0
- 745 003c 00       		.byte	0
- 746 003d 06       		.uleb128 0x6
- 747 003e 2E       		.uleb128 0x2e
- 748 003f 01       		.byte	0x1
- 749 0040 3F       		.uleb128 0x3f
- 750 0041 19       		.uleb128 0x19
- 751 0042 03       		.uleb128 0x3
- 752 0043 0E       		.uleb128 0xe
- 753 0044 3A       		.uleb128 0x3a
- 754 0045 0B       		.uleb128 0xb
- 755 0046 3B       		.uleb128 0x3b
- 756 0047 0B       		.uleb128 0xb
- 757 0048 27       		.uleb128 0x27
- 758 0049 19       		.uleb128 0x19
- 759 004a 49       		.uleb128 0x49
-ARM GAS  C:\Users\Trung\AppData\Local\Temp\cc52uHeO.s 			page 17
+ 709 0031 0B       		.uleb128 0xb
+ 710 0032 03       		.uleb128 0x3
+ 711 0033 08       		.uleb128 0x8
+ 712 0034 00       		.byte	0
+ 713 0035 00       		.byte	0
+ 714 0036 05       		.uleb128 0x5
+ 715 0037 35       		.uleb128 0x35
+ 716 0038 00       		.byte	0
+ 717 0039 49       		.uleb128 0x49
+ 718 003a 13       		.uleb128 0x13
+ 719 003b 00       		.byte	0
+ 720 003c 00       		.byte	0
+ 721 003d 06       		.uleb128 0x6
+ 722 003e 2E       		.uleb128 0x2e
+ 723 003f 01       		.byte	0x1
+ 724 0040 3F       		.uleb128 0x3f
+ 725 0041 19       		.uleb128 0x19
+ 726 0042 03       		.uleb128 0x3
+ 727 0043 0E       		.uleb128 0xe
+ 728 0044 3A       		.uleb128 0x3a
+ 729 0045 0B       		.uleb128 0xb
+ 730 0046 3B       		.uleb128 0x3b
+ 731 0047 0B       		.uleb128 0xb
+ 732 0048 27       		.uleb128 0x27
+ 733 0049 19       		.uleb128 0x19
+ 734 004a 49       		.uleb128 0x49
+ 735 004b 13       		.uleb128 0x13
+ 736 004c 8701     		.uleb128 0x87
+ 737 004e 19       		.uleb128 0x19
+ 738 004f 11       		.uleb128 0x11
+ 739 0050 01       		.uleb128 0x1
+ 740 0051 12       		.uleb128 0x12
+ 741 0052 06       		.uleb128 0x6
+ 742 0053 40       		.uleb128 0x40
+ 743 0054 18       		.uleb128 0x18
+ 744 0055 9742     		.uleb128 0x2117
+ 745 0057 19       		.uleb128 0x19
+ 746 0058 01       		.uleb128 0x1
+ 747 0059 13       		.uleb128 0x13
+ 748 005a 00       		.byte	0
+ 749 005b 00       		.byte	0
+ 750 005c 07       		.uleb128 0x7
+ 751 005d 34       		.uleb128 0x34
+ 752 005e 00       		.byte	0
+ 753 005f 03       		.uleb128 0x3
+ 754 0060 08       		.uleb128 0x8
+ 755 0061 3A       		.uleb128 0x3a
+ 756 0062 0B       		.uleb128 0xb
+ 757 0063 3B       		.uleb128 0x3b
+ 758 0064 0B       		.uleb128 0xb
+ 759 0065 49       		.uleb128 0x49
+ 760 0066 13       		.uleb128 0x13
+ 761 0067 02       		.uleb128 0x2
+ 762 0068 17       		.uleb128 0x17
+ 763 0069 00       		.byte	0
+ 764 006a 00       		.byte	0
+ 765 006b 08       		.uleb128 0x8
+ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccVoxRyt.s 			page 17
 
 
- 760 004b 13       		.uleb128 0x13
- 761 004c 8701     		.uleb128 0x87
- 762 004e 19       		.uleb128 0x19
- 763 004f 11       		.uleb128 0x11
- 764 0050 01       		.uleb128 0x1
- 765 0051 12       		.uleb128 0x12
- 766 0052 06       		.uleb128 0x6
- 767 0053 40       		.uleb128 0x40
- 768 0054 18       		.uleb128 0x18
- 769 0055 9742     		.uleb128 0x2117
- 770 0057 19       		.uleb128 0x19
- 771 0058 01       		.uleb128 0x1
- 772 0059 13       		.uleb128 0x13
- 773 005a 00       		.byte	0
- 774 005b 00       		.byte	0
- 775 005c 07       		.uleb128 0x7
- 776 005d 34       		.uleb128 0x34
- 777 005e 00       		.byte	0
- 778 005f 03       		.uleb128 0x3
- 779 0060 08       		.uleb128 0x8
- 780 0061 3A       		.uleb128 0x3a
- 781 0062 0B       		.uleb128 0xb
- 782 0063 3B       		.uleb128 0x3b
- 783 0064 0B       		.uleb128 0xb
- 784 0065 49       		.uleb128 0x49
- 785 0066 13       		.uleb128 0x13
- 786 0067 02       		.uleb128 0x2
- 787 0068 17       		.uleb128 0x17
- 788 0069 00       		.byte	0
- 789 006a 00       		.byte	0
- 790 006b 08       		.uleb128 0x8
- 791 006c 0B       		.uleb128 0xb
- 792 006d 01       		.byte	0x1
- 793 006e 11       		.uleb128 0x11
- 794 006f 01       		.uleb128 0x1
- 795 0070 12       		.uleb128 0x12
- 796 0071 06       		.uleb128 0x6
- 797 0072 01       		.uleb128 0x1
- 798 0073 13       		.uleb128 0x13
- 799 0074 00       		.byte	0
- 800 0075 00       		.byte	0
- 801 0076 09       		.uleb128 0x9
- 802 0077 34       		.uleb128 0x34
- 803 0078 00       		.byte	0
- 804 0079 03       		.uleb128 0x3
- 805 007a 0E       		.uleb128 0xe
- 806 007b 3A       		.uleb128 0x3a
- 807 007c 0B       		.uleb128 0xb
- 808 007d 3B       		.uleb128 0x3b
- 809 007e 0B       		.uleb128 0xb
- 810 007f 49       		.uleb128 0x49
- 811 0080 13       		.uleb128 0x13
- 812 0081 02       		.uleb128 0x2
- 813 0082 18       		.uleb128 0x18
- 814 0083 00       		.byte	0
- 815 0084 00       		.byte	0
- 816 0085 0A       		.uleb128 0xa
-ARM GAS  C:\Users\Trung\AppData\Local\Temp\cc52uHeO.s 			page 18
+ 766 006c 0B       		.uleb128 0xb
+ 767 006d 01       		.byte	0x1
+ 768 006e 11       		.uleb128 0x11
+ 769 006f 01       		.uleb128 0x1
+ 770 0070 12       		.uleb128 0x12
+ 771 0071 06       		.uleb128 0x6
+ 772 0072 01       		.uleb128 0x1
+ 773 0073 13       		.uleb128 0x13
+ 774 0074 00       		.byte	0
+ 775 0075 00       		.byte	0
+ 776 0076 09       		.uleb128 0x9
+ 777 0077 34       		.uleb128 0x34
+ 778 0078 00       		.byte	0
+ 779 0079 03       		.uleb128 0x3
+ 780 007a 0E       		.uleb128 0xe
+ 781 007b 3A       		.uleb128 0x3a
+ 782 007c 0B       		.uleb128 0xb
+ 783 007d 3B       		.uleb128 0x3b
+ 784 007e 0B       		.uleb128 0xb
+ 785 007f 49       		.uleb128 0x49
+ 786 0080 13       		.uleb128 0x13
+ 787 0081 00       		.byte	0
+ 788 0082 00       		.byte	0
+ 789 0083 0A       		.uleb128 0xa
+ 790 0084 898201   		.uleb128 0x4109
+ 791 0087 00       		.byte	0
+ 792 0088 11       		.uleb128 0x11
+ 793 0089 01       		.uleb128 0x1
+ 794 008a 31       		.uleb128 0x31
+ 795 008b 13       		.uleb128 0x13
+ 796 008c 00       		.byte	0
+ 797 008d 00       		.byte	0
+ 798 008e 0B       		.uleb128 0xb
+ 799 008f 898201   		.uleb128 0x4109
+ 800 0092 01       		.byte	0x1
+ 801 0093 11       		.uleb128 0x11
+ 802 0094 01       		.uleb128 0x1
+ 803 0095 31       		.uleb128 0x31
+ 804 0096 13       		.uleb128 0x13
+ 805 0097 01       		.uleb128 0x1
+ 806 0098 13       		.uleb128 0x13
+ 807 0099 00       		.byte	0
+ 808 009a 00       		.byte	0
+ 809 009b 0C       		.uleb128 0xc
+ 810 009c 8A8201   		.uleb128 0x410a
+ 811 009f 00       		.byte	0
+ 812 00a0 02       		.uleb128 0x2
+ 813 00a1 18       		.uleb128 0x18
+ 814 00a2 9142     		.uleb128 0x2111
+ 815 00a4 18       		.uleb128 0x18
+ 816 00a5 00       		.byte	0
+ 817 00a6 00       		.byte	0
+ 818 00a7 0D       		.uleb128 0xd
+ 819 00a8 898201   		.uleb128 0x4109
+ 820 00ab 01       		.byte	0x1
+ 821 00ac 11       		.uleb128 0x11
+ 822 00ad 01       		.uleb128 0x1
+ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccVoxRyt.s 			page 18
 
 
- 817 0086 898201   		.uleb128 0x4109
- 818 0089 00       		.byte	0
- 819 008a 11       		.uleb128 0x11
- 820 008b 01       		.uleb128 0x1
- 821 008c 31       		.uleb128 0x31
- 822 008d 13       		.uleb128 0x13
- 823 008e 00       		.byte	0
- 824 008f 00       		.byte	0
- 825 0090 0B       		.uleb128 0xb
- 826 0091 898201   		.uleb128 0x4109
- 827 0094 01       		.byte	0x1
- 828 0095 11       		.uleb128 0x11
- 829 0096 01       		.uleb128 0x1
- 830 0097 31       		.uleb128 0x31
- 831 0098 13       		.uleb128 0x13
- 832 0099 01       		.uleb128 0x1
- 833 009a 13       		.uleb128 0x13
- 834 009b 00       		.byte	0
- 835 009c 00       		.byte	0
- 836 009d 0C       		.uleb128 0xc
- 837 009e 8A8201   		.uleb128 0x410a
- 838 00a1 00       		.byte	0
- 839 00a2 02       		.uleb128 0x2
- 840 00a3 18       		.uleb128 0x18
- 841 00a4 9142     		.uleb128 0x2111
- 842 00a6 18       		.uleb128 0x18
- 843 00a7 00       		.byte	0
- 844 00a8 00       		.byte	0
- 845 00a9 0D       		.uleb128 0xd
- 846 00aa 898201   		.uleb128 0x4109
- 847 00ad 01       		.byte	0x1
- 848 00ae 11       		.uleb128 0x11
- 849 00af 01       		.uleb128 0x1
- 850 00b0 31       		.uleb128 0x31
- 851 00b1 13       		.uleb128 0x13
- 852 00b2 00       		.byte	0
- 853 00b3 00       		.byte	0
- 854 00b4 0E       		.uleb128 0xe
- 855 00b5 01       		.uleb128 0x1
- 856 00b6 01       		.byte	0x1
- 857 00b7 49       		.uleb128 0x49
- 858 00b8 13       		.uleb128 0x13
- 859 00b9 01       		.uleb128 0x1
- 860 00ba 13       		.uleb128 0x13
- 861 00bb 00       		.byte	0
- 862 00bc 00       		.byte	0
- 863 00bd 0F       		.uleb128 0xf
- 864 00be 21       		.uleb128 0x21
- 865 00bf 00       		.byte	0
- 866 00c0 49       		.uleb128 0x49
- 867 00c1 13       		.uleb128 0x13
- 868 00c2 2F       		.uleb128 0x2f
- 869 00c3 0B       		.uleb128 0xb
- 870 00c4 00       		.byte	0
- 871 00c5 00       		.byte	0
- 872 00c6 10       		.uleb128 0x10
- 873 00c7 34       		.uleb128 0x34
-ARM GAS  C:\Users\Trung\AppData\Local\Temp\cc52uHeO.s 			page 19
+ 823 00ae 31       		.uleb128 0x31
+ 824 00af 13       		.uleb128 0x13
+ 825 00b0 00       		.byte	0
+ 826 00b1 00       		.byte	0
+ 827 00b2 0E       		.uleb128 0xe
+ 828 00b3 01       		.uleb128 0x1
+ 829 00b4 01       		.byte	0x1
+ 830 00b5 49       		.uleb128 0x49
+ 831 00b6 13       		.uleb128 0x13
+ 832 00b7 01       		.uleb128 0x1
+ 833 00b8 13       		.uleb128 0x13
+ 834 00b9 00       		.byte	0
+ 835 00ba 00       		.byte	0
+ 836 00bb 0F       		.uleb128 0xf
+ 837 00bc 21       		.uleb128 0x21
+ 838 00bd 00       		.byte	0
+ 839 00be 49       		.uleb128 0x49
+ 840 00bf 13       		.uleb128 0x13
+ 841 00c0 2F       		.uleb128 0x2f
+ 842 00c1 0B       		.uleb128 0xb
+ 843 00c2 00       		.byte	0
+ 844 00c3 00       		.byte	0
+ 845 00c4 10       		.uleb128 0x10
+ 846 00c5 34       		.uleb128 0x34
+ 847 00c6 00       		.byte	0
+ 848 00c7 03       		.uleb128 0x3
+ 849 00c8 0E       		.uleb128 0xe
+ 850 00c9 3A       		.uleb128 0x3a
+ 851 00ca 0B       		.uleb128 0xb
+ 852 00cb 3B       		.uleb128 0x3b
+ 853 00cc 0B       		.uleb128 0xb
+ 854 00cd 49       		.uleb128 0x49
+ 855 00ce 13       		.uleb128 0x13
+ 856 00cf 02       		.uleb128 0x2
+ 857 00d0 18       		.uleb128 0x18
+ 858 00d1 00       		.byte	0
+ 859 00d2 00       		.byte	0
+ 860 00d3 11       		.uleb128 0x11
+ 861 00d4 34       		.uleb128 0x34
+ 862 00d5 00       		.byte	0
+ 863 00d6 03       		.uleb128 0x3
+ 864 00d7 0E       		.uleb128 0xe
+ 865 00d8 3A       		.uleb128 0x3a
+ 866 00d9 0B       		.uleb128 0xb
+ 867 00da 3B       		.uleb128 0x3b
+ 868 00db 05       		.uleb128 0x5
+ 869 00dc 49       		.uleb128 0x49
+ 870 00dd 13       		.uleb128 0x13
+ 871 00de 3F       		.uleb128 0x3f
+ 872 00df 19       		.uleb128 0x19
+ 873 00e0 3C       		.uleb128 0x3c
+ 874 00e1 19       		.uleb128 0x19
+ 875 00e2 00       		.byte	0
+ 876 00e3 00       		.byte	0
+ 877 00e4 12       		.uleb128 0x12
+ 878 00e5 2E       		.uleb128 0x2e
+ 879 00e6 00       		.byte	0
+ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccVoxRyt.s 			page 19
 
 
- 874 00c8 00       		.byte	0
- 875 00c9 03       		.uleb128 0x3
- 876 00ca 0E       		.uleb128 0xe
- 877 00cb 3A       		.uleb128 0x3a
- 878 00cc 0B       		.uleb128 0xb
- 879 00cd 3B       		.uleb128 0x3b
- 880 00ce 05       		.uleb128 0x5
- 881 00cf 49       		.uleb128 0x49
- 882 00d0 13       		.uleb128 0x13
- 883 00d1 3F       		.uleb128 0x3f
- 884 00d2 19       		.uleb128 0x19
- 885 00d3 3C       		.uleb128 0x3c
- 886 00d4 19       		.uleb128 0x19
- 887 00d5 00       		.byte	0
- 888 00d6 00       		.byte	0
- 889 00d7 11       		.uleb128 0x11
- 890 00d8 2E       		.uleb128 0x2e
- 891 00d9 00       		.byte	0
- 892 00da 3F       		.uleb128 0x3f
- 893 00db 19       		.uleb128 0x19
- 894 00dc 3C       		.uleb128 0x3c
- 895 00dd 19       		.uleb128 0x19
- 896 00de 6E       		.uleb128 0x6e
- 897 00df 0E       		.uleb128 0xe
- 898 00e0 03       		.uleb128 0x3
- 899 00e1 0E       		.uleb128 0xe
- 900 00e2 3A       		.uleb128 0x3a
- 901 00e3 0B       		.uleb128 0xb
- 902 00e4 3B       		.uleb128 0x3b
- 903 00e5 0B       		.uleb128 0xb
- 904 00e6 00       		.byte	0
- 905 00e7 00       		.byte	0
- 906 00e8 00       		.byte	0
- 907              		.section	.debug_loc,"",%progbits
- 908              	.Ldebug_loc0:
- 909              	.LLST0:
- 910 0000 20000000 		.4byte	.LVL3
- 911 0004 68000000 		.4byte	.LVL4
- 912 0008 0100     		.2byte	0x1
- 913 000a 50       		.byte	0x50
- 914 000b 6E000000 		.4byte	.LVL6
- 915 000f 70000000 		.4byte	.LVL7
- 916 0013 0100     		.2byte	0x1
- 917 0015 50       		.byte	0x50
- 918 0016 76000000 		.4byte	.LVL9
- 919 001a 78000000 		.4byte	.LVL10
- 920 001e 0100     		.2byte	0x1
- 921 0020 50       		.byte	0x50
- 922 0021 7E000000 		.4byte	.LVL12
- 923 0025 80000000 		.4byte	.LVL13
- 924 0029 0100     		.2byte	0x1
- 925 002b 50       		.byte	0x50
- 926 002c 86000000 		.4byte	.LVL15
- 927 0030 88000000 		.4byte	.LVL16
- 928 0034 0100     		.2byte	0x1
- 929 0036 50       		.byte	0x50
- 930 0037 8E000000 		.4byte	.LVL18
-ARM GAS  C:\Users\Trung\AppData\Local\Temp\cc52uHeO.s 			page 20
+ 880 00e7 3F       		.uleb128 0x3f
+ 881 00e8 19       		.uleb128 0x19
+ 882 00e9 3C       		.uleb128 0x3c
+ 883 00ea 19       		.uleb128 0x19
+ 884 00eb 6E       		.uleb128 0x6e
+ 885 00ec 0E       		.uleb128 0xe
+ 886 00ed 03       		.uleb128 0x3
+ 887 00ee 0E       		.uleb128 0xe
+ 888 00ef 3A       		.uleb128 0x3a
+ 889 00f0 0B       		.uleb128 0xb
+ 890 00f1 3B       		.uleb128 0x3b
+ 891 00f2 0B       		.uleb128 0xb
+ 892 00f3 00       		.byte	0
+ 893 00f4 00       		.byte	0
+ 894 00f5 00       		.byte	0
+ 895              		.section	.debug_loc,"",%progbits
+ 896              	.Ldebug_loc0:
+ 897              	.LLST0:
+ 898 0000 1E000000 		.4byte	.LVL3
+ 899 0004 66000000 		.4byte	.LVL4
+ 900 0008 0100     		.2byte	0x1
+ 901 000a 50       		.byte	0x50
+ 902 000b 6C000000 		.4byte	.LVL6
+ 903 000f 6E000000 		.4byte	.LVL7
+ 904 0013 0100     		.2byte	0x1
+ 905 0015 50       		.byte	0x50
+ 906 0016 74000000 		.4byte	.LVL9
+ 907 001a 76000000 		.4byte	.LVL10
+ 908 001e 0100     		.2byte	0x1
+ 909 0020 50       		.byte	0x50
+ 910 0021 7C000000 		.4byte	.LVL12
+ 911 0025 7E000000 		.4byte	.LVL13
+ 912 0029 0100     		.2byte	0x1
+ 913 002b 50       		.byte	0x50
+ 914 002c 84000000 		.4byte	.LVL15
+ 915 0030 86000000 		.4byte	.LVL16
+ 916 0034 0100     		.2byte	0x1
+ 917 0036 50       		.byte	0x50
+ 918 0037 8C000000 		.4byte	.LVL18
+ 919 003b 8E000000 		.4byte	.LVL19
+ 920 003f 0100     		.2byte	0x1
+ 921 0041 50       		.byte	0x50
+ 922 0042 94000000 		.4byte	.LVL21
+ 923 0046 96000000 		.4byte	.LVL22
+ 924 004a 0100     		.2byte	0x1
+ 925 004c 50       		.byte	0x50
+ 926 004d 9C000000 		.4byte	.LVL24
+ 927 0051 9E000000 		.4byte	.LVL25
+ 928 0055 0100     		.2byte	0x1
+ 929 0057 50       		.byte	0x50
+ 930 0058 A4000000 		.4byte	.LVL27
+ 931 005c A6000000 		.4byte	.LVL28
+ 932 0060 0100     		.2byte	0x1
+ 933 0062 50       		.byte	0x50
+ 934 0063 AC000000 		.4byte	.LVL30
+ 935 0067 B2000000 		.4byte	.LVL31
+ 936 006b 0100     		.2byte	0x1
+ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccVoxRyt.s 			page 20
 
 
- 931 003b 90000000 		.4byte	.LVL19
- 932 003f 0100     		.2byte	0x1
- 933 0041 50       		.byte	0x50
- 934 0042 96000000 		.4byte	.LVL21
- 935 0046 98000000 		.4byte	.LVL22
- 936 004a 0100     		.2byte	0x1
- 937 004c 50       		.byte	0x50
- 938 004d 9E000000 		.4byte	.LVL24
- 939 0051 A4000000 		.4byte	.LVL25
- 940 0055 0100     		.2byte	0x1
- 941 0057 50       		.byte	0x50
- 942 0058 00000000 		.4byte	0
- 943 005c 00000000 		.4byte	0
- 944              		.section	.debug_aranges,"",%progbits
- 945 0000 1C000000 		.4byte	0x1c
- 946 0004 0200     		.2byte	0x2
- 947 0006 00000000 		.4byte	.Ldebug_info0
- 948 000a 04       		.byte	0x4
- 949 000b 00       		.byte	0
- 950 000c 0000     		.2byte	0
- 951 000e 0000     		.2byte	0
- 952 0010 00000000 		.4byte	.LFB64
- 953 0014 18010000 		.4byte	.LFE64-.LFB64
- 954 0018 00000000 		.4byte	0
- 955 001c 00000000 		.4byte	0
- 956              		.section	.debug_ranges,"",%progbits
- 957              	.Ldebug_ranges0:
- 958 0000 00000000 		.4byte	.LFB64
- 959 0004 18010000 		.4byte	.LFE64
- 960 0008 00000000 		.4byte	0
- 961 000c 00000000 		.4byte	0
- 962              		.section	.debug_line,"",%progbits
- 963              	.Ldebug_line0:
- 964 0000 36020000 		.section	.debug_str,"MS",%progbits,1
- 964      0200E401 
- 964      00000201 
- 964      FB0E0D00 
- 964      01010101 
- 965              	.LASF4:
- 966 0000 5F5F7569 		.ascii	"__uint8_t\000"
- 966      6E74385F 
- 966      7400
- 967              	.LASF26:
- 968 000a 50696E5F 		.ascii	"Pin_N_G_Write\000"
- 968      4E5F475F 
- 968      57726974 
- 968      6500
- 969              	.LASF29:
- 970 0018 50696E5F 		.ascii	"Pin_E_CW_Read\000"
- 970      455F4357 
- 970      5F526561 
- 970      6400
- 971              	.LASF5:
- 972 0026 5F5F696E 		.ascii	"__int32_t\000"
- 972      7433325F 
- 972      7400
- 973              	.LASF25:
-ARM GAS  C:\Users\Trung\AppData\Local\Temp\cc52uHeO.s 			page 21
+ 937 006d 50       		.byte	0x50
+ 938 006e 00000000 		.4byte	0
+ 939 0072 00000000 		.4byte	0
+ 940              		.section	.debug_aranges,"",%progbits
+ 941 0000 1C000000 		.4byte	0x1c
+ 942 0004 0200     		.2byte	0x2
+ 943 0006 00000000 		.4byte	.Ldebug_info0
+ 944 000a 04       		.byte	0x4
+ 945 000b 00       		.byte	0
+ 946 000c 0000     		.2byte	0
+ 947 000e 0000     		.2byte	0
+ 948 0010 00000000 		.4byte	.LFB64
+ 949 0014 F0000000 		.4byte	.LFE64-.LFB64
+ 950 0018 00000000 		.4byte	0
+ 951 001c 00000000 		.4byte	0
+ 952              		.section	.debug_ranges,"",%progbits
+ 953              	.Ldebug_ranges0:
+ 954 0000 00000000 		.4byte	.LFB64
+ 955 0004 F0000000 		.4byte	.LFE64
+ 956 0008 00000000 		.4byte	0
+ 957 000c 00000000 		.4byte	0
+ 958              		.section	.debug_line,"",%progbits
+ 959              	.Ldebug_line0:
+ 960 0000 0C020000 		.section	.debug_str,"MS",%progbits,1
+ 960      0200D201 
+ 960      00000201 
+ 960      FB0E0D00 
+ 960      01010101 
+ 961              	.LASF4:
+ 962 0000 5F5F7569 		.ascii	"__uint8_t\000"
+ 962      6E74385F 
+ 962      7400
+ 963              	.LASF26:
+ 964 000a 50696E5F 		.ascii	"Pin_N_G_Write\000"
+ 964      4E5F475F 
+ 964      57726974 
+ 964      6500
+ 965              	.LASF29:
+ 966 0018 50696E5F 		.ascii	"Pin_E_CW_Read\000"
+ 966      455F4357 
+ 966      5F526561 
+ 966      6400
+ 967              	.LASF5:
+ 968 0026 5F5F696E 		.ascii	"__int32_t\000"
+ 968      7433325F 
+ 968      7400
+ 969              	.LASF33:
+ 970 0030 453A5C67 		.ascii	"E:\\github\\MPS\\MPS-W22_Prakt_1.cydsn\000"
+ 970      69746875 
+ 970      625C4D50 
+ 970      535C4D50 
+ 970      532D5732 
+ 971              	.LASF25:
+ 972 0054 50696E5F 		.ascii	"Pin_N_Y_Write\000"
+ 972      4E5F595F 
+ 972      57726974 
+ 972      6500
+ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccVoxRyt.s 			page 21
 
 
- 974 0030 50696E5F 		.ascii	"Pin_N_Y_Write\000"
- 974      4E5F595F 
- 974      57726974 
- 974      6500
- 975              	.LASF15:
- 976 003e 666C6F61 		.ascii	"float\000"
- 976      7400
- 977              	.LASF20:
- 978 0044 6C6F6F70 		.ascii	"loop\000"
- 978      00
- 979              	.LASF32:
- 980 0049 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
- 980      43313120 
- 980      352E342E 
- 980      31203230 
- 980      31363036 
- 981 007c 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
- 981      20726576 
- 981      6973696F 
- 981      6E203233 
- 981      37373135 
- 982 00af 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
- 982      66756E63 
- 982      74696F6E 
- 982      2D736563 
- 982      74696F6E 
- 983              	.LASF8:
- 984 00d7 6C6F6E67 		.ascii	"long unsigned int\000"
- 984      20756E73 
- 984      69676E65 
- 984      6420696E 
- 984      7400
- 985              	.LASF3:
- 986 00e9 73686F72 		.ascii	"short unsigned int\000"
- 986      7420756E 
- 986      7369676E 
- 986      65642069 
- 986      6E7400
- 987              	.LASF31:
- 988 00fc 55415254 		.ascii	"UART_Start\000"
- 988      5F537461 
- 988      727400
- 989              	.LASF36:
- 990 0107 49544D5F 		.ascii	"ITM_RxBuffer\000"
- 990      52784275 
- 990      66666572 
- 990      00
- 991              	.LASF1:
- 992 0114 756E7369 		.ascii	"unsigned char\000"
- 992      676E6564 
- 992      20636861 
- 992      7200
- 993              	.LASF16:
- 994 0122 646F7562 		.ascii	"double\000"
- 994      6C6500
- 995              	.LASF7:
- 996 0129 5F5F7569 		.ascii	"__uint32_t\000"
-ARM GAS  C:\Users\Trung\AppData\Local\Temp\cc52uHeO.s 			page 22
+ 973              	.LASF15:
+ 974 0062 666C6F61 		.ascii	"float\000"
+ 974      7400
+ 975              	.LASF35:
+ 976 0068 6C6F6F70 		.ascii	"loop\000"
+ 976      00
+ 977              	.LASF31:
+ 978 006d 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 978      43313120 
+ 978      352E342E 
+ 978      31203230 
+ 978      31363036 
+ 979 00a0 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 979      20726576 
+ 979      6973696F 
+ 979      6E203233 
+ 979      37373135 
+ 980 00d3 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 980      66756E63 
+ 980      74696F6E 
+ 980      2D736563 
+ 980      74696F6E 
+ 981              	.LASF8:
+ 982 00fb 6C6F6E67 		.ascii	"long unsigned int\000"
+ 982      20756E73 
+ 982      69676E65 
+ 982      6420696E 
+ 982      7400
+ 983              	.LASF3:
+ 984 010d 73686F72 		.ascii	"short unsigned int\000"
+ 984      7420756E 
+ 984      7369676E 
+ 984      65642069 
+ 984      6E7400
+ 985              	.LASF30:
+ 986 0120 55415254 		.ascii	"UART_Start\000"
+ 986      5F537461 
+ 986      727400
+ 987              	.LASF36:
+ 988 012b 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 988      52784275 
+ 988      66666572 
+ 988      00
+ 989              	.LASF1:
+ 990 0138 756E7369 		.ascii	"unsigned char\000"
+ 990      676E6564 
+ 990      20636861 
+ 990      7200
+ 991              	.LASF16:
+ 992 0146 646F7562 		.ascii	"double\000"
+ 992      6C6500
+ 993              	.LASF7:
+ 994 014d 5F5F7569 		.ascii	"__uint32_t\000"
+ 994      6E743332 
+ 994      5F7400
+ 995              	.LASF34:
+ 996 0158 6D61696E 		.ascii	"main\000"
+ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccVoxRyt.s 			page 22
 
 
- 996      6E743332 
- 996      5F7400
- 997              	.LASF35:
- 998 0134 6D61696E 		.ascii	"main\000"
+ 996      00
+ 997              	.LASF11:
+ 998 015d 756E7369 		.ascii	"unsigned int\000"
+ 998      676E6564 
+ 998      20696E74 
  998      00
- 999              	.LASF11:
- 1000 0139 756E7369 		.ascii	"unsigned int\000"
- 1000      676E6564 
- 1000      20696E74 
- 1000      00
- 1001              	.LASF10:
- 1002 0146 6C6F6E67 		.ascii	"long long unsigned int\000"
- 1002      206C6F6E 
- 1002      6720756E 
- 1002      7369676E 
- 1002      65642069 
- 1003              	.LASF12:
- 1004 015d 75696E74 		.ascii	"uint8_t\000"
- 1004      385F7400 
- 1005              	.LASF30:
- 1006 0165 50696E5F 		.ascii	"Pin_E_CW_Write\000"
- 1006      455F4357 
- 1006      5F577269 
- 1006      746500
- 1007              	.LASF24:
- 1008 0174 50696E5F 		.ascii	"Pin_N_R_Write\000"
- 1008      4E5F525F 
- 1008      57726974 
- 1008      6500
- 1009              	.LASF13:
- 1010 0182 696E7433 		.ascii	"int32_t\000"
- 1010      325F7400 
- 1011              	.LASF19:
- 1012 018a 73697A65 		.ascii	"sizetype\000"
- 1012      74797065 
- 1012      00
- 1013              	.LASF9:
- 1014 0193 6C6F6E67 		.ascii	"long long int\000"
- 1014      206C6F6E 
- 1014      6720696E 
- 1014      7400
- 1015              	.LASF33:
- 1016 01a1 6D61696E 		.ascii	"main.c\000"
- 1016      2E6300
- 1017              	.LASF34:
- 1018 01a8 453A5C56 		.ascii	"E:\\Vorlesung\\Video\\3rd Sem\\MPS\\MPS-W22_Prakt_1"
- 1018      6F726C65 
- 1018      73756E67 
- 1018      5C566964 
- 1018      656F5C33 
- 1019 01d6 2E637964 		.ascii	".cydsn\000"
- 1019      736E00
- 1020              	.LASF22:
- 1021 01dd 55415254 		.ascii	"UART_GetChar\000"
- 1021      5F476574 
- 1021      43686172 
- 1021      00
-ARM GAS  C:\Users\Trung\AppData\Local\Temp\cc52uHeO.s 			page 23
+ 999              	.LASF10:
+ 1000 016a 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1000      206C6F6E 
+ 1000      6720756E 
+ 1000      7369676E 
+ 1000      65642069 
+ 1001              	.LASF12:
+ 1002 0181 75696E74 		.ascii	"uint8_t\000"
+ 1002      385F7400 
+ 1003              	.LASF23:
+ 1004 0189 50696E5F 		.ascii	"Pin_E_CW_Write\000"
+ 1004      455F4357 
+ 1004      5F577269 
+ 1004      746500
+ 1005              	.LASF24:
+ 1006 0198 50696E5F 		.ascii	"Pin_N_R_Write\000"
+ 1006      4E5F525F 
+ 1006      57726974 
+ 1006      6500
+ 1007              	.LASF13:
+ 1008 01a6 696E7433 		.ascii	"int32_t\000"
+ 1008      325F7400 
+ 1009              	.LASF19:
+ 1010 01ae 73697A65 		.ascii	"sizetype\000"
+ 1010      74797065 
+ 1010      00
+ 1011              	.LASF9:
+ 1012 01b7 6C6F6E67 		.ascii	"long long int\000"
+ 1012      206C6F6E 
+ 1012      6720696E 
+ 1012      7400
+ 1013              	.LASF32:
+ 1014 01c5 6D61696E 		.ascii	"main.c\000"
+ 1014      2E6300
+ 1015              	.LASF17:
+ 1016 01cc 63686172 		.ascii	"char\000"
+ 1016      00
+ 1017              	.LASF21:
+ 1018 01d1 55415254 		.ascii	"UART_GetChar\000"
+ 1018      5F476574 
+ 1018      43686172 
+ 1018      00
+ 1019              	.LASF2:
+ 1020 01de 73686F72 		.ascii	"short int\000"
+ 1020      7420696E 
+ 1020      7400
+ 1021              	.LASF20:
+ 1022 01e8 62756666 		.ascii	"buffer\000"
+ 1022      657200
+ 1023              	.LASF14:
+ 1024 01ef 75696E74 		.ascii	"uint32_t\000"
+ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccVoxRyt.s 			page 23
 
 
- 1022              	.LASF2:
- 1023 01ea 73686F72 		.ascii	"short int\000"
- 1023      7420696E 
- 1023      7400
- 1024              	.LASF21:
- 1025 01f4 62756666 		.ascii	"buffer\000"
- 1025      657200
- 1026              	.LASF14:
- 1027 01fb 75696E74 		.ascii	"uint32_t\000"
- 1027      33325F74 
- 1027      00
- 1028              	.LASF6:
- 1029 0204 6C6F6E67 		.ascii	"long int\000"
- 1029      20696E74 
- 1029      00
- 1030              	.LASF17:
- 1031 020d 63686172 		.ascii	"char\000"
- 1031      00
- 1032              	.LASF18:
- 1033 0212 6C6F6E67 		.ascii	"long double\000"
- 1033      20646F75 
- 1033      626C6500 
- 1034              	.LASF0:
- 1035 021e 7369676E 		.ascii	"signed char\000"
- 1035      65642063 
- 1035      68617200 
- 1036              	.LASF23:
- 1037 022a 55415254 		.ascii	"UART_PutString\000"
- 1037      5F507574 
- 1037      53747269 
- 1037      6E6700
- 1038              	.LASF27:
- 1039 0239 73707269 		.ascii	"sprintf\000"
- 1039      6E746600 
- 1040              	.LASF28:
- 1041 0241 50696E5F 		.ascii	"Pin_CWEW_Read\000"
- 1041      43574557 
- 1041      5F526561 
- 1041      6400
- 1042              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
+ 1024      33325F74 
+ 1024      00
+ 1025              	.LASF6:
+ 1026 01f8 6C6F6E67 		.ascii	"long int\000"
+ 1026      20696E74 
+ 1026      00
+ 1027              	.LASF18:
+ 1028 0201 6C6F6E67 		.ascii	"long double\000"
+ 1028      20646F75 
+ 1028      626C6500 
+ 1029              	.LASF0:
+ 1030 020d 7369676E 		.ascii	"signed char\000"
+ 1030      65642063 
+ 1030      68617200 
+ 1031              	.LASF22:
+ 1032 0219 55415254 		.ascii	"UART_PutString\000"
+ 1032      5F507574 
+ 1032      53747269 
+ 1032      6E6700
+ 1033              	.LASF27:
+ 1034 0228 73707269 		.ascii	"sprintf\000"
+ 1034      6E746600 
+ 1035              	.LASF28:
+ 1036 0230 50696E5F 		.ascii	"Pin_CWEW_Read\000"
+ 1036      43574557 
+ 1036      5F526561 
+ 1036      6400
+ 1037              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

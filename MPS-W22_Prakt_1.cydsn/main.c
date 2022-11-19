@@ -79,6 +79,12 @@ int main(void)
                     UART_PutString( "... da ist ein <x>'\n\r" );
                                         // String Ausgabe, Zeilenabschluss LF CR
                     break;
+                case 'q':
+                    Pin_E_CW_Write(LED_OFF);        //led on
+                    break; 
+                case 'Q':
+                    Pin_E_CW_Write(LED_ON);     //led off
+                    break;
                 case 'R': 
                     Pin_N_R_Write(LED_ON);
                     break;
@@ -89,17 +95,19 @@ int main(void)
                     Pin_N_G_Write(LED_ON);
                     break;
                 case 'r':
-                    Pin_N_G_Write(LED_OFF);
+                    Pin_N_R_Write(LED_OFF);
                     break;
                 case 'y':
-                    Pin_N_G_Write(LED_OFF);
+                    Pin_N_Y_Write(LED_OFF);
                     break;
                 case 'g':
                     Pin_N_G_Write(LED_OFF);
                     break;
                 default:
-                    sprintf( buffer, "erwarte ein <x>, aber <%c> wurde eingegeben\n\r", chr );
-                    UART_PutString( buffer );
+                     //sprintf( buffer, "\n\rWelcome! %s\n\r", _VERSTR_);  // formatiert in Buffer
+                     //UART_PutString( buffer );                           // Ausgabe auf UART
+                     sprintf( buffer, "erwarte ein <x>, aber <%c> wurde eingegeben\n\r", chr );
+                     UART_PutString( buffer );
                     break;
             } // end switch
             chr = 0;                    // nicht vergessen (mit ISR)
@@ -119,13 +127,17 @@ int main(void)
         // Testen mit DEBUG und RELEASE
         volatile uint32_t loop;                  // geht mit DEBUG, aber nicht mit RELEASE
                                         // warum??? 
-                                        // Frage, was macht 'volatile'?
-        Pin_N_R_Write( LED_ON );        // anschalten
-        for ( loop = 0; loop < 1000000; loop++ )    // warten mit Schleife
-            ;
-        Pin_N_R_Write( LED_OFF );       // ausschalten
-        for ( loop = 0; loop < 1000000; loop++ )    // warten mit Schleife
-            ;
+                                        // Frage, was macht 'volatile'? 
+        //because in the loop there's nothing to do, so the compiler will try to be "smart"
+        // and optimize the code for speed and memory, it will jump over for loop since there's nothing there
+        // by using volatile we force the code to do what we want to do
+        // => die Schleife wird von Kompiler wegoptimiert
+//        Pin_N_R_Write( LED_ON );        // anschalten
+//        for ( loop = 0; loop < 1000000; loop++ )    // warten mit Schleife
+//            ;
+//        Pin_N_R_Write( LED_OFF );       // ausschalten
+//        for ( loop = 0; loop < 1000000; loop++ )    // warten mit Schleife
+//            ;
         
     } // end for
     
