@@ -216,20 +216,14 @@
 </userData>
 </CyGuid_fdba8dfd-b15b-4469-9bbb-9e40c3e70997>
 <Unloaded />
-<OpenDocs>
-<name v=".\TopDesign\TopDesign.cysch" />
-<name v=".\main.c" />
-<name v=".\Generated_Source\PSoC5\Pin_CWEW.c" />
-<name v=".\MPS-W22_Prakt_1.cydwr" />
-<name v=".\Generated_Source\PSoC5\Pin_N_R.c" />
-</OpenDocs>
+<OpenDocs />
 <OpenDocsLayout><![CDATA[<?xml version="1.0"?><!--
 
   Actipro Docking/MDI for WinForms
   Copyright (c) 2001-2016 Actipro Software LLC.  All rights reserved.
   http://www.actiprosoftware.com
 
---><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="1041, 423" SelectedTabbedMdiWindow="78aaf7cc-c85e-479a-a4ed-126d38865a4a"><DocumentWindow Key="E:\github\MPS\MPS-W22_Prakt_1.cydsn\TopDesign\TopDesign.cysch" Guid="948e96e0-d385-428d-abf4-3b07df9f553a" /><DocumentWindow Key="E:\github\MPS\MPS-W22_Prakt_1.cydsn\main.c" Guid="78aaf7cc-c85e-479a-a4ed-126d38865a4a" /><DocumentWindow Key="E:\github\MPS\MPS-W22_Prakt_1.cydsn\Generated_Source\PSoC5\Pin_CWEW.c" Guid="17d43d7f-77b1-49a9-9d3d-32861aa7ca0a" /><DocumentWindow Key="E:\github\MPS\MPS-W22_Prakt_1.cydsn\MPS-W22_Prakt_1.cydwr" Guid="95e9e8e2-d390-4aff-b743-e49a2903d8c5" /><DocumentWindow Key="E:\github\MPS\MPS-W22_Prakt_1.cydsn\Generated_Source\PSoC5\Pin_N_R.c" Guid="1aaa4547-3f8c-41bb-b4a9-0b1ebd167b12" /><ToolWindow Key="Start Page:bd4649ab-da6b-4d04-a663-c722b8bf99db:Start Page" Guid="09d83b8b-a0de-4eed-a07a-117299c45450" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
+--><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer /><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
 <config v="" />
 <AutoUpdate v="true" />
 </CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21>

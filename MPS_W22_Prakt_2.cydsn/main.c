@@ -56,7 +56,11 @@ CY_ISR( MyIsrCWEW ) {
     Pin_CWEW_ClearInterrupt();
     fCWEW_Isr = 1;              // set flag
 }
-
+static int laufZeit = 0;
+static int clkInterruptCounter = 0;
+static int LED_CWEW = 0;
+static int loopCountStart = 0;
+static int loopCounter = 0;
 /** 
  * Application clock interrupt service routine for isr_Clk
  *
@@ -64,6 +68,12 @@ CY_ISR( MyIsrCWEW ) {
  */
 CY_ISR( IsrAppClk ) {
     // TODO: implementieren
+    clkInterruptCounter++;
+    if(clkInterruptCounter > 1000) {
+        clkInterruptCounter = 0;
+        laufZeit++;
+        loopCountStart = 1;
+    }
 }
 
 
@@ -87,7 +97,7 @@ int main(void)
     Pin_CWEW_ClearInterrupt();          // clear eventual interrupt
     isr_CWEW_ClearPending();            // clear eventual pending interrupt
     
-    isr_Clk_StartEx( IsrAppClk );       // register application clock
+    isr_Clk_StartEx( IsrAppClk );       // register application clock, enable isr clock, which has f = 1000hz
     
     CyGlobalIntEnable; /* Enable global interrupts. */
 
@@ -117,6 +127,14 @@ int main(void)
                 case 'm':   // so könnte man etwas steuern über die Konsole
                     UART_PutString( "Menu-Beispiel: Taste 'm' gedrueckt\n\r" );
                     break;
+                    case 'l':
+                    sprintf(buffer, "Sekunde: %d \n\r", laufZeit);
+                    UART_PutString(buffer);
+                    break;
+                    case 'c':
+                    sprintf(buffer, "Loop Counter: %d \n\r", loopCounter );
+                    UART_PutString(buffer);
+                    break;
                  
                 // ... und so weiter ...
                 default:
@@ -125,15 +143,32 @@ int main(void)
                     break;
             }  // end switch          
         } // end if cRx
-        
+        //test interrupt
+        if(Pin_CWEW_Read() == 0) {
+            while(!Pin_CWEW_Read()) {
+                    
+            }
+        }
         /*
          * count loops in 1 sec
          */
         // TODO
+        if(loopCountStart && laufZeit < 2) {
+            loopCounter++;
+        }
 
         // Behandlung Button-Ereignis aus ISR
         if ( fCWEW_Isr ) {
             // TODO: implementieren und LED Pin_E_CW toggeln!
+            if(LED_CWEW) {  
+                Pin_E_CW_Write(1);      //weißE LEDs in OST_WEST ausschalten
+                LED_CWEW = 0;
+            }
+            else {
+                Pin_E_CW_Write(0);      ////weißE LEDs in OST_WEST anschalten
+                LED_CWEW = 1;
+            }
+            fCWEW_Isr = 0;          //toggle end
         }
                 
     } // end for

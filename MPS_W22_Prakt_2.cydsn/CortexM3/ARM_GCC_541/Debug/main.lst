@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccAZqC1a.s 			page 1
+ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLHY6o5.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccAZqC1a.s 			page 1
   18:main.c        ****  */
   19:main.c        **** #define _VERSION_NR     "ver. 1.0"              //!< Version number. Please update
   20:main.c        **** #define _PROJECT_NAME   "MPS_W22_Prakt_2"       //!< Project name
-ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccAZqC1a.s 			page 2
+ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLHY6o5.s 			page 2
 
 
   21:main.c        **** #define _PROCESSOR      "PSoC 5LP"              //!< Processor type
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccAZqC1a.s 			page 1
   62 0081 00       		.space	1
   63              		.section	.text.MyIsrCWEW,"ax",%progbits
   64              		.align	2
-ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccAZqC1a.s 			page 3
+ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLHY6o5.s 			page 3
 
 
   65              		.global	MyIsrCWEW
@@ -165,859 +165,1163 @@ ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccAZqC1a.s 			page 1
   94              		.cfi_endproc
   95              	.LFE65:
   96              		.size	MyIsrCWEW, .-MyIsrCWEW
-  97              		.section	.text.IsrAppClk,"ax",%progbits
-  98              		.align	2
-  99              		.global	IsrAppClk
- 100              		.thumb
- 101              		.thumb_func
- 102              		.type	IsrAppClk, %function
- 103              	IsrAppClk:
- 104              	.LFB66:
-  59:main.c        **** 
-  60:main.c        **** /** 
-  61:main.c        ****  * Application clock interrupt service routine for isr_Clk
-  62:main.c        ****  *
-  63:main.c        ****  * @see fClock
-ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccAZqC1a.s 			page 4
+  97              		.bss
+  98 0082 0000     		.align	2
+  99              	laufZeit:
+ 100 0084 00000000 		.space	4
+ 101              		.align	2
+ 102              	clkInterruptCounter:
+ 103 0088 00000000 		.space	4
+ 104              		.align	2
+ 105              	LED_CWEW:
+ 106 008c 00000000 		.space	4
+ 107              		.align	2
+ 108              	loopCountStart:
+ 109 0090 00000000 		.space	4
+ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLHY6o5.s 			page 4
 
 
-  64:main.c        ****  */
-  65:main.c        **** CY_ISR( IsrAppClk ) {
- 105              		.loc 1 65 0
- 106              		.cfi_startproc
- 107              		@ args = 0, pretend = 0, frame = 0
- 108              		@ frame_needed = 1, uses_anonymous_args = 0
- 109              		@ link register save eliminated.
- 110 0000 80B4     		push	{r7}
- 111              		.cfi_def_cfa_offset 4
- 112              		.cfi_offset 7, -4
- 113 0002 00AF     		add	r7, sp, #0
- 114              		.cfi_def_cfa_register 7
-  66:main.c        ****     // TODO: implementieren
-  67:main.c        **** }
- 115              		.loc 1 67 0
- 116 0004 00BF     		nop
- 117 0006 BD46     		mov	sp, r7
- 118              		.cfi_def_cfa_register 13
- 119              		@ sp needed
- 120 0008 80BC     		pop	{r7}
- 121              		.cfi_restore 7
- 122              		.cfi_def_cfa_offset 0
- 123 000a 7047     		bx	lr
- 124              		.cfi_endproc
- 125              	.LFE66:
- 126              		.size	IsrAppClk, .-IsrAppClk
- 127              		.section	.rodata
- 128              		.align	2
- 129              	.LC0:
- 130 0000 4D50535F 		.ascii	"MPS_W22_Prakt_2, FreeSoC2, PSoC 5LP, ver. 1.0\012\015"
- 130      5732325F 
- 130      5072616B 
- 130      745F322C 
- 130      20467265 
- 131 002f 416E6E65 		.ascii	"Anne Stesi, Imo Biel (Template MPS 3), Nov 28 2022 "
- 131      20537465 
- 131      73692C20 
- 131      496D6F20 
- 131      4269656C 
- 132 0062 30393A31 		.ascii	"09:19:54\000"
- 132      393A3534 
- 132      00
- 133 006b 00       		.align	2
- 134              	.LC1:
- 135 006c 0A0D5765 		.ascii	"\012\015Welcome! %s\012\015\000"
- 135      6C636F6D 
- 135      65212025 
- 135      730A0D00 
- 136              		.align	2
- 137              	.LC2:
- 138 007c 4D656E75 		.ascii	"Menu-Beispiel: Taste 'm' gedrueckt\012\015\000"
- 138      2D426569 
- 138      73706965 
- 138      6C3A2054 
- 138      61737465 
- 139              		.section	.text.main,"ax",%progbits
- 140              		.align	2
-ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccAZqC1a.s 			page 5
+ 110              		.align	2
+ 111              	loopCounter:
+ 112 0094 00000000 		.space	4
+ 113              		.section	.text.IsrAppClk,"ax",%progbits
+ 114              		.align	2
+ 115              		.global	IsrAppClk
+ 116              		.thumb
+ 117              		.thumb_func
+ 118              		.type	IsrAppClk, %function
+ 119              	IsrAppClk:
+ 120              	.LFB66:
+  59:main.c        **** static int laufZeit = 0;
+  60:main.c        **** static int clkInterruptCounter = 0;
+  61:main.c        **** static int LED_CWEW = 0;
+  62:main.c        **** static int loopCountStart = 0;
+  63:main.c        **** static int loopCounter = 0;
+  64:main.c        **** /** 
+  65:main.c        ****  * Application clock interrupt service routine for isr_Clk
+  66:main.c        ****  *
+  67:main.c        ****  * @see fClock
+  68:main.c        ****  */
+  69:main.c        **** CY_ISR( IsrAppClk ) {
+ 121              		.loc 1 69 0
+ 122              		.cfi_startproc
+ 123              		@ args = 0, pretend = 0, frame = 0
+ 124              		@ frame_needed = 1, uses_anonymous_args = 0
+ 125              		@ link register save eliminated.
+ 126 0000 80B4     		push	{r7}
+ 127              		.cfi_def_cfa_offset 4
+ 128              		.cfi_offset 7, -4
+ 129 0002 00AF     		add	r7, sp, #0
+ 130              		.cfi_def_cfa_register 7
+  70:main.c        ****     // TODO: implementieren
+  71:main.c        ****     clkInterruptCounter++;
+ 131              		.loc 1 71 0
+ 132 0004 0C4B     		ldr	r3, .L10
+ 133 0006 1B68     		ldr	r3, [r3]
+ 134 0008 0133     		adds	r3, r3, #1
+ 135 000a 0B4A     		ldr	r2, .L10
+ 136 000c 1360     		str	r3, [r2]
+  72:main.c        ****     if(clkInterruptCounter > 1000) {
+ 137              		.loc 1 72 0
+ 138 000e 0A4B     		ldr	r3, .L10
+ 139 0010 1B68     		ldr	r3, [r3]
+ 140 0012 B3F57A7F 		cmp	r3, #1000
+ 141 0016 0ADD     		ble	.L9
+  73:main.c        ****         clkInterruptCounter = 0;
+ 142              		.loc 1 73 0
+ 143 0018 074B     		ldr	r3, .L10
+ 144 001a 0022     		movs	r2, #0
+ 145 001c 1A60     		str	r2, [r3]
+  74:main.c        ****         laufZeit++;
+ 146              		.loc 1 74 0
+ 147 001e 074B     		ldr	r3, .L10+4
+ 148 0020 1B68     		ldr	r3, [r3]
+ 149 0022 0133     		adds	r3, r3, #1
+ 150 0024 054A     		ldr	r2, .L10+4
+ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLHY6o5.s 			page 5
 
 
- 141              		.global	main
- 142              		.thumb
- 143              		.thumb_func
- 144              		.type	main, %function
- 145              	main:
- 146              	.LFB67:
-  68:main.c        **** 
-  69:main.c        **** 
-  70:main.c        **** /**
-  71:main.c        ****  * Basisprojekt mit UART mit Interrupt, User Button mit Interrupt und Statusabfrage. 
-  72:main.c        ****  * Pin-I/O Einfache Eingabe mit Button, Ausgabe mit LED
-  73:main.c        ****  * für FreeSoC2
-  74:main.c        ****  * 
-  75:main.c        ****  * @author Ralf S. Mayer
-  76:main.c        ****  * @date 2022-11-13
-  77:main.c        ****  * @version 1.0
-  78:main.c        ****  */
-  79:main.c        **** int main(void)
-  80:main.c        **** {
- 147              		.loc 1 80 0
- 148              		.cfi_startproc
- 149              		@ args = 0, pretend = 0, frame = 8
- 150              		@ frame_needed = 1, uses_anonymous_args = 0
- 151 0000 80B5     		push	{r7, lr}
- 152              		.cfi_def_cfa_offset 8
- 153              		.cfi_offset 7, -8
- 154              		.cfi_offset 14, -4
- 155 0002 82B0     		sub	sp, sp, #8
- 156              		.cfi_def_cfa_offset 16
- 157 0004 00AF     		add	r7, sp, #0
- 158              		.cfi_def_cfa_register 7
-  81:main.c        ****     /* Initialize and start UART, register ISR */
-  82:main.c        ****     UART_Start();                       // start UART
- 159              		.loc 1 82 0
- 160 0006 FFF7FEFF 		bl	UART_Start
-  83:main.c        ****     isr_UART_RX_StartEx( MyIsrUartRX ); // register ISR, enable itr uart
- 161              		.loc 1 83 0
- 162 000a 1A48     		ldr	r0, .L16
- 163 000c FFF7FEFF 		bl	isr_UART_RX_StartEx
-  84:main.c        **** 
-  85:main.c        ****     /* Initialize and start MyIsrCWEW, register ISR */
-  86:main.c        ****     isr_CWEW_StartEx( MyIsrCWEW );      // register CWEW itr
- 164              		.loc 1 86 0
- 165 0010 1948     		ldr	r0, .L16+4
- 166 0012 FFF7FEFF 		bl	isr_CWEW_StartEx
-  87:main.c        ****     Pin_CWEW_ClearInterrupt();          // clear eventual interrupt
- 167              		.loc 1 87 0
- 168 0016 FFF7FEFF 		bl	Pin_CWEW_ClearInterrupt
-  88:main.c        ****     isr_CWEW_ClearPending();            // clear eventual pending interrupt
- 169              		.loc 1 88 0
- 170 001a FFF7FEFF 		bl	isr_CWEW_ClearPending
-  89:main.c        ****     
-  90:main.c        ****     isr_Clk_StartEx( IsrAppClk );       // register application clock
- 171              		.loc 1 90 0
- 172 001e 1748     		ldr	r0, .L16+8
- 173 0020 FFF7FEFF 		bl	isr_Clk_StartEx
-  91:main.c        ****     
-ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccAZqC1a.s 			page 6
+ 151 0026 1360     		str	r3, [r2]
+  75:main.c        ****         loopCountStart = 1;
+ 152              		.loc 1 75 0
+ 153 0028 054B     		ldr	r3, .L10+8
+ 154 002a 0122     		movs	r2, #1
+ 155 002c 1A60     		str	r2, [r3]
+ 156              	.L9:
+  76:main.c        ****     }
+  77:main.c        **** }
+ 157              		.loc 1 77 0
+ 158 002e 00BF     		nop
+ 159 0030 BD46     		mov	sp, r7
+ 160              		.cfi_def_cfa_register 13
+ 161              		@ sp needed
+ 162 0032 80BC     		pop	{r7}
+ 163              		.cfi_restore 7
+ 164              		.cfi_def_cfa_offset 0
+ 165 0034 7047     		bx	lr
+ 166              	.L11:
+ 167 0036 00BF     		.align	2
+ 168              	.L10:
+ 169 0038 88000000 		.word	clkInterruptCounter
+ 170 003c 84000000 		.word	laufZeit
+ 171 0040 90000000 		.word	loopCountStart
+ 172              		.cfi_endproc
+ 173              	.LFE66:
+ 174              		.size	IsrAppClk, .-IsrAppClk
+ 175              		.section	.rodata
+ 176              		.align	2
+ 177              	.LC0:
+ 178 0000 4D50535F 		.ascii	"MPS_W22_Prakt_2, FreeSoC2, PSoC 5LP, ver. 1.0\012\015"
+ 178      5732325F 
+ 178      5072616B 
+ 178      745F322C 
+ 178      20467265 
+ 179 002f 416E6E65 		.ascii	"Anne Stesi, Imo Biel (Template MPS 3), Nov 28 2022 "
+ 179      20537465 
+ 179      73692C20 
+ 179      496D6F20 
+ 179      4269656C 
+ 180 0062 31363A31 		.ascii	"16:14:19\000"
+ 180      343A3139 
+ 180      00
+ 181 006b 00       		.align	2
+ 182              	.LC1:
+ 183 006c 0A0D5765 		.ascii	"\012\015Welcome! %s\012\015\000"
+ 183      6C636F6D 
+ 183      65212025 
+ 183      730A0D00 
+ 184              		.align	2
+ 185              	.LC2:
+ 186 007c 4D656E75 		.ascii	"Menu-Beispiel: Taste 'm' gedrueckt\012\015\000"
+ 186      2D426569 
+ 186      73706965 
+ 186      6C3A2054 
+ 186      61737465 
+ 187 00a1 000000   		.align	2
+ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLHY6o5.s 			page 6
 
 
-  92:main.c        ****     CyGlobalIntEnable; /* Enable global interrupts. */
- 174              		.loc 1 92 0
- 175              		.syntax unified
- 176              	@ 92 "main.c" 1
- 177 0024 62B6     		CPSIE   i
- 178              	@ 0 "" 2
-  93:main.c        **** 
-  94:main.c        ****     /* Welcome and info text Ausgabe */
-  95:main.c        ****     sprintf( buffer, "\n\rWelcome! %s\n\r", _VERSTR_);  // formatiert in Buffer
- 179              		.loc 1 95 0
- 180              		.thumb
- 181              		.syntax unified
- 182 0026 164A     		ldr	r2, .L16+12
- 183 0028 1649     		ldr	r1, .L16+16
- 184 002a 1748     		ldr	r0, .L16+20
- 185 002c FFF7FEFF 		bl	sprintf
-  96:main.c        ****     UART_PutString( buffer );                           // Ausgabe auf UART
- 186              		.loc 1 96 0
- 187 0030 1548     		ldr	r0, .L16+20
- 188 0032 FFF7FEFF 		bl	UART_PutString
- 189              	.L13:
-  97:main.c        **** 
-  98:main.c        ****     // Applikationsschleife
-  99:main.c        ****     for(;;)
- 100:main.c        ****     {
- 101:main.c        **** 
- 102:main.c        ****         /* 
- 103:main.c        ****          * Character aus Uart ISR abfragen 
- 104:main.c        ****          * Beipsiel für einfache Menuesteuerung
- 105:main.c        ****          * Achtung: Für UART in diesem Programm ist ein zusätzlicher FTDI USB-TTL-Adapter notwend
- 106:main.c        ****          */
- 107:main.c        ****         if ( cRx ) {
- 190              		.loc 1 107 0
- 191 0036 154B     		ldr	r3, .L16+24
- 192 0038 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
- 193 003a 002B     		cmp	r3, #0
- 194 003c FBD0     		beq	.L13
- 195              	.LBB2:
- 108:main.c        ****             char c = cRx;   // copy char
- 196              		.loc 1 108 0
- 197 003e 134B     		ldr	r3, .L16+24
- 198 0040 1B78     		ldrb	r3, [r3]
- 199 0042 FB71     		strb	r3, [r7, #7]
- 109:main.c        ****             cRx = 0;        // nicht vergessen!!! Warum?
- 200              		.loc 1 109 0
- 201 0044 114B     		ldr	r3, .L16+24
- 202 0046 0022     		movs	r2, #0
- 203 0048 1A70     		strb	r2, [r3]
- 110:main.c        ****             // +++ Menuesteuerung +++
- 111:main.c        ****             switch ( c ) {
- 204              		.loc 1 111 0
- 205 004a FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
- 206 004c 6D2B     		cmp	r3, #109
- 207 004e 06D0     		beq	.L11
- 208 0050 712B     		cmp	r3, #113
- 209 0052 01D0     		beq	.L12
- 210 0054 512B     		cmp	r3, #81
-ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccAZqC1a.s 			page 7
+ 188              	.LC3:
+ 189 00a4 53656B75 		.ascii	"Sekunde: %d \012\015\000"
+ 189      6E64653A 
+ 189      20256420 
+ 189      0A0D00
+ 190 00b3 00       		.align	2
+ 191              	.LC4:
+ 192 00b4 4C6F6F70 		.ascii	"Loop Counter: %d \012\015\000"
+ 192      20436F75 
+ 192      6E746572 
+ 192      3A202564 
+ 192      200A0D00 
+ 193              		.section	.text.main,"ax",%progbits
+ 194              		.align	2
+ 195              		.global	main
+ 196              		.thumb
+ 197              		.thumb_func
+ 198              		.type	main, %function
+ 199              	main:
+ 200              	.LFB67:
+  78:main.c        **** 
+  79:main.c        **** 
+  80:main.c        **** /**
+  81:main.c        ****  * Basisprojekt mit UART mit Interrupt, User Button mit Interrupt und Statusabfrage. 
+  82:main.c        ****  * Pin-I/O Einfache Eingabe mit Button, Ausgabe mit LED
+  83:main.c        ****  * für FreeSoC2
+  84:main.c        ****  * 
+  85:main.c        ****  * @author Ralf S. Mayer
+  86:main.c        ****  * @date 2022-11-13
+  87:main.c        ****  * @version 1.0
+  88:main.c        ****  */
+  89:main.c        **** int main(void)
+  90:main.c        **** {
+ 201              		.loc 1 90 0
+ 202              		.cfi_startproc
+ 203              		@ args = 0, pretend = 0, frame = 8
+ 204              		@ frame_needed = 1, uses_anonymous_args = 0
+ 205 0000 80B5     		push	{r7, lr}
+ 206              		.cfi_def_cfa_offset 8
+ 207              		.cfi_offset 7, -8
+ 208              		.cfi_offset 14, -4
+ 209 0002 82B0     		sub	sp, sp, #8
+ 210              		.cfi_def_cfa_offset 16
+ 211 0004 00AF     		add	r7, sp, #0
+ 212              		.cfi_def_cfa_register 7
+  91:main.c        ****     /* Initialize and start UART, register ISR */
+  92:main.c        ****     UART_Start();                       // start UART
+ 213              		.loc 1 92 0
+ 214 0006 FFF7FEFF 		bl	UART_Start
+  93:main.c        ****     isr_UART_RX_StartEx( MyIsrUartRX ); // register ISR, enable itr uart
+ 215              		.loc 1 93 0
+ 216 000a 5E48     		ldr	r0, .L27
+ 217 000c FFF7FEFF 		bl	isr_UART_RX_StartEx
+  94:main.c        **** 
+  95:main.c        ****     /* Initialize and start MyIsrCWEW, register ISR */
+  96:main.c        ****     isr_CWEW_StartEx( MyIsrCWEW );      // register CWEW itr
+ 218              		.loc 1 96 0
+ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLHY6o5.s 			page 7
 
 
- 211 0056 06D1     		bne	.L15
- 212              	.L12:
- 112:main.c        ****                 // Software reset, startet Programm neu
- 113:main.c        ****                 case 'q':
- 114:main.c        ****                 case 'Q':   // fallthrough
- 115:main.c        ****                     CySoftwareReset();
- 213              		.loc 1 115 0
- 214 0058 FFF7FEFF 		bl	CySoftwareReset
- 116:main.c        ****                     break;
- 215              		.loc 1 116 0
- 216 005c 08E0     		b	.L14
- 217              	.L11:
- 117:main.c        ****                 case 'm':   // so könnte man etwas steuern über die Konsole
- 118:main.c        ****                     UART_PutString( "Menu-Beispiel: Taste 'm' gedrueckt\n\r" );
- 218              		.loc 1 118 0
- 219 005e 0C48     		ldr	r0, .L16+28
- 220 0060 FFF7FEFF 		bl	UART_PutString
- 119:main.c        ****                     break;
- 221              		.loc 1 119 0
- 222 0064 04E0     		b	.L14
- 223              	.L15:
- 120:main.c        ****                  
- 121:main.c        ****                 // ... und so weiter ...
- 122:main.c        ****                 default:
- 123:main.c        ****                     UART_PutChar( c );    // Buchstabe auf Bildschirm ausgeben ...
- 224              		.loc 1 123 0
- 225 0066 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
- 226 0068 1846     		mov	r0, r3
- 227 006a FFF7FEFF 		bl	UART_PutChar
- 124:main.c        ****                                           // ... falls nicht vom Menue behandelt
- 125:main.c        ****                     break;
- 228              		.loc 1 125 0
- 229 006e 00BF     		nop
- 230              	.L14:
- 231              	.LBE2:
- 126:main.c        ****             }  // end switch          
- 127:main.c        ****         } // end if cRx
- 128:main.c        ****         
- 129:main.c        ****         /*
- 130:main.c        ****          * count loops in 1 sec
- 131:main.c        ****          */
- 132:main.c        ****         // TODO
- 133:main.c        **** 
- 134:main.c        ****         // Behandlung Button-Ereignis aus ISR
- 135:main.c        ****         if ( fCWEW_Isr ) {
- 136:main.c        ****             // TODO: implementieren und LED Pin_E_CW toggeln!
- 137:main.c        ****         }
- 138:main.c        ****                 
- 139:main.c        ****     } // end for
- 232              		.loc 1 139 0
- 233 0070 E1E7     		b	.L13
- 234              	.L17:
- 235 0072 00BF     		.align	2
- 236              	.L16:
- 237 0074 00000000 		.word	MyIsrUartRX
- 238 0078 00000000 		.word	MyIsrCWEW
- 239 007c 00000000 		.word	IsrAppClk
-ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccAZqC1a.s 			page 8
+ 219 0010 5D48     		ldr	r0, .L27+4
+ 220 0012 FFF7FEFF 		bl	isr_CWEW_StartEx
+  97:main.c        ****     Pin_CWEW_ClearInterrupt();          // clear eventual interrupt
+ 221              		.loc 1 97 0
+ 222 0016 FFF7FEFF 		bl	Pin_CWEW_ClearInterrupt
+  98:main.c        ****     isr_CWEW_ClearPending();            // clear eventual pending interrupt
+ 223              		.loc 1 98 0
+ 224 001a FFF7FEFF 		bl	isr_CWEW_ClearPending
+  99:main.c        ****     
+ 100:main.c        ****     isr_Clk_StartEx( IsrAppClk );       // register application clock, enable isr clock, which has 
+ 225              		.loc 1 100 0
+ 226 001e 5B48     		ldr	r0, .L27+8
+ 227 0020 FFF7FEFF 		bl	isr_Clk_StartEx
+ 101:main.c        ****     
+ 102:main.c        ****     CyGlobalIntEnable; /* Enable global interrupts. */
+ 228              		.loc 1 102 0
+ 229              		.syntax unified
+ 230              	@ 102 "main.c" 1
+ 231 0024 62B6     		CPSIE   i
+ 232              	@ 0 "" 2
+ 103:main.c        **** 
+ 104:main.c        ****     /* Welcome and info text Ausgabe */
+ 105:main.c        ****     sprintf( buffer, "\n\rWelcome! %s\n\r", _VERSTR_);  // formatiert in Buffer
+ 233              		.loc 1 105 0
+ 234              		.thumb
+ 235              		.syntax unified
+ 236 0026 5A4A     		ldr	r2, .L27+12
+ 237 0028 5A49     		ldr	r1, .L27+16
+ 238 002a 5B48     		ldr	r0, .L27+20
+ 239 002c FFF7FEFF 		bl	sprintf
+ 106:main.c        ****     UART_PutString( buffer );                           // Ausgabe auf UART
+ 240              		.loc 1 106 0
+ 241 0030 5948     		ldr	r0, .L27+20
+ 242 0032 FFF7FEFF 		bl	UART_PutString
+ 243              	.L26:
+ 107:main.c        **** 
+ 108:main.c        ****     // Applikationsschleife
+ 109:main.c        ****     for(;;)
+ 110:main.c        ****     {
+ 111:main.c        **** 
+ 112:main.c        ****         /* 
+ 113:main.c        ****          * Character aus Uart ISR abfragen 
+ 114:main.c        ****          * Beipsiel für einfache Menuesteuerung
+ 115:main.c        ****          * Achtung: Für UART in diesem Programm ist ein zusätzlicher FTDI USB-TTL-Adapter notwend
+ 116:main.c        ****          */
+ 117:main.c        ****         if ( cRx ) {
+ 244              		.loc 1 117 0
+ 245 0036 594B     		ldr	r3, .L27+24
+ 246 0038 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 247 003a 002B     		cmp	r3, #0
+ 248 003c 70D0     		beq	.L13
+ 249              	.LBB2:
+ 118:main.c        ****             char c = cRx;   // copy char
+ 250              		.loc 1 118 0
+ 251 003e 574B     		ldr	r3, .L27+24
+ 252 0040 1B78     		ldrb	r3, [r3]
+ 253 0042 FB71     		strb	r3, [r7, #7]
+ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLHY6o5.s 			page 8
 
 
- 240 0080 00000000 		.word	.LC0
- 241 0084 6C000000 		.word	.LC1
- 242 0088 00000000 		.word	buffer
- 243 008c 80000000 		.word	cRx
- 244 0090 7C000000 		.word	.LC2
- 245              		.cfi_endproc
- 246              	.LFE67:
- 247              		.size	main, .-main
- 248              		.text
- 249              	.Letext0:
- 250              		.file 2 "e:\\psoc creator\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.1\\arm-none-eabi
- 251              		.file 3 "e:\\psoc creator\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.1\\arm-none-eabi
- 252              		.file 4 "Generated_Source\\PSoC5/core_cm3.h"
- 253              		.section	.debug_info,"",%progbits
- 254              	.Ldebug_info0:
- 255 0000 6E010000 		.4byte	0x16e
- 256 0004 0400     		.2byte	0x4
- 257 0006 00000000 		.4byte	.Ldebug_abbrev0
- 258 000a 04       		.byte	0x4
- 259 000b 01       		.uleb128 0x1
- 260 000c 0A000000 		.4byte	.LASF23
- 261 0010 0C       		.byte	0xc
- 262 0011 83010000 		.4byte	.LASF24
- 263 0015 AC000000 		.4byte	.LASF25
- 264 0019 00000000 		.4byte	.Ldebug_ranges0+0
- 265 001d 00000000 		.4byte	0
- 266 0021 00000000 		.4byte	.Ldebug_line0
- 267 0025 02       		.uleb128 0x2
- 268 0026 01       		.byte	0x1
- 269 0027 06       		.byte	0x6
- 270 0028 BF010000 		.4byte	.LASF0
- 271 002c 03       		.uleb128 0x3
- 272 002d 00000000 		.4byte	.LASF4
- 273 0031 02       		.byte	0x2
- 274 0032 1D       		.byte	0x1d
- 275 0033 37000000 		.4byte	0x37
- 276 0037 02       		.uleb128 0x2
- 277 0038 01       		.byte	0x1
- 278 0039 08       		.byte	0x8
- 279 003a E2000000 		.4byte	.LASF1
- 280 003e 02       		.uleb128 0x2
- 281 003f 02       		.byte	0x2
- 282 0040 05       		.byte	0x5
- 283 0041 8F010000 		.4byte	.LASF2
- 284 0045 02       		.uleb128 0x2
- 285 0046 02       		.byte	0x2
- 286 0047 07       		.byte	0x7
- 287 0048 02010000 		.4byte	.LASF3
- 288 004c 03       		.uleb128 0x3
- 289 004d 98000000 		.4byte	.LASF5
- 290 0051 02       		.byte	0x2
- 291 0052 3F       		.byte	0x3f
- 292 0053 57000000 		.4byte	0x57
- 293 0057 02       		.uleb128 0x2
- 294 0058 04       		.byte	0x4
- 295 0059 05       		.byte	0x5
- 296 005a AA010000 		.4byte	.LASF6
-ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccAZqC1a.s 			page 9
+ 119:main.c        ****             cRx = 0;        // nicht vergessen!!! Warum?
+ 254              		.loc 1 119 0
+ 255 0044 554B     		ldr	r3, .L27+24
+ 256 0046 0022     		movs	r2, #0
+ 257 0048 1A70     		strb	r2, [r3]
+ 120:main.c        ****             // +++ Menuesteuerung +++
+ 121:main.c        ****             switch ( c ) {
+ 258              		.loc 1 121 0
+ 259 004a FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 260 004c 513B     		subs	r3, r3, #81
+ 261 004e 202B     		cmp	r3, #32
+ 262 0050 61D8     		bhi	.L14
+ 263 0052 01A2     		adr	r2, .L16
+ 264 0054 52F823F0 		ldr	pc, [r2, r3, lsl #2]
+ 265              		.p2align 2
+ 266              	.L16:
+ 267 0058 DD000000 		.word	.L15+1
+ 268 005c 17010000 		.word	.L14+1
+ 269 0060 17010000 		.word	.L14+1
+ 270 0064 17010000 		.word	.L14+1
+ 271 0068 17010000 		.word	.L14+1
+ 272 006c 17010000 		.word	.L14+1
+ 273 0070 17010000 		.word	.L14+1
+ 274 0074 17010000 		.word	.L14+1
+ 275 0078 17010000 		.word	.L14+1
+ 276 007c 17010000 		.word	.L14+1
+ 277 0080 17010000 		.word	.L14+1
+ 278 0084 17010000 		.word	.L14+1
+ 279 0088 17010000 		.word	.L14+1
+ 280 008c 17010000 		.word	.L14+1
+ 281 0090 17010000 		.word	.L14+1
+ 282 0094 17010000 		.word	.L14+1
+ 283 0098 17010000 		.word	.L14+1
+ 284 009c 17010000 		.word	.L14+1
+ 285 00a0 01010000 		.word	.L17+1
+ 286 00a4 17010000 		.word	.L14+1
+ 287 00a8 17010000 		.word	.L14+1
+ 288 00ac 17010000 		.word	.L14+1
+ 289 00b0 17010000 		.word	.L14+1
+ 290 00b4 17010000 		.word	.L14+1
+ 291 00b8 17010000 		.word	.L14+1
+ 292 00bc 17010000 		.word	.L14+1
+ 293 00c0 17010000 		.word	.L14+1
+ 294 00c4 EB000000 		.word	.L18+1
+ 295 00c8 E3000000 		.word	.L19+1
+ 296 00cc 17010000 		.word	.L14+1
+ 297 00d0 17010000 		.word	.L14+1
+ 298 00d4 17010000 		.word	.L14+1
+ 299 00d8 DD000000 		.word	.L15+1
+ 300              		.p2align 1
+ 301              	.L15:
+ 122:main.c        ****                 // Software reset, startet Programm neu
+ 123:main.c        ****                 case 'q':
+ 124:main.c        ****                 case 'Q':   // fallthrough
+ 125:main.c        ****                     CySoftwareReset();
+ 302              		.loc 1 125 0
+ 303 00dc FFF7FEFF 		bl	CySoftwareReset
+ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLHY6o5.s 			page 9
 
 
- 297 005e 02       		.uleb128 0x2
- 298 005f 04       		.byte	0x4
- 299 0060 07       		.byte	0x7
- 300 0061 F0000000 		.4byte	.LASF7
- 301 0065 02       		.uleb128 0x2
- 302 0066 08       		.byte	0x8
- 303 0067 05       		.byte	0x5
- 304 0068 75010000 		.4byte	.LASF8
- 305 006c 02       		.uleb128 0x2
- 306 006d 08       		.byte	0x8
- 307 006e 07       		.byte	0x7
- 308 006f 45010000 		.4byte	.LASF9
- 309 0073 04       		.uleb128 0x4
- 310 0074 04       		.byte	0x4
- 311 0075 05       		.byte	0x5
- 312 0076 696E7400 		.ascii	"int\000"
- 313 007a 02       		.uleb128 0x2
- 314 007b 04       		.byte	0x4
- 315 007c 07       		.byte	0x7
- 316 007d 38010000 		.4byte	.LASF10
- 317 0081 03       		.uleb128 0x3
- 318 0082 5C010000 		.4byte	.LASF11
- 319 0086 03       		.byte	0x3
- 320 0087 18       		.byte	0x18
- 321 0088 2C000000 		.4byte	0x2c
- 322 008c 03       		.uleb128 0x3
- 323 008d 64010000 		.4byte	.LASF12
- 324 0091 03       		.byte	0x3
- 325 0092 2C       		.byte	0x2c
- 326 0093 4C000000 		.4byte	0x4c
- 327 0097 02       		.uleb128 0x2
- 328 0098 04       		.byte	0x4
- 329 0099 04       		.byte	0x4
- 330 009a D0000000 		.4byte	.LASF13
- 331 009e 02       		.uleb128 0x2
- 332 009f 08       		.byte	0x8
- 333 00a0 04       		.byte	0x4
- 334 00a1 22010000 		.4byte	.LASF14
- 335 00a5 02       		.uleb128 0x2
- 336 00a6 01       		.byte	0x1
- 337 00a7 08       		.byte	0x8
- 338 00a8 8A010000 		.4byte	.LASF15
- 339 00ac 02       		.uleb128 0x2
- 340 00ad 08       		.byte	0x8
- 341 00ae 04       		.byte	0x4
- 342 00af B3010000 		.4byte	.LASF16
- 343 00b3 02       		.uleb128 0x2
- 344 00b4 04       		.byte	0x4
- 345 00b5 07       		.byte	0x7
- 346 00b6 6C010000 		.4byte	.LASF17
- 347 00ba 05       		.uleb128 0x5
- 348 00bb D6000000 		.4byte	.LASF18
- 349 00bf 01       		.byte	0x1
- 350 00c0 2C       		.byte	0x2c
- 351 00c1 00000000 		.4byte	.LFB64
- 352 00c5 18000000 		.4byte	.LFE64-.LFB64
- 353 00c9 01       		.uleb128 0x1
-ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccAZqC1a.s 			page 10
+ 126:main.c        ****                     break;
+ 304              		.loc 1 126 0
+ 305 00e0 1EE0     		b	.L13
+ 306              	.L19:
+ 127:main.c        ****                 case 'm':   // so könnte man etwas steuern über die Konsole
+ 128:main.c        ****                     UART_PutString( "Menu-Beispiel: Taste 'm' gedrueckt\n\r" );
+ 307              		.loc 1 128 0
+ 308 00e2 2F48     		ldr	r0, .L27+28
+ 309 00e4 FFF7FEFF 		bl	UART_PutString
+ 129:main.c        ****                     break;
+ 310              		.loc 1 129 0
+ 311 00e8 1AE0     		b	.L13
+ 312              	.L18:
+ 130:main.c        ****                     case 'l':
+ 131:main.c        ****                     sprintf(buffer, "Sekunde: %d \n\r", laufZeit);
+ 313              		.loc 1 131 0
+ 314 00ea 2E4B     		ldr	r3, .L27+32
+ 315 00ec 1B68     		ldr	r3, [r3]
+ 316 00ee 1A46     		mov	r2, r3
+ 317 00f0 2D49     		ldr	r1, .L27+36
+ 318 00f2 2948     		ldr	r0, .L27+20
+ 319 00f4 FFF7FEFF 		bl	sprintf
+ 132:main.c        ****                     UART_PutString(buffer);
+ 320              		.loc 1 132 0
+ 321 00f8 2748     		ldr	r0, .L27+20
+ 322 00fa FFF7FEFF 		bl	UART_PutString
+ 133:main.c        ****                     break;
+ 323              		.loc 1 133 0
+ 324 00fe 0FE0     		b	.L13
+ 325              	.L17:
+ 134:main.c        ****                     case 'c':
+ 135:main.c        ****                     sprintf(buffer, "Loop Counter: %d \n\r", loopCounter );
+ 326              		.loc 1 135 0
+ 327 0100 2A4B     		ldr	r3, .L27+40
+ 328 0102 1B68     		ldr	r3, [r3]
+ 329 0104 1A46     		mov	r2, r3
+ 330 0106 2A49     		ldr	r1, .L27+44
+ 331 0108 2348     		ldr	r0, .L27+20
+ 332 010a FFF7FEFF 		bl	sprintf
+ 136:main.c        ****                     UART_PutString(buffer);
+ 333              		.loc 1 136 0
+ 334 010e 2248     		ldr	r0, .L27+20
+ 335 0110 FFF7FEFF 		bl	UART_PutString
+ 137:main.c        ****                     break;
+ 336              		.loc 1 137 0
+ 337 0114 04E0     		b	.L13
+ 338              	.L14:
+ 138:main.c        ****                  
+ 139:main.c        ****                 // ... und so weiter ...
+ 140:main.c        ****                 default:
+ 141:main.c        ****                     UART_PutChar( c );    // Buchstabe auf Bildschirm ausgeben ...
+ 339              		.loc 1 141 0
+ 340 0116 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 341 0118 1846     		mov	r0, r3
+ 342 011a FFF7FEFF 		bl	UART_PutChar
+ 142:main.c        ****                                           // ... falls nicht vom Menue behandelt
+ 143:main.c        ****                     break;
+ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLHY6o5.s 			page 10
 
 
- 354 00ca 9C       		.byte	0x9c
- 355 00cb 05       		.uleb128 0x5
- 356 00cc A0010000 		.4byte	.LASF19
- 357 00d0 01       		.byte	0x1
- 358 00d1 36       		.byte	0x36
- 359 00d2 00000000 		.4byte	.LFB65
- 360 00d6 18000000 		.4byte	.LFE65-.LFB65
- 361 00da 01       		.uleb128 0x1
- 362 00db 9C       		.byte	0x9c
- 363 00dc 06       		.uleb128 0x6
- 364 00dd A2000000 		.4byte	.LASF20
- 365 00e1 01       		.byte	0x1
- 366 00e2 41       		.byte	0x41
- 367 00e3 00000000 		.4byte	.LFB66
- 368 00e7 0C000000 		.4byte	.LFE66-.LFB66
- 369 00eb 01       		.uleb128 0x1
- 370 00ec 9C       		.byte	0x9c
- 371 00ed 07       		.uleb128 0x7
- 372 00ee 33010000 		.4byte	.LASF26
- 373 00f2 01       		.byte	0x1
- 374 00f3 4F       		.byte	0x4f
- 375 00f4 73000000 		.4byte	0x73
- 376 00f8 00000000 		.4byte	.LFB67
- 377 00fc 94000000 		.4byte	.LFE67-.LFB67
- 378 0100 01       		.uleb128 0x1
- 379 0101 9C       		.byte	0x9c
- 380 0102 1D010000 		.4byte	0x11d
- 381 0106 08       		.uleb128 0x8
- 382 0107 3E000000 		.4byte	.LBB2
- 383 010b 32000000 		.4byte	.LBE2-.LBB2
- 384 010f 09       		.uleb128 0x9
- 385 0110 6300     		.ascii	"c\000"
- 386 0112 01       		.byte	0x1
- 387 0113 6C       		.byte	0x6c
- 388 0114 A5000000 		.4byte	0xa5
- 389 0118 02       		.uleb128 0x2
- 390 0119 91       		.byte	0x91
- 391 011a 77       		.sleb128 -9
- 392 011b 00       		.byte	0
- 393 011c 00       		.byte	0
- 394 011d 0A       		.uleb128 0xa
- 395 011e A5000000 		.4byte	0xa5
- 396 0122 2D010000 		.4byte	0x12d
- 397 0126 0B       		.uleb128 0xb
- 398 0127 B3000000 		.4byte	0xb3
- 399 012b 7F       		.byte	0x7f
- 400 012c 00       		.byte	0
- 401 012d 0C       		.uleb128 0xc
- 402 012e 99010000 		.4byte	.LASF21
- 403 0132 01       		.byte	0x1
- 404 0133 23       		.byte	0x23
- 405 0134 1D010000 		.4byte	0x11d
- 406 0138 05       		.uleb128 0x5
- 407 0139 03       		.byte	0x3
- 408 013a 00000000 		.4byte	buffer
- 409 013e 09       		.uleb128 0x9
- 410 013f 63527800 		.ascii	"cRx\000"
-ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccAZqC1a.s 			page 11
+ 343              		.loc 1 143 0
+ 344 011e 00BF     		nop
+ 345              	.L13:
+ 346              	.LBE2:
+ 144:main.c        ****             }  // end switch          
+ 145:main.c        ****         } // end if cRx
+ 146:main.c        ****         //test interrupt
+ 147:main.c        ****         if(Pin_CWEW_Read() == 0) {
+ 347              		.loc 1 147 0
+ 348 0120 FFF7FEFF 		bl	Pin_CWEW_Read
+ 349 0124 0346     		mov	r3, r0
+ 350 0126 002B     		cmp	r3, #0
+ 351 0128 05D1     		bne	.L20
+ 148:main.c        ****             while(!Pin_CWEW_Read()) {
+ 352              		.loc 1 148 0
+ 353 012a 00BF     		nop
+ 354              	.L21:
+ 355              		.loc 1 148 0 is_stmt 0 discriminator 1
+ 356 012c FFF7FEFF 		bl	Pin_CWEW_Read
+ 357 0130 0346     		mov	r3, r0
+ 358 0132 002B     		cmp	r3, #0
+ 359 0134 FAD0     		beq	.L21
+ 360              	.L20:
+ 149:main.c        ****                     
+ 150:main.c        ****             }
+ 151:main.c        ****         }
+ 152:main.c        ****         /*
+ 153:main.c        ****          * count loops in 1 sec
+ 154:main.c        ****          */
+ 155:main.c        ****         // TODO
+ 156:main.c        ****         if(loopCountStart && laufZeit < 3) {
+ 361              		.loc 1 156 0 is_stmt 1
+ 362 0136 1F4B     		ldr	r3, .L27+48
+ 363 0138 1B68     		ldr	r3, [r3]
+ 364 013a 002B     		cmp	r3, #0
+ 365 013c 08D0     		beq	.L22
+ 366              		.loc 1 156 0 is_stmt 0 discriminator 1
+ 367 013e 194B     		ldr	r3, .L27+32
+ 368 0140 1B68     		ldr	r3, [r3]
+ 369 0142 022B     		cmp	r3, #2
+ 370 0144 04DC     		bgt	.L22
+ 157:main.c        ****             loopCounter++;
+ 371              		.loc 1 157 0 is_stmt 1
+ 372 0146 194B     		ldr	r3, .L27+40
+ 373 0148 1B68     		ldr	r3, [r3]
+ 374 014a 0133     		adds	r3, r3, #1
+ 375 014c 174A     		ldr	r2, .L27+40
+ 376 014e 1360     		str	r3, [r2]
+ 377              	.L22:
+ 158:main.c        ****         }
+ 159:main.c        **** 
+ 160:main.c        ****         // Behandlung Button-Ereignis aus ISR
+ 161:main.c        ****         if ( fCWEW_Isr ) {
+ 378              		.loc 1 161 0
+ 379 0150 194B     		ldr	r3, .L27+52
+ 380 0152 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 381 0154 002B     		cmp	r3, #0
+ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLHY6o5.s 			page 11
 
 
- 411 0143 01       		.byte	0x1
- 412 0144 25       		.byte	0x25
- 413 0145 A5000000 		.4byte	0xa5
- 414 0149 05       		.uleb128 0x5
- 415 014a 03       		.byte	0x3
- 416 014b 80000000 		.4byte	cRx
- 417 014f 0C       		.uleb128 0xc
- 418 0150 29010000 		.4byte	.LASF22
- 419 0154 01       		.byte	0x1
- 420 0155 30       		.byte	0x30
- 421 0156 81000000 		.4byte	0x81
- 422 015a 05       		.uleb128 0x5
- 423 015b 03       		.byte	0x3
- 424 015c 81000000 		.4byte	fCWEW_Isr
- 425 0160 0D       		.uleb128 0xd
- 426 0161 15010000 		.4byte	.LASF27
- 427 0165 04       		.byte	0x4
- 428 0166 1207     		.2byte	0x712
- 429 0168 6C010000 		.4byte	0x16c
- 430 016c 0E       		.uleb128 0xe
- 431 016d 8C000000 		.4byte	0x8c
- 432 0171 00       		.byte	0
- 433              		.section	.debug_abbrev,"",%progbits
- 434              	.Ldebug_abbrev0:
- 435 0000 01       		.uleb128 0x1
- 436 0001 11       		.uleb128 0x11
- 437 0002 01       		.byte	0x1
- 438 0003 25       		.uleb128 0x25
- 439 0004 0E       		.uleb128 0xe
- 440 0005 13       		.uleb128 0x13
- 441 0006 0B       		.uleb128 0xb
- 442 0007 03       		.uleb128 0x3
- 443 0008 0E       		.uleb128 0xe
- 444 0009 1B       		.uleb128 0x1b
- 445 000a 0E       		.uleb128 0xe
- 446 000b 55       		.uleb128 0x55
- 447 000c 17       		.uleb128 0x17
- 448 000d 11       		.uleb128 0x11
- 449 000e 01       		.uleb128 0x1
- 450 000f 10       		.uleb128 0x10
- 451 0010 17       		.uleb128 0x17
- 452 0011 00       		.byte	0
- 453 0012 00       		.byte	0
- 454 0013 02       		.uleb128 0x2
- 455 0014 24       		.uleb128 0x24
- 456 0015 00       		.byte	0
- 457 0016 0B       		.uleb128 0xb
- 458 0017 0B       		.uleb128 0xb
- 459 0018 3E       		.uleb128 0x3e
- 460 0019 0B       		.uleb128 0xb
- 461 001a 03       		.uleb128 0x3
- 462 001b 0E       		.uleb128 0xe
- 463 001c 00       		.byte	0
- 464 001d 00       		.byte	0
- 465 001e 03       		.uleb128 0x3
- 466 001f 16       		.uleb128 0x16
- 467 0020 00       		.byte	0
-ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccAZqC1a.s 			page 12
+ 382 0156 3FF46EAF 		beq	.L26
+ 162:main.c        ****             // TODO: implementieren und LED Pin_E_CW toggeln!
+ 163:main.c        ****             if(LED_CWEW) {  
+ 383              		.loc 1 163 0
+ 384 015a 184B     		ldr	r3, .L27+56
+ 385 015c 1B68     		ldr	r3, [r3]
+ 386 015e 002B     		cmp	r3, #0
+ 387 0160 06D0     		beq	.L24
+ 164:main.c        ****                 Pin_E_CW_Write(1);      //weißE LEDs in OST_WEST ausschalten
+ 388              		.loc 1 164 0
+ 389 0162 0120     		movs	r0, #1
+ 390 0164 FFF7FEFF 		bl	Pin_E_CW_Write
+ 165:main.c        ****                 LED_CWEW = 0;
+ 391              		.loc 1 165 0
+ 392 0168 144B     		ldr	r3, .L27+56
+ 393 016a 0022     		movs	r2, #0
+ 394 016c 1A60     		str	r2, [r3]
+ 395 016e 05E0     		b	.L25
+ 396              	.L24:
+ 166:main.c        ****             }
+ 167:main.c        ****             else {
+ 168:main.c        ****                 Pin_E_CW_Write(0);      ////weißE LEDs in OST_WEST anschalten
+ 397              		.loc 1 168 0
+ 398 0170 0020     		movs	r0, #0
+ 399 0172 FFF7FEFF 		bl	Pin_E_CW_Write
+ 169:main.c        ****                 LED_CWEW = 1;
+ 400              		.loc 1 169 0
+ 401 0176 114B     		ldr	r3, .L27+56
+ 402 0178 0122     		movs	r2, #1
+ 403 017a 1A60     		str	r2, [r3]
+ 404              	.L25:
+ 170:main.c        ****             }
+ 171:main.c        ****             fCWEW_Isr = 0;          //toggle end
+ 405              		.loc 1 171 0
+ 406 017c 0E4B     		ldr	r3, .L27+52
+ 407 017e 0022     		movs	r2, #0
+ 408 0180 1A70     		strb	r2, [r3]
+ 172:main.c        ****         }
+ 173:main.c        ****                 
+ 174:main.c        ****     } // end for
+ 409              		.loc 1 174 0
+ 410 0182 58E7     		b	.L26
+ 411              	.L28:
+ 412              		.align	2
+ 413              	.L27:
+ 414 0184 00000000 		.word	MyIsrUartRX
+ 415 0188 00000000 		.word	MyIsrCWEW
+ 416 018c 00000000 		.word	IsrAppClk
+ 417 0190 00000000 		.word	.LC0
+ 418 0194 6C000000 		.word	.LC1
+ 419 0198 00000000 		.word	buffer
+ 420 019c 80000000 		.word	cRx
+ 421 01a0 7C000000 		.word	.LC2
+ 422 01a4 84000000 		.word	laufZeit
+ 423 01a8 A4000000 		.word	.LC3
+ 424 01ac 94000000 		.word	loopCounter
+ 425 01b0 B4000000 		.word	.LC4
+ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLHY6o5.s 			page 12
 
 
- 468 0021 03       		.uleb128 0x3
- 469 0022 0E       		.uleb128 0xe
- 470 0023 3A       		.uleb128 0x3a
- 471 0024 0B       		.uleb128 0xb
- 472 0025 3B       		.uleb128 0x3b
- 473 0026 0B       		.uleb128 0xb
- 474 0027 49       		.uleb128 0x49
- 475 0028 13       		.uleb128 0x13
- 476 0029 00       		.byte	0
- 477 002a 00       		.byte	0
- 478 002b 04       		.uleb128 0x4
- 479 002c 24       		.uleb128 0x24
- 480 002d 00       		.byte	0
- 481 002e 0B       		.uleb128 0xb
- 482 002f 0B       		.uleb128 0xb
- 483 0030 3E       		.uleb128 0x3e
- 484 0031 0B       		.uleb128 0xb
- 485 0032 03       		.uleb128 0x3
- 486 0033 08       		.uleb128 0x8
- 487 0034 00       		.byte	0
- 488 0035 00       		.byte	0
- 489 0036 05       		.uleb128 0x5
- 490 0037 2E       		.uleb128 0x2e
- 491 0038 00       		.byte	0
- 492 0039 3F       		.uleb128 0x3f
- 493 003a 19       		.uleb128 0x19
- 494 003b 03       		.uleb128 0x3
- 495 003c 0E       		.uleb128 0xe
- 496 003d 3A       		.uleb128 0x3a
- 497 003e 0B       		.uleb128 0xb
- 498 003f 3B       		.uleb128 0x3b
- 499 0040 0B       		.uleb128 0xb
- 500 0041 27       		.uleb128 0x27
- 501 0042 19       		.uleb128 0x19
- 502 0043 11       		.uleb128 0x11
- 503 0044 01       		.uleb128 0x1
- 504 0045 12       		.uleb128 0x12
- 505 0046 06       		.uleb128 0x6
- 506 0047 40       		.uleb128 0x40
- 507 0048 18       		.uleb128 0x18
- 508 0049 9642     		.uleb128 0x2116
- 509 004b 19       		.uleb128 0x19
- 510 004c 00       		.byte	0
- 511 004d 00       		.byte	0
- 512 004e 06       		.uleb128 0x6
- 513 004f 2E       		.uleb128 0x2e
- 514 0050 00       		.byte	0
- 515 0051 3F       		.uleb128 0x3f
- 516 0052 19       		.uleb128 0x19
- 517 0053 03       		.uleb128 0x3
- 518 0054 0E       		.uleb128 0xe
- 519 0055 3A       		.uleb128 0x3a
- 520 0056 0B       		.uleb128 0xb
- 521 0057 3B       		.uleb128 0x3b
- 522 0058 0B       		.uleb128 0xb
- 523 0059 27       		.uleb128 0x27
- 524 005a 19       		.uleb128 0x19
-ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccAZqC1a.s 			page 13
+ 426 01b4 90000000 		.word	loopCountStart
+ 427 01b8 81000000 		.word	fCWEW_Isr
+ 428 01bc 8C000000 		.word	LED_CWEW
+ 429              		.cfi_endproc
+ 430              	.LFE67:
+ 431              		.size	main, .-main
+ 432              		.text
+ 433              	.Letext0:
+ 434              		.file 2 "e:\\psoc creator\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.1\\arm-none-eabi
+ 435              		.file 3 "e:\\psoc creator\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.1\\arm-none-eabi
+ 436              		.file 4 "Generated_Source\\PSoC5/core_cm3.h"
+ 437              		.section	.debug_info,"",%progbits
+ 438              	.Ldebug_info0:
+ 439 0000 C3010000 		.4byte	0x1c3
+ 440 0004 0400     		.2byte	0x4
+ 441 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 442 000a 04       		.byte	0x4
+ 443 000b 01       		.uleb128 0x1
+ 444 000c 0A000000 		.4byte	.LASF28
+ 445 0010 0C       		.byte	0xc
+ 446 0011 BB010000 		.4byte	.LASF29
+ 447 0015 C0000000 		.4byte	.LASF30
+ 448 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 449 001d 00000000 		.4byte	0
+ 450 0021 00000000 		.4byte	.Ldebug_line0
+ 451 0025 02       		.uleb128 0x2
+ 452 0026 01       		.byte	0x1
+ 453 0027 06       		.byte	0x6
+ 454 0028 F7010000 		.4byte	.LASF0
+ 455 002c 03       		.uleb128 0x3
+ 456 002d 00000000 		.4byte	.LASF4
+ 457 0031 02       		.byte	0x2
+ 458 0032 1D       		.byte	0x1d
+ 459 0033 37000000 		.4byte	0x37
+ 460 0037 02       		.uleb128 0x2
+ 461 0038 01       		.byte	0x1
+ 462 0039 08       		.byte	0x8
+ 463 003a F6000000 		.4byte	.LASF1
+ 464 003e 02       		.uleb128 0x2
+ 465 003f 02       		.byte	0x2
+ 466 0040 05       		.byte	0x5
+ 467 0041 C7010000 		.4byte	.LASF2
+ 468 0045 02       		.uleb128 0x2
+ 469 0046 02       		.byte	0x2
+ 470 0047 07       		.byte	0x7
+ 471 0048 25010000 		.4byte	.LASF3
+ 472 004c 03       		.uleb128 0x3
+ 473 004d 98000000 		.4byte	.LASF5
+ 474 0051 02       		.byte	0x2
+ 475 0052 3F       		.byte	0x3f
+ 476 0053 57000000 		.4byte	0x57
+ 477 0057 02       		.uleb128 0x2
+ 478 0058 04       		.byte	0x4
+ 479 0059 05       		.byte	0x5
+ 480 005a E2010000 		.4byte	.LASF6
+ 481 005e 02       		.uleb128 0x2
+ 482 005f 04       		.byte	0x4
+ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLHY6o5.s 			page 13
 
 
- 525 005b 11       		.uleb128 0x11
- 526 005c 01       		.uleb128 0x1
- 527 005d 12       		.uleb128 0x12
- 528 005e 06       		.uleb128 0x6
- 529 005f 40       		.uleb128 0x40
- 530 0060 18       		.uleb128 0x18
- 531 0061 9742     		.uleb128 0x2117
- 532 0063 19       		.uleb128 0x19
- 533 0064 00       		.byte	0
- 534 0065 00       		.byte	0
- 535 0066 07       		.uleb128 0x7
- 536 0067 2E       		.uleb128 0x2e
- 537 0068 01       		.byte	0x1
- 538 0069 3F       		.uleb128 0x3f
- 539 006a 19       		.uleb128 0x19
- 540 006b 03       		.uleb128 0x3
- 541 006c 0E       		.uleb128 0xe
- 542 006d 3A       		.uleb128 0x3a
- 543 006e 0B       		.uleb128 0xb
- 544 006f 3B       		.uleb128 0x3b
- 545 0070 0B       		.uleb128 0xb
- 546 0071 27       		.uleb128 0x27
- 547 0072 19       		.uleb128 0x19
- 548 0073 49       		.uleb128 0x49
- 549 0074 13       		.uleb128 0x13
- 550 0075 11       		.uleb128 0x11
- 551 0076 01       		.uleb128 0x1
- 552 0077 12       		.uleb128 0x12
- 553 0078 06       		.uleb128 0x6
- 554 0079 40       		.uleb128 0x40
- 555 007a 18       		.uleb128 0x18
- 556 007b 9642     		.uleb128 0x2116
- 557 007d 19       		.uleb128 0x19
- 558 007e 01       		.uleb128 0x1
- 559 007f 13       		.uleb128 0x13
- 560 0080 00       		.byte	0
- 561 0081 00       		.byte	0
- 562 0082 08       		.uleb128 0x8
- 563 0083 0B       		.uleb128 0xb
- 564 0084 01       		.byte	0x1
- 565 0085 11       		.uleb128 0x11
- 566 0086 01       		.uleb128 0x1
- 567 0087 12       		.uleb128 0x12
- 568 0088 06       		.uleb128 0x6
- 569 0089 00       		.byte	0
- 570 008a 00       		.byte	0
- 571 008b 09       		.uleb128 0x9
- 572 008c 34       		.uleb128 0x34
- 573 008d 00       		.byte	0
- 574 008e 03       		.uleb128 0x3
- 575 008f 08       		.uleb128 0x8
- 576 0090 3A       		.uleb128 0x3a
- 577 0091 0B       		.uleb128 0xb
- 578 0092 3B       		.uleb128 0x3b
- 579 0093 0B       		.uleb128 0xb
- 580 0094 49       		.uleb128 0x49
- 581 0095 13       		.uleb128 0x13
-ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccAZqC1a.s 			page 14
+ 483 0060 07       		.byte	0x7
+ 484 0061 13010000 		.4byte	.LASF7
+ 485 0065 02       		.uleb128 0x2
+ 486 0066 08       		.byte	0x8
+ 487 0067 05       		.byte	0x5
+ 488 0068 AD010000 		.4byte	.LASF8
+ 489 006c 02       		.uleb128 0x2
+ 490 006d 08       		.byte	0x8
+ 491 006e 07       		.byte	0x7
+ 492 006f 71010000 		.4byte	.LASF9
+ 493 0073 04       		.uleb128 0x4
+ 494 0074 04       		.byte	0x4
+ 495 0075 05       		.byte	0x5
+ 496 0076 696E7400 		.ascii	"int\000"
+ 497 007a 02       		.uleb128 0x2
+ 498 007b 04       		.byte	0x4
+ 499 007c 07       		.byte	0x7
+ 500 007d 64010000 		.4byte	.LASF10
+ 501 0081 03       		.uleb128 0x3
+ 502 0082 88010000 		.4byte	.LASF11
+ 503 0086 03       		.byte	0x3
+ 504 0087 18       		.byte	0x18
+ 505 0088 2C000000 		.4byte	0x2c
+ 506 008c 03       		.uleb128 0x3
+ 507 008d 9C010000 		.4byte	.LASF12
+ 508 0091 03       		.byte	0x3
+ 509 0092 2C       		.byte	0x2c
+ 510 0093 4C000000 		.4byte	0x4c
+ 511 0097 02       		.uleb128 0x2
+ 512 0098 04       		.byte	0x4
+ 513 0099 04       		.byte	0x4
+ 514 009a E4000000 		.4byte	.LASF13
+ 515 009e 02       		.uleb128 0x2
+ 516 009f 08       		.byte	0x8
+ 517 00a0 04       		.byte	0x4
+ 518 00a1 4E010000 		.4byte	.LASF14
+ 519 00a5 02       		.uleb128 0x2
+ 520 00a6 01       		.byte	0x1
+ 521 00a7 08       		.byte	0x8
+ 522 00a8 C2010000 		.4byte	.LASF15
+ 523 00ac 02       		.uleb128 0x2
+ 524 00ad 08       		.byte	0x8
+ 525 00ae 04       		.byte	0x4
+ 526 00af EB010000 		.4byte	.LASF16
+ 527 00b3 02       		.uleb128 0x2
+ 528 00b4 04       		.byte	0x4
+ 529 00b5 07       		.byte	0x7
+ 530 00b6 A4010000 		.4byte	.LASF17
+ 531 00ba 05       		.uleb128 0x5
+ 532 00bb EA000000 		.4byte	.LASF18
+ 533 00bf 01       		.byte	0x1
+ 534 00c0 2C       		.byte	0x2c
+ 535 00c1 00000000 		.4byte	.LFB64
+ 536 00c5 18000000 		.4byte	.LFE64-.LFB64
+ 537 00c9 01       		.uleb128 0x1
+ 538 00ca 9C       		.byte	0x9c
+ 539 00cb 05       		.uleb128 0x5
+ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLHY6o5.s 			page 14
 
 
- 582 0096 02       		.uleb128 0x2
- 583 0097 18       		.uleb128 0x18
- 584 0098 00       		.byte	0
- 585 0099 00       		.byte	0
- 586 009a 0A       		.uleb128 0xa
- 587 009b 01       		.uleb128 0x1
- 588 009c 01       		.byte	0x1
- 589 009d 49       		.uleb128 0x49
- 590 009e 13       		.uleb128 0x13
- 591 009f 01       		.uleb128 0x1
- 592 00a0 13       		.uleb128 0x13
- 593 00a1 00       		.byte	0
- 594 00a2 00       		.byte	0
- 595 00a3 0B       		.uleb128 0xb
- 596 00a4 21       		.uleb128 0x21
- 597 00a5 00       		.byte	0
- 598 00a6 49       		.uleb128 0x49
- 599 00a7 13       		.uleb128 0x13
- 600 00a8 2F       		.uleb128 0x2f
- 601 00a9 0B       		.uleb128 0xb
- 602 00aa 00       		.byte	0
- 603 00ab 00       		.byte	0
- 604 00ac 0C       		.uleb128 0xc
- 605 00ad 34       		.uleb128 0x34
- 606 00ae 00       		.byte	0
- 607 00af 03       		.uleb128 0x3
- 608 00b0 0E       		.uleb128 0xe
- 609 00b1 3A       		.uleb128 0x3a
- 610 00b2 0B       		.uleb128 0xb
- 611 00b3 3B       		.uleb128 0x3b
- 612 00b4 0B       		.uleb128 0xb
- 613 00b5 49       		.uleb128 0x49
- 614 00b6 13       		.uleb128 0x13
- 615 00b7 02       		.uleb128 0x2
- 616 00b8 18       		.uleb128 0x18
- 617 00b9 00       		.byte	0
- 618 00ba 00       		.byte	0
- 619 00bb 0D       		.uleb128 0xd
- 620 00bc 34       		.uleb128 0x34
- 621 00bd 00       		.byte	0
- 622 00be 03       		.uleb128 0x3
- 623 00bf 0E       		.uleb128 0xe
- 624 00c0 3A       		.uleb128 0x3a
- 625 00c1 0B       		.uleb128 0xb
- 626 00c2 3B       		.uleb128 0x3b
- 627 00c3 05       		.uleb128 0x5
- 628 00c4 49       		.uleb128 0x49
- 629 00c5 13       		.uleb128 0x13
- 630 00c6 3F       		.uleb128 0x3f
- 631 00c7 19       		.uleb128 0x19
- 632 00c8 3C       		.uleb128 0x3c
- 633 00c9 19       		.uleb128 0x19
- 634 00ca 00       		.byte	0
- 635 00cb 00       		.byte	0
- 636 00cc 0E       		.uleb128 0xe
- 637 00cd 35       		.uleb128 0x35
- 638 00ce 00       		.byte	0
-ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccAZqC1a.s 			page 15
+ 540 00cc D8010000 		.4byte	.LASF19
+ 541 00d0 01       		.byte	0x1
+ 542 00d1 36       		.byte	0x36
+ 543 00d2 00000000 		.4byte	.LFB65
+ 544 00d6 18000000 		.4byte	.LFE65-.LFB65
+ 545 00da 01       		.uleb128 0x1
+ 546 00db 9C       		.byte	0x9c
+ 547 00dc 06       		.uleb128 0x6
+ 548 00dd A2000000 		.4byte	.LASF20
+ 549 00e1 01       		.byte	0x1
+ 550 00e2 45       		.byte	0x45
+ 551 00e3 00000000 		.4byte	.LFB66
+ 552 00e7 44000000 		.4byte	.LFE66-.LFB66
+ 553 00eb 01       		.uleb128 0x1
+ 554 00ec 9C       		.byte	0x9c
+ 555 00ed 07       		.uleb128 0x7
+ 556 00ee 5F010000 		.4byte	.LASF31
+ 557 00f2 01       		.byte	0x1
+ 558 00f3 59       		.byte	0x59
+ 559 00f4 73000000 		.4byte	0x73
+ 560 00f8 00000000 		.4byte	.LFB67
+ 561 00fc C0010000 		.4byte	.LFE67-.LFB67
+ 562 0100 01       		.uleb128 0x1
+ 563 0101 9C       		.byte	0x9c
+ 564 0102 1D010000 		.4byte	0x11d
+ 565 0106 08       		.uleb128 0x8
+ 566 0107 3E000000 		.4byte	.LBB2
+ 567 010b E2000000 		.4byte	.LBE2-.LBB2
+ 568 010f 09       		.uleb128 0x9
+ 569 0110 6300     		.ascii	"c\000"
+ 570 0112 01       		.byte	0x1
+ 571 0113 76       		.byte	0x76
+ 572 0114 A5000000 		.4byte	0xa5
+ 573 0118 02       		.uleb128 0x2
+ 574 0119 91       		.byte	0x91
+ 575 011a 77       		.sleb128 -9
+ 576 011b 00       		.byte	0
+ 577 011c 00       		.byte	0
+ 578 011d 0A       		.uleb128 0xa
+ 579 011e A5000000 		.4byte	0xa5
+ 580 0122 2D010000 		.4byte	0x12d
+ 581 0126 0B       		.uleb128 0xb
+ 582 0127 B3000000 		.4byte	0xb3
+ 583 012b 7F       		.byte	0x7f
+ 584 012c 00       		.byte	0
+ 585 012d 0C       		.uleb128 0xc
+ 586 012e D1010000 		.4byte	.LASF21
+ 587 0132 01       		.byte	0x1
+ 588 0133 23       		.byte	0x23
+ 589 0134 1D010000 		.4byte	0x11d
+ 590 0138 05       		.uleb128 0x5
+ 591 0139 03       		.byte	0x3
+ 592 013a 00000000 		.4byte	buffer
+ 593 013e 09       		.uleb128 0x9
+ 594 013f 63527800 		.ascii	"cRx\000"
+ 595 0143 01       		.byte	0x1
+ 596 0144 25       		.byte	0x25
+ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLHY6o5.s 			page 15
 
 
- 639 00cf 49       		.uleb128 0x49
- 640 00d0 13       		.uleb128 0x13
- 641 00d1 00       		.byte	0
- 642 00d2 00       		.byte	0
- 643 00d3 00       		.byte	0
- 644              		.section	.debug_aranges,"",%progbits
- 645 0000 34000000 		.4byte	0x34
- 646 0004 0200     		.2byte	0x2
- 647 0006 00000000 		.4byte	.Ldebug_info0
- 648 000a 04       		.byte	0x4
- 649 000b 00       		.byte	0
- 650 000c 0000     		.2byte	0
- 651 000e 0000     		.2byte	0
- 652 0010 00000000 		.4byte	.LFB64
- 653 0014 18000000 		.4byte	.LFE64-.LFB64
- 654 0018 00000000 		.4byte	.LFB65
- 655 001c 18000000 		.4byte	.LFE65-.LFB65
- 656 0020 00000000 		.4byte	.LFB66
- 657 0024 0C000000 		.4byte	.LFE66-.LFB66
- 658 0028 00000000 		.4byte	.LFB67
- 659 002c 94000000 		.4byte	.LFE67-.LFB67
- 660 0030 00000000 		.4byte	0
- 661 0034 00000000 		.4byte	0
- 662              		.section	.debug_ranges,"",%progbits
- 663              	.Ldebug_ranges0:
- 664 0000 00000000 		.4byte	.LFB64
- 665 0004 18000000 		.4byte	.LFE64
- 666 0008 00000000 		.4byte	.LFB65
- 667 000c 18000000 		.4byte	.LFE65
- 668 0010 00000000 		.4byte	.LFB66
- 669 0014 0C000000 		.4byte	.LFE66
- 670 0018 00000000 		.4byte	.LFB67
- 671 001c 94000000 		.4byte	.LFE67
- 672 0020 00000000 		.4byte	0
- 673 0024 00000000 		.4byte	0
- 674              		.section	.debug_line,"",%progbits
- 675              	.Ldebug_line0:
- 676 0000 83010000 		.section	.debug_str,"MS",%progbits,1
- 676      02002101 
- 676      00000201 
- 676      FB0E0D00 
- 676      01010101 
- 677              	.LASF4:
- 678 0000 5F5F7569 		.ascii	"__uint8_t\000"
- 678      6E74385F 
- 678      7400
- 679              	.LASF23:
- 680 000a 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
- 680      43313120 
- 680      352E342E 
- 680      31203230 
- 680      31363036 
- 681 003d 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
- 681      20726576 
- 681      6973696F 
- 681      6E203233 
- 681      37373135 
-ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccAZqC1a.s 			page 16
+ 597 0145 A5000000 		.4byte	0xa5
+ 598 0149 05       		.uleb128 0x5
+ 599 014a 03       		.byte	0x3
+ 600 014b 80000000 		.4byte	cRx
+ 601 014f 0C       		.uleb128 0xc
+ 602 0150 55010000 		.4byte	.LASF22
+ 603 0154 01       		.byte	0x1
+ 604 0155 30       		.byte	0x30
+ 605 0156 81000000 		.4byte	0x81
+ 606 015a 05       		.uleb128 0x5
+ 607 015b 03       		.byte	0x3
+ 608 015c 81000000 		.4byte	fCWEW_Isr
+ 609 0160 0C       		.uleb128 0xc
+ 610 0161 03020000 		.4byte	.LASF23
+ 611 0165 01       		.byte	0x1
+ 612 0166 3B       		.byte	0x3b
+ 613 0167 73000000 		.4byte	0x73
+ 614 016b 05       		.uleb128 0x5
+ 615 016c 03       		.byte	0x3
+ 616 016d 84000000 		.4byte	laufZeit
+ 617 0171 0C       		.uleb128 0xc
+ 618 0172 AC000000 		.4byte	.LASF24
+ 619 0176 01       		.byte	0x1
+ 620 0177 3C       		.byte	0x3c
+ 621 0178 73000000 		.4byte	0x73
+ 622 017c 05       		.uleb128 0x5
+ 623 017d 03       		.byte	0x3
+ 624 017e 88000000 		.4byte	clkInterruptCounter
+ 625 0182 0C       		.uleb128 0xc
+ 626 0183 45010000 		.4byte	.LASF25
+ 627 0187 01       		.byte	0x1
+ 628 0188 3D       		.byte	0x3d
+ 629 0189 73000000 		.4byte	0x73
+ 630 018d 05       		.uleb128 0x5
+ 631 018e 03       		.byte	0x3
+ 632 018f 8C000000 		.4byte	LED_CWEW
+ 633 0193 0C       		.uleb128 0xc
+ 634 0194 04010000 		.4byte	.LASF26
+ 635 0198 01       		.byte	0x1
+ 636 0199 3E       		.byte	0x3e
+ 637 019a 73000000 		.4byte	0x73
+ 638 019e 05       		.uleb128 0x5
+ 639 019f 03       		.byte	0x3
+ 640 01a0 90000000 		.4byte	loopCountStart
+ 641 01a4 0C       		.uleb128 0xc
+ 642 01a5 90010000 		.4byte	.LASF27
+ 643 01a9 01       		.byte	0x1
+ 644 01aa 3F       		.byte	0x3f
+ 645 01ab 73000000 		.4byte	0x73
+ 646 01af 05       		.uleb128 0x5
+ 647 01b0 03       		.byte	0x3
+ 648 01b1 94000000 		.4byte	loopCounter
+ 649 01b5 0D       		.uleb128 0xd
+ 650 01b6 38010000 		.4byte	.LASF32
+ 651 01ba 04       		.byte	0x4
+ 652 01bb 1207     		.2byte	0x712
+ 653 01bd C1010000 		.4byte	0x1c1
+ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLHY6o5.s 			page 16
 
 
- 682 0070 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
- 682      66756E63 
- 682      74696F6E 
- 682      2D736563 
- 682      74696F6E 
- 683              	.LASF5:
- 684 0098 5F5F696E 		.ascii	"__int32_t\000"
- 684      7433325F 
- 684      7400
- 685              	.LASF20:
- 686 00a2 49737241 		.ascii	"IsrAppClk\000"
- 686      7070436C 
- 686      6B00
- 687              	.LASF25:
- 688 00ac 453A5C67 		.ascii	"E:\\github\\MPS\\MPS_W22_Prakt_2.cydsn\000"
- 688      69746875 
- 688      625C4D50 
- 688      535C4D50 
- 688      535F5732 
- 689              	.LASF13:
- 690 00d0 666C6F61 		.ascii	"float\000"
- 690      7400
- 691              	.LASF18:
- 692 00d6 4D794973 		.ascii	"MyIsrUartRX\000"
- 692      72556172 
- 692      74525800 
- 693              	.LASF1:
- 694 00e2 756E7369 		.ascii	"unsigned char\000"
- 694      676E6564 
- 694      20636861 
- 694      7200
- 695              	.LASF7:
- 696 00f0 6C6F6E67 		.ascii	"long unsigned int\000"
- 696      20756E73 
- 696      69676E65 
- 696      6420696E 
- 696      7400
- 697              	.LASF3:
- 698 0102 73686F72 		.ascii	"short unsigned int\000"
- 698      7420756E 
- 698      7369676E 
- 698      65642069 
- 698      6E7400
- 699              	.LASF27:
- 700 0115 49544D5F 		.ascii	"ITM_RxBuffer\000"
- 700      52784275 
- 700      66666572 
- 700      00
- 701              	.LASF14:
- 702 0122 646F7562 		.ascii	"double\000"
- 702      6C6500
- 703              	.LASF22:
- 704 0129 66435745 		.ascii	"fCWEW_Isr\000"
- 704      575F4973 
- 704      7200
- 705              	.LASF26:
- 706 0133 6D61696E 		.ascii	"main\000"
-ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccAZqC1a.s 			page 17
+ 654 01c1 0E       		.uleb128 0xe
+ 655 01c2 8C000000 		.4byte	0x8c
+ 656 01c6 00       		.byte	0
+ 657              		.section	.debug_abbrev,"",%progbits
+ 658              	.Ldebug_abbrev0:
+ 659 0000 01       		.uleb128 0x1
+ 660 0001 11       		.uleb128 0x11
+ 661 0002 01       		.byte	0x1
+ 662 0003 25       		.uleb128 0x25
+ 663 0004 0E       		.uleb128 0xe
+ 664 0005 13       		.uleb128 0x13
+ 665 0006 0B       		.uleb128 0xb
+ 666 0007 03       		.uleb128 0x3
+ 667 0008 0E       		.uleb128 0xe
+ 668 0009 1B       		.uleb128 0x1b
+ 669 000a 0E       		.uleb128 0xe
+ 670 000b 55       		.uleb128 0x55
+ 671 000c 17       		.uleb128 0x17
+ 672 000d 11       		.uleb128 0x11
+ 673 000e 01       		.uleb128 0x1
+ 674 000f 10       		.uleb128 0x10
+ 675 0010 17       		.uleb128 0x17
+ 676 0011 00       		.byte	0
+ 677 0012 00       		.byte	0
+ 678 0013 02       		.uleb128 0x2
+ 679 0014 24       		.uleb128 0x24
+ 680 0015 00       		.byte	0
+ 681 0016 0B       		.uleb128 0xb
+ 682 0017 0B       		.uleb128 0xb
+ 683 0018 3E       		.uleb128 0x3e
+ 684 0019 0B       		.uleb128 0xb
+ 685 001a 03       		.uleb128 0x3
+ 686 001b 0E       		.uleb128 0xe
+ 687 001c 00       		.byte	0
+ 688 001d 00       		.byte	0
+ 689 001e 03       		.uleb128 0x3
+ 690 001f 16       		.uleb128 0x16
+ 691 0020 00       		.byte	0
+ 692 0021 03       		.uleb128 0x3
+ 693 0022 0E       		.uleb128 0xe
+ 694 0023 3A       		.uleb128 0x3a
+ 695 0024 0B       		.uleb128 0xb
+ 696 0025 3B       		.uleb128 0x3b
+ 697 0026 0B       		.uleb128 0xb
+ 698 0027 49       		.uleb128 0x49
+ 699 0028 13       		.uleb128 0x13
+ 700 0029 00       		.byte	0
+ 701 002a 00       		.byte	0
+ 702 002b 04       		.uleb128 0x4
+ 703 002c 24       		.uleb128 0x24
+ 704 002d 00       		.byte	0
+ 705 002e 0B       		.uleb128 0xb
+ 706 002f 0B       		.uleb128 0xb
+ 707 0030 3E       		.uleb128 0x3e
+ 708 0031 0B       		.uleb128 0xb
+ 709 0032 03       		.uleb128 0x3
+ 710 0033 08       		.uleb128 0x8
+ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLHY6o5.s 			page 17
 
 
- 706      00
- 707              	.LASF10:
- 708 0138 756E7369 		.ascii	"unsigned int\000"
- 708      676E6564 
- 708      20696E74 
- 708      00
- 709              	.LASF9:
- 710 0145 6C6F6E67 		.ascii	"long long unsigned int\000"
- 710      206C6F6E 
- 710      6720756E 
- 710      7369676E 
- 710      65642069 
- 711              	.LASF11:
- 712 015c 75696E74 		.ascii	"uint8_t\000"
- 712      385F7400 
- 713              	.LASF12:
- 714 0164 696E7433 		.ascii	"int32_t\000"
- 714      325F7400 
- 715              	.LASF17:
- 716 016c 73697A65 		.ascii	"sizetype\000"
- 716      74797065 
- 716      00
- 717              	.LASF8:
- 718 0175 6C6F6E67 		.ascii	"long long int\000"
- 718      206C6F6E 
- 718      6720696E 
- 718      7400
- 719              	.LASF24:
- 720 0183 6D61696E 		.ascii	"main.c\000"
- 720      2E6300
- 721              	.LASF15:
- 722 018a 63686172 		.ascii	"char\000"
- 722      00
- 723              	.LASF2:
- 724 018f 73686F72 		.ascii	"short int\000"
- 724      7420696E 
- 724      7400
- 725              	.LASF21:
- 726 0199 62756666 		.ascii	"buffer\000"
- 726      657200
- 727              	.LASF19:
- 728 01a0 4D794973 		.ascii	"MyIsrCWEW\000"
- 728      72435745 
- 728      5700
- 729              	.LASF6:
- 730 01aa 6C6F6E67 		.ascii	"long int\000"
- 730      20696E74 
- 730      00
- 731              	.LASF16:
- 732 01b3 6C6F6E67 		.ascii	"long double\000"
- 732      20646F75 
- 732      626C6500 
- 733              	.LASF0:
- 734 01bf 7369676E 		.ascii	"signed char\000"
- 734      65642063 
- 734      68617200 
- 735              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
-ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccAZqC1a.s 			page 18
+ 711 0034 00       		.byte	0
+ 712 0035 00       		.byte	0
+ 713 0036 05       		.uleb128 0x5
+ 714 0037 2E       		.uleb128 0x2e
+ 715 0038 00       		.byte	0
+ 716 0039 3F       		.uleb128 0x3f
+ 717 003a 19       		.uleb128 0x19
+ 718 003b 03       		.uleb128 0x3
+ 719 003c 0E       		.uleb128 0xe
+ 720 003d 3A       		.uleb128 0x3a
+ 721 003e 0B       		.uleb128 0xb
+ 722 003f 3B       		.uleb128 0x3b
+ 723 0040 0B       		.uleb128 0xb
+ 724 0041 27       		.uleb128 0x27
+ 725 0042 19       		.uleb128 0x19
+ 726 0043 11       		.uleb128 0x11
+ 727 0044 01       		.uleb128 0x1
+ 728 0045 12       		.uleb128 0x12
+ 729 0046 06       		.uleb128 0x6
+ 730 0047 40       		.uleb128 0x40
+ 731 0048 18       		.uleb128 0x18
+ 732 0049 9642     		.uleb128 0x2116
+ 733 004b 19       		.uleb128 0x19
+ 734 004c 00       		.byte	0
+ 735 004d 00       		.byte	0
+ 736 004e 06       		.uleb128 0x6
+ 737 004f 2E       		.uleb128 0x2e
+ 738 0050 00       		.byte	0
+ 739 0051 3F       		.uleb128 0x3f
+ 740 0052 19       		.uleb128 0x19
+ 741 0053 03       		.uleb128 0x3
+ 742 0054 0E       		.uleb128 0xe
+ 743 0055 3A       		.uleb128 0x3a
+ 744 0056 0B       		.uleb128 0xb
+ 745 0057 3B       		.uleb128 0x3b
+ 746 0058 0B       		.uleb128 0xb
+ 747 0059 27       		.uleb128 0x27
+ 748 005a 19       		.uleb128 0x19
+ 749 005b 11       		.uleb128 0x11
+ 750 005c 01       		.uleb128 0x1
+ 751 005d 12       		.uleb128 0x12
+ 752 005e 06       		.uleb128 0x6
+ 753 005f 40       		.uleb128 0x40
+ 754 0060 18       		.uleb128 0x18
+ 755 0061 9742     		.uleb128 0x2117
+ 756 0063 19       		.uleb128 0x19
+ 757 0064 00       		.byte	0
+ 758 0065 00       		.byte	0
+ 759 0066 07       		.uleb128 0x7
+ 760 0067 2E       		.uleb128 0x2e
+ 761 0068 01       		.byte	0x1
+ 762 0069 3F       		.uleb128 0x3f
+ 763 006a 19       		.uleb128 0x19
+ 764 006b 03       		.uleb128 0x3
+ 765 006c 0E       		.uleb128 0xe
+ 766 006d 3A       		.uleb128 0x3a
+ 767 006e 0B       		.uleb128 0xb
+ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLHY6o5.s 			page 18
 
 
+ 768 006f 3B       		.uleb128 0x3b
+ 769 0070 0B       		.uleb128 0xb
+ 770 0071 27       		.uleb128 0x27
+ 771 0072 19       		.uleb128 0x19
+ 772 0073 49       		.uleb128 0x49
+ 773 0074 13       		.uleb128 0x13
+ 774 0075 11       		.uleb128 0x11
+ 775 0076 01       		.uleb128 0x1
+ 776 0077 12       		.uleb128 0x12
+ 777 0078 06       		.uleb128 0x6
+ 778 0079 40       		.uleb128 0x40
+ 779 007a 18       		.uleb128 0x18
+ 780 007b 9642     		.uleb128 0x2116
+ 781 007d 19       		.uleb128 0x19
+ 782 007e 01       		.uleb128 0x1
+ 783 007f 13       		.uleb128 0x13
+ 784 0080 00       		.byte	0
+ 785 0081 00       		.byte	0
+ 786 0082 08       		.uleb128 0x8
+ 787 0083 0B       		.uleb128 0xb
+ 788 0084 01       		.byte	0x1
+ 789 0085 11       		.uleb128 0x11
+ 790 0086 01       		.uleb128 0x1
+ 791 0087 12       		.uleb128 0x12
+ 792 0088 06       		.uleb128 0x6
+ 793 0089 00       		.byte	0
+ 794 008a 00       		.byte	0
+ 795 008b 09       		.uleb128 0x9
+ 796 008c 34       		.uleb128 0x34
+ 797 008d 00       		.byte	0
+ 798 008e 03       		.uleb128 0x3
+ 799 008f 08       		.uleb128 0x8
+ 800 0090 3A       		.uleb128 0x3a
+ 801 0091 0B       		.uleb128 0xb
+ 802 0092 3B       		.uleb128 0x3b
+ 803 0093 0B       		.uleb128 0xb
+ 804 0094 49       		.uleb128 0x49
+ 805 0095 13       		.uleb128 0x13
+ 806 0096 02       		.uleb128 0x2
+ 807 0097 18       		.uleb128 0x18
+ 808 0098 00       		.byte	0
+ 809 0099 00       		.byte	0
+ 810 009a 0A       		.uleb128 0xa
+ 811 009b 01       		.uleb128 0x1
+ 812 009c 01       		.byte	0x1
+ 813 009d 49       		.uleb128 0x49
+ 814 009e 13       		.uleb128 0x13
+ 815 009f 01       		.uleb128 0x1
+ 816 00a0 13       		.uleb128 0x13
+ 817 00a1 00       		.byte	0
+ 818 00a2 00       		.byte	0
+ 819 00a3 0B       		.uleb128 0xb
+ 820 00a4 21       		.uleb128 0x21
+ 821 00a5 00       		.byte	0
+ 822 00a6 49       		.uleb128 0x49
+ 823 00a7 13       		.uleb128 0x13
+ 824 00a8 2F       		.uleb128 0x2f
+ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLHY6o5.s 			page 19
+
+
+ 825 00a9 0B       		.uleb128 0xb
+ 826 00aa 00       		.byte	0
+ 827 00ab 00       		.byte	0
+ 828 00ac 0C       		.uleb128 0xc
+ 829 00ad 34       		.uleb128 0x34
+ 830 00ae 00       		.byte	0
+ 831 00af 03       		.uleb128 0x3
+ 832 00b0 0E       		.uleb128 0xe
+ 833 00b1 3A       		.uleb128 0x3a
+ 834 00b2 0B       		.uleb128 0xb
+ 835 00b3 3B       		.uleb128 0x3b
+ 836 00b4 0B       		.uleb128 0xb
+ 837 00b5 49       		.uleb128 0x49
+ 838 00b6 13       		.uleb128 0x13
+ 839 00b7 02       		.uleb128 0x2
+ 840 00b8 18       		.uleb128 0x18
+ 841 00b9 00       		.byte	0
+ 842 00ba 00       		.byte	0
+ 843 00bb 0D       		.uleb128 0xd
+ 844 00bc 34       		.uleb128 0x34
+ 845 00bd 00       		.byte	0
+ 846 00be 03       		.uleb128 0x3
+ 847 00bf 0E       		.uleb128 0xe
+ 848 00c0 3A       		.uleb128 0x3a
+ 849 00c1 0B       		.uleb128 0xb
+ 850 00c2 3B       		.uleb128 0x3b
+ 851 00c3 05       		.uleb128 0x5
+ 852 00c4 49       		.uleb128 0x49
+ 853 00c5 13       		.uleb128 0x13
+ 854 00c6 3F       		.uleb128 0x3f
+ 855 00c7 19       		.uleb128 0x19
+ 856 00c8 3C       		.uleb128 0x3c
+ 857 00c9 19       		.uleb128 0x19
+ 858 00ca 00       		.byte	0
+ 859 00cb 00       		.byte	0
+ 860 00cc 0E       		.uleb128 0xe
+ 861 00cd 35       		.uleb128 0x35
+ 862 00ce 00       		.byte	0
+ 863 00cf 49       		.uleb128 0x49
+ 864 00d0 13       		.uleb128 0x13
+ 865 00d1 00       		.byte	0
+ 866 00d2 00       		.byte	0
+ 867 00d3 00       		.byte	0
+ 868              		.section	.debug_aranges,"",%progbits
+ 869 0000 34000000 		.4byte	0x34
+ 870 0004 0200     		.2byte	0x2
+ 871 0006 00000000 		.4byte	.Ldebug_info0
+ 872 000a 04       		.byte	0x4
+ 873 000b 00       		.byte	0
+ 874 000c 0000     		.2byte	0
+ 875 000e 0000     		.2byte	0
+ 876 0010 00000000 		.4byte	.LFB64
+ 877 0014 18000000 		.4byte	.LFE64-.LFB64
+ 878 0018 00000000 		.4byte	.LFB65
+ 879 001c 18000000 		.4byte	.LFE65-.LFB65
+ 880 0020 00000000 		.4byte	.LFB66
+ 881 0024 44000000 		.4byte	.LFE66-.LFB66
+ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLHY6o5.s 			page 20
+
+
+ 882 0028 00000000 		.4byte	.LFB67
+ 883 002c C0010000 		.4byte	.LFE67-.LFB67
+ 884 0030 00000000 		.4byte	0
+ 885 0034 00000000 		.4byte	0
+ 886              		.section	.debug_ranges,"",%progbits
+ 887              	.Ldebug_ranges0:
+ 888 0000 00000000 		.4byte	.LFB64
+ 889 0004 18000000 		.4byte	.LFE64
+ 890 0008 00000000 		.4byte	.LFB65
+ 891 000c 18000000 		.4byte	.LFE65
+ 892 0010 00000000 		.4byte	.LFB66
+ 893 0014 44000000 		.4byte	.LFE66
+ 894 0018 00000000 		.4byte	.LFB67
+ 895 001c C0010000 		.4byte	.LFE67
+ 896 0020 00000000 		.4byte	0
+ 897 0024 00000000 		.4byte	0
+ 898              		.section	.debug_line,"",%progbits
+ 899              	.Ldebug_line0:
+ 900 0000 A7010000 		.section	.debug_str,"MS",%progbits,1
+ 900      02002101 
+ 900      00000201 
+ 900      FB0E0D00 
+ 900      01010101 
+ 901              	.LASF4:
+ 902 0000 5F5F7569 		.ascii	"__uint8_t\000"
+ 902      6E74385F 
+ 902      7400
+ 903              	.LASF28:
+ 904 000a 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 904      43313120 
+ 904      352E342E 
+ 904      31203230 
+ 904      31363036 
+ 905 003d 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 905      20726576 
+ 905      6973696F 
+ 905      6E203233 
+ 905      37373135 
+ 906 0070 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 906      66756E63 
+ 906      74696F6E 
+ 906      2D736563 
+ 906      74696F6E 
+ 907              	.LASF5:
+ 908 0098 5F5F696E 		.ascii	"__int32_t\000"
+ 908      7433325F 
+ 908      7400
+ 909              	.LASF20:
+ 910 00a2 49737241 		.ascii	"IsrAppClk\000"
+ 910      7070436C 
+ 910      6B00
+ 911              	.LASF24:
+ 912 00ac 636C6B49 		.ascii	"clkInterruptCounter\000"
+ 912      6E746572 
+ 912      72757074 
+ 912      436F756E 
+ 912      74657200 
+ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLHY6o5.s 			page 21
+
+
+ 913              	.LASF30:
+ 914 00c0 453A5C67 		.ascii	"E:\\github\\MPS\\MPS_W22_Prakt_2.cydsn\000"
+ 914      69746875 
+ 914      625C4D50 
+ 914      535C4D50 
+ 914      535F5732 
+ 915              	.LASF13:
+ 916 00e4 666C6F61 		.ascii	"float\000"
+ 916      7400
+ 917              	.LASF18:
+ 918 00ea 4D794973 		.ascii	"MyIsrUartRX\000"
+ 918      72556172 
+ 918      74525800 
+ 919              	.LASF1:
+ 920 00f6 756E7369 		.ascii	"unsigned char\000"
+ 920      676E6564 
+ 920      20636861 
+ 920      7200
+ 921              	.LASF26:
+ 922 0104 6C6F6F70 		.ascii	"loopCountStart\000"
+ 922      436F756E 
+ 922      74537461 
+ 922      727400
+ 923              	.LASF7:
+ 924 0113 6C6F6E67 		.ascii	"long unsigned int\000"
+ 924      20756E73 
+ 924      69676E65 
+ 924      6420696E 
+ 924      7400
+ 925              	.LASF3:
+ 926 0125 73686F72 		.ascii	"short unsigned int\000"
+ 926      7420756E 
+ 926      7369676E 
+ 926      65642069 
+ 926      6E7400
+ 927              	.LASF32:
+ 928 0138 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 928      52784275 
+ 928      66666572 
+ 928      00
+ 929              	.LASF25:
+ 930 0145 4C45445F 		.ascii	"LED_CWEW\000"
+ 930      43574557 
+ 930      00
+ 931              	.LASF14:
+ 932 014e 646F7562 		.ascii	"double\000"
+ 932      6C6500
+ 933              	.LASF22:
+ 934 0155 66435745 		.ascii	"fCWEW_Isr\000"
+ 934      575F4973 
+ 934      7200
+ 935              	.LASF31:
+ 936 015f 6D61696E 		.ascii	"main\000"
+ 936      00
+ 937              	.LASF10:
+ 938 0164 756E7369 		.ascii	"unsigned int\000"
+ 938      676E6564 
+ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLHY6o5.s 			page 22
+
+
+ 938      20696E74 
+ 938      00
+ 939              	.LASF9:
+ 940 0171 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 940      206C6F6E 
+ 940      6720756E 
+ 940      7369676E 
+ 940      65642069 
+ 941              	.LASF11:
+ 942 0188 75696E74 		.ascii	"uint8_t\000"
+ 942      385F7400 
+ 943              	.LASF27:
+ 944 0190 6C6F6F70 		.ascii	"loopCounter\000"
+ 944      436F756E 
+ 944      74657200 
+ 945              	.LASF12:
+ 946 019c 696E7433 		.ascii	"int32_t\000"
+ 946      325F7400 
+ 947              	.LASF17:
+ 948 01a4 73697A65 		.ascii	"sizetype\000"
+ 948      74797065 
+ 948      00
+ 949              	.LASF8:
+ 950 01ad 6C6F6E67 		.ascii	"long long int\000"
+ 950      206C6F6E 
+ 950      6720696E 
+ 950      7400
+ 951              	.LASF29:
+ 952 01bb 6D61696E 		.ascii	"main.c\000"
+ 952      2E6300
+ 953              	.LASF15:
+ 954 01c2 63686172 		.ascii	"char\000"
+ 954      00
+ 955              	.LASF2:
+ 956 01c7 73686F72 		.ascii	"short int\000"
+ 956      7420696E 
+ 956      7400
+ 957              	.LASF21:
+ 958 01d1 62756666 		.ascii	"buffer\000"
+ 958      657200
+ 959              	.LASF19:
+ 960 01d8 4D794973 		.ascii	"MyIsrCWEW\000"
+ 960      72435745 
+ 960      5700
+ 961              	.LASF6:
+ 962 01e2 6C6F6E67 		.ascii	"long int\000"
+ 962      20696E74 
+ 962      00
+ 963              	.LASF16:
+ 964 01eb 6C6F6E67 		.ascii	"long double\000"
+ 964      20646F75 
+ 964      626C6500 
+ 965              	.LASF0:
+ 966 01f7 7369676E 		.ascii	"signed char\000"
+ 966      65642063 
+ 966      68617200 
+ 967              	.LASF23:
+ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLHY6o5.s 			page 23
+
+
+ 968 0203 6C617566 		.ascii	"laufZeit\000"
+ 968      5A656974 
+ 968      00
+ 969              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

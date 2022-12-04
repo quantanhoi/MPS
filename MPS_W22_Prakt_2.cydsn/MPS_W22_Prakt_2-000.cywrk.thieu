@@ -184,6 +184,27 @@
 <v>MPS_W22_Prakt_2-000\MPS_W22_Prakt_2\PSoC 5LP Architecture TRM</v>
 <v>MPS_W22_Prakt_2-000\MPS_W22_Prakt_2\CY8C58LP Family Datasheet</v>
 <v>MPS_W22_Prakt_2-000\MPS_W22_Prakt_2\System Reference Guides</v>
+<v>MPS_W22_Prakt_2-000\MPS_W22_Prakt_2\System Reference Guides\cy_boot_v5_80</v>
+<v>MPS_W22_Prakt_2-000\MPS_W22_Prakt_2\cy_clock_v2_20.pdf</v>
+<v>MPS_W22_Prakt_2-000\MPS_W22_Prakt_2\cy_constant_v1_0</v>
+<v>MPS_W22_Prakt_2-000\MPS_W22_Prakt_2\cy_constant_v1_0\cy_constant_v1_0.pdf</v>
+<v>MPS_W22_Prakt_2-000\MPS_W22_Prakt_2\cy_isr_v1_70</v>
+<v>MPS_W22_Prakt_2-000\MPS_W22_Prakt_2\cy_isr_v1_70\cy_isr_v1_70.pdf</v>
+<v>MPS_W22_Prakt_2-000\MPS_W22_Prakt_2\cy_pins_v2_20</v>
+<v>MPS_W22_Prakt_2-000\MPS_W22_Prakt_2\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
+<v>MPS_W22_Prakt_2-000\MPS_W22_Prakt_2\FreqDiv_v1_0.pdf</v>
+<v>MPS_W22_Prakt_2-000\MPS_W22_Prakt_2\Gnd_v1_0</v>
+<v>MPS_W22_Prakt_2-000\MPS_W22_Prakt_2\Gnd_v1_0\Gnd_v1_0.pdf</v>
+<v>MPS_W22_Prakt_2-000\MPS_W22_Prakt_2\LED_v1_0</v>
+<v>MPS_W22_Prakt_2-000\MPS_W22_Prakt_2\LED_v1_0\LED_v1_0.pdf</v>
+<v>MPS_W22_Prakt_2-000\MPS_W22_Prakt_2\NFET_En_v1_0</v>
+<v>MPS_W22_Prakt_2-000\MPS_W22_Prakt_2\NFET_En_v1_0\NFET_En_v1_0.pdf</v>
+<v>MPS_W22_Prakt_2-000\MPS_W22_Prakt_2\Power_v1_0.pdf</v>
+<v>MPS_W22_Prakt_2-000\MPS_W22_Prakt_2\Resistor_v1_0</v>
+<v>MPS_W22_Prakt_2-000\MPS_W22_Prakt_2\Resistor_v1_0\Resistor_v1_0.pdf</v>
+<v>MPS_W22_Prakt_2-000\MPS_W22_Prakt_2\SwitchSPST_v1_0</v>
+<v>MPS_W22_Prakt_2-000\MPS_W22_Prakt_2\SwitchSPST_v1_0\SwitchSPST_v1_0.pdf</v>
+<v>MPS_W22_Prakt_2-000\MPS_W22_Prakt_2\UART_v2_50.pdf</v>
 </ExpandedNodeIds>
 <VisibleNodeIds>
 <v>MPS_W22_Prakt_2-000</v>
@@ -191,6 +212,27 @@
 <v>MPS_W22_Prakt_2-000\MPS_W22_Prakt_2\PSoC 5LP Architecture TRM</v>
 <v>MPS_W22_Prakt_2-000\MPS_W22_Prakt_2\CY8C58LP Family Datasheet</v>
 <v>MPS_W22_Prakt_2-000\MPS_W22_Prakt_2\System Reference Guides</v>
+<v>MPS_W22_Prakt_2-000\MPS_W22_Prakt_2\System Reference Guides\cy_boot_v5_80</v>
+<v>MPS_W22_Prakt_2-000\MPS_W22_Prakt_2\cy_clock_v2_20.pdf</v>
+<v>MPS_W22_Prakt_2-000\MPS_W22_Prakt_2\cy_constant_v1_0</v>
+<v>MPS_W22_Prakt_2-000\MPS_W22_Prakt_2\cy_constant_v1_0\cy_constant_v1_0.pdf</v>
+<v>MPS_W22_Prakt_2-000\MPS_W22_Prakt_2\cy_isr_v1_70</v>
+<v>MPS_W22_Prakt_2-000\MPS_W22_Prakt_2\cy_isr_v1_70\cy_isr_v1_70.pdf</v>
+<v>MPS_W22_Prakt_2-000\MPS_W22_Prakt_2\cy_pins_v2_20</v>
+<v>MPS_W22_Prakt_2-000\MPS_W22_Prakt_2\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
+<v>MPS_W22_Prakt_2-000\MPS_W22_Prakt_2\FreqDiv_v1_0.pdf</v>
+<v>MPS_W22_Prakt_2-000\MPS_W22_Prakt_2\Gnd_v1_0</v>
+<v>MPS_W22_Prakt_2-000\MPS_W22_Prakt_2\Gnd_v1_0\Gnd_v1_0.pdf</v>
+<v>MPS_W22_Prakt_2-000\MPS_W22_Prakt_2\LED_v1_0</v>
+<v>MPS_W22_Prakt_2-000\MPS_W22_Prakt_2\LED_v1_0\LED_v1_0.pdf</v>
+<v>MPS_W22_Prakt_2-000\MPS_W22_Prakt_2\NFET_En_v1_0</v>
+<v>MPS_W22_Prakt_2-000\MPS_W22_Prakt_2\NFET_En_v1_0\NFET_En_v1_0.pdf</v>
+<v>MPS_W22_Prakt_2-000\MPS_W22_Prakt_2\Power_v1_0.pdf</v>
+<v>MPS_W22_Prakt_2-000\MPS_W22_Prakt_2\Resistor_v1_0</v>
+<v>MPS_W22_Prakt_2-000\MPS_W22_Prakt_2\Resistor_v1_0\Resistor_v1_0.pdf</v>
+<v>MPS_W22_Prakt_2-000\MPS_W22_Prakt_2\SwitchSPST_v1_0</v>
+<v>MPS_W22_Prakt_2-000\MPS_W22_Prakt_2\SwitchSPST_v1_0\SwitchSPST_v1_0.pdf</v>
+<v>MPS_W22_Prakt_2-000\MPS_W22_Prakt_2\UART_v2_50.pdf</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 </TreeStatesV2>
@@ -202,6 +244,12 @@
 <OpenDocs>
 <name v=".\TopDesign\TopDesign.cysch" />
 <name v=".\main.c" />
+<name v=".\Generated_Source\PSoC5\cytypes.h" />
+<name v=".\Generated_Source\PSoC5\isr_UART_RX.h" />
+<name v=".\Generated_Source\PSoC5\isr_Clk.c" />
+<name v=".\Generated_Source\PSoC5\CyLib.h" />
+<name v=".\Generated_Source\PSoC5\CyLib.c" />
+<name v=".\Generated_Source\PSoC5\isr_CWEW.c" />
 </OpenDocs>
 <OpenDocsLayout><![CDATA[<?xml version="1.0"?><!--
 
@@ -209,7 +257,7 @@
   Copyright (c) 2001-2016 Actipro Software LLC.  All rights reserved.
   http://www.actiprosoftware.com
 
---><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="1041, 473" SelectedTabbedMdiWindow="8cb8a8d0-bd08-4635-bb46-b62753f28fc5"><ToolWindow Key="Start Page:bd4649ab-da6b-4d04-a663-c722b8bf99db:Start Page" Guid="09d83b8b-a0de-4eed-a07a-117299c45450" /><DocumentWindow Key="E:\github\MPS\MPS_W22_Prakt_2.cydsn\TopDesign\TopDesign.cysch" Guid="769d2772-020b-4b3f-a421-4311025cea33" /><DocumentWindow Key="E:\github\MPS\MPS_W22_Prakt_2.cydsn\main.c" Guid="8cb8a8d0-bd08-4635-bb46-b62753f28fc5" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
+--><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="1041, 473" SelectedTabbedMdiWindow="8cb8a8d0-bd08-4635-bb46-b62753f28fc5"><DocumentWindow Key="E:\github\MPS\MPS_W22_Prakt_2.cydsn\TopDesign\TopDesign.cysch" Guid="769d2772-020b-4b3f-a421-4311025cea33" /><DocumentWindow Key="E:\github\MPS\MPS_W22_Prakt_2.cydsn\main.c" Guid="8cb8a8d0-bd08-4635-bb46-b62753f28fc5" /><DocumentWindow Key="E:\github\MPS\MPS_W22_Prakt_2.cydsn\Generated_Source\PSoC5\cytypes.h" Guid="a27303c1-021b-4596-aded-4ac4ce4a46e6" /><DocumentWindow Key="E:\github\MPS\MPS_W22_Prakt_2.cydsn\Generated_Source\PSoC5\isr_UART_RX.h" Guid="d90417df-6f4f-4882-8272-18927f8a67d0" /><DocumentWindow Key="E:\github\MPS\MPS_W22_Prakt_2.cydsn\Generated_Source\PSoC5\isr_Clk.c" Guid="d03b216f-1e2a-4983-a48d-4b601009107d" /><DocumentWindow Key="E:\github\MPS\MPS_W22_Prakt_2.cydsn\Generated_Source\PSoC5\CyLib.h" Guid="823c0677-5967-418e-821f-81483385afaa" /><DocumentWindow Key="E:\github\MPS\MPS_W22_Prakt_2.cydsn\Generated_Source\PSoC5\CyLib.c" Guid="374424f4-ad60-406e-956d-3274b560ad26" /><DocumentWindow Key="E:\github\MPS\MPS_W22_Prakt_2.cydsn\Generated_Source\PSoC5\isr_CWEW.c" Guid="f733c062-a6fe-4c33-a37d-9e7f3b8c8a9d" /><ToolWindow Key="Start Page:bd4649ab-da6b-4d04-a663-c722b8bf99db:Start Page" Guid="09d83b8b-a0de-4eed-a07a-117299c45450" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
 <config v="" />
 <AutoUpdate v="true" />
 </CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21>
