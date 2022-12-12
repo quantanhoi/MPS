@@ -1,0 +1,6 @@
+E:\github\MPS\MPS_W22_Prakt_3.cydsn\MPS_W22_Prakt_3.cyprj|d2d7d888-49f1-421e-8bd1-043d072904a2
+E:\PSoc Creator\PSoC Creator\4.4\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|a062ab68-6cb6-41e6-a6df-3505b9b7c3b7
+C:\Users\thieu\OneDrive\Documents\PSoC Creator\4.4\Downloads ( 4.4).cylib\Downloads ( 4.4).cyprj|43370945-3168-4b15-9262-4c59ef6e8671
+E:\PSoc Creator\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|463d5377-b6f3-4759-a1f4-830363f35d08
+E:\PSoc Creator\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|550c7290-3a36-4f7e-9af7-64f57f5e1c75
+E:\PSoc Creator\PSoC Creator\4.4\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|8cdfd5a5-e813-48a6-a40c-c5ebe03e06be

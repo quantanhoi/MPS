@@ -11,6 +11,7 @@
  */
 #include "project.h"
 #include <stdio.h>          // für string-Operationen wie sprintf
+#include<HAL.h>
 
 /*
  * Diese Definitionen ermöglichen es, 
@@ -68,14 +69,41 @@ static uint32_t count_ms = 0;   //!< ms count since start
  *
  * @see fClock
  */
+static uint32_t timer = 0;
+static uint32_t zustand  = 0;
 CY_ISR( IsrAppClk ) {
     count_ms++;                     // increment ms timestamp
-    if ( (count_ms % 1000) == 0 ) { // next 1 s reached
+    if ( (count_ms > 1000) ) { // next 1 s reached, set back to > 1000 as prak 2
        fsClock = 1;                 // set flag
+        timer++;
+        count_ms = 0;
     }
 }
 
+static uint16 brightness = 300;
 
+
+// change the avarage power to change brightness
+void brightness_settings(u_int input){
+    if(input && brightness < 1000){
+        //uint16 test = PWM_ReadCompare();
+        brightness = brightness + 200;
+        PWM_WriteCompare( brightness);
+        return;
+        
+    }else if(!input && brightness <= 100){
+        brightness = brightness + 100;
+        PWM_WriteCompare(brightness);
+        return;
+    }
+    else if(!input) {
+        brightness = brightness -200;
+        PWM_WriteCompare(brightness);
+        return;
+    }
+   
+    
+}
 /**
  * Basisprojekt mit UART mit Interrupt, User Button mit Interrupt und Statusabfrage. 
  * Pin-I/O Einfache Eingabe mit Button, Ausgabe mit LED
@@ -115,12 +143,72 @@ int main(void)
         if ( fsClock ) {
             fsClock = 0;    // don't forget
             // TODO Ampelsteuerung
+             if(zustand == 0 && timer == 1) {
+                cleanState(); // Alle rot
+                zustand++;
+                timer = 0;
+            }           
+            if(zustand == 1 && timer == 1) {               
+                prepareNorthSouthToDrive();
+                zustand++;
+                timer = 0;               
+            }            
+            if(zustand == 2 && timer == 1) {
+                allowNorthSouthToDrive();
+                zustand++;
+                timer = 0;
+            }            
+            if(zustand == 3 && timer == 3) {
+                prepareNorthSouthToStop();
+                zustand++;
+                timer = 0;
+            }
+            if(zustand == 4 && timer == 1) {
+                cleanState();
+                zustand++;
+                timer = 0;
+            }            
+            if(zustand == 5 && timer == 1) {
+                prepareEastWestToDrive();
+                zustand++;
+                timer = 0;
+            }            
+            if(zustand == 6 && timer == 1) {
+                allowEastWestToDrive();
+                zustand++;
+                timer = 0;
+            }           
+            if(zustand == 7 && timer == 2) {
+                prepareEastWestToStop();
+                zustand = 0;
+                timer = 0;
+            }
         }
 //        /* Fußgänger-Anforderung Ampel */        
 //        // Behandlung Button-Ereignis aus ISR
-//        if ( fCWEW_Isr ) {
-//            // TODO: implementieren ...
-//        }
+        if(fCWEW_Isr){
+            // fast foward to turn on led Fuß ost-west
+            if (zustand == 0) { // alle rot -> direkt NORD-SÜD auf gelb -> state 2 wird aktiviert
+                prepareNorthSouthToDrive();
+                zustand = 2;
+                timer = 0;
+            }          
+            // led Fuß ost-west lasts longer
+            if (zustand == 3 && timer < 3) {
+                timer = timer - 2;
+            }            
+            // fast foward for led fuß nord - süd
+            if (zustand == 4) { // alle rot -> direkt OST-WEST auf gelb -> state 6 wird aktiviert
+                prepareEastWestToDrive();
+                zustand = 6;
+                timer = 0;
+            }
+            // led Fuß nord - süd lasts longer
+            if (zustand == 7 && timer < 2) {
+                timer = timer - 2;
+            }
+            fCWEW_Isr = 0; // Wieder auf Null!
+        }
 
         /* 
          * Character aus Uart ISR abfragen 
@@ -148,6 +236,17 @@ int main(void)
                 case 'c':   // clear screen, see https://stackoverflow.com/questions/37774983/clearing-the-screen-by-printing-a-character
                     UART_PutString( "\033[2J\033[H" ); // clear screen \033[2J, 
                                                        // home position \033[H
+                    break;
+                    
+                case '+':   
+                    sprintf(buffer, "brightness: %d \n", brightness);
+                    UART_PutString(buffer);
+                    brightness_settings(0);
+                    break;
+                case '-': 
+                    sprintf(buffer, "brightness: %d \n", brightness);
+                    UART_PutString(buffer);
+                    brightness_settings(1);
                     break;
 
                     // ... und so weiter ...
