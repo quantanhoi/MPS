@@ -82,9 +82,7 @@ CY_ISR( IsrAppClk ) {
 
 
 //somehow I can't set brightness = PWM_ReadCompare() here
-static uint16 brightness = PWM_ReadCompare();
-
-
+static uint16 brightness = 300;
 // change the avarage power to change brightness
 void brightness_settings(u_int input){
     brightness = PWM_ReadCompare();
@@ -104,8 +102,6 @@ void brightness_settings(u_int input){
         PWM_WriteCompare(brightness);
         return;
     }
-   
-    
 }
 /**
  * Basisprojekt mit UART mit Interrupt, User Button mit Interrupt und Statusabfrage. 

@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccnAHIBf.s 			page 1
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccCXRjL6.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccnAHIBf.s 			page 1
   18:main.c        ****  * einfach Informationen auf den Bildschirm zu schreiben
   19:main.c        ****  */
   20:main.c        **** #define _VERSION_NR     "ver. 1.0"              //!< Version number. Please update
-ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccnAHIBf.s 			page 2
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccCXRjL6.s 			page 2
 
 
   21:main.c        **** #define _PROJECT_NAME   "MPS_W22_Prakt_3"       //!< Project name
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccnAHIBf.s 			page 1
   57              		.cfi_endproc
   58              	.LFE64:
   59              		.size	MyIsrUartRX, .-MyIsrUartRX
-ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccnAHIBf.s 			page 3
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccCXRjL6.s 			page 3
 
 
   60              		.bss
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccnAHIBf.s 			page 1
  102 0084 00000000 		.space	4
  103              		.align	2
  104              	timer:
-ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccnAHIBf.s 			page 4
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccCXRjL6.s 			page 4
 
 
  105 0088 00000000 		.space	4
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccnAHIBf.s 			page 1
  144 0020 1B68     		ldr	r3, [r3]
  145 0022 0133     		adds	r3, r3, #1
  146 0024 064A     		ldr	r2, .L10+8
-ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccnAHIBf.s 			page 5
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccCXRjL6.s 			page 5
 
 
  147 0026 1360     		str	r3, [r2]
@@ -283,12 +283,14 @@ ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccnAHIBf.s 			page 1
  183              	brightness_settings:
  184              	.LFB67:
   82:main.c        **** 
-  83:main.c        **** static uint16 brightness = 300;
-  84:main.c        **** 
-  85:main.c        **** 
-  86:main.c        **** // change the avarage power to change brightness
-  87:main.c        **** void brightness_settings(u_int input){
- 185              		.loc 1 87 0
+  83:main.c        **** 
+  84:main.c        **** //somehow I can't set brightness = PWM_ReadCompare() here
+  85:main.c        **** static uint16 brightness = 300;
+  86:main.c        **** 
+  87:main.c        **** 
+  88:main.c        **** // change the avarage power to change brightness
+  89:main.c        **** void brightness_settings(u_int input){
+ 185              		.loc 1 89 0
  186              		.cfi_startproc
  187              		@ args = 0, pretend = 0, frame = 8
  188              		@ frame_needed = 1, uses_anonymous_args = 0
@@ -296,1635 +298,1642 @@ ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccnAHIBf.s 			page 1
  190              		.cfi_def_cfa_offset 8
  191              		.cfi_offset 7, -8
  192              		.cfi_offset 14, -4
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccCXRjL6.s 			page 6
+
+
  193 0002 82B0     		sub	sp, sp, #8
  194              		.cfi_def_cfa_offset 16
-ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccnAHIBf.s 			page 6
-
-
  195 0004 00AF     		add	r7, sp, #0
  196              		.cfi_def_cfa_register 7
  197 0006 7860     		str	r0, [r7, #4]
-  88:main.c        ****     if(input && brightness < 1000){
- 198              		.loc 1 88 0
- 199 0008 7B68     		ldr	r3, [r7, #4]
- 200 000a 002B     		cmp	r3, #0
- 201 000c 10D0     		beq	.L13
- 202              		.loc 1 88 0 is_stmt 0 discriminator 1
- 203 000e 1B4B     		ldr	r3, .L16
- 204 0010 1B88     		ldrh	r3, [r3]
- 205 0012 B3F57A7F 		cmp	r3, #1000
- 206 0016 0BD2     		bcs	.L13
-  89:main.c        ****         //uint16 test = PWM_ReadCompare();
-  90:main.c        ****         brightness = brightness + 200;
- 207              		.loc 1 90 0 is_stmt 1
- 208 0018 184B     		ldr	r3, .L16
- 209 001a 1B88     		ldrh	r3, [r3]
- 210 001c C833     		adds	r3, r3, #200
- 211 001e 9AB2     		uxth	r2, r3
- 212 0020 164B     		ldr	r3, .L16
- 213 0022 1A80     		strh	r2, [r3]	@ movhi
-  91:main.c        ****         PWM_WriteCompare( brightness);
- 214              		.loc 1 91 0
- 215 0024 154B     		ldr	r3, .L16
- 216 0026 1B88     		ldrh	r3, [r3]
- 217 0028 1846     		mov	r0, r3
- 218 002a FFF7FEFF 		bl	PWM_WriteCompare
-  92:main.c        ****         return;
- 219              		.loc 1 92 0
- 220 002e 21E0     		b	.L12
- 221              	.L13:
-  93:main.c        ****         
-  94:main.c        ****     }else if(!input && brightness <= 100){
- 222              		.loc 1 94 0
- 223 0030 7B68     		ldr	r3, [r7, #4]
- 224 0032 002B     		cmp	r3, #0
- 225 0034 0FD1     		bne	.L15
- 226              		.loc 1 94 0 is_stmt 0 discriminator 1
- 227 0036 114B     		ldr	r3, .L16
- 228 0038 1B88     		ldrh	r3, [r3]
- 229 003a 642B     		cmp	r3, #100
- 230 003c 0BD8     		bhi	.L15
-  95:main.c        ****         brightness = brightness + 100;
- 231              		.loc 1 95 0 is_stmt 1
- 232 003e 0F4B     		ldr	r3, .L16
- 233 0040 1B88     		ldrh	r3, [r3]
- 234 0042 6433     		adds	r3, r3, #100
- 235 0044 9AB2     		uxth	r2, r3
- 236 0046 0D4B     		ldr	r3, .L16
- 237 0048 1A80     		strh	r2, [r3]	@ movhi
-  96:main.c        ****         PWM_WriteCompare(brightness);
- 238              		.loc 1 96 0
- 239 004a 0C4B     		ldr	r3, .L16
- 240 004c 1B88     		ldrh	r3, [r3]
- 241 004e 1846     		mov	r0, r3
- 242 0050 FFF7FEFF 		bl	PWM_WriteCompare
-ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccnAHIBf.s 			page 7
+  90:main.c        ****     brightness = PWM_ReadCompare();
+ 198              		.loc 1 90 0
+ 199 0008 FFF7FEFF 		bl	PWM_ReadCompare
+ 200 000c 0346     		mov	r3, r0
+ 201 000e 1A46     		mov	r2, r3
+ 202 0010 1D4B     		ldr	r3, .L16
+ 203 0012 1A80     		strh	r2, [r3]	@ movhi
+  91:main.c        ****     if(input && brightness < 1000){
+ 204              		.loc 1 91 0
+ 205 0014 7B68     		ldr	r3, [r7, #4]
+ 206 0016 002B     		cmp	r3, #0
+ 207 0018 10D0     		beq	.L13
+ 208              		.loc 1 91 0 is_stmt 0 discriminator 1
+ 209 001a 1B4B     		ldr	r3, .L16
+ 210 001c 1B88     		ldrh	r3, [r3]
+ 211 001e B3F57A7F 		cmp	r3, #1000
+ 212 0022 0BD2     		bcs	.L13
+  92:main.c        ****         //uint16 test = PWM_ReadCompare();
+  93:main.c        ****         brightness = brightness + 200;
+ 213              		.loc 1 93 0 is_stmt 1
+ 214 0024 184B     		ldr	r3, .L16
+ 215 0026 1B88     		ldrh	r3, [r3]
+ 216 0028 C833     		adds	r3, r3, #200
+ 217 002a 9AB2     		uxth	r2, r3
+ 218 002c 164B     		ldr	r3, .L16
+ 219 002e 1A80     		strh	r2, [r3]	@ movhi
+  94:main.c        ****         PWM_WriteCompare( brightness);
+ 220              		.loc 1 94 0
+ 221 0030 154B     		ldr	r3, .L16
+ 222 0032 1B88     		ldrh	r3, [r3]
+ 223 0034 1846     		mov	r0, r3
+ 224 0036 FFF7FEFF 		bl	PWM_WriteCompare
+  95:main.c        ****         return;
+ 225              		.loc 1 95 0
+ 226 003a 21E0     		b	.L12
+ 227              	.L13:
+  96:main.c        ****         
+  97:main.c        ****     }else if(!input && brightness <= 100){
+ 228              		.loc 1 97 0
+ 229 003c 7B68     		ldr	r3, [r7, #4]
+ 230 003e 002B     		cmp	r3, #0
+ 231 0040 0FD1     		bne	.L15
+ 232              		.loc 1 97 0 is_stmt 0 discriminator 1
+ 233 0042 114B     		ldr	r3, .L16
+ 234 0044 1B88     		ldrh	r3, [r3]
+ 235 0046 642B     		cmp	r3, #100
+ 236 0048 0BD8     		bhi	.L15
+  98:main.c        ****         brightness = brightness + 100;
+ 237              		.loc 1 98 0 is_stmt 1
+ 238 004a 0F4B     		ldr	r3, .L16
+ 239 004c 1B88     		ldrh	r3, [r3]
+ 240 004e 6433     		adds	r3, r3, #100
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccCXRjL6.s 			page 7
 
 
-  97:main.c        ****         return;
- 243              		.loc 1 97 0
- 244 0054 0EE0     		b	.L12
- 245              	.L15:
-  98:main.c        ****     }
-  99:main.c        ****     else if(!input) {
- 246              		.loc 1 99 0
- 247 0056 7B68     		ldr	r3, [r7, #4]
- 248 0058 002B     		cmp	r3, #0
- 249 005a 0BD1     		bne	.L12
- 100:main.c        ****         brightness = brightness -200;
- 250              		.loc 1 100 0
- 251 005c 074B     		ldr	r3, .L16
- 252 005e 1B88     		ldrh	r3, [r3]
- 253 0060 C83B     		subs	r3, r3, #200
- 254 0062 9AB2     		uxth	r2, r3
- 255 0064 054B     		ldr	r3, .L16
- 256 0066 1A80     		strh	r2, [r3]	@ movhi
- 101:main.c        ****         PWM_WriteCompare(brightness);
- 257              		.loc 1 101 0
- 258 0068 044B     		ldr	r3, .L16
- 259 006a 1B88     		ldrh	r3, [r3]
- 260 006c 1846     		mov	r0, r3
- 261 006e FFF7FEFF 		bl	PWM_WriteCompare
- 102:main.c        ****         return;
- 262              		.loc 1 102 0
- 263 0072 00BF     		nop
- 264              	.L12:
- 103:main.c        ****     }
- 104:main.c        ****    
- 105:main.c        ****     
- 106:main.c        **** }
- 265              		.loc 1 106 0
- 266 0074 0837     		adds	r7, r7, #8
- 267              		.cfi_def_cfa_offset 8
- 268 0076 BD46     		mov	sp, r7
- 269              		.cfi_def_cfa_register 13
- 270              		@ sp needed
- 271 0078 80BD     		pop	{r7, pc}
- 272              	.L17:
- 273 007a 00BF     		.align	2
- 274              	.L16:
- 275 007c 00000000 		.word	brightness
- 276              		.cfi_endproc
- 277              	.LFE67:
- 278              		.size	brightness_settings, .-brightness_settings
- 279              		.section	.rodata
- 280              		.align	2
- 281              	.LC0:
- 282 0000 4D50535F 		.ascii	"MPS_W22_Prakt_3, FreeSoC2, PSoC 5LP, ver. 1.0\012\015"
- 282      5732325F 
- 282      5072616B 
- 282      745F332C 
- 282      20467265 
- 283 002f 496E676F 		.ascii	"Ingo Knito und Arno Nym (Template MPS 3), Dec 12 20"
- 283      204B6E69 
- 283      746F2075 
-ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccnAHIBf.s 			page 8
+ 241 0050 9AB2     		uxth	r2, r3
+ 242 0052 0D4B     		ldr	r3, .L16
+ 243 0054 1A80     		strh	r2, [r3]	@ movhi
+  99:main.c        ****         PWM_WriteCompare(brightness);
+ 244              		.loc 1 99 0
+ 245 0056 0C4B     		ldr	r3, .L16
+ 246 0058 1B88     		ldrh	r3, [r3]
+ 247 005a 1846     		mov	r0, r3
+ 248 005c FFF7FEFF 		bl	PWM_WriteCompare
+ 100:main.c        ****         return;
+ 249              		.loc 1 100 0
+ 250 0060 0EE0     		b	.L12
+ 251              	.L15:
+ 101:main.c        ****     }
+ 102:main.c        ****     else if(!input) {
+ 252              		.loc 1 102 0
+ 253 0062 7B68     		ldr	r3, [r7, #4]
+ 254 0064 002B     		cmp	r3, #0
+ 255 0066 0BD1     		bne	.L12
+ 103:main.c        ****         brightness = brightness -200;
+ 256              		.loc 1 103 0
+ 257 0068 074B     		ldr	r3, .L16
+ 258 006a 1B88     		ldrh	r3, [r3]
+ 259 006c C83B     		subs	r3, r3, #200
+ 260 006e 9AB2     		uxth	r2, r3
+ 261 0070 054B     		ldr	r3, .L16
+ 262 0072 1A80     		strh	r2, [r3]	@ movhi
+ 104:main.c        ****         PWM_WriteCompare(brightness);
+ 263              		.loc 1 104 0
+ 264 0074 044B     		ldr	r3, .L16
+ 265 0076 1B88     		ldrh	r3, [r3]
+ 266 0078 1846     		mov	r0, r3
+ 267 007a FFF7FEFF 		bl	PWM_WriteCompare
+ 105:main.c        ****         return;
+ 268              		.loc 1 105 0
+ 269 007e 00BF     		nop
+ 270              	.L12:
+ 106:main.c        ****     }
+ 107:main.c        ****    
+ 108:main.c        ****     
+ 109:main.c        **** }
+ 271              		.loc 1 109 0
+ 272 0080 0837     		adds	r7, r7, #8
+ 273              		.cfi_def_cfa_offset 8
+ 274 0082 BD46     		mov	sp, r7
+ 275              		.cfi_def_cfa_register 13
+ 276              		@ sp needed
+ 277 0084 80BD     		pop	{r7, pc}
+ 278              	.L17:
+ 279 0086 00BF     		.align	2
+ 280              	.L16:
+ 281 0088 00000000 		.word	brightness
+ 282              		.cfi_endproc
+ 283              	.LFE67:
+ 284              		.size	brightness_settings, .-brightness_settings
+ 285              		.section	.rodata
+ 286              		.align	2
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccCXRjL6.s 			page 8
 
 
- 283      6E642041 
- 283      726E6F20 
- 284 0062 32322031 		.ascii	"22 16:25:02\000"
- 284      363A3235 
- 284      3A303200 
- 285 006e 0000     		.align	2
- 286              	.LC1:
- 287 0070 0A0D5765 		.ascii	"\012\015Welcome! %s\012\015\000"
- 287      6C636F6D 
- 287      65212025 
- 287      730A0D00 
- 288              		.align	2
- 289              	.LC2:
- 290 0080 0A0D4865 		.ascii	"\012\015Help:\012\015\011h,H: help\012\015\011c: cl"
- 290      6C703A0A 
- 290      0D09682C 
- 290      483A2068 
- 290      656C700A 
- 291 009b 65617220 		.ascii	"ear screen\012\015\011q,Q: software reset\012\015\000"
- 291      73637265 
- 291      656E0A0D 
- 291      09712C51 
- 291      3A20736F 
- 292 00be 0000     		.align	2
- 293              	.LC3:
- 294 00c0 1B5B324A 		.ascii	"\033[2J\033[H\000"
- 294      1B5B4800 
- 295              		.align	2
- 296              	.LC4:
- 297 00c8 62726967 		.ascii	"brightness: %d \012\000"
- 297      68746E65 
- 297      73733A20 
- 297      2564200A 
- 297      00
- 298              		.section	.text.main,"ax",%progbits
- 299              		.align	2
- 300              		.global	main
- 301              		.thumb
- 302              		.thumb_func
- 303              		.type	main, %function
- 304              	main:
- 305              	.LFB68:
- 107:main.c        **** /**
- 108:main.c        ****  * Basisprojekt mit UART mit Interrupt, User Button mit Interrupt und Statusabfrage. 
- 109:main.c        ****  * Pin-I/O Einfache Eingabe mit Button, Ausgabe mit LED
- 110:main.c        ****  * für FreeSoC2
- 111:main.c        ****  * 
- 112:main.c        ****  * @author Ralf S. Mayer
- 113:main.c        ****  * @date 2022-11-25
- 114:main.c        ****  * @version 1.0
- 115:main.c        ****  */
- 116:main.c        **** int main(void)
- 117:main.c        **** {   
- 306              		.loc 1 117 0
- 307              		.cfi_startproc
- 308              		@ args = 0, pretend = 0, frame = 8
- 309              		@ frame_needed = 1, uses_anonymous_args = 0
-ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccnAHIBf.s 			page 9
+ 287              	.LC0:
+ 288 0000 4D50535F 		.ascii	"MPS_W22_Prakt_3, FreeSoC2, PSoC 5LP, ver. 1.0\012\015"
+ 288      5732325F 
+ 288      5072616B 
+ 288      745F332C 
+ 288      20467265 
+ 289 002f 496E676F 		.ascii	"Ingo Knito und Arno Nym (Template MPS 3), Dec 18 20"
+ 289      204B6E69 
+ 289      746F2075 
+ 289      6E642041 
+ 289      726E6F20 
+ 290 0062 32322032 		.ascii	"22 21:16:15\000"
+ 290      313A3136 
+ 290      3A313500 
+ 291 006e 0000     		.align	2
+ 292              	.LC1:
+ 293 0070 0A0D5765 		.ascii	"\012\015Welcome! %s\012\015\000"
+ 293      6C636F6D 
+ 293      65212025 
+ 293      730A0D00 
+ 294              		.align	2
+ 295              	.LC2:
+ 296 0080 0A0D4865 		.ascii	"\012\015Help:\012\015\011h,H: help\012\015\011c: cl"
+ 296      6C703A0A 
+ 296      0D09682C 
+ 296      483A2068 
+ 296      656C700A 
+ 297 009b 65617220 		.ascii	"ear screen\012\015\011q,Q: software reset\012\015\000"
+ 297      73637265 
+ 297      656E0A0D 
+ 297      09712C51 
+ 297      3A20736F 
+ 298 00be 0000     		.align	2
+ 299              	.LC3:
+ 300 00c0 1B5B324A 		.ascii	"\033[2J\033[H\000"
+ 300      1B5B4800 
+ 301              		.align	2
+ 302              	.LC4:
+ 303 00c8 62726967 		.ascii	"brightness: %d \012\000"
+ 303      68746E65 
+ 303      73733A20 
+ 303      2564200A 
+ 303      00
+ 304              		.section	.text.main,"ax",%progbits
+ 305              		.align	2
+ 306              		.global	main
+ 307              		.thumb
+ 308              		.thumb_func
+ 309              		.type	main, %function
+ 310              	main:
+ 311              	.LFB68:
+ 110:main.c        **** /**
+ 111:main.c        ****  * Basisprojekt mit UART mit Interrupt, User Button mit Interrupt und Statusabfrage. 
+ 112:main.c        ****  * Pin-I/O Einfache Eingabe mit Button, Ausgabe mit LED
+ 113:main.c        ****  * für FreeSoC2
+ 114:main.c        ****  * 
+ 115:main.c        ****  * @author Ralf S. Mayer
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccCXRjL6.s 			page 9
 
 
- 310 0000 80B5     		push	{r7, lr}
- 311              		.cfi_def_cfa_offset 8
- 312              		.cfi_offset 7, -8
- 313              		.cfi_offset 14, -4
- 314 0002 82B0     		sub	sp, sp, #8
- 315              		.cfi_def_cfa_offset 16
- 316 0004 00AF     		add	r7, sp, #0
- 317              		.cfi_def_cfa_register 7
- 118:main.c        ****     /* Initialize and start UART, register ISR */
- 119:main.c        ****     UART_Start();                       // start UART
- 318              		.loc 1 119 0
- 319 0006 FFF7FEFF 		bl	UART_Start
- 120:main.c        ****     isr_UART_RX_StartEx( MyIsrUartRX ); // register ISR, enable itr uart
- 320              		.loc 1 120 0
- 321 000a 7C48     		ldr	r0, .L41
- 322 000c FFF7FEFF 		bl	isr_UART_RX_StartEx
- 121:main.c        ****     
- 122:main.c        ****     /* Initialize and start MyIsrCWEW, register ISR */
- 123:main.c        ****     isr_CWEW_StartEx( MyIsrCWEW );      // register CWEW itr
- 323              		.loc 1 123 0
- 324 0010 7B48     		ldr	r0, .L41+4
- 325 0012 FFF7FEFF 		bl	isr_CWEW_StartEx
- 124:main.c        ****     Pin_CWEW_ClearInterrupt();          // clear eventual interrupt
- 326              		.loc 1 124 0
- 327 0016 FFF7FEFF 		bl	Pin_CWEW_ClearInterrupt
- 125:main.c        ****     isr_CWEW_ClearPending();            // clear eventual pending interrupt
- 328              		.loc 1 125 0
- 329 001a FFF7FEFF 		bl	isr_CWEW_ClearPending
- 126:main.c        ****     
- 127:main.c        ****     /* Initialize PWM */
- 128:main.c        ****     PWM_Start();                        // start PWM
- 330              		.loc 1 128 0
- 331 001e FFF7FEFF 		bl	PWM_Start
- 129:main.c        **** 
- 130:main.c        ****     /* Register isr_Clk interrupt and service routine */
- 131:main.c        ****     isr_Clk_StartEx( IsrAppClk );       // register and start application clock ISR
- 332              		.loc 1 131 0
- 333 0022 7848     		ldr	r0, .L41+8
- 334 0024 FFF7FEFF 		bl	isr_Clk_StartEx
- 132:main.c        ****     
- 133:main.c        ****     CyGlobalIntEnable;                  /* Enable global interrupts. */
- 335              		.loc 1 133 0
- 336              		.syntax unified
- 337              	@ 133 "main.c" 1
- 338 0028 62B6     		CPSIE   i
- 339              	@ 0 "" 2
- 134:main.c        **** 
- 135:main.c        ****     /* Welcome and info text Ausgabe */
- 136:main.c        ****     sprintf( buffer, "\n\rWelcome! %s\n\r", _VERSTR_);  // formatiert in Buffer
- 340              		.loc 1 136 0
- 341              		.thumb
+ 116:main.c        ****  * @date 2022-11-25
+ 117:main.c        ****  * @version 1.0
+ 118:main.c        ****  */
+ 119:main.c        **** int main(void)
+ 120:main.c        **** {   
+ 312              		.loc 1 120 0
+ 313              		.cfi_startproc
+ 314              		@ args = 0, pretend = 0, frame = 8
+ 315              		@ frame_needed = 1, uses_anonymous_args = 0
+ 316 0000 80B5     		push	{r7, lr}
+ 317              		.cfi_def_cfa_offset 8
+ 318              		.cfi_offset 7, -8
+ 319              		.cfi_offset 14, -4
+ 320 0002 82B0     		sub	sp, sp, #8
+ 321              		.cfi_def_cfa_offset 16
+ 322 0004 00AF     		add	r7, sp, #0
+ 323              		.cfi_def_cfa_register 7
+ 121:main.c        ****     /* Initialize and start UART, register ISR */
+ 122:main.c        ****     UART_Start();                       // start UART
+ 324              		.loc 1 122 0
+ 325 0006 FFF7FEFF 		bl	UART_Start
+ 123:main.c        ****     isr_UART_RX_StartEx( MyIsrUartRX ); // register ISR, enable itr uart
+ 326              		.loc 1 123 0
+ 327 000a 7C48     		ldr	r0, .L41
+ 328 000c FFF7FEFF 		bl	isr_UART_RX_StartEx
+ 124:main.c        ****     
+ 125:main.c        ****     /* Initialize and start MyIsrCWEW, register ISR */
+ 126:main.c        ****     isr_CWEW_StartEx( MyIsrCWEW );      // register CWEW itr
+ 329              		.loc 1 126 0
+ 330 0010 7B48     		ldr	r0, .L41+4
+ 331 0012 FFF7FEFF 		bl	isr_CWEW_StartEx
+ 127:main.c        ****     Pin_CWEW_ClearInterrupt();          // clear eventual interrupt
+ 332              		.loc 1 127 0
+ 333 0016 FFF7FEFF 		bl	Pin_CWEW_ClearInterrupt
+ 128:main.c        ****     isr_CWEW_ClearPending();            // clear eventual pending interrupt
+ 334              		.loc 1 128 0
+ 335 001a FFF7FEFF 		bl	isr_CWEW_ClearPending
+ 129:main.c        ****     
+ 130:main.c        ****     /* Initialize PWM */
+ 131:main.c        ****     PWM_Start();                        // start PWM
+ 336              		.loc 1 131 0
+ 337 001e FFF7FEFF 		bl	PWM_Start
+ 132:main.c        **** 
+ 133:main.c        ****     /* Register isr_Clk interrupt and service routine */
+ 134:main.c        ****     isr_Clk_StartEx( IsrAppClk );       // register and start application clock ISR
+ 338              		.loc 1 134 0
+ 339 0022 7848     		ldr	r0, .L41+8
+ 340 0024 FFF7FEFF 		bl	isr_Clk_StartEx
+ 135:main.c        ****     
+ 136:main.c        ****     CyGlobalIntEnable;                  /* Enable global interrupts. */
+ 341              		.loc 1 136 0
  342              		.syntax unified
- 343 002a 774A     		ldr	r2, .L41+12
- 344 002c 7749     		ldr	r1, .L41+16
- 345 002e 7848     		ldr	r0, .L41+20
- 346 0030 FFF7FEFF 		bl	sprintf
- 137:main.c        ****     UART_PutString( buffer );                           // Ausgabe auf UART
-ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccnAHIBf.s 			page 10
+ 343              	@ 136 "main.c" 1
+ 344 0028 62B6     		CPSIE   i
+ 345              	@ 0 "" 2
+ 137:main.c        **** 
+ 138:main.c        ****     /* Welcome and info text Ausgabe */
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccCXRjL6.s 			page 10
 
 
- 347              		.loc 1 137 0
- 348 0034 7648     		ldr	r0, .L41+20
- 349 0036 FFF7FEFF 		bl	UART_PutString
- 138:main.c        ****     cRx = 'h';                                          // was passiert?
- 350              		.loc 1 138 0
- 351 003a 764B     		ldr	r3, .L41+24
- 352 003c 6822     		movs	r2, #104
- 353 003e 1A70     		strb	r2, [r3]
- 354              	.L40:
- 139:main.c        ****     
- 140:main.c        ****     // Applikationsschleife
- 141:main.c        ****     for(;;)
- 142:main.c        ****     {
- 143:main.c        ****         if ( fsClock ) {
- 355              		.loc 1 143 0
- 356 0040 754B     		ldr	r3, .L41+28
- 357 0042 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
- 358 0044 002B     		cmp	r3, #0
- 359 0046 00F09180 		beq	.L19
- 144:main.c        ****             fsClock = 0;    // don't forget
- 360              		.loc 1 144 0
- 361 004a 734B     		ldr	r3, .L41+28
- 362 004c 0022     		movs	r2, #0
- 363 004e 1A70     		strb	r2, [r3]
- 145:main.c        ****             // TODO Ampelsteuerung
- 146:main.c        ****              if(zustand == 0 && timer == 1) {
- 364              		.loc 1 146 0
- 365 0050 724B     		ldr	r3, .L41+32
- 366 0052 1B68     		ldr	r3, [r3]
- 367 0054 002B     		cmp	r3, #0
- 368 0056 0DD1     		bne	.L20
- 369              		.loc 1 146 0 is_stmt 0 discriminator 1
- 370 0058 714B     		ldr	r3, .L41+36
- 371 005a 1B68     		ldr	r3, [r3]
- 372 005c 012B     		cmp	r3, #1
- 373 005e 09D1     		bne	.L20
- 147:main.c        ****                 cleanState(); // Alle rot
- 374              		.loc 1 147 0 is_stmt 1
- 375 0060 FFF7FEFF 		bl	cleanState
- 148:main.c        ****                 zustand++;
- 376              		.loc 1 148 0
- 377 0064 6D4B     		ldr	r3, .L41+32
- 378 0066 1B68     		ldr	r3, [r3]
- 379 0068 0133     		adds	r3, r3, #1
- 380 006a 6C4A     		ldr	r2, .L41+32
- 381 006c 1360     		str	r3, [r2]
- 149:main.c        ****                 timer = 0;
- 382              		.loc 1 149 0
- 383 006e 6C4B     		ldr	r3, .L41+36
- 384 0070 0022     		movs	r2, #0
- 385 0072 1A60     		str	r2, [r3]
- 386              	.L20:
- 150:main.c        ****             }           
- 151:main.c        ****             if(zustand == 1 && timer == 1) {               
- 387              		.loc 1 151 0
- 388 0074 694B     		ldr	r3, .L41+32
- 389 0076 1B68     		ldr	r3, [r3]
-ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccnAHIBf.s 			page 11
+ 139:main.c        ****     sprintf( buffer, "\n\rWelcome! %s\n\r", _VERSTR_);  // formatiert in Buffer
+ 346              		.loc 1 139 0
+ 347              		.thumb
+ 348              		.syntax unified
+ 349 002a 774A     		ldr	r2, .L41+12
+ 350 002c 7749     		ldr	r1, .L41+16
+ 351 002e 7848     		ldr	r0, .L41+20
+ 352 0030 FFF7FEFF 		bl	sprintf
+ 140:main.c        ****     UART_PutString( buffer );                           // Ausgabe auf UART
+ 353              		.loc 1 140 0
+ 354 0034 7648     		ldr	r0, .L41+20
+ 355 0036 FFF7FEFF 		bl	UART_PutString
+ 141:main.c        ****     cRx = 'h';                                          // was passiert?
+ 356              		.loc 1 141 0
+ 357 003a 764B     		ldr	r3, .L41+24
+ 358 003c 6822     		movs	r2, #104
+ 359 003e 1A70     		strb	r2, [r3]
+ 360              	.L40:
+ 142:main.c        ****     
+ 143:main.c        ****     // Applikationsschleife
+ 144:main.c        ****     for(;;)
+ 145:main.c        ****     {
+ 146:main.c        ****         if ( fsClock ) {
+ 361              		.loc 1 146 0
+ 362 0040 754B     		ldr	r3, .L41+28
+ 363 0042 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 364 0044 002B     		cmp	r3, #0
+ 365 0046 00F09180 		beq	.L19
+ 147:main.c        ****             fsClock = 0;    // don't forget
+ 366              		.loc 1 147 0
+ 367 004a 734B     		ldr	r3, .L41+28
+ 368 004c 0022     		movs	r2, #0
+ 369 004e 1A70     		strb	r2, [r3]
+ 148:main.c        ****             // TODO Ampelsteuerung
+ 149:main.c        ****              if(zustand == 0 && timer == 1) {
+ 370              		.loc 1 149 0
+ 371 0050 724B     		ldr	r3, .L41+32
+ 372 0052 1B68     		ldr	r3, [r3]
+ 373 0054 002B     		cmp	r3, #0
+ 374 0056 0DD1     		bne	.L20
+ 375              		.loc 1 149 0 is_stmt 0 discriminator 1
+ 376 0058 714B     		ldr	r3, .L41+36
+ 377 005a 1B68     		ldr	r3, [r3]
+ 378 005c 012B     		cmp	r3, #1
+ 379 005e 09D1     		bne	.L20
+ 150:main.c        ****                 cleanState(); // Alle rot
+ 380              		.loc 1 150 0 is_stmt 1
+ 381 0060 FFF7FEFF 		bl	cleanState
+ 151:main.c        ****                 zustand++;
+ 382              		.loc 1 151 0
+ 383 0064 6D4B     		ldr	r3, .L41+32
+ 384 0066 1B68     		ldr	r3, [r3]
+ 385 0068 0133     		adds	r3, r3, #1
+ 386 006a 6C4A     		ldr	r2, .L41+32
+ 387 006c 1360     		str	r3, [r2]
+ 152:main.c        ****                 timer = 0;
+ 388              		.loc 1 152 0
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccCXRjL6.s 			page 11
 
 
- 390 0078 012B     		cmp	r3, #1
- 391 007a 0DD1     		bne	.L21
- 392              		.loc 1 151 0 is_stmt 0 discriminator 1
- 393 007c 684B     		ldr	r3, .L41+36
- 394 007e 1B68     		ldr	r3, [r3]
- 395 0080 012B     		cmp	r3, #1
- 396 0082 09D1     		bne	.L21
- 152:main.c        ****                 prepareNorthSouthToDrive();
- 397              		.loc 1 152 0 is_stmt 1
- 398 0084 FFF7FEFF 		bl	prepareNorthSouthToDrive
- 153:main.c        ****                 zustand++;
- 399              		.loc 1 153 0
- 400 0088 644B     		ldr	r3, .L41+32
- 401 008a 1B68     		ldr	r3, [r3]
- 402 008c 0133     		adds	r3, r3, #1
- 403 008e 634A     		ldr	r2, .L41+32
- 404 0090 1360     		str	r3, [r2]
- 154:main.c        ****                 timer = 0;               
- 405              		.loc 1 154 0
- 406 0092 634B     		ldr	r3, .L41+36
- 407 0094 0022     		movs	r2, #0
- 408 0096 1A60     		str	r2, [r3]
- 409              	.L21:
- 155:main.c        ****             }            
- 156:main.c        ****             if(zustand == 2 && timer == 1) {
- 410              		.loc 1 156 0
- 411 0098 604B     		ldr	r3, .L41+32
- 412 009a 1B68     		ldr	r3, [r3]
- 413 009c 022B     		cmp	r3, #2
- 414 009e 0DD1     		bne	.L22
- 415              		.loc 1 156 0 is_stmt 0 discriminator 1
- 416 00a0 5F4B     		ldr	r3, .L41+36
- 417 00a2 1B68     		ldr	r3, [r3]
- 418 00a4 012B     		cmp	r3, #1
- 419 00a6 09D1     		bne	.L22
- 157:main.c        ****                 allowNorthSouthToDrive();
- 420              		.loc 1 157 0 is_stmt 1
- 421 00a8 FFF7FEFF 		bl	allowNorthSouthToDrive
- 158:main.c        ****                 zustand++;
- 422              		.loc 1 158 0
- 423 00ac 5B4B     		ldr	r3, .L41+32
- 424 00ae 1B68     		ldr	r3, [r3]
- 425 00b0 0133     		adds	r3, r3, #1
- 426 00b2 5A4A     		ldr	r2, .L41+32
- 427 00b4 1360     		str	r3, [r2]
- 159:main.c        ****                 timer = 0;
- 428              		.loc 1 159 0
- 429 00b6 5A4B     		ldr	r3, .L41+36
- 430 00b8 0022     		movs	r2, #0
- 431 00ba 1A60     		str	r2, [r3]
- 432              	.L22:
- 160:main.c        ****             }            
- 161:main.c        ****             if(zustand == 3 && timer == 3) {
- 433              		.loc 1 161 0
- 434 00bc 574B     		ldr	r3, .L41+32
- 435 00be 1B68     		ldr	r3, [r3]
- 436 00c0 032B     		cmp	r3, #3
-ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccnAHIBf.s 			page 12
+ 389 006e 6C4B     		ldr	r3, .L41+36
+ 390 0070 0022     		movs	r2, #0
+ 391 0072 1A60     		str	r2, [r3]
+ 392              	.L20:
+ 153:main.c        ****             }           
+ 154:main.c        ****             if(zustand == 1 && timer == 1) {               
+ 393              		.loc 1 154 0
+ 394 0074 694B     		ldr	r3, .L41+32
+ 395 0076 1B68     		ldr	r3, [r3]
+ 396 0078 012B     		cmp	r3, #1
+ 397 007a 0DD1     		bne	.L21
+ 398              		.loc 1 154 0 is_stmt 0 discriminator 1
+ 399 007c 684B     		ldr	r3, .L41+36
+ 400 007e 1B68     		ldr	r3, [r3]
+ 401 0080 012B     		cmp	r3, #1
+ 402 0082 09D1     		bne	.L21
+ 155:main.c        ****                 prepareNorthSouthToDrive();
+ 403              		.loc 1 155 0 is_stmt 1
+ 404 0084 FFF7FEFF 		bl	prepareNorthSouthToDrive
+ 156:main.c        ****                 zustand++;
+ 405              		.loc 1 156 0
+ 406 0088 644B     		ldr	r3, .L41+32
+ 407 008a 1B68     		ldr	r3, [r3]
+ 408 008c 0133     		adds	r3, r3, #1
+ 409 008e 634A     		ldr	r2, .L41+32
+ 410 0090 1360     		str	r3, [r2]
+ 157:main.c        ****                 timer = 0;               
+ 411              		.loc 1 157 0
+ 412 0092 634B     		ldr	r3, .L41+36
+ 413 0094 0022     		movs	r2, #0
+ 414 0096 1A60     		str	r2, [r3]
+ 415              	.L21:
+ 158:main.c        ****             }            
+ 159:main.c        ****             if(zustand == 2 && timer == 1) {
+ 416              		.loc 1 159 0
+ 417 0098 604B     		ldr	r3, .L41+32
+ 418 009a 1B68     		ldr	r3, [r3]
+ 419 009c 022B     		cmp	r3, #2
+ 420 009e 0DD1     		bne	.L22
+ 421              		.loc 1 159 0 is_stmt 0 discriminator 1
+ 422 00a0 5F4B     		ldr	r3, .L41+36
+ 423 00a2 1B68     		ldr	r3, [r3]
+ 424 00a4 012B     		cmp	r3, #1
+ 425 00a6 09D1     		bne	.L22
+ 160:main.c        ****                 allowNorthSouthToDrive();
+ 426              		.loc 1 160 0 is_stmt 1
+ 427 00a8 FFF7FEFF 		bl	allowNorthSouthToDrive
+ 161:main.c        ****                 zustand++;
+ 428              		.loc 1 161 0
+ 429 00ac 5B4B     		ldr	r3, .L41+32
+ 430 00ae 1B68     		ldr	r3, [r3]
+ 431 00b0 0133     		adds	r3, r3, #1
+ 432 00b2 5A4A     		ldr	r2, .L41+32
+ 433 00b4 1360     		str	r3, [r2]
+ 162:main.c        ****                 timer = 0;
+ 434              		.loc 1 162 0
+ 435 00b6 5A4B     		ldr	r3, .L41+36
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccCXRjL6.s 			page 12
 
 
- 437 00c2 0DD1     		bne	.L23
- 438              		.loc 1 161 0 is_stmt 0 discriminator 1
- 439 00c4 564B     		ldr	r3, .L41+36
- 440 00c6 1B68     		ldr	r3, [r3]
- 441 00c8 032B     		cmp	r3, #3
- 442 00ca 09D1     		bne	.L23
- 162:main.c        ****                 prepareNorthSouthToStop();
- 443              		.loc 1 162 0 is_stmt 1
- 444 00cc FFF7FEFF 		bl	prepareNorthSouthToStop
- 163:main.c        ****                 zustand++;
- 445              		.loc 1 163 0
- 446 00d0 524B     		ldr	r3, .L41+32
- 447 00d2 1B68     		ldr	r3, [r3]
- 448 00d4 0133     		adds	r3, r3, #1
- 449 00d6 514A     		ldr	r2, .L41+32
- 450 00d8 1360     		str	r3, [r2]
- 164:main.c        ****                 timer = 0;
- 451              		.loc 1 164 0
- 452 00da 514B     		ldr	r3, .L41+36
- 453 00dc 0022     		movs	r2, #0
- 454 00de 1A60     		str	r2, [r3]
- 455              	.L23:
- 165:main.c        ****             }
- 166:main.c        ****             if(zustand == 4 && timer == 1) {
- 456              		.loc 1 166 0
- 457 00e0 4E4B     		ldr	r3, .L41+32
- 458 00e2 1B68     		ldr	r3, [r3]
- 459 00e4 042B     		cmp	r3, #4
- 460 00e6 0DD1     		bne	.L24
- 461              		.loc 1 166 0 is_stmt 0 discriminator 1
- 462 00e8 4D4B     		ldr	r3, .L41+36
- 463 00ea 1B68     		ldr	r3, [r3]
- 464 00ec 012B     		cmp	r3, #1
- 465 00ee 09D1     		bne	.L24
- 167:main.c        ****                 cleanState();
- 466              		.loc 1 167 0 is_stmt 1
- 467 00f0 FFF7FEFF 		bl	cleanState
- 168:main.c        ****                 zustand++;
- 468              		.loc 1 168 0
- 469 00f4 494B     		ldr	r3, .L41+32
- 470 00f6 1B68     		ldr	r3, [r3]
- 471 00f8 0133     		adds	r3, r3, #1
- 472 00fa 484A     		ldr	r2, .L41+32
- 473 00fc 1360     		str	r3, [r2]
- 169:main.c        ****                 timer = 0;
- 474              		.loc 1 169 0
- 475 00fe 484B     		ldr	r3, .L41+36
- 476 0100 0022     		movs	r2, #0
- 477 0102 1A60     		str	r2, [r3]
- 478              	.L24:
- 170:main.c        ****             }            
- 171:main.c        ****             if(zustand == 5 && timer == 1) {
- 479              		.loc 1 171 0
- 480 0104 454B     		ldr	r3, .L41+32
- 481 0106 1B68     		ldr	r3, [r3]
- 482 0108 052B     		cmp	r3, #5
- 483 010a 0DD1     		bne	.L25
-ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccnAHIBf.s 			page 13
+ 436 00b8 0022     		movs	r2, #0
+ 437 00ba 1A60     		str	r2, [r3]
+ 438              	.L22:
+ 163:main.c        ****             }            
+ 164:main.c        ****             if(zustand == 3 && timer == 3) {
+ 439              		.loc 1 164 0
+ 440 00bc 574B     		ldr	r3, .L41+32
+ 441 00be 1B68     		ldr	r3, [r3]
+ 442 00c0 032B     		cmp	r3, #3
+ 443 00c2 0DD1     		bne	.L23
+ 444              		.loc 1 164 0 is_stmt 0 discriminator 1
+ 445 00c4 564B     		ldr	r3, .L41+36
+ 446 00c6 1B68     		ldr	r3, [r3]
+ 447 00c8 032B     		cmp	r3, #3
+ 448 00ca 09D1     		bne	.L23
+ 165:main.c        ****                 prepareNorthSouthToStop();
+ 449              		.loc 1 165 0 is_stmt 1
+ 450 00cc FFF7FEFF 		bl	prepareNorthSouthToStop
+ 166:main.c        ****                 zustand++;
+ 451              		.loc 1 166 0
+ 452 00d0 524B     		ldr	r3, .L41+32
+ 453 00d2 1B68     		ldr	r3, [r3]
+ 454 00d4 0133     		adds	r3, r3, #1
+ 455 00d6 514A     		ldr	r2, .L41+32
+ 456 00d8 1360     		str	r3, [r2]
+ 167:main.c        ****                 timer = 0;
+ 457              		.loc 1 167 0
+ 458 00da 514B     		ldr	r3, .L41+36
+ 459 00dc 0022     		movs	r2, #0
+ 460 00de 1A60     		str	r2, [r3]
+ 461              	.L23:
+ 168:main.c        ****             }
+ 169:main.c        ****             if(zustand == 4 && timer == 1) {
+ 462              		.loc 1 169 0
+ 463 00e0 4E4B     		ldr	r3, .L41+32
+ 464 00e2 1B68     		ldr	r3, [r3]
+ 465 00e4 042B     		cmp	r3, #4
+ 466 00e6 0DD1     		bne	.L24
+ 467              		.loc 1 169 0 is_stmt 0 discriminator 1
+ 468 00e8 4D4B     		ldr	r3, .L41+36
+ 469 00ea 1B68     		ldr	r3, [r3]
+ 470 00ec 012B     		cmp	r3, #1
+ 471 00ee 09D1     		bne	.L24
+ 170:main.c        ****                 cleanState();
+ 472              		.loc 1 170 0 is_stmt 1
+ 473 00f0 FFF7FEFF 		bl	cleanState
+ 171:main.c        ****                 zustand++;
+ 474              		.loc 1 171 0
+ 475 00f4 494B     		ldr	r3, .L41+32
+ 476 00f6 1B68     		ldr	r3, [r3]
+ 477 00f8 0133     		adds	r3, r3, #1
+ 478 00fa 484A     		ldr	r2, .L41+32
+ 479 00fc 1360     		str	r3, [r2]
+ 172:main.c        ****                 timer = 0;
+ 480              		.loc 1 172 0
+ 481 00fe 484B     		ldr	r3, .L41+36
+ 482 0100 0022     		movs	r2, #0
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccCXRjL6.s 			page 13
 
 
- 484              		.loc 1 171 0 is_stmt 0 discriminator 1
- 485 010c 444B     		ldr	r3, .L41+36
- 486 010e 1B68     		ldr	r3, [r3]
- 487 0110 012B     		cmp	r3, #1
- 488 0112 09D1     		bne	.L25
- 172:main.c        ****                 prepareEastWestToDrive();
- 489              		.loc 1 172 0 is_stmt 1
- 490 0114 FFF7FEFF 		bl	prepareEastWestToDrive
- 173:main.c        ****                 zustand++;
- 491              		.loc 1 173 0
- 492 0118 404B     		ldr	r3, .L41+32
- 493 011a 1B68     		ldr	r3, [r3]
- 494 011c 0133     		adds	r3, r3, #1
- 495 011e 3F4A     		ldr	r2, .L41+32
- 496 0120 1360     		str	r3, [r2]
- 174:main.c        ****                 timer = 0;
- 497              		.loc 1 174 0
- 498 0122 3F4B     		ldr	r3, .L41+36
- 499 0124 0022     		movs	r2, #0
- 500 0126 1A60     		str	r2, [r3]
- 501              	.L25:
- 175:main.c        ****             }            
- 176:main.c        ****             if(zustand == 6 && timer == 1) {
- 502              		.loc 1 176 0
- 503 0128 3C4B     		ldr	r3, .L41+32
- 504 012a 1B68     		ldr	r3, [r3]
- 505 012c 062B     		cmp	r3, #6
- 506 012e 0DD1     		bne	.L26
- 507              		.loc 1 176 0 is_stmt 0 discriminator 1
- 508 0130 3B4B     		ldr	r3, .L41+36
- 509 0132 1B68     		ldr	r3, [r3]
- 510 0134 012B     		cmp	r3, #1
- 511 0136 09D1     		bne	.L26
- 177:main.c        ****                 allowEastWestToDrive();
- 512              		.loc 1 177 0 is_stmt 1
- 513 0138 FFF7FEFF 		bl	allowEastWestToDrive
- 178:main.c        ****                 zustand++;
- 514              		.loc 1 178 0
- 515 013c 374B     		ldr	r3, .L41+32
- 516 013e 1B68     		ldr	r3, [r3]
- 517 0140 0133     		adds	r3, r3, #1
- 518 0142 364A     		ldr	r2, .L41+32
- 519 0144 1360     		str	r3, [r2]
- 179:main.c        ****                 timer = 0;
- 520              		.loc 1 179 0
- 521 0146 364B     		ldr	r3, .L41+36
- 522 0148 0022     		movs	r2, #0
- 523 014a 1A60     		str	r2, [r3]
- 524              	.L26:
- 180:main.c        ****             }           
- 181:main.c        ****             if(zustand == 7 && timer == 2) {
- 525              		.loc 1 181 0
- 526 014c 334B     		ldr	r3, .L41+32
- 527 014e 1B68     		ldr	r3, [r3]
- 528 0150 072B     		cmp	r3, #7
- 529 0152 0BD1     		bne	.L19
- 530              		.loc 1 181 0 is_stmt 0 discriminator 1
-ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccnAHIBf.s 			page 14
+ 483 0102 1A60     		str	r2, [r3]
+ 484              	.L24:
+ 173:main.c        ****             }            
+ 174:main.c        ****             if(zustand == 5 && timer == 1) {
+ 485              		.loc 1 174 0
+ 486 0104 454B     		ldr	r3, .L41+32
+ 487 0106 1B68     		ldr	r3, [r3]
+ 488 0108 052B     		cmp	r3, #5
+ 489 010a 0DD1     		bne	.L25
+ 490              		.loc 1 174 0 is_stmt 0 discriminator 1
+ 491 010c 444B     		ldr	r3, .L41+36
+ 492 010e 1B68     		ldr	r3, [r3]
+ 493 0110 012B     		cmp	r3, #1
+ 494 0112 09D1     		bne	.L25
+ 175:main.c        ****                 prepareEastWestToDrive();
+ 495              		.loc 1 175 0 is_stmt 1
+ 496 0114 FFF7FEFF 		bl	prepareEastWestToDrive
+ 176:main.c        ****                 zustand++;
+ 497              		.loc 1 176 0
+ 498 0118 404B     		ldr	r3, .L41+32
+ 499 011a 1B68     		ldr	r3, [r3]
+ 500 011c 0133     		adds	r3, r3, #1
+ 501 011e 3F4A     		ldr	r2, .L41+32
+ 502 0120 1360     		str	r3, [r2]
+ 177:main.c        ****                 timer = 0;
+ 503              		.loc 1 177 0
+ 504 0122 3F4B     		ldr	r3, .L41+36
+ 505 0124 0022     		movs	r2, #0
+ 506 0126 1A60     		str	r2, [r3]
+ 507              	.L25:
+ 178:main.c        ****             }            
+ 179:main.c        ****             if(zustand == 6 && timer == 1) {
+ 508              		.loc 1 179 0
+ 509 0128 3C4B     		ldr	r3, .L41+32
+ 510 012a 1B68     		ldr	r3, [r3]
+ 511 012c 062B     		cmp	r3, #6
+ 512 012e 0DD1     		bne	.L26
+ 513              		.loc 1 179 0 is_stmt 0 discriminator 1
+ 514 0130 3B4B     		ldr	r3, .L41+36
+ 515 0132 1B68     		ldr	r3, [r3]
+ 516 0134 012B     		cmp	r3, #1
+ 517 0136 09D1     		bne	.L26
+ 180:main.c        ****                 allowEastWestToDrive();
+ 518              		.loc 1 180 0 is_stmt 1
+ 519 0138 FFF7FEFF 		bl	allowEastWestToDrive
+ 181:main.c        ****                 zustand++;
+ 520              		.loc 1 181 0
+ 521 013c 374B     		ldr	r3, .L41+32
+ 522 013e 1B68     		ldr	r3, [r3]
+ 523 0140 0133     		adds	r3, r3, #1
+ 524 0142 364A     		ldr	r2, .L41+32
+ 525 0144 1360     		str	r3, [r2]
+ 182:main.c        ****                 timer = 0;
+ 526              		.loc 1 182 0
+ 527 0146 364B     		ldr	r3, .L41+36
+ 528 0148 0022     		movs	r2, #0
+ 529 014a 1A60     		str	r2, [r3]
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccCXRjL6.s 			page 14
 
 
- 531 0154 324B     		ldr	r3, .L41+36
- 532 0156 1B68     		ldr	r3, [r3]
- 533 0158 022B     		cmp	r3, #2
- 534 015a 07D1     		bne	.L19
- 182:main.c        ****                 prepareEastWestToStop();
- 535              		.loc 1 182 0 is_stmt 1
- 536 015c FFF7FEFF 		bl	prepareEastWestToStop
- 183:main.c        ****                 zustand = 0;
- 537              		.loc 1 183 0
- 538 0160 2E4B     		ldr	r3, .L41+32
- 539 0162 0022     		movs	r2, #0
- 540 0164 1A60     		str	r2, [r3]
- 184:main.c        ****                 timer = 0;
- 541              		.loc 1 184 0
- 542 0166 2E4B     		ldr	r3, .L41+36
- 543 0168 0022     		movs	r2, #0
- 544 016a 1A60     		str	r2, [r3]
- 545              	.L19:
- 185:main.c        ****             }
- 186:main.c        ****         }
- 187:main.c        **** //        /* Fußgänger-Anforderung Ampel */        
- 188:main.c        **** //        // Behandlung Button-Ereignis aus ISR
- 189:main.c        ****         if(fCWEW_Isr){
- 546              		.loc 1 189 0
- 547 016c 2D4B     		ldr	r3, .L41+40
- 548 016e 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
- 549 0170 002B     		cmp	r3, #0
- 550 0172 34D0     		beq	.L27
- 190:main.c        ****             // fast foward to turn on led Fuß ost-west
- 191:main.c        ****             if (zustand == 0) { // alle rot -> direkt NORD-SÜD auf gelb -> state 2 wird aktiviert
- 551              		.loc 1 191 0
- 552 0174 294B     		ldr	r3, .L41+32
- 553 0176 1B68     		ldr	r3, [r3]
- 554 0178 002B     		cmp	r3, #0
- 555 017a 07D1     		bne	.L28
- 192:main.c        ****                 prepareNorthSouthToDrive();
- 556              		.loc 1 192 0
- 557 017c FFF7FEFF 		bl	prepareNorthSouthToDrive
- 193:main.c        ****                 zustand = 2;
- 558              		.loc 1 193 0
- 559 0180 264B     		ldr	r3, .L41+32
- 560 0182 0222     		movs	r2, #2
- 561 0184 1A60     		str	r2, [r3]
- 194:main.c        ****                 timer = 0;
- 562              		.loc 1 194 0
- 563 0186 264B     		ldr	r3, .L41+36
- 564 0188 0022     		movs	r2, #0
- 565 018a 1A60     		str	r2, [r3]
- 566              	.L28:
- 195:main.c        ****             }          
- 196:main.c        ****             // led Fuß ost-west lasts longer
- 197:main.c        ****             if (zustand == 3 && timer < 3) {
- 567              		.loc 1 197 0
- 568 018c 234B     		ldr	r3, .L41+32
- 569 018e 1B68     		ldr	r3, [r3]
- 570 0190 032B     		cmp	r3, #3
- 571 0192 08D1     		bne	.L29
-ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccnAHIBf.s 			page 15
+ 530              	.L26:
+ 183:main.c        ****             }           
+ 184:main.c        ****             if(zustand == 7 && timer == 2) {
+ 531              		.loc 1 184 0
+ 532 014c 334B     		ldr	r3, .L41+32
+ 533 014e 1B68     		ldr	r3, [r3]
+ 534 0150 072B     		cmp	r3, #7
+ 535 0152 0BD1     		bne	.L19
+ 536              		.loc 1 184 0 is_stmt 0 discriminator 1
+ 537 0154 324B     		ldr	r3, .L41+36
+ 538 0156 1B68     		ldr	r3, [r3]
+ 539 0158 022B     		cmp	r3, #2
+ 540 015a 07D1     		bne	.L19
+ 185:main.c        ****                 prepareEastWestToStop();
+ 541              		.loc 1 185 0 is_stmt 1
+ 542 015c FFF7FEFF 		bl	prepareEastWestToStop
+ 186:main.c        ****                 zustand = 0;
+ 543              		.loc 1 186 0
+ 544 0160 2E4B     		ldr	r3, .L41+32
+ 545 0162 0022     		movs	r2, #0
+ 546 0164 1A60     		str	r2, [r3]
+ 187:main.c        ****                 timer = 0;
+ 547              		.loc 1 187 0
+ 548 0166 2E4B     		ldr	r3, .L41+36
+ 549 0168 0022     		movs	r2, #0
+ 550 016a 1A60     		str	r2, [r3]
+ 551              	.L19:
+ 188:main.c        ****             }
+ 189:main.c        ****         }
+ 190:main.c        **** //        /* Fußgänger-Anforderung Ampel */        
+ 191:main.c        **** //        // Behandlung Button-Ereignis aus ISR
+ 192:main.c        ****         if(fCWEW_Isr){
+ 552              		.loc 1 192 0
+ 553 016c 2D4B     		ldr	r3, .L41+40
+ 554 016e 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 555 0170 002B     		cmp	r3, #0
+ 556 0172 34D0     		beq	.L27
+ 193:main.c        ****             // fast foward to turn on led Fuß ost-west
+ 194:main.c        ****             if (zustand == 0) { // alle rot -> direkt NORD-SÜD auf gelb -> state 2 wird aktiviert
+ 557              		.loc 1 194 0
+ 558 0174 294B     		ldr	r3, .L41+32
+ 559 0176 1B68     		ldr	r3, [r3]
+ 560 0178 002B     		cmp	r3, #0
+ 561 017a 07D1     		bne	.L28
+ 195:main.c        ****                 prepareNorthSouthToDrive();
+ 562              		.loc 1 195 0
+ 563 017c FFF7FEFF 		bl	prepareNorthSouthToDrive
+ 196:main.c        ****                 zustand = 2;
+ 564              		.loc 1 196 0
+ 565 0180 264B     		ldr	r3, .L41+32
+ 566 0182 0222     		movs	r2, #2
+ 567 0184 1A60     		str	r2, [r3]
+ 197:main.c        ****                 timer = 0;
+ 568              		.loc 1 197 0
+ 569 0186 264B     		ldr	r3, .L41+36
+ 570 0188 0022     		movs	r2, #0
+ 571 018a 1A60     		str	r2, [r3]
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccCXRjL6.s 			page 15
 
 
- 572              		.loc 1 197 0 is_stmt 0 discriminator 1
- 573 0194 224B     		ldr	r3, .L41+36
- 574 0196 1B68     		ldr	r3, [r3]
- 575 0198 022B     		cmp	r3, #2
- 576 019a 04D8     		bhi	.L29
- 198:main.c        ****                 timer = timer - 2;
- 577              		.loc 1 198 0 is_stmt 1
- 578 019c 204B     		ldr	r3, .L41+36
- 579 019e 1B68     		ldr	r3, [r3]
- 580 01a0 023B     		subs	r3, r3, #2
- 581 01a2 1F4A     		ldr	r2, .L41+36
- 582 01a4 1360     		str	r3, [r2]
- 583              	.L29:
- 199:main.c        ****             }            
- 200:main.c        ****             // fast foward for led fuß nord - süd
- 201:main.c        ****             if (zustand == 4) { // alle rot -> direkt OST-WEST auf gelb -> state 6 wird aktiviert
- 584              		.loc 1 201 0
- 585 01a6 1D4B     		ldr	r3, .L41+32
- 586 01a8 1B68     		ldr	r3, [r3]
- 587 01aa 042B     		cmp	r3, #4
- 588 01ac 07D1     		bne	.L30
- 202:main.c        ****                 prepareEastWestToDrive();
- 589              		.loc 1 202 0
- 590 01ae FFF7FEFF 		bl	prepareEastWestToDrive
- 203:main.c        ****                 zustand = 6;
- 591              		.loc 1 203 0
- 592 01b2 1A4B     		ldr	r3, .L41+32
- 593 01b4 0622     		movs	r2, #6
- 594 01b6 1A60     		str	r2, [r3]
- 204:main.c        ****                 timer = 0;
- 595              		.loc 1 204 0
- 596 01b8 194B     		ldr	r3, .L41+36
- 597 01ba 0022     		movs	r2, #0
- 598 01bc 1A60     		str	r2, [r3]
- 599              	.L30:
- 205:main.c        ****             }
- 206:main.c        ****             // led Fuß nord - süd lasts longer
- 207:main.c        ****             if (zustand == 7 && timer < 2) {
- 600              		.loc 1 207 0
- 601 01be 174B     		ldr	r3, .L41+32
- 602 01c0 1B68     		ldr	r3, [r3]
- 603 01c2 072B     		cmp	r3, #7
- 604 01c4 08D1     		bne	.L31
- 605              		.loc 1 207 0 is_stmt 0 discriminator 1
- 606 01c6 164B     		ldr	r3, .L41+36
- 607 01c8 1B68     		ldr	r3, [r3]
- 608 01ca 012B     		cmp	r3, #1
- 609 01cc 04D8     		bhi	.L31
- 208:main.c        ****                 timer = timer - 2;
- 610              		.loc 1 208 0 is_stmt 1
- 611 01ce 144B     		ldr	r3, .L41+36
- 612 01d0 1B68     		ldr	r3, [r3]
- 613 01d2 023B     		subs	r3, r3, #2
- 614 01d4 124A     		ldr	r2, .L41+36
- 615 01d6 1360     		str	r3, [r2]
- 616              	.L31:
- 209:main.c        ****             }
-ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccnAHIBf.s 			page 16
+ 572              	.L28:
+ 198:main.c        ****             }          
+ 199:main.c        ****             // led Fuß ost-west lasts longer
+ 200:main.c        ****             if (zustand == 3 && timer < 3) {
+ 573              		.loc 1 200 0
+ 574 018c 234B     		ldr	r3, .L41+32
+ 575 018e 1B68     		ldr	r3, [r3]
+ 576 0190 032B     		cmp	r3, #3
+ 577 0192 08D1     		bne	.L29
+ 578              		.loc 1 200 0 is_stmt 0 discriminator 1
+ 579 0194 224B     		ldr	r3, .L41+36
+ 580 0196 1B68     		ldr	r3, [r3]
+ 581 0198 022B     		cmp	r3, #2
+ 582 019a 04D8     		bhi	.L29
+ 201:main.c        ****                 timer = timer - 2;
+ 583              		.loc 1 201 0 is_stmt 1
+ 584 019c 204B     		ldr	r3, .L41+36
+ 585 019e 1B68     		ldr	r3, [r3]
+ 586 01a0 023B     		subs	r3, r3, #2
+ 587 01a2 1F4A     		ldr	r2, .L41+36
+ 588 01a4 1360     		str	r3, [r2]
+ 589              	.L29:
+ 202:main.c        ****             }            
+ 203:main.c        ****             // fast foward for led fuß nord - süd
+ 204:main.c        ****             if (zustand == 4) { // alle rot -> direkt OST-WEST auf gelb -> state 6 wird aktiviert
+ 590              		.loc 1 204 0
+ 591 01a6 1D4B     		ldr	r3, .L41+32
+ 592 01a8 1B68     		ldr	r3, [r3]
+ 593 01aa 042B     		cmp	r3, #4
+ 594 01ac 07D1     		bne	.L30
+ 205:main.c        ****                 prepareEastWestToDrive();
+ 595              		.loc 1 205 0
+ 596 01ae FFF7FEFF 		bl	prepareEastWestToDrive
+ 206:main.c        ****                 zustand = 6;
+ 597              		.loc 1 206 0
+ 598 01b2 1A4B     		ldr	r3, .L41+32
+ 599 01b4 0622     		movs	r2, #6
+ 600 01b6 1A60     		str	r2, [r3]
+ 207:main.c        ****                 timer = 0;
+ 601              		.loc 1 207 0
+ 602 01b8 194B     		ldr	r3, .L41+36
+ 603 01ba 0022     		movs	r2, #0
+ 604 01bc 1A60     		str	r2, [r3]
+ 605              	.L30:
+ 208:main.c        ****             }
+ 209:main.c        ****             // led Fuß nord - süd lasts longer
+ 210:main.c        ****             if (zustand == 7 && timer < 2) {
+ 606              		.loc 1 210 0
+ 607 01be 174B     		ldr	r3, .L41+32
+ 608 01c0 1B68     		ldr	r3, [r3]
+ 609 01c2 072B     		cmp	r3, #7
+ 610 01c4 08D1     		bne	.L31
+ 611              		.loc 1 210 0 is_stmt 0 discriminator 1
+ 612 01c6 164B     		ldr	r3, .L41+36
+ 613 01c8 1B68     		ldr	r3, [r3]
+ 614 01ca 012B     		cmp	r3, #1
+ 615 01cc 04D8     		bhi	.L31
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccCXRjL6.s 			page 16
 
 
- 210:main.c        ****             fCWEW_Isr = 0; // Wieder auf Null!
- 617              		.loc 1 210 0
- 618 01d8 124B     		ldr	r3, .L41+40
- 619 01da 0022     		movs	r2, #0
- 620 01dc 1A70     		strb	r2, [r3]
- 621              	.L27:
- 211:main.c        ****         }
- 212:main.c        **** 
- 213:main.c        ****         /* 
- 214:main.c        ****          * Character aus Uart ISR abfragen 
- 215:main.c        ****          * Beispiel für Menuesteuerung
- 216:main.c        ****          */
- 217:main.c        ****         if ( cRx ) {
- 622              		.loc 1 217 0
- 623 01de 0D4B     		ldr	r3, .L41+24
- 624 01e0 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
- 625 01e2 002B     		cmp	r3, #0
- 626 01e4 3FF42CAF 		beq	.L40
- 627              	.LBB2:
- 218:main.c        ****             char c = cRx;   // copy char
- 628              		.loc 1 218 0
- 629 01e8 0A4B     		ldr	r3, .L41+24
- 630 01ea 1B78     		ldrb	r3, [r3]
- 631 01ec FB71     		strb	r3, [r7, #7]
- 219:main.c        ****             cRx = 0;        // nicht vergessen!!! Warum?
- 632              		.loc 1 219 0
- 633 01ee 094B     		ldr	r3, .L41+24
- 634 01f0 0022     		movs	r2, #0
- 635 01f2 1A70     		strb	r2, [r3]
- 220:main.c        ****             // +++ Menuesteuerung +++
- 221:main.c        ****             switch ( c ) {
- 636              		.loc 1 221 0
- 637 01f4 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
- 638 01f6 2B3B     		subs	r3, r3, #43
- 639 01f8 16E0     		b	.L42
- 640              	.L43:
- 641 01fa 00BF     		.align	2
- 642              	.L41:
- 643 01fc 00000000 		.word	MyIsrUartRX
- 644 0200 00000000 		.word	MyIsrCWEW
- 645 0204 00000000 		.word	IsrAppClk
- 646 0208 00000000 		.word	.LC0
- 647 020c 70000000 		.word	.LC1
- 648 0210 00000000 		.word	buffer
- 649 0214 80000000 		.word	cRx
- 650 0218 82000000 		.word	fsClock
- 651 021c 8C000000 		.word	zustand
- 652 0220 88000000 		.word	timer
- 653 0224 81000000 		.word	fCWEW_Isr
- 654              	.L42:
- 655 0228 462B     		cmp	r3, #70
- 656 022a 00F2B880 		bhi	.L33
- 657 022e 01A2     		adr	r2, .L35
- 658 0230 52F823F0 		ldr	pc, [r2, r3, lsl #2]
- 659              		.p2align 2
- 660              	.L35:
- 661 0234 67030000 		.word	.L34+1
-ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccnAHIBf.s 			page 17
+ 211:main.c        ****                 timer = timer - 2;
+ 616              		.loc 1 211 0 is_stmt 1
+ 617 01ce 144B     		ldr	r3, .L41+36
+ 618 01d0 1B68     		ldr	r3, [r3]
+ 619 01d2 023B     		subs	r3, r3, #2
+ 620 01d4 124A     		ldr	r2, .L41+36
+ 621 01d6 1360     		str	r3, [r2]
+ 622              	.L31:
+ 212:main.c        ****             }
+ 213:main.c        ****             fCWEW_Isr = 0; // Wieder auf Null!
+ 623              		.loc 1 213 0
+ 624 01d8 124B     		ldr	r3, .L41+40
+ 625 01da 0022     		movs	r2, #0
+ 626 01dc 1A70     		strb	r2, [r3]
+ 627              	.L27:
+ 214:main.c        ****         }
+ 215:main.c        **** 
+ 216:main.c        ****         /* 
+ 217:main.c        ****          * Character aus Uart ISR abfragen 
+ 218:main.c        ****          * Beispiel für Menuesteuerung
+ 219:main.c        ****          */
+ 220:main.c        ****         if ( cRx ) {
+ 628              		.loc 1 220 0
+ 629 01de 0D4B     		ldr	r3, .L41+24
+ 630 01e0 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 631 01e2 002B     		cmp	r3, #0
+ 632 01e4 3FF42CAF 		beq	.L40
+ 633              	.LBB2:
+ 221:main.c        ****             char c = cRx;   // copy char
+ 634              		.loc 1 221 0
+ 635 01e8 0A4B     		ldr	r3, .L41+24
+ 636 01ea 1B78     		ldrb	r3, [r3]
+ 637 01ec FB71     		strb	r3, [r7, #7]
+ 222:main.c        ****             cRx = 0;        // nicht vergessen!!! Warum?
+ 638              		.loc 1 222 0
+ 639 01ee 094B     		ldr	r3, .L41+24
+ 640 01f0 0022     		movs	r2, #0
+ 641 01f2 1A70     		strb	r2, [r3]
+ 223:main.c        ****             // +++ Menuesteuerung +++
+ 224:main.c        ****             switch ( c ) {
+ 642              		.loc 1 224 0
+ 643 01f4 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 644 01f6 2B3B     		subs	r3, r3, #43
+ 645 01f8 16E0     		b	.L42
+ 646              	.L43:
+ 647 01fa 00BF     		.align	2
+ 648              	.L41:
+ 649 01fc 00000000 		.word	MyIsrUartRX
+ 650 0200 00000000 		.word	MyIsrCWEW
+ 651 0204 00000000 		.word	IsrAppClk
+ 652 0208 00000000 		.word	.LC0
+ 653 020c 70000000 		.word	.LC1
+ 654 0210 00000000 		.word	buffer
+ 655 0214 80000000 		.word	cRx
+ 656 0218 82000000 		.word	fsClock
+ 657 021c 8C000000 		.word	zustand
+ 658 0220 88000000 		.word	timer
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccCXRjL6.s 			page 17
 
 
- 662 0238 9F030000 		.word	.L33+1
- 663 023c 83030000 		.word	.L36+1
- 664 0240 9F030000 		.word	.L33+1
- 665 0244 9F030000 		.word	.L33+1
- 666 0248 9F030000 		.word	.L33+1
- 667 024c 9F030000 		.word	.L33+1
- 668 0250 9F030000 		.word	.L33+1
- 669 0254 9F030000 		.word	.L33+1
- 670 0258 9F030000 		.word	.L33+1
- 671 025c 9F030000 		.word	.L33+1
- 672 0260 9F030000 		.word	.L33+1
- 673 0264 9F030000 		.word	.L33+1
- 674 0268 9F030000 		.word	.L33+1
- 675 026c 9F030000 		.word	.L33+1
- 676 0270 9F030000 		.word	.L33+1
- 677 0274 9F030000 		.word	.L33+1
- 678 0278 9F030000 		.word	.L33+1
- 679 027c 9F030000 		.word	.L33+1
- 680 0280 9F030000 		.word	.L33+1
- 681 0284 9F030000 		.word	.L33+1
- 682 0288 9F030000 		.word	.L33+1
- 683 028c 9F030000 		.word	.L33+1
- 684 0290 9F030000 		.word	.L33+1
- 685 0294 9F030000 		.word	.L33+1
- 686 0298 9F030000 		.word	.L33+1
- 687 029c 9F030000 		.word	.L33+1
- 688 02a0 9F030000 		.word	.L33+1
- 689 02a4 9F030000 		.word	.L33+1
- 690 02a8 57030000 		.word	.L37+1
- 691 02ac 9F030000 		.word	.L33+1
- 692 02b0 9F030000 		.word	.L33+1
- 693 02b4 9F030000 		.word	.L33+1
- 694 02b8 9F030000 		.word	.L33+1
- 695 02bc 9F030000 		.word	.L33+1
- 696 02c0 9F030000 		.word	.L33+1
- 697 02c4 9F030000 		.word	.L33+1
- 698 02c8 9F030000 		.word	.L33+1
- 699 02cc 51030000 		.word	.L38+1
- 700 02d0 9F030000 		.word	.L33+1
- 701 02d4 9F030000 		.word	.L33+1
- 702 02d8 9F030000 		.word	.L33+1
- 703 02dc 9F030000 		.word	.L33+1
- 704 02e0 9F030000 		.word	.L33+1
- 705 02e4 9F030000 		.word	.L33+1
- 706 02e8 9F030000 		.word	.L33+1
- 707 02ec 9F030000 		.word	.L33+1
- 708 02f0 9F030000 		.word	.L33+1
- 709 02f4 9F030000 		.word	.L33+1
- 710 02f8 9F030000 		.word	.L33+1
- 711 02fc 9F030000 		.word	.L33+1
- 712 0300 9F030000 		.word	.L33+1
- 713 0304 9F030000 		.word	.L33+1
- 714 0308 9F030000 		.word	.L33+1
- 715 030c 9F030000 		.word	.L33+1
- 716 0310 9F030000 		.word	.L33+1
- 717 0314 5F030000 		.word	.L39+1
- 718 0318 9F030000 		.word	.L33+1
-ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccnAHIBf.s 			page 18
+ 659 0224 81000000 		.word	fCWEW_Isr
+ 660              	.L42:
+ 661 0228 462B     		cmp	r3, #70
+ 662 022a 00F2B880 		bhi	.L33
+ 663 022e 01A2     		adr	r2, .L35
+ 664 0230 52F823F0 		ldr	pc, [r2, r3, lsl #2]
+ 665              		.p2align 2
+ 666              	.L35:
+ 667 0234 67030000 		.word	.L34+1
+ 668 0238 9F030000 		.word	.L33+1
+ 669 023c 83030000 		.word	.L36+1
+ 670 0240 9F030000 		.word	.L33+1
+ 671 0244 9F030000 		.word	.L33+1
+ 672 0248 9F030000 		.word	.L33+1
+ 673 024c 9F030000 		.word	.L33+1
+ 674 0250 9F030000 		.word	.L33+1
+ 675 0254 9F030000 		.word	.L33+1
+ 676 0258 9F030000 		.word	.L33+1
+ 677 025c 9F030000 		.word	.L33+1
+ 678 0260 9F030000 		.word	.L33+1
+ 679 0264 9F030000 		.word	.L33+1
+ 680 0268 9F030000 		.word	.L33+1
+ 681 026c 9F030000 		.word	.L33+1
+ 682 0270 9F030000 		.word	.L33+1
+ 683 0274 9F030000 		.word	.L33+1
+ 684 0278 9F030000 		.word	.L33+1
+ 685 027c 9F030000 		.word	.L33+1
+ 686 0280 9F030000 		.word	.L33+1
+ 687 0284 9F030000 		.word	.L33+1
+ 688 0288 9F030000 		.word	.L33+1
+ 689 028c 9F030000 		.word	.L33+1
+ 690 0290 9F030000 		.word	.L33+1
+ 691 0294 9F030000 		.word	.L33+1
+ 692 0298 9F030000 		.word	.L33+1
+ 693 029c 9F030000 		.word	.L33+1
+ 694 02a0 9F030000 		.word	.L33+1
+ 695 02a4 9F030000 		.word	.L33+1
+ 696 02a8 57030000 		.word	.L37+1
+ 697 02ac 9F030000 		.word	.L33+1
+ 698 02b0 9F030000 		.word	.L33+1
+ 699 02b4 9F030000 		.word	.L33+1
+ 700 02b8 9F030000 		.word	.L33+1
+ 701 02bc 9F030000 		.word	.L33+1
+ 702 02c0 9F030000 		.word	.L33+1
+ 703 02c4 9F030000 		.word	.L33+1
+ 704 02c8 9F030000 		.word	.L33+1
+ 705 02cc 51030000 		.word	.L38+1
+ 706 02d0 9F030000 		.word	.L33+1
+ 707 02d4 9F030000 		.word	.L33+1
+ 708 02d8 9F030000 		.word	.L33+1
+ 709 02dc 9F030000 		.word	.L33+1
+ 710 02e0 9F030000 		.word	.L33+1
+ 711 02e4 9F030000 		.word	.L33+1
+ 712 02e8 9F030000 		.word	.L33+1
+ 713 02ec 9F030000 		.word	.L33+1
+ 714 02f0 9F030000 		.word	.L33+1
+ 715 02f4 9F030000 		.word	.L33+1
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccCXRjL6.s 			page 18
 
 
- 719 031c 9F030000 		.word	.L33+1
- 720 0320 9F030000 		.word	.L33+1
- 721 0324 9F030000 		.word	.L33+1
- 722 0328 57030000 		.word	.L37+1
- 723 032c 9F030000 		.word	.L33+1
- 724 0330 9F030000 		.word	.L33+1
- 725 0334 9F030000 		.word	.L33+1
- 726 0338 9F030000 		.word	.L33+1
- 727 033c 9F030000 		.word	.L33+1
- 728 0340 9F030000 		.word	.L33+1
- 729 0344 9F030000 		.word	.L33+1
- 730 0348 9F030000 		.word	.L33+1
- 731 034c 51030000 		.word	.L38+1
- 732              		.p2align 1
- 733              	.L38:
- 222:main.c        ****                 // Software reset, startet Programm neu
- 223:main.c        ****                 case 'q':
- 224:main.c        ****                 case 'Q':   // fallthrough
- 225:main.c        ****                     CySoftwareReset();
- 734              		.loc 1 225 0
- 735 0350 FFF7FEFF 		bl	CySoftwareReset
- 226:main.c        ****                     break;
- 736              		.loc 1 226 0
- 737 0354 28E0     		b	.L32
- 738              	.L37:
- 227:main.c        ****                 case 'h':   // help
- 228:main.c        ****                 case 'H':   // fallthrough
- 229:main.c        ****                     UART_PutString( "\n\rHelp:\n\r\
- 739              		.loc 1 229 0
- 740 0356 1548     		ldr	r0, .L44
- 741 0358 FFF7FEFF 		bl	UART_PutString
- 230:main.c        **** \th,H: help\n\r\
- 231:main.c        **** \tc: clear screen\n\r\
- 232:main.c        **** \tq,Q: software reset\n\r" );
- 233:main.c        ****                     break;
- 742              		.loc 1 233 0
- 743 035c 24E0     		b	.L32
- 744              	.L39:
- 234:main.c        ****                     
- 235:main.c        ****                 /* VT100 Steuerzeichen: clear screen (nicht verlangt, lediglich ein Test!) */
- 236:main.c        ****                 case 'c':   // clear screen, see https://stackoverflow.com/questions/37774983/clear
- 237:main.c        ****                     UART_PutString( "\033[2J\033[H" ); // clear screen \033[2J, 
- 745              		.loc 1 237 0
- 746 035e 1448     		ldr	r0, .L44+4
- 747 0360 FFF7FEFF 		bl	UART_PutString
- 238:main.c        ****                                                        // home position \033[H
- 239:main.c        ****                     break;
- 748              		.loc 1 239 0
- 749 0364 20E0     		b	.L32
- 750              	.L34:
- 240:main.c        ****                     
- 241:main.c        ****                 case '+':   
- 242:main.c        ****                     sprintf(buffer, "brightness: %d \n", brightness);
- 751              		.loc 1 242 0
- 752 0366 134B     		ldr	r3, .L44+8
- 753 0368 1B88     		ldrh	r3, [r3]
- 754 036a 1A46     		mov	r2, r3
-ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccnAHIBf.s 			page 19
+ 716 02f8 9F030000 		.word	.L33+1
+ 717 02fc 9F030000 		.word	.L33+1
+ 718 0300 9F030000 		.word	.L33+1
+ 719 0304 9F030000 		.word	.L33+1
+ 720 0308 9F030000 		.word	.L33+1
+ 721 030c 9F030000 		.word	.L33+1
+ 722 0310 9F030000 		.word	.L33+1
+ 723 0314 5F030000 		.word	.L39+1
+ 724 0318 9F030000 		.word	.L33+1
+ 725 031c 9F030000 		.word	.L33+1
+ 726 0320 9F030000 		.word	.L33+1
+ 727 0324 9F030000 		.word	.L33+1
+ 728 0328 57030000 		.word	.L37+1
+ 729 032c 9F030000 		.word	.L33+1
+ 730 0330 9F030000 		.word	.L33+1
+ 731 0334 9F030000 		.word	.L33+1
+ 732 0338 9F030000 		.word	.L33+1
+ 733 033c 9F030000 		.word	.L33+1
+ 734 0340 9F030000 		.word	.L33+1
+ 735 0344 9F030000 		.word	.L33+1
+ 736 0348 9F030000 		.word	.L33+1
+ 737 034c 51030000 		.word	.L38+1
+ 738              		.p2align 1
+ 739              	.L38:
+ 225:main.c        ****                 // Software reset, startet Programm neu
+ 226:main.c        ****                 case 'q':
+ 227:main.c        ****                 case 'Q':   // fallthrough
+ 228:main.c        ****                     CySoftwareReset();
+ 740              		.loc 1 228 0
+ 741 0350 FFF7FEFF 		bl	CySoftwareReset
+ 229:main.c        ****                     break;
+ 742              		.loc 1 229 0
+ 743 0354 28E0     		b	.L32
+ 744              	.L37:
+ 230:main.c        ****                 case 'h':   // help
+ 231:main.c        ****                 case 'H':   // fallthrough
+ 232:main.c        ****                     UART_PutString( "\n\rHelp:\n\r\
+ 745              		.loc 1 232 0
+ 746 0356 1548     		ldr	r0, .L44
+ 747 0358 FFF7FEFF 		bl	UART_PutString
+ 233:main.c        **** \th,H: help\n\r\
+ 234:main.c        **** \tc: clear screen\n\r\
+ 235:main.c        **** \tq,Q: software reset\n\r" );
+ 236:main.c        ****                     break;
+ 748              		.loc 1 236 0
+ 749 035c 24E0     		b	.L32
+ 750              	.L39:
+ 237:main.c        ****                     
+ 238:main.c        ****                 /* VT100 Steuerzeichen: clear screen (nicht verlangt, lediglich ein Test!) */
+ 239:main.c        ****                 case 'c':   // clear screen, see https://stackoverflow.com/questions/37774983/clear
+ 240:main.c        ****                     UART_PutString( "\033[2J\033[H" ); // clear screen \033[2J, 
+ 751              		.loc 1 240 0
+ 752 035e 1448     		ldr	r0, .L44+4
+ 753 0360 FFF7FEFF 		bl	UART_PutString
+ 241:main.c        ****                                                        // home position \033[H
+ 242:main.c        ****                     break;
+ 754              		.loc 1 242 0
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccCXRjL6.s 			page 19
 
 
- 755 036c 1249     		ldr	r1, .L44+12
- 756 036e 1348     		ldr	r0, .L44+16
- 757 0370 FFF7FEFF 		bl	sprintf
- 243:main.c        ****                     UART_PutString(buffer);
- 758              		.loc 1 243 0
- 759 0374 1148     		ldr	r0, .L44+16
- 760 0376 FFF7FEFF 		bl	UART_PutString
- 244:main.c        ****                     brightness_settings(0);
- 761              		.loc 1 244 0
- 762 037a 0020     		movs	r0, #0
- 763 037c FFF7FEFF 		bl	brightness_settings
- 245:main.c        ****                     break;
- 764              		.loc 1 245 0
- 765 0380 12E0     		b	.L32
- 766              	.L36:
- 246:main.c        ****                 case '-': 
- 247:main.c        ****                     sprintf(buffer, "brightness: %d \n", brightness);
+ 755 0364 20E0     		b	.L32
+ 756              	.L34:
+ 243:main.c        ****                     
+ 244:main.c        ****                 case '+':   
+ 245:main.c        ****                     sprintf(buffer, "brightness: %d \n", brightness);
+ 757              		.loc 1 245 0
+ 758 0366 134B     		ldr	r3, .L44+8
+ 759 0368 1B88     		ldrh	r3, [r3]
+ 760 036a 1A46     		mov	r2, r3
+ 761 036c 1249     		ldr	r1, .L44+12
+ 762 036e 1348     		ldr	r0, .L44+16
+ 763 0370 FFF7FEFF 		bl	sprintf
+ 246:main.c        ****                     UART_PutString(buffer);
+ 764              		.loc 1 246 0
+ 765 0374 1148     		ldr	r0, .L44+16
+ 766 0376 FFF7FEFF 		bl	UART_PutString
+ 247:main.c        ****                     brightness_settings(0);
  767              		.loc 1 247 0
- 768 0382 0C4B     		ldr	r3, .L44+8
- 769 0384 1B88     		ldrh	r3, [r3]
- 770 0386 1A46     		mov	r2, r3
- 771 0388 0B49     		ldr	r1, .L44+12
- 772 038a 0C48     		ldr	r0, .L44+16
- 773 038c FFF7FEFF 		bl	sprintf
- 248:main.c        ****                     UART_PutString(buffer);
- 774              		.loc 1 248 0
- 775 0390 0A48     		ldr	r0, .L44+16
- 776 0392 FFF7FEFF 		bl	UART_PutString
- 249:main.c        ****                     brightness_settings(1);
- 777              		.loc 1 249 0
- 778 0396 0120     		movs	r0, #1
- 779 0398 FFF7FEFF 		bl	brightness_settings
- 250:main.c        ****                     break;
- 780              		.loc 1 250 0
- 781 039c 04E0     		b	.L32
- 782              	.L33:
- 251:main.c        **** 
- 252:main.c        ****                     // ... und so weiter ...
- 253:main.c        ****                 default:
- 254:main.c        ****                     UART_PutChar( c );    // Buchstabe auf Bildschirm ausgeben
- 783              		.loc 1 254 0
- 784 039e FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
- 785 03a0 1846     		mov	r0, r3
- 786 03a2 FFF7FEFF 		bl	UART_PutChar
- 255:main.c        ****                     break;
- 787              		.loc 1 255 0
- 788 03a6 00BF     		nop
- 789              	.L32:
- 790              	.LBE2:
- 256:main.c        ****             }  // end switch          
- 257:main.c        ****         } // end if cRx
- 258:main.c        ****                         
- 259:main.c        ****     } // end for
- 791              		.loc 1 259 0
- 792 03a8 4AE6     		b	.L40
- 793              	.L45:
- 794 03aa 00BF     		.align	2
-ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccnAHIBf.s 			page 20
+ 768 037a 0020     		movs	r0, #0
+ 769 037c FFF7FEFF 		bl	brightness_settings
+ 248:main.c        ****                     break;
+ 770              		.loc 1 248 0
+ 771 0380 12E0     		b	.L32
+ 772              	.L36:
+ 249:main.c        ****                 case '-': 
+ 250:main.c        ****                     sprintf(buffer, "brightness: %d \n", brightness);
+ 773              		.loc 1 250 0
+ 774 0382 0C4B     		ldr	r3, .L44+8
+ 775 0384 1B88     		ldrh	r3, [r3]
+ 776 0386 1A46     		mov	r2, r3
+ 777 0388 0B49     		ldr	r1, .L44+12
+ 778 038a 0C48     		ldr	r0, .L44+16
+ 779 038c FFF7FEFF 		bl	sprintf
+ 251:main.c        ****                     UART_PutString(buffer);
+ 780              		.loc 1 251 0
+ 781 0390 0A48     		ldr	r0, .L44+16
+ 782 0392 FFF7FEFF 		bl	UART_PutString
+ 252:main.c        ****                     brightness_settings(1);
+ 783              		.loc 1 252 0
+ 784 0396 0120     		movs	r0, #1
+ 785 0398 FFF7FEFF 		bl	brightness_settings
+ 253:main.c        ****                     break;
+ 786              		.loc 1 253 0
+ 787 039c 04E0     		b	.L32
+ 788              	.L33:
+ 254:main.c        **** 
+ 255:main.c        ****                     // ... und so weiter ...
+ 256:main.c        ****                 default:
+ 257:main.c        ****                     UART_PutChar( c );    // Buchstabe auf Bildschirm ausgeben
+ 789              		.loc 1 257 0
+ 790 039e FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 791 03a0 1846     		mov	r0, r3
+ 792 03a2 FFF7FEFF 		bl	UART_PutChar
+ 258:main.c        ****                     break;
+ 793              		.loc 1 258 0
+ 794 03a6 00BF     		nop
+ 795              	.L32:
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccCXRjL6.s 			page 20
 
 
- 795              	.L44:
- 796 03ac 80000000 		.word	.LC2
- 797 03b0 C0000000 		.word	.LC3
- 798 03b4 00000000 		.word	brightness
- 799 03b8 C8000000 		.word	.LC4
- 800 03bc 00000000 		.word	buffer
- 801              		.cfi_endproc
- 802              	.LFE68:
- 803              		.size	main, .-main
- 804              		.text
- 805              	.Letext0:
- 806              		.file 2 "e:\\psoc creator\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.1\\arm-none-eabi
- 807              		.file 3 "e:\\psoc creator\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.1\\arm-none-eabi
- 808              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
- 809              		.file 5 "e:\\psoc creator\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.1\\arm-none-eabi
- 810              		.file 6 "Generated_Source\\PSoC5/core_cm3.h"
- 811              		.section	.debug_info,"",%progbits
- 812              	.Ldebug_info0:
- 813 0000 14020000 		.4byte	0x214
- 814 0004 0400     		.2byte	0x4
- 815 0006 00000000 		.4byte	.Ldebug_abbrev0
- 816 000a 04       		.byte	0x4
- 817 000b 01       		.uleb128 0x1
- 818 000c 12000000 		.4byte	.LASF32
- 819 0010 0C       		.byte	0xc
- 820 0011 E5010000 		.4byte	.LASF33
- 821 0015 ED000000 		.4byte	.LASF34
- 822 0019 00000000 		.4byte	.Ldebug_ranges0+0
- 823 001d 00000000 		.4byte	0
- 824 0021 00000000 		.4byte	.Ldebug_line0
- 825 0025 02       		.uleb128 0x2
- 826 0026 01       		.byte	0x1
- 827 0027 06       		.byte	0x6
- 828 0028 E1000000 		.4byte	.LASF0
- 829 002c 03       		.uleb128 0x3
- 830 002d 00000000 		.4byte	.LASF4
- 831 0031 02       		.byte	0x2
- 832 0032 1D       		.byte	0x1d
- 833 0033 37000000 		.4byte	0x37
- 834 0037 02       		.uleb128 0x2
- 835 0038 01       		.byte	0x1
- 836 0039 08       		.byte	0x8
- 837 003a 11010000 		.4byte	.LASF1
- 838 003e 02       		.uleb128 0x2
- 839 003f 02       		.byte	0x2
- 840 0040 05       		.byte	0x5
- 841 0041 F1010000 		.4byte	.LASF2
- 842 0045 02       		.uleb128 0x2
- 843 0046 02       		.byte	0x2
- 844 0047 07       		.byte	0x7
- 845 0048 34010000 		.4byte	.LASF3
- 846 004c 03       		.uleb128 0x3
- 847 004d B4000000 		.4byte	.LASF5
- 848 0051 02       		.byte	0x2
- 849 0052 3F       		.byte	0x3f
- 850 0053 57000000 		.4byte	0x57
- 851 0057 02       		.uleb128 0x2
-ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccnAHIBf.s 			page 21
+ 796              	.LBE2:
+ 259:main.c        ****             }  // end switch          
+ 260:main.c        ****         } // end if cRx
+ 261:main.c        ****                         
+ 262:main.c        ****     } // end for
+ 797              		.loc 1 262 0
+ 798 03a8 4AE6     		b	.L40
+ 799              	.L45:
+ 800 03aa 00BF     		.align	2
+ 801              	.L44:
+ 802 03ac 80000000 		.word	.LC2
+ 803 03b0 C0000000 		.word	.LC3
+ 804 03b4 00000000 		.word	brightness
+ 805 03b8 C8000000 		.word	.LC4
+ 806 03bc 00000000 		.word	buffer
+ 807              		.cfi_endproc
+ 808              	.LFE68:
+ 809              		.size	main, .-main
+ 810              		.text
+ 811              	.Letext0:
+ 812              		.file 2 "d:\\tools\\psoc creator\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.1\\arm-no
+ 813              		.file 3 "d:\\tools\\psoc creator\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.1\\arm-no
+ 814              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ 815              		.file 5 "d:\\tools\\psoc creator\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.1\\arm-no
+ 816              		.file 6 "Generated_Source\\PSoC5/core_cm3.h"
+ 817              		.section	.debug_info,"",%progbits
+ 818              	.Ldebug_info0:
+ 819 0000 14020000 		.4byte	0x214
+ 820 0004 0400     		.2byte	0x4
+ 821 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 822 000a 04       		.byte	0x4
+ 823 000b 01       		.uleb128 0x1
+ 824 000c 12000000 		.4byte	.LASF32
+ 825 0010 0C       		.byte	0xc
+ 826 0011 E5010000 		.4byte	.LASF33
+ 827 0015 43010000 		.4byte	.LASF34
+ 828 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 829 001d 00000000 		.4byte	0
+ 830 0021 00000000 		.4byte	.Ldebug_line0
+ 831 0025 02       		.uleb128 0x2
+ 832 0026 01       		.byte	0x1
+ 833 0027 06       		.byte	0x6
+ 834 0028 E1000000 		.4byte	.LASF0
+ 835 002c 03       		.uleb128 0x3
+ 836 002d 00000000 		.4byte	.LASF4
+ 837 0031 02       		.byte	0x2
+ 838 0032 1D       		.byte	0x1d
+ 839 0033 37000000 		.4byte	0x37
+ 840 0037 02       		.uleb128 0x2
+ 841 0038 01       		.byte	0x1
+ 842 0039 08       		.byte	0x8
+ 843 003a ED000000 		.4byte	.LASF1
+ 844 003e 02       		.uleb128 0x2
+ 845 003f 02       		.byte	0x2
+ 846 0040 05       		.byte	0x5
+ 847 0041 F1010000 		.4byte	.LASF2
+ 848 0045 02       		.uleb128 0x2
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccCXRjL6.s 			page 21
 
 
- 852 0058 04       		.byte	0x4
- 853 0059 05       		.byte	0x5
- 854 005a 0B020000 		.4byte	.LASF6
- 855 005e 03       		.uleb128 0x3
- 856 005f 83010000 		.4byte	.LASF7
- 857 0063 02       		.byte	0x2
- 858 0064 41       		.byte	0x41
- 859 0065 69000000 		.4byte	0x69
- 860 0069 02       		.uleb128 0x2
- 861 006a 04       		.byte	0x4
- 862 006b 07       		.byte	0x7
- 863 006c 67010000 		.4byte	.LASF8
- 864 0070 02       		.uleb128 0x2
- 865 0071 08       		.byte	0x8
- 866 0072 05       		.byte	0x5
- 867 0073 D7010000 		.4byte	.LASF9
- 868 0077 02       		.uleb128 0x2
- 869 0078 08       		.byte	0x8
- 870 0079 07       		.byte	0x7
- 871 007a A7010000 		.4byte	.LASF10
- 872 007e 04       		.uleb128 0x4
- 873 007f 04       		.byte	0x4
- 874 0080 05       		.byte	0x5
- 875 0081 696E7400 		.ascii	"int\000"
- 876 0085 02       		.uleb128 0x2
- 877 0086 04       		.byte	0x4
- 878 0087 07       		.byte	0x7
- 879 0088 9A010000 		.4byte	.LASF11
- 880 008c 03       		.uleb128 0x3
- 881 008d BE010000 		.4byte	.LASF12
- 882 0091 03       		.byte	0x3
- 883 0092 18       		.byte	0x18
- 884 0093 2C000000 		.4byte	0x2c
- 885 0097 03       		.uleb128 0x3
- 886 0098 C6010000 		.4byte	.LASF13
- 887 009c 03       		.byte	0x3
- 888 009d 2C       		.byte	0x2c
- 889 009e 4C000000 		.4byte	0x4c
- 890 00a2 03       		.uleb128 0x3
- 891 00a3 02020000 		.4byte	.LASF14
- 892 00a7 03       		.byte	0x3
- 893 00a8 30       		.byte	0x30
- 894 00a9 5E000000 		.4byte	0x5e
- 895 00ad 05       		.uleb128 0x5
- 896 00ae 8E010000 		.4byte	.LASF15
- 897 00b2 04       		.byte	0x4
- 898 00b3 E501     		.2byte	0x1e5
- 899 00b5 45000000 		.4byte	0x45
- 900 00b9 02       		.uleb128 0x2
- 901 00ba 04       		.byte	0x4
- 902 00bb 04       		.byte	0x4
- 903 00bc CF000000 		.4byte	.LASF16
- 904 00c0 02       		.uleb128 0x2
- 905 00c1 08       		.byte	0x8
- 906 00c2 04       		.byte	0x4
- 907 00c3 C8000000 		.4byte	.LASF17
- 908 00c7 02       		.uleb128 0x2
-ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccnAHIBf.s 			page 22
+ 849 0046 02       		.byte	0x2
+ 850 0047 07       		.byte	0x7
+ 851 0048 10010000 		.4byte	.LASF3
+ 852 004c 03       		.uleb128 0x3
+ 853 004d B4000000 		.4byte	.LASF5
+ 854 0051 02       		.byte	0x2
+ 855 0052 3F       		.byte	0x3f
+ 856 0053 57000000 		.4byte	0x57
+ 857 0057 02       		.uleb128 0x2
+ 858 0058 04       		.byte	0x4
+ 859 0059 05       		.byte	0x5
+ 860 005a 0B020000 		.4byte	.LASF6
+ 861 005e 03       		.uleb128 0x3
+ 862 005f 83010000 		.4byte	.LASF7
+ 863 0063 02       		.byte	0x2
+ 864 0064 41       		.byte	0x41
+ 865 0065 69000000 		.4byte	0x69
+ 866 0069 02       		.uleb128 0x2
+ 867 006a 04       		.byte	0x4
+ 868 006b 07       		.byte	0x7
+ 869 006c 67010000 		.4byte	.LASF8
+ 870 0070 02       		.uleb128 0x2
+ 871 0071 08       		.byte	0x8
+ 872 0072 05       		.byte	0x5
+ 873 0073 D7010000 		.4byte	.LASF9
+ 874 0077 02       		.uleb128 0x2
+ 875 0078 08       		.byte	0x8
+ 876 0079 07       		.byte	0x7
+ 877 007a A7010000 		.4byte	.LASF10
+ 878 007e 04       		.uleb128 0x4
+ 879 007f 04       		.byte	0x4
+ 880 0080 05       		.byte	0x5
+ 881 0081 696E7400 		.ascii	"int\000"
+ 882 0085 02       		.uleb128 0x2
+ 883 0086 04       		.byte	0x4
+ 884 0087 07       		.byte	0x7
+ 885 0088 9A010000 		.4byte	.LASF11
+ 886 008c 03       		.uleb128 0x3
+ 887 008d BE010000 		.4byte	.LASF12
+ 888 0091 03       		.byte	0x3
+ 889 0092 18       		.byte	0x18
+ 890 0093 2C000000 		.4byte	0x2c
+ 891 0097 03       		.uleb128 0x3
+ 892 0098 C6010000 		.4byte	.LASF13
+ 893 009c 03       		.byte	0x3
+ 894 009d 2C       		.byte	0x2c
+ 895 009e 4C000000 		.4byte	0x4c
+ 896 00a2 03       		.uleb128 0x3
+ 897 00a3 02020000 		.4byte	.LASF14
+ 898 00a7 03       		.byte	0x3
+ 899 00a8 30       		.byte	0x30
+ 900 00a9 5E000000 		.4byte	0x5e
+ 901 00ad 05       		.uleb128 0x5
+ 902 00ae 8E010000 		.4byte	.LASF15
+ 903 00b2 04       		.byte	0x4
+ 904 00b3 E501     		.2byte	0x1e5
+ 905 00b5 45000000 		.4byte	0x45
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccCXRjL6.s 			page 22
 
 
- 909 00c8 01       		.byte	0x1
- 910 00c9 08       		.byte	0x8
- 911 00ca EC010000 		.4byte	.LASF18
- 912 00ce 02       		.uleb128 0x2
- 913 00cf 08       		.byte	0x8
- 914 00d0 04       		.byte	0x4
- 915 00d1 14020000 		.4byte	.LASF19
- 916 00d5 02       		.uleb128 0x2
- 917 00d6 04       		.byte	0x4
- 918 00d7 07       		.byte	0x7
- 919 00d8 CE010000 		.4byte	.LASF20
- 920 00dc 03       		.uleb128 0x3
- 921 00dd 2A020000 		.4byte	.LASF21
- 922 00e1 05       		.byte	0x5
- 923 00e2 5F       		.byte	0x5f
- 924 00e3 85000000 		.4byte	0x85
- 925 00e7 06       		.uleb128 0x6
- 926 00e8 D5000000 		.4byte	.LASF22
- 927 00ec 01       		.byte	0x1
- 928 00ed 31       		.byte	0x31
- 929 00ee 00000000 		.4byte	.LFB64
- 930 00f2 18000000 		.4byte	.LFE64-.LFB64
- 931 00f6 01       		.uleb128 0x1
- 932 00f7 9C       		.byte	0x9c
- 933 00f8 06       		.uleb128 0x6
- 934 00f9 20020000 		.4byte	.LASF23
- 935 00fd 01       		.byte	0x1
- 936 00fe 3B       		.byte	0x3b
- 937 00ff 00000000 		.4byte	.LFB65
- 938 0103 18000000 		.4byte	.LFE65-.LFB65
- 939 0107 01       		.uleb128 0x1
- 940 0108 9C       		.byte	0x9c
- 941 0109 07       		.uleb128 0x7
- 942 010a BE000000 		.4byte	.LASF24
- 943 010e 01       		.byte	0x1
- 944 010f 4A       		.byte	0x4a
- 945 0110 00000000 		.4byte	.LFB66
- 946 0114 44000000 		.4byte	.LFE66-.LFB66
- 947 0118 01       		.uleb128 0x1
- 948 0119 9C       		.byte	0x9c
- 949 011a 08       		.uleb128 0x8
- 950 011b A0000000 		.4byte	.LASF35
- 951 011f 01       		.byte	0x1
- 952 0120 57       		.byte	0x57
- 953 0121 00000000 		.4byte	.LFB67
- 954 0125 80000000 		.4byte	.LFE67-.LFB67
- 955 0129 01       		.uleb128 0x1
- 956 012a 9C       		.byte	0x9c
- 957 012b 3E010000 		.4byte	0x13e
- 958 012f 09       		.uleb128 0x9
- 959 0130 1F010000 		.4byte	.LASF36
- 960 0134 01       		.byte	0x1
- 961 0135 57       		.byte	0x57
- 962 0136 DC000000 		.4byte	0xdc
- 963 013a 02       		.uleb128 0x2
- 964 013b 91       		.byte	0x91
- 965 013c 74       		.sleb128 -12
-ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccnAHIBf.s 			page 23
+ 906 00b9 02       		.uleb128 0x2
+ 907 00ba 04       		.byte	0x4
+ 908 00bb 04       		.byte	0x4
+ 909 00bc CF000000 		.4byte	.LASF16
+ 910 00c0 02       		.uleb128 0x2
+ 911 00c1 08       		.byte	0x8
+ 912 00c2 04       		.byte	0x4
+ 913 00c3 C8000000 		.4byte	.LASF17
+ 914 00c7 02       		.uleb128 0x2
+ 915 00c8 01       		.byte	0x1
+ 916 00c9 08       		.byte	0x8
+ 917 00ca EC010000 		.4byte	.LASF18
+ 918 00ce 02       		.uleb128 0x2
+ 919 00cf 08       		.byte	0x8
+ 920 00d0 04       		.byte	0x4
+ 921 00d1 14020000 		.4byte	.LASF19
+ 922 00d5 02       		.uleb128 0x2
+ 923 00d6 04       		.byte	0x4
+ 924 00d7 07       		.byte	0x7
+ 925 00d8 CE010000 		.4byte	.LASF20
+ 926 00dc 03       		.uleb128 0x3
+ 927 00dd 2A020000 		.4byte	.LASF21
+ 928 00e1 05       		.byte	0x5
+ 929 00e2 5F       		.byte	0x5f
+ 930 00e3 85000000 		.4byte	0x85
+ 931 00e7 06       		.uleb128 0x6
+ 932 00e8 D5000000 		.4byte	.LASF22
+ 933 00ec 01       		.byte	0x1
+ 934 00ed 31       		.byte	0x31
+ 935 00ee 00000000 		.4byte	.LFB64
+ 936 00f2 18000000 		.4byte	.LFE64-.LFB64
+ 937 00f6 01       		.uleb128 0x1
+ 938 00f7 9C       		.byte	0x9c
+ 939 00f8 06       		.uleb128 0x6
+ 940 00f9 20020000 		.4byte	.LASF23
+ 941 00fd 01       		.byte	0x1
+ 942 00fe 3B       		.byte	0x3b
+ 943 00ff 00000000 		.4byte	.LFB65
+ 944 0103 18000000 		.4byte	.LFE65-.LFB65
+ 945 0107 01       		.uleb128 0x1
+ 946 0108 9C       		.byte	0x9c
+ 947 0109 07       		.uleb128 0x7
+ 948 010a BE000000 		.4byte	.LASF24
+ 949 010e 01       		.byte	0x1
+ 950 010f 4A       		.byte	0x4a
+ 951 0110 00000000 		.4byte	.LFB66
+ 952 0114 44000000 		.4byte	.LFE66-.LFB66
+ 953 0118 01       		.uleb128 0x1
+ 954 0119 9C       		.byte	0x9c
+ 955 011a 08       		.uleb128 0x8
+ 956 011b A0000000 		.4byte	.LASF35
+ 957 011f 01       		.byte	0x1
+ 958 0120 59       		.byte	0x59
+ 959 0121 00000000 		.4byte	.LFB67
+ 960 0125 8C000000 		.4byte	.LFE67-.LFB67
+ 961 0129 01       		.uleb128 0x1
+ 962 012a 9C       		.byte	0x9c
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccCXRjL6.s 			page 23
 
 
- 966 013d 00       		.byte	0
- 967 013e 0A       		.uleb128 0xa
- 968 013f 95010000 		.4byte	.LASF37
- 969 0143 01       		.byte	0x1
- 970 0144 74       		.byte	0x74
- 971 0145 7E000000 		.4byte	0x7e
- 972 0149 00000000 		.4byte	.LFB68
- 973 014d C0030000 		.4byte	.LFE68-.LFB68
- 974 0151 01       		.uleb128 0x1
- 975 0152 9C       		.byte	0x9c
- 976 0153 6E010000 		.4byte	0x16e
- 977 0157 0B       		.uleb128 0xb
- 978 0158 E8010000 		.4byte	.LBB2
- 979 015c C0010000 		.4byte	.LBE2-.LBB2
- 980 0160 0C       		.uleb128 0xc
- 981 0161 6300     		.ascii	"c\000"
- 982 0163 01       		.byte	0x1
- 983 0164 DA       		.byte	0xda
- 984 0165 C7000000 		.4byte	0xc7
- 985 0169 02       		.uleb128 0x2
- 986 016a 91       		.byte	0x91
- 987 016b 77       		.sleb128 -9
- 988 016c 00       		.byte	0
- 989 016d 00       		.byte	0
- 990 016e 0D       		.uleb128 0xd
- 991 016f C7000000 		.4byte	0xc7
- 992 0173 7E010000 		.4byte	0x17e
- 993 0177 0E       		.uleb128 0xe
- 994 0178 D5000000 		.4byte	0xd5
- 995 017c 7F       		.byte	0x7f
- 996 017d 00       		.byte	0
- 997 017e 0F       		.uleb128 0xf
- 998 017f FB010000 		.4byte	.LASF25
- 999 0183 01       		.byte	0x1
- 1000 0184 28       		.byte	0x28
- 1001 0185 6E010000 		.4byte	0x16e
- 1002 0189 05       		.uleb128 0x5
- 1003 018a 03       		.byte	0x3
- 1004 018b 00000000 		.4byte	buffer
- 1005 018f 0C       		.uleb128 0xc
- 1006 0190 63527800 		.ascii	"cRx\000"
- 1007 0194 01       		.byte	0x1
- 1008 0195 2A       		.byte	0x2a
- 1009 0196 C7000000 		.4byte	0xc7
- 1010 019a 05       		.uleb128 0x5
- 1011 019b 03       		.byte	0x3
- 1012 019c 80000000 		.4byte	cRx
- 1013 01a0 0F       		.uleb128 0xf
- 1014 01a1 79010000 		.4byte	.LASF26
- 1015 01a5 01       		.byte	0x1
- 1016 01a6 35       		.byte	0x35
- 1017 01a7 8C000000 		.4byte	0x8c
- 1018 01ab 05       		.uleb128 0x5
- 1019 01ac 03       		.byte	0x3
- 1020 01ad 81000000 		.4byte	fCWEW_Isr
- 1021 01b1 0F       		.uleb128 0xf
- 1022 01b2 47010000 		.4byte	.LASF27
-ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccnAHIBf.s 			page 24
+ 963 012b 3E010000 		.4byte	0x13e
+ 964 012f 09       		.uleb128 0x9
+ 965 0130 FB000000 		.4byte	.LASF36
+ 966 0134 01       		.byte	0x1
+ 967 0135 59       		.byte	0x59
+ 968 0136 DC000000 		.4byte	0xdc
+ 969 013a 02       		.uleb128 0x2
+ 970 013b 91       		.byte	0x91
+ 971 013c 74       		.sleb128 -12
+ 972 013d 00       		.byte	0
+ 973 013e 0A       		.uleb128 0xa
+ 974 013f 95010000 		.4byte	.LASF37
+ 975 0143 01       		.byte	0x1
+ 976 0144 77       		.byte	0x77
+ 977 0145 7E000000 		.4byte	0x7e
+ 978 0149 00000000 		.4byte	.LFB68
+ 979 014d C0030000 		.4byte	.LFE68-.LFB68
+ 980 0151 01       		.uleb128 0x1
+ 981 0152 9C       		.byte	0x9c
+ 982 0153 6E010000 		.4byte	0x16e
+ 983 0157 0B       		.uleb128 0xb
+ 984 0158 E8010000 		.4byte	.LBB2
+ 985 015c C0010000 		.4byte	.LBE2-.LBB2
+ 986 0160 0C       		.uleb128 0xc
+ 987 0161 6300     		.ascii	"c\000"
+ 988 0163 01       		.byte	0x1
+ 989 0164 DD       		.byte	0xdd
+ 990 0165 C7000000 		.4byte	0xc7
+ 991 0169 02       		.uleb128 0x2
+ 992 016a 91       		.byte	0x91
+ 993 016b 77       		.sleb128 -9
+ 994 016c 00       		.byte	0
+ 995 016d 00       		.byte	0
+ 996 016e 0D       		.uleb128 0xd
+ 997 016f C7000000 		.4byte	0xc7
+ 998 0173 7E010000 		.4byte	0x17e
+ 999 0177 0E       		.uleb128 0xe
+ 1000 0178 D5000000 		.4byte	0xd5
+ 1001 017c 7F       		.byte	0x7f
+ 1002 017d 00       		.byte	0
+ 1003 017e 0F       		.uleb128 0xf
+ 1004 017f FB010000 		.4byte	.LASF25
+ 1005 0183 01       		.byte	0x1
+ 1006 0184 28       		.byte	0x28
+ 1007 0185 6E010000 		.4byte	0x16e
+ 1008 0189 05       		.uleb128 0x5
+ 1009 018a 03       		.byte	0x3
+ 1010 018b 00000000 		.4byte	buffer
+ 1011 018f 0C       		.uleb128 0xc
+ 1012 0190 63527800 		.ascii	"cRx\000"
+ 1013 0194 01       		.byte	0x1
+ 1014 0195 2A       		.byte	0x2a
+ 1015 0196 C7000000 		.4byte	0xc7
+ 1016 019a 05       		.uleb128 0x5
+ 1017 019b 03       		.byte	0x3
+ 1018 019c 80000000 		.4byte	cRx
+ 1019 01a0 0F       		.uleb128 0xf
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccCXRjL6.s 			page 24
 
 
- 1023 01b6 01       		.byte	0x1
- 1024 01b7 41       		.byte	0x41
- 1025 01b8 8C000000 		.4byte	0x8c
- 1026 01bc 05       		.uleb128 0x5
- 1027 01bd 03       		.byte	0x3
- 1028 01be 82000000 		.4byte	fsClock
- 1029 01c2 0F       		.uleb128 0xf
- 1030 01c3 2B010000 		.4byte	.LASF28
- 1031 01c7 01       		.byte	0x1
- 1032 01c8 42       		.byte	0x42
- 1033 01c9 A2000000 		.4byte	0xa2
- 1034 01cd 05       		.uleb128 0x5
- 1035 01ce 03       		.byte	0x3
- 1036 01cf 84000000 		.4byte	count_ms
- 1037 01d3 0F       		.uleb128 0xf
- 1038 01d4 25010000 		.4byte	.LASF29
- 1039 01d8 01       		.byte	0x1
- 1040 01d9 48       		.byte	0x48
- 1041 01da A2000000 		.4byte	0xa2
- 1042 01de 05       		.uleb128 0x5
- 1043 01df 03       		.byte	0x3
- 1044 01e0 88000000 		.4byte	timer
- 1045 01e4 0F       		.uleb128 0xf
- 1046 01e5 0A000000 		.4byte	.LASF30
- 1047 01e9 01       		.byte	0x1
- 1048 01ea 49       		.byte	0x49
- 1049 01eb A2000000 		.4byte	0xa2
- 1050 01ef 05       		.uleb128 0x5
- 1051 01f0 03       		.byte	0x3
- 1052 01f1 8C000000 		.4byte	zustand
- 1053 01f5 0F       		.uleb128 0xf
- 1054 01f6 4F010000 		.4byte	.LASF31
- 1055 01fa 01       		.byte	0x1
- 1056 01fb 53       		.byte	0x53
- 1057 01fc AD000000 		.4byte	0xad
- 1058 0200 05       		.uleb128 0x5
- 1059 0201 03       		.byte	0x3
- 1060 0202 00000000 		.4byte	brightness
- 1061 0206 10       		.uleb128 0x10
- 1062 0207 5A010000 		.4byte	.LASF38
- 1063 020b 06       		.byte	0x6
- 1064 020c 1207     		.2byte	0x712
- 1065 020e 12020000 		.4byte	0x212
- 1066 0212 11       		.uleb128 0x11
- 1067 0213 97000000 		.4byte	0x97
- 1068 0217 00       		.byte	0
- 1069              		.section	.debug_abbrev,"",%progbits
- 1070              	.Ldebug_abbrev0:
- 1071 0000 01       		.uleb128 0x1
- 1072 0001 11       		.uleb128 0x11
- 1073 0002 01       		.byte	0x1
- 1074 0003 25       		.uleb128 0x25
- 1075 0004 0E       		.uleb128 0xe
- 1076 0005 13       		.uleb128 0x13
- 1077 0006 0B       		.uleb128 0xb
- 1078 0007 03       		.uleb128 0x3
- 1079 0008 0E       		.uleb128 0xe
-ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccnAHIBf.s 			page 25
+ 1020 01a1 79010000 		.4byte	.LASF26
+ 1021 01a5 01       		.byte	0x1
+ 1022 01a6 35       		.byte	0x35
+ 1023 01a7 8C000000 		.4byte	0x8c
+ 1024 01ab 05       		.uleb128 0x5
+ 1025 01ac 03       		.byte	0x3
+ 1026 01ad 81000000 		.4byte	fCWEW_Isr
+ 1027 01b1 0F       		.uleb128 0xf
+ 1028 01b2 23010000 		.4byte	.LASF27
+ 1029 01b6 01       		.byte	0x1
+ 1030 01b7 41       		.byte	0x41
+ 1031 01b8 8C000000 		.4byte	0x8c
+ 1032 01bc 05       		.uleb128 0x5
+ 1033 01bd 03       		.byte	0x3
+ 1034 01be 82000000 		.4byte	fsClock
+ 1035 01c2 0F       		.uleb128 0xf
+ 1036 01c3 07010000 		.4byte	.LASF28
+ 1037 01c7 01       		.byte	0x1
+ 1038 01c8 42       		.byte	0x42
+ 1039 01c9 A2000000 		.4byte	0xa2
+ 1040 01cd 05       		.uleb128 0x5
+ 1041 01ce 03       		.byte	0x3
+ 1042 01cf 84000000 		.4byte	count_ms
+ 1043 01d3 0F       		.uleb128 0xf
+ 1044 01d4 01010000 		.4byte	.LASF29
+ 1045 01d8 01       		.byte	0x1
+ 1046 01d9 48       		.byte	0x48
+ 1047 01da A2000000 		.4byte	0xa2
+ 1048 01de 05       		.uleb128 0x5
+ 1049 01df 03       		.byte	0x3
+ 1050 01e0 88000000 		.4byte	timer
+ 1051 01e4 0F       		.uleb128 0xf
+ 1052 01e5 0A000000 		.4byte	.LASF30
+ 1053 01e9 01       		.byte	0x1
+ 1054 01ea 49       		.byte	0x49
+ 1055 01eb A2000000 		.4byte	0xa2
+ 1056 01ef 05       		.uleb128 0x5
+ 1057 01f0 03       		.byte	0x3
+ 1058 01f1 8C000000 		.4byte	zustand
+ 1059 01f5 0F       		.uleb128 0xf
+ 1060 01f6 2B010000 		.4byte	.LASF31
+ 1061 01fa 01       		.byte	0x1
+ 1062 01fb 55       		.byte	0x55
+ 1063 01fc AD000000 		.4byte	0xad
+ 1064 0200 05       		.uleb128 0x5
+ 1065 0201 03       		.byte	0x3
+ 1066 0202 00000000 		.4byte	brightness
+ 1067 0206 10       		.uleb128 0x10
+ 1068 0207 36010000 		.4byte	.LASF38
+ 1069 020b 06       		.byte	0x6
+ 1070 020c 1207     		.2byte	0x712
+ 1071 020e 12020000 		.4byte	0x212
+ 1072 0212 11       		.uleb128 0x11
+ 1073 0213 97000000 		.4byte	0x97
+ 1074 0217 00       		.byte	0
+ 1075              		.section	.debug_abbrev,"",%progbits
+ 1076              	.Ldebug_abbrev0:
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccCXRjL6.s 			page 25
 
 
- 1080 0009 1B       		.uleb128 0x1b
- 1081 000a 0E       		.uleb128 0xe
- 1082 000b 55       		.uleb128 0x55
- 1083 000c 17       		.uleb128 0x17
- 1084 000d 11       		.uleb128 0x11
- 1085 000e 01       		.uleb128 0x1
- 1086 000f 10       		.uleb128 0x10
- 1087 0010 17       		.uleb128 0x17
- 1088 0011 00       		.byte	0
- 1089 0012 00       		.byte	0
- 1090 0013 02       		.uleb128 0x2
- 1091 0014 24       		.uleb128 0x24
- 1092 0015 00       		.byte	0
- 1093 0016 0B       		.uleb128 0xb
- 1094 0017 0B       		.uleb128 0xb
- 1095 0018 3E       		.uleb128 0x3e
- 1096 0019 0B       		.uleb128 0xb
- 1097 001a 03       		.uleb128 0x3
- 1098 001b 0E       		.uleb128 0xe
- 1099 001c 00       		.byte	0
- 1100 001d 00       		.byte	0
- 1101 001e 03       		.uleb128 0x3
- 1102 001f 16       		.uleb128 0x16
- 1103 0020 00       		.byte	0
- 1104 0021 03       		.uleb128 0x3
- 1105 0022 0E       		.uleb128 0xe
- 1106 0023 3A       		.uleb128 0x3a
- 1107 0024 0B       		.uleb128 0xb
- 1108 0025 3B       		.uleb128 0x3b
- 1109 0026 0B       		.uleb128 0xb
- 1110 0027 49       		.uleb128 0x49
- 1111 0028 13       		.uleb128 0x13
- 1112 0029 00       		.byte	0
- 1113 002a 00       		.byte	0
- 1114 002b 04       		.uleb128 0x4
- 1115 002c 24       		.uleb128 0x24
- 1116 002d 00       		.byte	0
- 1117 002e 0B       		.uleb128 0xb
- 1118 002f 0B       		.uleb128 0xb
- 1119 0030 3E       		.uleb128 0x3e
- 1120 0031 0B       		.uleb128 0xb
- 1121 0032 03       		.uleb128 0x3
- 1122 0033 08       		.uleb128 0x8
- 1123 0034 00       		.byte	0
- 1124 0035 00       		.byte	0
- 1125 0036 05       		.uleb128 0x5
- 1126 0037 16       		.uleb128 0x16
- 1127 0038 00       		.byte	0
- 1128 0039 03       		.uleb128 0x3
- 1129 003a 0E       		.uleb128 0xe
- 1130 003b 3A       		.uleb128 0x3a
- 1131 003c 0B       		.uleb128 0xb
- 1132 003d 3B       		.uleb128 0x3b
- 1133 003e 05       		.uleb128 0x5
- 1134 003f 49       		.uleb128 0x49
- 1135 0040 13       		.uleb128 0x13
- 1136 0041 00       		.byte	0
-ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccnAHIBf.s 			page 26
+ 1077 0000 01       		.uleb128 0x1
+ 1078 0001 11       		.uleb128 0x11
+ 1079 0002 01       		.byte	0x1
+ 1080 0003 25       		.uleb128 0x25
+ 1081 0004 0E       		.uleb128 0xe
+ 1082 0005 13       		.uleb128 0x13
+ 1083 0006 0B       		.uleb128 0xb
+ 1084 0007 03       		.uleb128 0x3
+ 1085 0008 0E       		.uleb128 0xe
+ 1086 0009 1B       		.uleb128 0x1b
+ 1087 000a 0E       		.uleb128 0xe
+ 1088 000b 55       		.uleb128 0x55
+ 1089 000c 17       		.uleb128 0x17
+ 1090 000d 11       		.uleb128 0x11
+ 1091 000e 01       		.uleb128 0x1
+ 1092 000f 10       		.uleb128 0x10
+ 1093 0010 17       		.uleb128 0x17
+ 1094 0011 00       		.byte	0
+ 1095 0012 00       		.byte	0
+ 1096 0013 02       		.uleb128 0x2
+ 1097 0014 24       		.uleb128 0x24
+ 1098 0015 00       		.byte	0
+ 1099 0016 0B       		.uleb128 0xb
+ 1100 0017 0B       		.uleb128 0xb
+ 1101 0018 3E       		.uleb128 0x3e
+ 1102 0019 0B       		.uleb128 0xb
+ 1103 001a 03       		.uleb128 0x3
+ 1104 001b 0E       		.uleb128 0xe
+ 1105 001c 00       		.byte	0
+ 1106 001d 00       		.byte	0
+ 1107 001e 03       		.uleb128 0x3
+ 1108 001f 16       		.uleb128 0x16
+ 1109 0020 00       		.byte	0
+ 1110 0021 03       		.uleb128 0x3
+ 1111 0022 0E       		.uleb128 0xe
+ 1112 0023 3A       		.uleb128 0x3a
+ 1113 0024 0B       		.uleb128 0xb
+ 1114 0025 3B       		.uleb128 0x3b
+ 1115 0026 0B       		.uleb128 0xb
+ 1116 0027 49       		.uleb128 0x49
+ 1117 0028 13       		.uleb128 0x13
+ 1118 0029 00       		.byte	0
+ 1119 002a 00       		.byte	0
+ 1120 002b 04       		.uleb128 0x4
+ 1121 002c 24       		.uleb128 0x24
+ 1122 002d 00       		.byte	0
+ 1123 002e 0B       		.uleb128 0xb
+ 1124 002f 0B       		.uleb128 0xb
+ 1125 0030 3E       		.uleb128 0x3e
+ 1126 0031 0B       		.uleb128 0xb
+ 1127 0032 03       		.uleb128 0x3
+ 1128 0033 08       		.uleb128 0x8
+ 1129 0034 00       		.byte	0
+ 1130 0035 00       		.byte	0
+ 1131 0036 05       		.uleb128 0x5
+ 1132 0037 16       		.uleb128 0x16
+ 1133 0038 00       		.byte	0
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccCXRjL6.s 			page 26
 
 
- 1137 0042 00       		.byte	0
- 1138 0043 06       		.uleb128 0x6
- 1139 0044 2E       		.uleb128 0x2e
- 1140 0045 00       		.byte	0
- 1141 0046 3F       		.uleb128 0x3f
- 1142 0047 19       		.uleb128 0x19
- 1143 0048 03       		.uleb128 0x3
- 1144 0049 0E       		.uleb128 0xe
- 1145 004a 3A       		.uleb128 0x3a
- 1146 004b 0B       		.uleb128 0xb
- 1147 004c 3B       		.uleb128 0x3b
- 1148 004d 0B       		.uleb128 0xb
- 1149 004e 27       		.uleb128 0x27
- 1150 004f 19       		.uleb128 0x19
- 1151 0050 11       		.uleb128 0x11
- 1152 0051 01       		.uleb128 0x1
- 1153 0052 12       		.uleb128 0x12
- 1154 0053 06       		.uleb128 0x6
- 1155 0054 40       		.uleb128 0x40
- 1156 0055 18       		.uleb128 0x18
- 1157 0056 9642     		.uleb128 0x2116
- 1158 0058 19       		.uleb128 0x19
- 1159 0059 00       		.byte	0
- 1160 005a 00       		.byte	0
- 1161 005b 07       		.uleb128 0x7
- 1162 005c 2E       		.uleb128 0x2e
- 1163 005d 00       		.byte	0
- 1164 005e 3F       		.uleb128 0x3f
- 1165 005f 19       		.uleb128 0x19
- 1166 0060 03       		.uleb128 0x3
- 1167 0061 0E       		.uleb128 0xe
- 1168 0062 3A       		.uleb128 0x3a
- 1169 0063 0B       		.uleb128 0xb
- 1170 0064 3B       		.uleb128 0x3b
- 1171 0065 0B       		.uleb128 0xb
- 1172 0066 27       		.uleb128 0x27
- 1173 0067 19       		.uleb128 0x19
- 1174 0068 11       		.uleb128 0x11
- 1175 0069 01       		.uleb128 0x1
- 1176 006a 12       		.uleb128 0x12
- 1177 006b 06       		.uleb128 0x6
- 1178 006c 40       		.uleb128 0x40
- 1179 006d 18       		.uleb128 0x18
- 1180 006e 9742     		.uleb128 0x2117
- 1181 0070 19       		.uleb128 0x19
- 1182 0071 00       		.byte	0
- 1183 0072 00       		.byte	0
- 1184 0073 08       		.uleb128 0x8
- 1185 0074 2E       		.uleb128 0x2e
- 1186 0075 01       		.byte	0x1
- 1187 0076 3F       		.uleb128 0x3f
- 1188 0077 19       		.uleb128 0x19
- 1189 0078 03       		.uleb128 0x3
- 1190 0079 0E       		.uleb128 0xe
- 1191 007a 3A       		.uleb128 0x3a
- 1192 007b 0B       		.uleb128 0xb
- 1193 007c 3B       		.uleb128 0x3b
-ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccnAHIBf.s 			page 27
+ 1134 0039 03       		.uleb128 0x3
+ 1135 003a 0E       		.uleb128 0xe
+ 1136 003b 3A       		.uleb128 0x3a
+ 1137 003c 0B       		.uleb128 0xb
+ 1138 003d 3B       		.uleb128 0x3b
+ 1139 003e 05       		.uleb128 0x5
+ 1140 003f 49       		.uleb128 0x49
+ 1141 0040 13       		.uleb128 0x13
+ 1142 0041 00       		.byte	0
+ 1143 0042 00       		.byte	0
+ 1144 0043 06       		.uleb128 0x6
+ 1145 0044 2E       		.uleb128 0x2e
+ 1146 0045 00       		.byte	0
+ 1147 0046 3F       		.uleb128 0x3f
+ 1148 0047 19       		.uleb128 0x19
+ 1149 0048 03       		.uleb128 0x3
+ 1150 0049 0E       		.uleb128 0xe
+ 1151 004a 3A       		.uleb128 0x3a
+ 1152 004b 0B       		.uleb128 0xb
+ 1153 004c 3B       		.uleb128 0x3b
+ 1154 004d 0B       		.uleb128 0xb
+ 1155 004e 27       		.uleb128 0x27
+ 1156 004f 19       		.uleb128 0x19
+ 1157 0050 11       		.uleb128 0x11
+ 1158 0051 01       		.uleb128 0x1
+ 1159 0052 12       		.uleb128 0x12
+ 1160 0053 06       		.uleb128 0x6
+ 1161 0054 40       		.uleb128 0x40
+ 1162 0055 18       		.uleb128 0x18
+ 1163 0056 9642     		.uleb128 0x2116
+ 1164 0058 19       		.uleb128 0x19
+ 1165 0059 00       		.byte	0
+ 1166 005a 00       		.byte	0
+ 1167 005b 07       		.uleb128 0x7
+ 1168 005c 2E       		.uleb128 0x2e
+ 1169 005d 00       		.byte	0
+ 1170 005e 3F       		.uleb128 0x3f
+ 1171 005f 19       		.uleb128 0x19
+ 1172 0060 03       		.uleb128 0x3
+ 1173 0061 0E       		.uleb128 0xe
+ 1174 0062 3A       		.uleb128 0x3a
+ 1175 0063 0B       		.uleb128 0xb
+ 1176 0064 3B       		.uleb128 0x3b
+ 1177 0065 0B       		.uleb128 0xb
+ 1178 0066 27       		.uleb128 0x27
+ 1179 0067 19       		.uleb128 0x19
+ 1180 0068 11       		.uleb128 0x11
+ 1181 0069 01       		.uleb128 0x1
+ 1182 006a 12       		.uleb128 0x12
+ 1183 006b 06       		.uleb128 0x6
+ 1184 006c 40       		.uleb128 0x40
+ 1185 006d 18       		.uleb128 0x18
+ 1186 006e 9742     		.uleb128 0x2117
+ 1187 0070 19       		.uleb128 0x19
+ 1188 0071 00       		.byte	0
+ 1189 0072 00       		.byte	0
+ 1190 0073 08       		.uleb128 0x8
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccCXRjL6.s 			page 27
 
 
- 1194 007d 0B       		.uleb128 0xb
- 1195 007e 27       		.uleb128 0x27
- 1196 007f 19       		.uleb128 0x19
- 1197 0080 11       		.uleb128 0x11
- 1198 0081 01       		.uleb128 0x1
- 1199 0082 12       		.uleb128 0x12
- 1200 0083 06       		.uleb128 0x6
- 1201 0084 40       		.uleb128 0x40
- 1202 0085 18       		.uleb128 0x18
- 1203 0086 9642     		.uleb128 0x2116
- 1204 0088 19       		.uleb128 0x19
- 1205 0089 01       		.uleb128 0x1
- 1206 008a 13       		.uleb128 0x13
- 1207 008b 00       		.byte	0
- 1208 008c 00       		.byte	0
- 1209 008d 09       		.uleb128 0x9
- 1210 008e 05       		.uleb128 0x5
- 1211 008f 00       		.byte	0
- 1212 0090 03       		.uleb128 0x3
- 1213 0091 0E       		.uleb128 0xe
- 1214 0092 3A       		.uleb128 0x3a
- 1215 0093 0B       		.uleb128 0xb
- 1216 0094 3B       		.uleb128 0x3b
- 1217 0095 0B       		.uleb128 0xb
- 1218 0096 49       		.uleb128 0x49
- 1219 0097 13       		.uleb128 0x13
- 1220 0098 02       		.uleb128 0x2
- 1221 0099 18       		.uleb128 0x18
- 1222 009a 00       		.byte	0
- 1223 009b 00       		.byte	0
- 1224 009c 0A       		.uleb128 0xa
- 1225 009d 2E       		.uleb128 0x2e
- 1226 009e 01       		.byte	0x1
- 1227 009f 3F       		.uleb128 0x3f
- 1228 00a0 19       		.uleb128 0x19
- 1229 00a1 03       		.uleb128 0x3
- 1230 00a2 0E       		.uleb128 0xe
- 1231 00a3 3A       		.uleb128 0x3a
- 1232 00a4 0B       		.uleb128 0xb
- 1233 00a5 3B       		.uleb128 0x3b
- 1234 00a6 0B       		.uleb128 0xb
- 1235 00a7 27       		.uleb128 0x27
- 1236 00a8 19       		.uleb128 0x19
- 1237 00a9 49       		.uleb128 0x49
- 1238 00aa 13       		.uleb128 0x13
- 1239 00ab 11       		.uleb128 0x11
- 1240 00ac 01       		.uleb128 0x1
- 1241 00ad 12       		.uleb128 0x12
- 1242 00ae 06       		.uleb128 0x6
- 1243 00af 40       		.uleb128 0x40
- 1244 00b0 18       		.uleb128 0x18
- 1245 00b1 9642     		.uleb128 0x2116
- 1246 00b3 19       		.uleb128 0x19
- 1247 00b4 01       		.uleb128 0x1
- 1248 00b5 13       		.uleb128 0x13
- 1249 00b6 00       		.byte	0
- 1250 00b7 00       		.byte	0
-ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccnAHIBf.s 			page 28
+ 1191 0074 2E       		.uleb128 0x2e
+ 1192 0075 01       		.byte	0x1
+ 1193 0076 3F       		.uleb128 0x3f
+ 1194 0077 19       		.uleb128 0x19
+ 1195 0078 03       		.uleb128 0x3
+ 1196 0079 0E       		.uleb128 0xe
+ 1197 007a 3A       		.uleb128 0x3a
+ 1198 007b 0B       		.uleb128 0xb
+ 1199 007c 3B       		.uleb128 0x3b
+ 1200 007d 0B       		.uleb128 0xb
+ 1201 007e 27       		.uleb128 0x27
+ 1202 007f 19       		.uleb128 0x19
+ 1203 0080 11       		.uleb128 0x11
+ 1204 0081 01       		.uleb128 0x1
+ 1205 0082 12       		.uleb128 0x12
+ 1206 0083 06       		.uleb128 0x6
+ 1207 0084 40       		.uleb128 0x40
+ 1208 0085 18       		.uleb128 0x18
+ 1209 0086 9642     		.uleb128 0x2116
+ 1210 0088 19       		.uleb128 0x19
+ 1211 0089 01       		.uleb128 0x1
+ 1212 008a 13       		.uleb128 0x13
+ 1213 008b 00       		.byte	0
+ 1214 008c 00       		.byte	0
+ 1215 008d 09       		.uleb128 0x9
+ 1216 008e 05       		.uleb128 0x5
+ 1217 008f 00       		.byte	0
+ 1218 0090 03       		.uleb128 0x3
+ 1219 0091 0E       		.uleb128 0xe
+ 1220 0092 3A       		.uleb128 0x3a
+ 1221 0093 0B       		.uleb128 0xb
+ 1222 0094 3B       		.uleb128 0x3b
+ 1223 0095 0B       		.uleb128 0xb
+ 1224 0096 49       		.uleb128 0x49
+ 1225 0097 13       		.uleb128 0x13
+ 1226 0098 02       		.uleb128 0x2
+ 1227 0099 18       		.uleb128 0x18
+ 1228 009a 00       		.byte	0
+ 1229 009b 00       		.byte	0
+ 1230 009c 0A       		.uleb128 0xa
+ 1231 009d 2E       		.uleb128 0x2e
+ 1232 009e 01       		.byte	0x1
+ 1233 009f 3F       		.uleb128 0x3f
+ 1234 00a0 19       		.uleb128 0x19
+ 1235 00a1 03       		.uleb128 0x3
+ 1236 00a2 0E       		.uleb128 0xe
+ 1237 00a3 3A       		.uleb128 0x3a
+ 1238 00a4 0B       		.uleb128 0xb
+ 1239 00a5 3B       		.uleb128 0x3b
+ 1240 00a6 0B       		.uleb128 0xb
+ 1241 00a7 27       		.uleb128 0x27
+ 1242 00a8 19       		.uleb128 0x19
+ 1243 00a9 49       		.uleb128 0x49
+ 1244 00aa 13       		.uleb128 0x13
+ 1245 00ab 11       		.uleb128 0x11
+ 1246 00ac 01       		.uleb128 0x1
+ 1247 00ad 12       		.uleb128 0x12
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccCXRjL6.s 			page 28
 
 
- 1251 00b8 0B       		.uleb128 0xb
- 1252 00b9 0B       		.uleb128 0xb
- 1253 00ba 01       		.byte	0x1
- 1254 00bb 11       		.uleb128 0x11
- 1255 00bc 01       		.uleb128 0x1
- 1256 00bd 12       		.uleb128 0x12
- 1257 00be 06       		.uleb128 0x6
- 1258 00bf 00       		.byte	0
- 1259 00c0 00       		.byte	0
- 1260 00c1 0C       		.uleb128 0xc
- 1261 00c2 34       		.uleb128 0x34
- 1262 00c3 00       		.byte	0
- 1263 00c4 03       		.uleb128 0x3
- 1264 00c5 08       		.uleb128 0x8
- 1265 00c6 3A       		.uleb128 0x3a
- 1266 00c7 0B       		.uleb128 0xb
- 1267 00c8 3B       		.uleb128 0x3b
- 1268 00c9 0B       		.uleb128 0xb
- 1269 00ca 49       		.uleb128 0x49
- 1270 00cb 13       		.uleb128 0x13
- 1271 00cc 02       		.uleb128 0x2
- 1272 00cd 18       		.uleb128 0x18
- 1273 00ce 00       		.byte	0
- 1274 00cf 00       		.byte	0
- 1275 00d0 0D       		.uleb128 0xd
- 1276 00d1 01       		.uleb128 0x1
- 1277 00d2 01       		.byte	0x1
- 1278 00d3 49       		.uleb128 0x49
- 1279 00d4 13       		.uleb128 0x13
- 1280 00d5 01       		.uleb128 0x1
- 1281 00d6 13       		.uleb128 0x13
- 1282 00d7 00       		.byte	0
- 1283 00d8 00       		.byte	0
- 1284 00d9 0E       		.uleb128 0xe
- 1285 00da 21       		.uleb128 0x21
- 1286 00db 00       		.byte	0
- 1287 00dc 49       		.uleb128 0x49
- 1288 00dd 13       		.uleb128 0x13
- 1289 00de 2F       		.uleb128 0x2f
- 1290 00df 0B       		.uleb128 0xb
- 1291 00e0 00       		.byte	0
- 1292 00e1 00       		.byte	0
- 1293 00e2 0F       		.uleb128 0xf
- 1294 00e3 34       		.uleb128 0x34
- 1295 00e4 00       		.byte	0
- 1296 00e5 03       		.uleb128 0x3
- 1297 00e6 0E       		.uleb128 0xe
- 1298 00e7 3A       		.uleb128 0x3a
- 1299 00e8 0B       		.uleb128 0xb
- 1300 00e9 3B       		.uleb128 0x3b
- 1301 00ea 0B       		.uleb128 0xb
- 1302 00eb 49       		.uleb128 0x49
- 1303 00ec 13       		.uleb128 0x13
- 1304 00ed 02       		.uleb128 0x2
- 1305 00ee 18       		.uleb128 0x18
- 1306 00ef 00       		.byte	0
- 1307 00f0 00       		.byte	0
-ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccnAHIBf.s 			page 29
+ 1248 00ae 06       		.uleb128 0x6
+ 1249 00af 40       		.uleb128 0x40
+ 1250 00b0 18       		.uleb128 0x18
+ 1251 00b1 9642     		.uleb128 0x2116
+ 1252 00b3 19       		.uleb128 0x19
+ 1253 00b4 01       		.uleb128 0x1
+ 1254 00b5 13       		.uleb128 0x13
+ 1255 00b6 00       		.byte	0
+ 1256 00b7 00       		.byte	0
+ 1257 00b8 0B       		.uleb128 0xb
+ 1258 00b9 0B       		.uleb128 0xb
+ 1259 00ba 01       		.byte	0x1
+ 1260 00bb 11       		.uleb128 0x11
+ 1261 00bc 01       		.uleb128 0x1
+ 1262 00bd 12       		.uleb128 0x12
+ 1263 00be 06       		.uleb128 0x6
+ 1264 00bf 00       		.byte	0
+ 1265 00c0 00       		.byte	0
+ 1266 00c1 0C       		.uleb128 0xc
+ 1267 00c2 34       		.uleb128 0x34
+ 1268 00c3 00       		.byte	0
+ 1269 00c4 03       		.uleb128 0x3
+ 1270 00c5 08       		.uleb128 0x8
+ 1271 00c6 3A       		.uleb128 0x3a
+ 1272 00c7 0B       		.uleb128 0xb
+ 1273 00c8 3B       		.uleb128 0x3b
+ 1274 00c9 0B       		.uleb128 0xb
+ 1275 00ca 49       		.uleb128 0x49
+ 1276 00cb 13       		.uleb128 0x13
+ 1277 00cc 02       		.uleb128 0x2
+ 1278 00cd 18       		.uleb128 0x18
+ 1279 00ce 00       		.byte	0
+ 1280 00cf 00       		.byte	0
+ 1281 00d0 0D       		.uleb128 0xd
+ 1282 00d1 01       		.uleb128 0x1
+ 1283 00d2 01       		.byte	0x1
+ 1284 00d3 49       		.uleb128 0x49
+ 1285 00d4 13       		.uleb128 0x13
+ 1286 00d5 01       		.uleb128 0x1
+ 1287 00d6 13       		.uleb128 0x13
+ 1288 00d7 00       		.byte	0
+ 1289 00d8 00       		.byte	0
+ 1290 00d9 0E       		.uleb128 0xe
+ 1291 00da 21       		.uleb128 0x21
+ 1292 00db 00       		.byte	0
+ 1293 00dc 49       		.uleb128 0x49
+ 1294 00dd 13       		.uleb128 0x13
+ 1295 00de 2F       		.uleb128 0x2f
+ 1296 00df 0B       		.uleb128 0xb
+ 1297 00e0 00       		.byte	0
+ 1298 00e1 00       		.byte	0
+ 1299 00e2 0F       		.uleb128 0xf
+ 1300 00e3 34       		.uleb128 0x34
+ 1301 00e4 00       		.byte	0
+ 1302 00e5 03       		.uleb128 0x3
+ 1303 00e6 0E       		.uleb128 0xe
+ 1304 00e7 3A       		.uleb128 0x3a
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccCXRjL6.s 			page 29
 
 
- 1308 00f1 10       		.uleb128 0x10
- 1309 00f2 34       		.uleb128 0x34
- 1310 00f3 00       		.byte	0
- 1311 00f4 03       		.uleb128 0x3
- 1312 00f5 0E       		.uleb128 0xe
- 1313 00f6 3A       		.uleb128 0x3a
- 1314 00f7 0B       		.uleb128 0xb
- 1315 00f8 3B       		.uleb128 0x3b
- 1316 00f9 05       		.uleb128 0x5
- 1317 00fa 49       		.uleb128 0x49
- 1318 00fb 13       		.uleb128 0x13
- 1319 00fc 3F       		.uleb128 0x3f
- 1320 00fd 19       		.uleb128 0x19
- 1321 00fe 3C       		.uleb128 0x3c
- 1322 00ff 19       		.uleb128 0x19
- 1323 0100 00       		.byte	0
- 1324 0101 00       		.byte	0
- 1325 0102 11       		.uleb128 0x11
- 1326 0103 35       		.uleb128 0x35
- 1327 0104 00       		.byte	0
- 1328 0105 49       		.uleb128 0x49
- 1329 0106 13       		.uleb128 0x13
- 1330 0107 00       		.byte	0
- 1331 0108 00       		.byte	0
- 1332 0109 00       		.byte	0
- 1333              		.section	.debug_aranges,"",%progbits
- 1334 0000 3C000000 		.4byte	0x3c
- 1335 0004 0200     		.2byte	0x2
- 1336 0006 00000000 		.4byte	.Ldebug_info0
- 1337 000a 04       		.byte	0x4
- 1338 000b 00       		.byte	0
- 1339 000c 0000     		.2byte	0
- 1340 000e 0000     		.2byte	0
- 1341 0010 00000000 		.4byte	.LFB64
- 1342 0014 18000000 		.4byte	.LFE64-.LFB64
- 1343 0018 00000000 		.4byte	.LFB65
- 1344 001c 18000000 		.4byte	.LFE65-.LFB65
- 1345 0020 00000000 		.4byte	.LFB66
- 1346 0024 44000000 		.4byte	.LFE66-.LFB66
- 1347 0028 00000000 		.4byte	.LFB67
- 1348 002c 80000000 		.4byte	.LFE67-.LFB67
- 1349 0030 00000000 		.4byte	.LFB68
- 1350 0034 C0030000 		.4byte	.LFE68-.LFB68
- 1351 0038 00000000 		.4byte	0
- 1352 003c 00000000 		.4byte	0
- 1353              		.section	.debug_ranges,"",%progbits
- 1354              	.Ldebug_ranges0:
- 1355 0000 00000000 		.4byte	.LFB64
- 1356 0004 18000000 		.4byte	.LFE64
- 1357 0008 00000000 		.4byte	.LFB65
- 1358 000c 18000000 		.4byte	.LFE65
- 1359 0010 00000000 		.4byte	.LFB66
- 1360 0014 44000000 		.4byte	.LFE66
- 1361 0018 00000000 		.4byte	.LFB67
- 1362 001c 80000000 		.4byte	.LFE67
- 1363 0020 00000000 		.4byte	.LFB68
- 1364 0024 C0030000 		.4byte	.LFE68
-ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccnAHIBf.s 			page 30
+ 1305 00e8 0B       		.uleb128 0xb
+ 1306 00e9 3B       		.uleb128 0x3b
+ 1307 00ea 0B       		.uleb128 0xb
+ 1308 00eb 49       		.uleb128 0x49
+ 1309 00ec 13       		.uleb128 0x13
+ 1310 00ed 02       		.uleb128 0x2
+ 1311 00ee 18       		.uleb128 0x18
+ 1312 00ef 00       		.byte	0
+ 1313 00f0 00       		.byte	0
+ 1314 00f1 10       		.uleb128 0x10
+ 1315 00f2 34       		.uleb128 0x34
+ 1316 00f3 00       		.byte	0
+ 1317 00f4 03       		.uleb128 0x3
+ 1318 00f5 0E       		.uleb128 0xe
+ 1319 00f6 3A       		.uleb128 0x3a
+ 1320 00f7 0B       		.uleb128 0xb
+ 1321 00f8 3B       		.uleb128 0x3b
+ 1322 00f9 05       		.uleb128 0x5
+ 1323 00fa 49       		.uleb128 0x49
+ 1324 00fb 13       		.uleb128 0x13
+ 1325 00fc 3F       		.uleb128 0x3f
+ 1326 00fd 19       		.uleb128 0x19
+ 1327 00fe 3C       		.uleb128 0x3c
+ 1328 00ff 19       		.uleb128 0x19
+ 1329 0100 00       		.byte	0
+ 1330 0101 00       		.byte	0
+ 1331 0102 11       		.uleb128 0x11
+ 1332 0103 35       		.uleb128 0x35
+ 1333 0104 00       		.byte	0
+ 1334 0105 49       		.uleb128 0x49
+ 1335 0106 13       		.uleb128 0x13
+ 1336 0107 00       		.byte	0
+ 1337 0108 00       		.byte	0
+ 1338 0109 00       		.byte	0
+ 1339              		.section	.debug_aranges,"",%progbits
+ 1340 0000 3C000000 		.4byte	0x3c
+ 1341 0004 0200     		.2byte	0x2
+ 1342 0006 00000000 		.4byte	.Ldebug_info0
+ 1343 000a 04       		.byte	0x4
+ 1344 000b 00       		.byte	0
+ 1345 000c 0000     		.2byte	0
+ 1346 000e 0000     		.2byte	0
+ 1347 0010 00000000 		.4byte	.LFB64
+ 1348 0014 18000000 		.4byte	.LFE64-.LFB64
+ 1349 0018 00000000 		.4byte	.LFB65
+ 1350 001c 18000000 		.4byte	.LFE65-.LFB65
+ 1351 0020 00000000 		.4byte	.LFB66
+ 1352 0024 44000000 		.4byte	.LFE66-.LFB66
+ 1353 0028 00000000 		.4byte	.LFB67
+ 1354 002c 8C000000 		.4byte	.LFE67-.LFB67
+ 1355 0030 00000000 		.4byte	.LFB68
+ 1356 0034 C0030000 		.4byte	.LFE68-.LFB68
+ 1357 0038 00000000 		.4byte	0
+ 1358 003c 00000000 		.4byte	0
+ 1359              		.section	.debug_ranges,"",%progbits
+ 1360              	.Ldebug_ranges0:
+ 1361 0000 00000000 		.4byte	.LFB64
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccCXRjL6.s 			page 30
 
 
- 1365 0028 00000000 		.4byte	0
- 1366 002c 00000000 		.4byte	0
- 1367              		.section	.debug_line,"",%progbits
- 1368              	.Ldebug_line0:
- 1369 0000 4C020000 		.section	.debug_str,"MS",%progbits,1
- 1369      02003901 
- 1369      00000201 
- 1369      FB0E0D00 
- 1369      01010101 
- 1370              	.LASF4:
- 1371 0000 5F5F7569 		.ascii	"__uint8_t\000"
- 1371      6E74385F 
- 1371      7400
- 1372              	.LASF30:
- 1373 000a 7A757374 		.ascii	"zustand\000"
- 1373      616E6400 
- 1374              	.LASF32:
- 1375 0012 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
- 1375      43313120 
- 1375      352E342E 
- 1375      31203230 
- 1375      31363036 
- 1376 0045 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
- 1376      20726576 
- 1376      6973696F 
- 1376      6E203233 
- 1376      37373135 
- 1377 0078 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
- 1377      66756E63 
- 1377      74696F6E 
- 1377      2D736563 
- 1377      74696F6E 
- 1378              	.LASF35:
- 1379 00a0 62726967 		.ascii	"brightness_settings\000"
- 1379      68746E65 
- 1379      73735F73 
- 1379      65747469 
- 1379      6E677300 
- 1380              	.LASF5:
- 1381 00b4 5F5F696E 		.ascii	"__int32_t\000"
- 1381      7433325F 
- 1381      7400
- 1382              	.LASF24:
- 1383 00be 49737241 		.ascii	"IsrAppClk\000"
- 1383      7070436C 
- 1383      6B00
- 1384              	.LASF17:
- 1385 00c8 646F7562 		.ascii	"double\000"
- 1385      6C6500
- 1386              	.LASF16:
- 1387 00cf 666C6F61 		.ascii	"float\000"
+ 1362 0004 18000000 		.4byte	.LFE64
+ 1363 0008 00000000 		.4byte	.LFB65
+ 1364 000c 18000000 		.4byte	.LFE65
+ 1365 0010 00000000 		.4byte	.LFB66
+ 1366 0014 44000000 		.4byte	.LFE66
+ 1367 0018 00000000 		.4byte	.LFB67
+ 1368 001c 8C000000 		.4byte	.LFE67
+ 1369 0020 00000000 		.4byte	.LFB68
+ 1370 0024 C0030000 		.4byte	.LFE68
+ 1371 0028 00000000 		.4byte	0
+ 1372 002c 00000000 		.4byte	0
+ 1373              		.section	.debug_line,"",%progbits
+ 1374              	.Ldebug_line0:
+ 1375 0000 59020000 		.section	.debug_str,"MS",%progbits,1
+ 1375      02004501 
+ 1375      00000201 
+ 1375      FB0E0D00 
+ 1375      01010101 
+ 1376              	.LASF4:
+ 1377 0000 5F5F7569 		.ascii	"__uint8_t\000"
+ 1377      6E74385F 
+ 1377      7400
+ 1378              	.LASF30:
+ 1379 000a 7A757374 		.ascii	"zustand\000"
+ 1379      616E6400 
+ 1380              	.LASF32:
+ 1381 0012 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1381      43313120 
+ 1381      352E342E 
+ 1381      31203230 
+ 1381      31363036 
+ 1382 0045 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 1382      20726576 
+ 1382      6973696F 
+ 1382      6E203233 
+ 1382      37373135 
+ 1383 0078 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 1383      66756E63 
+ 1383      74696F6E 
+ 1383      2D736563 
+ 1383      74696F6E 
+ 1384              	.LASF35:
+ 1385 00a0 62726967 		.ascii	"brightness_settings\000"
+ 1385      68746E65 
+ 1385      73735F73 
+ 1385      65747469 
+ 1385      6E677300 
+ 1386              	.LASF5:
+ 1387 00b4 5F5F696E 		.ascii	"__int32_t\000"
+ 1387      7433325F 
  1387      7400
- 1388              	.LASF22:
- 1389 00d5 4D794973 		.ascii	"MyIsrUartRX\000"
- 1389      72556172 
- 1389      74525800 
- 1390              	.LASF0:
-ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccnAHIBf.s 			page 31
+ 1388              	.LASF24:
+ 1389 00be 49737241 		.ascii	"IsrAppClk\000"
+ 1389      7070436C 
+ 1389      6B00
+ 1390              	.LASF17:
+ 1391 00c8 646F7562 		.ascii	"double\000"
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccCXRjL6.s 			page 31
 
 
- 1391 00e1 7369676E 		.ascii	"signed char\000"
- 1391      65642063 
- 1391      68617200 
- 1392              	.LASF34:
- 1393 00ed 453A5C67 		.ascii	"E:\\github\\MPS\\MPS_W22_Prakt_3.cydsn\000"
- 1393      69746875 
- 1393      625C4D50 
- 1393      535C4D50 
- 1393      535F5732 
- 1394              	.LASF1:
- 1395 0111 756E7369 		.ascii	"unsigned char\000"
- 1395      676E6564 
- 1395      20636861 
- 1395      7200
- 1396              	.LASF36:
- 1397 011f 696E7075 		.ascii	"input\000"
- 1397      7400
- 1398              	.LASF29:
- 1399 0125 74696D65 		.ascii	"timer\000"
+ 1391      6C6500
+ 1392              	.LASF16:
+ 1393 00cf 666C6F61 		.ascii	"float\000"
+ 1393      7400
+ 1394              	.LASF22:
+ 1395 00d5 4D794973 		.ascii	"MyIsrUartRX\000"
+ 1395      72556172 
+ 1395      74525800 
+ 1396              	.LASF0:
+ 1397 00e1 7369676E 		.ascii	"signed char\000"
+ 1397      65642063 
+ 1397      68617200 
+ 1398              	.LASF1:
+ 1399 00ed 756E7369 		.ascii	"unsigned char\000"
+ 1399      676E6564 
+ 1399      20636861 
  1399      7200
- 1400              	.LASF28:
- 1401 012b 636F756E 		.ascii	"count_ms\000"
- 1401      745F6D73 
- 1401      00
- 1402              	.LASF3:
- 1403 0134 73686F72 		.ascii	"short unsigned int\000"
- 1403      7420756E 
- 1403      7369676E 
- 1403      65642069 
- 1403      6E7400
- 1404              	.LASF27:
- 1405 0147 6673436C 		.ascii	"fsClock\000"
- 1405      6F636B00 
- 1406              	.LASF31:
- 1407 014f 62726967 		.ascii	"brightness\000"
- 1407      68746E65 
- 1407      737300
- 1408              	.LASF38:
- 1409 015a 49544D5F 		.ascii	"ITM_RxBuffer\000"
- 1409      52784275 
- 1409      66666572 
- 1409      00
- 1410              	.LASF8:
- 1411 0167 6C6F6E67 		.ascii	"long unsigned int\000"
- 1411      20756E73 
- 1411      69676E65 
- 1411      6420696E 
- 1411      7400
- 1412              	.LASF26:
- 1413 0179 66435745 		.ascii	"fCWEW_Isr\000"
- 1413      575F4973 
- 1413      7200
- 1414              	.LASF7:
- 1415 0183 5F5F7569 		.ascii	"__uint32_t\000"
- 1415      6E743332 
- 1415      5F7400
- 1416              	.LASF15:
-ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccnAHIBf.s 			page 32
+ 1400              	.LASF36:
+ 1401 00fb 696E7075 		.ascii	"input\000"
+ 1401      7400
+ 1402              	.LASF29:
+ 1403 0101 74696D65 		.ascii	"timer\000"
+ 1403      7200
+ 1404              	.LASF28:
+ 1405 0107 636F756E 		.ascii	"count_ms\000"
+ 1405      745F6D73 
+ 1405      00
+ 1406              	.LASF3:
+ 1407 0110 73686F72 		.ascii	"short unsigned int\000"
+ 1407      7420756E 
+ 1407      7369676E 
+ 1407      65642069 
+ 1407      6E7400
+ 1408              	.LASF27:
+ 1409 0123 6673436C 		.ascii	"fsClock\000"
+ 1409      6F636B00 
+ 1410              	.LASF31:
+ 1411 012b 62726967 		.ascii	"brightness\000"
+ 1411      68746E65 
+ 1411      737300
+ 1412              	.LASF38:
+ 1413 0136 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 1413      52784275 
+ 1413      66666572 
+ 1413      00
+ 1414              	.LASF34:
+ 1415 0143 443A5C67 		.ascii	"D:\\github\\MPS\\MPS_W22_Prakt_3.cydsn\000"
+ 1415      69746875 
+ 1415      625C4D50 
+ 1415      535C4D50 
+ 1415      535F5732 
+ 1416              	.LASF8:
+ 1417 0167 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1417      20756E73 
+ 1417      69676E65 
+ 1417      6420696E 
+ 1417      7400
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccCXRjL6.s 			page 32
 
 
- 1417 018e 75696E74 		.ascii	"uint16\000"
- 1417      313600
- 1418              	.LASF37:
- 1419 0195 6D61696E 		.ascii	"main\000"
- 1419      00
- 1420              	.LASF11:
- 1421 019a 756E7369 		.ascii	"unsigned int\000"
- 1421      676E6564 
- 1421      20696E74 
- 1421      00
- 1422              	.LASF10:
- 1423 01a7 6C6F6E67 		.ascii	"long long unsigned int\000"
- 1423      206C6F6E 
- 1423      6720756E 
- 1423      7369676E 
- 1423      65642069 
- 1424              	.LASF12:
- 1425 01be 75696E74 		.ascii	"uint8_t\000"
- 1425      385F7400 
- 1426              	.LASF13:
- 1427 01c6 696E7433 		.ascii	"int32_t\000"
- 1427      325F7400 
- 1428              	.LASF20:
- 1429 01ce 73697A65 		.ascii	"sizetype\000"
- 1429      74797065 
- 1429      00
- 1430              	.LASF9:
- 1431 01d7 6C6F6E67 		.ascii	"long long int\000"
- 1431      206C6F6E 
- 1431      6720696E 
- 1431      7400
- 1432              	.LASF33:
- 1433 01e5 6D61696E 		.ascii	"main.c\000"
- 1433      2E6300
- 1434              	.LASF18:
- 1435 01ec 63686172 		.ascii	"char\000"
+ 1418              	.LASF26:
+ 1419 0179 66435745 		.ascii	"fCWEW_Isr\000"
+ 1419      575F4973 
+ 1419      7200
+ 1420              	.LASF7:
+ 1421 0183 5F5F7569 		.ascii	"__uint32_t\000"
+ 1421      6E743332 
+ 1421      5F7400
+ 1422              	.LASF15:
+ 1423 018e 75696E74 		.ascii	"uint16\000"
+ 1423      313600
+ 1424              	.LASF37:
+ 1425 0195 6D61696E 		.ascii	"main\000"
+ 1425      00
+ 1426              	.LASF11:
+ 1427 019a 756E7369 		.ascii	"unsigned int\000"
+ 1427      676E6564 
+ 1427      20696E74 
+ 1427      00
+ 1428              	.LASF10:
+ 1429 01a7 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1429      206C6F6E 
+ 1429      6720756E 
+ 1429      7369676E 
+ 1429      65642069 
+ 1430              	.LASF12:
+ 1431 01be 75696E74 		.ascii	"uint8_t\000"
+ 1431      385F7400 
+ 1432              	.LASF13:
+ 1433 01c6 696E7433 		.ascii	"int32_t\000"
+ 1433      325F7400 
+ 1434              	.LASF20:
+ 1435 01ce 73697A65 		.ascii	"sizetype\000"
+ 1435      74797065 
  1435      00
- 1436              	.LASF2:
- 1437 01f1 73686F72 		.ascii	"short int\000"
- 1437      7420696E 
+ 1436              	.LASF9:
+ 1437 01d7 6C6F6E67 		.ascii	"long long int\000"
+ 1437      206C6F6E 
+ 1437      6720696E 
  1437      7400
- 1438              	.LASF25:
- 1439 01fb 62756666 		.ascii	"buffer\000"
- 1439      657200
- 1440              	.LASF14:
- 1441 0202 75696E74 		.ascii	"uint32_t\000"
- 1441      33325F74 
+ 1438              	.LASF33:
+ 1439 01e5 6D61696E 		.ascii	"main.c\000"
+ 1439      2E6300
+ 1440              	.LASF18:
+ 1441 01ec 63686172 		.ascii	"char\000"
  1441      00
- 1442              	.LASF6:
- 1443 020b 6C6F6E67 		.ascii	"long int\000"
- 1443      20696E74 
- 1443      00
- 1444              	.LASF19:
- 1445 0214 6C6F6E67 		.ascii	"long double\000"
- 1445      20646F75 
- 1445      626C6500 
- 1446              	.LASF23:
-ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccnAHIBf.s 			page 33
+ 1442              	.LASF2:
+ 1443 01f1 73686F72 		.ascii	"short int\000"
+ 1443      7420696E 
+ 1443      7400
+ 1444              	.LASF25:
+ 1445 01fb 62756666 		.ascii	"buffer\000"
+ 1445      657200
+ 1446              	.LASF14:
+ 1447 0202 75696E74 		.ascii	"uint32_t\000"
+ 1447      33325F74 
+ 1447      00
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccCXRjL6.s 			page 33
 
 
- 1447 0220 4D794973 		.ascii	"MyIsrCWEW\000"
- 1447      72435745 
- 1447      5700
- 1448              	.LASF21:
- 1449 022a 755F696E 		.ascii	"u_int\000"
- 1449      7400
- 1450              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
+ 1448              	.LASF6:
+ 1449 020b 6C6F6E67 		.ascii	"long int\000"
+ 1449      20696E74 
+ 1449      00
+ 1450              	.LASF19:
+ 1451 0214 6C6F6E67 		.ascii	"long double\000"
+ 1451      20646F75 
+ 1451      626C6500 
+ 1452              	.LASF23:
+ 1453 0220 4D794973 		.ascii	"MyIsrCWEW\000"
+ 1453      72435745 
+ 1453      5700
+ 1454              	.LASF21:
+ 1455 022a 755F696E 		.ascii	"u_int\000"
+ 1455      7400
+ 1456              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

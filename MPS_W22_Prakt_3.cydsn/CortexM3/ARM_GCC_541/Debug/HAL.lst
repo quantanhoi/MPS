@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLEBgmN.s 			page 1
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccP1Zuli.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLEBgmN.s 			page 1
   51 001c 1846     		mov	r0, r3
   52 001e FFF7FEFF 		bl	Pin_N_Y_Write
   53 0022 7B79     		ldrb	r3, [r7, #5]	@ zero_extendqisi2
-ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLEBgmN.s 			page 2
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccP1Zuli.s 			page 2
 
 
   54 0024 1846     		mov	r0, r3
@@ -84,15 +84,15 @@ ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLEBgmN.s 			page 1
   73              		.cfi_endproc
   74              	.LFE63:
   75              		.size	switch_north_south_state, .-switch_north_south_state
-  76 004a 00BF     		.section	.text.switch_east_state,"ax",%progbits
+  76 004a 00BF     		.section	.text.switch_west_state,"ax",%progbits
   77              		.align	2
-  78              		.global	switch_east_state
+  78              		.global	switch_west_state
   79              		.thumb
   80              		.thumb_func
-  81              		.type	switch_east_state, %function
-  82              	switch_east_state:
+  81              		.type	switch_west_state, %function
+  82              	switch_west_state:
   83              	.LFB64:
-   6:HAL.c         **** void switch_east_state(uint8 r, uint8 y, uint8 g){
+   6:HAL.c         **** void switch_west_state(uint8 r, uint8 y, uint8 g){
   84              		.loc 1 6 0
   85              		.cfi_startproc
   86              		@ args = 0, pretend = 0, frame = 8
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLEBgmN.s 			page 1
  105 0016 FFF7FEFF 		bl	Pin_W_R_Write
  106 001a BB79     		ldrb	r3, [r7, #6]	@ zero_extendqisi2
  107 001c 1846     		mov	r0, r3
-ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLEBgmN.s 			page 3
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccP1Zuli.s 			page 3
 
 
  108 001e FFF7FEFF 		bl	Pin_W_Y_Write
@@ -136,7 +136,7 @@ ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLEBgmN.s 			page 1
  119 0030 80BD     		pop	{r7, pc}
  120              		.cfi_endproc
  121              	.LFE64:
- 122              		.size	switch_east_state, .-switch_east_state
+ 122              		.size	switch_west_state, .-switch_west_state
  123 0032 00BF     		.section	.text.cleanState,"ax",%progbits
  124              		.align	2
  125              		.global	cleanState
@@ -167,7 +167,7 @@ ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLEBgmN.s 			page 1
  146 000e 0122     		movs	r2, #1
  147 0010 0121     		movs	r1, #1
  148 0012 0020     		movs	r0, #0
- 149 0014 FFF7FEFF 		bl	switch_east_state
+ 149 0014 FFF7FEFF 		bl	switch_west_state
  150 0018 0020     		movs	r0, #0
  151 001a FFF7FEFF 		bl	Pin_S_CW_Write
  152 001e 0020     		movs	r0, #0
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLEBgmN.s 			page 1
  156 0026 80BD     		pop	{r7, pc}
  157              		.cfi_endproc
  158              	.LFE65:
-ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLEBgmN.s 			page 4
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccP1Zuli.s 			page 4
 
 
  159              		.size	cleanState, .-cleanState
@@ -210,7 +210,7 @@ ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLEBgmN.s 			page 1
  183 000e 0122     		movs	r2, #1
  184 0010 0121     		movs	r1, #1
  185 0012 0020     		movs	r0, #0
- 186 0014 FFF7FEFF 		bl	switch_east_state
+ 186 0014 FFF7FEFF 		bl	switch_west_state
  187 0018 0020     		movs	r0, #0
  188 001a FFF7FEFF 		bl	Pin_S_CW_Write
  189 001e 0020     		movs	r0, #0
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLEBgmN.s 			page 1
  209 0000 80B5     		push	{r7, lr}
  210              		.cfi_def_cfa_offset 8
  211              		.cfi_offset 7, -8
-ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLEBgmN.s 			page 5
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccP1Zuli.s 			page 5
 
 
  212              		.cfi_offset 14, -4
@@ -253,7 +253,7 @@ ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLEBgmN.s 			page 1
  220 000e 0122     		movs	r2, #1
  221 0010 0121     		movs	r1, #1
  222 0012 0020     		movs	r0, #0
- 223 0014 FFF7FEFF 		bl	switch_east_state
+ 223 0014 FFF7FEFF 		bl	switch_west_state
  224 0018 0020     		movs	r0, #0
  225 001a FFF7FEFF 		bl	Pin_S_CW_Write
  226 001e 0120     		movs	r0, #1
@@ -293,12 +293,12 @@ ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLEBgmN.s 			page 1
  257 000e 0122     		movs	r2, #1
  258 0010 0121     		movs	r1, #1
  259 0012 0020     		movs	r0, #0
- 260 0014 FFF7FEFF 		bl	switch_east_state
+ 260 0014 FFF7FEFF 		bl	switch_west_state
  261 0018 0020     		movs	r0, #0
  262 001a FFF7FEFF 		bl	Pin_S_CW_Write
  263 001e 0020     		movs	r0, #0
  264 0020 FFF7FEFF 		bl	Pin_E_CW_Write
-ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLEBgmN.s 			page 6
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccP1Zuli.s 			page 6
 
 
   22:HAL.c         **** }
@@ -337,7 +337,7 @@ ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLEBgmN.s 			page 1
  294 000e 0122     		movs	r2, #1
  295 0010 0021     		movs	r1, #0
  296 0012 0020     		movs	r0, #0
- 297 0014 FFF7FEFF 		bl	switch_east_state
+ 297 0014 FFF7FEFF 		bl	switch_west_state
  298 0018 0020     		movs	r0, #0
  299 001a FFF7FEFF 		bl	Pin_S_CW_Write
  300 001e 0020     		movs	r0, #0
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLEBgmN.s 			page 1
  314              	allowEastWestToDrive:
  315              	.LFB70:
   27:HAL.c         **** void allowEastWestToDrive(){
-ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLEBgmN.s 			page 7
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccP1Zuli.s 			page 7
 
 
  316              		.loc 1 27 0
@@ -380,7 +380,7 @@ ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLEBgmN.s 			page 1
  331 000e 0022     		movs	r2, #0
  332 0010 0121     		movs	r1, #1
  333 0012 0120     		movs	r0, #1
- 334 0014 FFF7FEFF 		bl	switch_east_state
+ 334 0014 FFF7FEFF 		bl	switch_west_state
  335 0018 0120     		movs	r0, #1
  336 001a FFF7FEFF 		bl	Pin_S_CW_Write
  337 001e 0020     		movs	r0, #0
@@ -418,12 +418,12 @@ ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLEBgmN.s 			page 1
  366 0008 0020     		movs	r0, #0
  367 000a FFF7FEFF 		bl	switch_north_south_state
  368 000e 0122     		movs	r2, #1
-ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLEBgmN.s 			page 8
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccP1Zuli.s 			page 8
 
 
  369 0010 0021     		movs	r1, #0
  370 0012 0120     		movs	r0, #1
- 371 0014 FFF7FEFF 		bl	switch_east_state
+ 371 0014 FFF7FEFF 		bl	switch_west_state
  372 0018 0020     		movs	r0, #0
  373 001a FFF7FEFF 		bl	Pin_S_CW_Write
  374 001e 0020     		movs	r0, #0
@@ -437,8 +437,8 @@ ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLEBgmN.s 			page 1
  381              		.size	prepareEastWestToStop, .-prepareEastWestToStop
  382              		.text
  383              	.Letext0:
- 384              		.file 2 "e:\\psoc creator\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.1\\arm-none-eabi
- 385              		.file 3 "e:\\psoc creator\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.1\\arm-none-eabi
+ 384              		.file 2 "d:\\tools\\psoc creator\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.1\\arm-no
+ 385              		.file 3 "d:\\tools\\psoc creator\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.1\\arm-no
  386              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
  387              		.file 5 "Generated_Source\\PSoC5/core_cm3.h"
  388              		.section	.debug_info,"",%progbits
@@ -450,27 +450,27 @@ ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLEBgmN.s 			page 1
  394 000b 01       		.uleb128 0x1
  395 000c BA010000 		.4byte	.LASF26
  396 0010 0C       		.byte	0xc
- 397 0011 FD000000 		.4byte	.LASF27
- 398 0015 6D000000 		.4byte	.LASF28
+ 397 0011 D9000000 		.4byte	.LASF27
+ 398 0015 96010000 		.4byte	.LASF28
  399 0019 00000000 		.4byte	.Ldebug_ranges0+0
  400 001d 00000000 		.4byte	0
  401 0021 00000000 		.4byte	.Ldebug_line0
  402 0025 02       		.uleb128 0x2
  403 0026 01       		.byte	0x1
  404 0027 06       		.byte	0x6
- 405 0028 AE010000 		.4byte	.LASF0
+ 405 0028 8A010000 		.4byte	.LASF0
  406 002c 02       		.uleb128 0x2
  407 002d 01       		.byte	0x1
  408 002e 08       		.byte	0x8
- 409 002f CE000000 		.4byte	.LASF1
+ 409 002f AA000000 		.4byte	.LASF1
  410 0033 02       		.uleb128 0x2
  411 0034 02       		.byte	0x2
  412 0035 05       		.byte	0x5
- 413 0036 F3000000 		.4byte	.LASF2
+ 413 0036 CF000000 		.4byte	.LASF2
  414 003a 02       		.uleb128 0x2
  415 003b 02       		.byte	0x2
  416 003c 07       		.byte	0x7
- 417 003d AE000000 		.4byte	.LASF3
+ 417 003d 8A000000 		.4byte	.LASF3
  418 0041 03       		.uleb128 0x3
  419 0042 19000000 		.4byte	.LASF9
  420 0046 02       		.byte	0x2
@@ -478,23 +478,23 @@ ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLEBgmN.s 			page 1
  422 0048 4C000000 		.4byte	0x4c
  423 004c 02       		.uleb128 0x2
  424 004d 04       		.byte	0x4
-ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLEBgmN.s 			page 9
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccP1Zuli.s 			page 9
 
 
  425 004e 05       		.byte	0x5
- 426 004f 99010000 		.4byte	.LASF4
+ 426 004f 75010000 		.4byte	.LASF4
  427 0053 02       		.uleb128 0x2
  428 0054 04       		.byte	0x4
  429 0055 07       		.byte	0x7
- 430 0056 9C000000 		.4byte	.LASF5
+ 430 0056 78000000 		.4byte	.LASF5
  431 005a 02       		.uleb128 0x2
  432 005b 08       		.byte	0x8
  433 005c 05       		.byte	0x5
- 434 005d 68010000 		.4byte	.LASF6
+ 434 005d 44010000 		.4byte	.LASF6
  435 0061 02       		.uleb128 0x2
  436 0062 08       		.byte	0x8
  437 0063 07       		.byte	0x7
- 438 0064 10010000 		.4byte	.LASF7
+ 438 0064 EC000000 		.4byte	.LASF7
  439 0068 04       		.uleb128 0x4
  440 0069 04       		.byte	0x4
  441 006a 05       		.byte	0x5
@@ -502,14 +502,14 @@ ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLEBgmN.s 			page 1
  443 006f 02       		.uleb128 0x2
  444 0070 04       		.byte	0x4
  445 0071 07       		.byte	0x7
- 446 0072 03010000 		.4byte	.LASF8
+ 446 0072 DF000000 		.4byte	.LASF8
  447 0076 03       		.uleb128 0x3
- 448 0077 57010000 		.4byte	.LASF10
+ 448 0077 33010000 		.4byte	.LASF10
  449 007b 03       		.byte	0x3
  450 007c 2C       		.byte	0x2c
  451 007d 41000000 		.4byte	0x41
  452 0081 05       		.uleb128 0x5
- 453 0082 93010000 		.4byte	.LASF11
+ 453 0082 6F010000 		.4byte	.LASF11
  454 0086 04       		.byte	0x4
  455 0087 E401     		.2byte	0x1e4
  456 0089 2C000000 		.4byte	0x2c
@@ -520,25 +520,25 @@ ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLEBgmN.s 			page 1
  461 0094 02       		.uleb128 0x2
  462 0095 08       		.byte	0x8
  463 0096 04       		.byte	0x4
- 464 0097 60000000 		.4byte	.LASF13
+ 464 0097 4E000000 		.4byte	.LASF13
  465 009b 02       		.uleb128 0x2
  466 009c 01       		.byte	0x1
  467 009d 08       		.byte	0x8
- 468 009e 76010000 		.4byte	.LASF14
+ 468 009e 52010000 		.4byte	.LASF14
  469 00a2 02       		.uleb128 0x2
  470 00a3 08       		.byte	0x8
  471 00a4 04       		.byte	0x4
- 472 00a5 A2010000 		.4byte	.LASF15
+ 472 00a5 7E010000 		.4byte	.LASF15
  473 00a9 02       		.uleb128 0x2
  474 00aa 04       		.byte	0x4
  475 00ab 07       		.byte	0x7
- 476 00ac 5F010000 		.4byte	.LASF16
+ 476 00ac 3B010000 		.4byte	.LASF16
  477 00b0 06       		.uleb128 0x6
- 478 00b1 3E010000 		.4byte	.LASF17
+ 478 00b1 1A010000 		.4byte	.LASF17
  479 00b5 01       		.byte	0x1
  480 00b6 03       		.byte	0x3
  481 00b7 00000000 		.4byte	.LFB63
-ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLEBgmN.s 			page 10
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccP1Zuli.s 			page 10
 
 
  482 00bb 4A000000 		.4byte	.LFE63-.LFB63
@@ -571,7 +571,7 @@ ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLEBgmN.s 			page 1
  509 00e8 75       		.sleb128 -11
  510 00e9 00       		.byte	0
  511 00ea 06       		.uleb128 0x6
- 512 00eb 39000000 		.4byte	.LASF18
+ 512 00eb 55000000 		.4byte	.LASF18
  513 00ef 01       		.byte	0x1
  514 00f0 06       		.byte	0x6
  515 00f1 00000000 		.4byte	.LFB64
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLEBgmN.s 			page 1
  536 0117 07       		.uleb128 0x7
  537 0118 6700     		.ascii	"g\000"
  538 011a 01       		.byte	0x1
-ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLEBgmN.s 			page 11
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccP1Zuli.s 			page 11
 
 
  539 011b 06       		.byte	0x6
@@ -608,7 +608,7 @@ ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLEBgmN.s 			page 1
  543 0122 75       		.sleb128 -11
  544 0123 00       		.byte	0
  545 0124 08       		.uleb128 0x8
- 546 0125 91000000 		.4byte	.LASF19
+ 546 0125 6D000000 		.4byte	.LASF19
  547 0129 01       		.byte	0x1
  548 012a 0B       		.byte	0xb
  549 012b 00000000 		.4byte	.LFB65
@@ -624,7 +624,7 @@ ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLEBgmN.s 			page 1
  559 0144 01       		.uleb128 0x1
  560 0145 9C       		.byte	0x9c
  561 0146 08       		.uleb128 0x8
- 562 0147 27010000 		.4byte	.LASF21
+ 562 0147 03010000 		.4byte	.LASF21
  563 014b 01       		.byte	0x1
  564 014c 11       		.byte	0x11
  565 014d 00000000 		.4byte	.LFB67
@@ -632,7 +632,7 @@ ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLEBgmN.s 			page 1
  567 0155 01       		.uleb128 0x1
  568 0156 9C       		.byte	0x9c
  569 0157 08       		.uleb128 0x8
- 570 0158 7B010000 		.4byte	.LASF22
+ 570 0158 57010000 		.4byte	.LASF22
  571 015c 01       		.byte	0x1
  572 015d 14       		.byte	0x14
  573 015e 00000000 		.4byte	.LFB68
@@ -640,7 +640,7 @@ ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLEBgmN.s 			page 1
  575 0166 01       		.uleb128 0x1
  576 0167 9C       		.byte	0x9c
  577 0168 08       		.uleb128 0x8
- 578 0169 DC000000 		.4byte	.LASF23
+ 578 0169 B8000000 		.4byte	.LASF23
  579 016d 01       		.byte	0x1
  580 016e 18       		.byte	0x18
  581 016f 00000000 		.4byte	.LFB69
@@ -648,7 +648,7 @@ ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLEBgmN.s 			page 1
  583 0177 01       		.uleb128 0x1
  584 0178 9C       		.byte	0x9c
  585 0179 08       		.uleb128 0x8
- 586 017a 4B000000 		.4byte	.LASF24
+ 586 017a 39000000 		.4byte	.LASF24
  587 017e 01       		.byte	0x1
  588 017f 1B       		.byte	0x1b
  589 0180 00000000 		.4byte	.LFB70
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLEBgmN.s 			page 1
  593 018a 08       		.uleb128 0x8
  594 018b 23000000 		.4byte	.LASF25
  595 018f 01       		.byte	0x1
-ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLEBgmN.s 			page 12
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccP1Zuli.s 			page 12
 
 
  596 0190 1E       		.byte	0x1e
@@ -667,7 +667,7 @@ ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLEBgmN.s 			page 1
  599 0199 01       		.uleb128 0x1
  600 019a 9C       		.byte	0x9c
  601 019b 09       		.uleb128 0x9
- 602 019c C1000000 		.4byte	.LASF29
+ 602 019c 9D000000 		.4byte	.LASF29
  603 01a0 05       		.byte	0x5
  604 01a1 1207     		.2byte	0x712
  605 01a3 A7010000 		.4byte	0x1a7
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLEBgmN.s 			page 1
  650 0027 49       		.uleb128 0x49
  651 0028 13       		.uleb128 0x13
  652 0029 00       		.byte	0
-ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLEBgmN.s 			page 13
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccP1Zuli.s 			page 13
 
 
  653 002a 00       		.byte	0
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLEBgmN.s 			page 1
  707 0061 08       		.uleb128 0x8
  708 0062 3A       		.uleb128 0x3a
  709 0063 0B       		.uleb128 0xb
-ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLEBgmN.s 			page 14
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccP1Zuli.s 			page 14
 
 
  710 0064 3B       		.uleb128 0x3b
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLEBgmN.s 			page 1
  764              		.section	.debug_aranges,"",%progbits
  765 0000 5C000000 		.4byte	0x5c
  766 0004 0200     		.2byte	0x2
-ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLEBgmN.s 			page 15
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccP1Zuli.s 			page 15
 
 
  767 0006 00000000 		.4byte	.Ldebug_info0
@@ -890,15 +890,15 @@ ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLEBgmN.s 			page 1
  813 004c 00000000 		.4byte	0
  814              		.section	.debug_line,"",%progbits
  815              	.Ldebug_line0:
- 816 0000 C9010000 		.section	.debug_str,"MS",%progbits,1
- 816      02002D01 
+ 816 0000 D5010000 		.section	.debug_str,"MS",%progbits,1
+ 816      02003901 
  816      00000201 
  816      FB0E0D00 
  816      01010101 
  817              	.LASF20:
  818 0000 70726570 		.ascii	"prepareNorthSouthToDrive\000"
  818      6172654E 
-ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLEBgmN.s 			page 16
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccP1Zuli.s 			page 16
 
 
  818      6F727468 
@@ -914,134 +914,134 @@ ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLEBgmN.s 			page 1
  822      61737457 
  822      65737454 
  822      6F53746F 
- 823              	.LASF18:
- 824 0039 73776974 		.ascii	"switch_east_state\000"
- 824      63685F65 
- 824      6173745F 
- 824      73746174 
- 824      6500
- 825              	.LASF24:
- 826 004b 616C6C6F 		.ascii	"allowEastWestToDrive\000"
- 826      77456173 
- 826      74576573 
- 826      74546F44 
- 826      72697665 
- 827              	.LASF13:
- 828 0060 646F7562 		.ascii	"double\000"
- 828      6C6500
+ 823              	.LASF24:
+ 824 0039 616C6C6F 		.ascii	"allowEastWestToDrive\000"
+ 824      77456173 
+ 824      74576573 
+ 824      74546F44 
+ 824      72697665 
+ 825              	.LASF13:
+ 826 004e 646F7562 		.ascii	"double\000"
+ 826      6C6500
+ 827              	.LASF18:
+ 828 0055 73776974 		.ascii	"switch_west_state\000"
+ 828      63685F77 
+ 828      6573745F 
+ 828      73746174 
+ 828      6500
  829              	.LASF12:
  830 0067 666C6F61 		.ascii	"float\000"
  830      7400
- 831              	.LASF28:
- 832 006d 453A5C67 		.ascii	"E:\\github\\MPS\\MPS_W22_Prakt_3.cydsn\000"
- 832      69746875 
- 832      625C4D50 
- 832      535C4D50 
- 832      535F5732 
- 833              	.LASF19:
- 834 0091 636C6561 		.ascii	"cleanState\000"
- 834      6E537461 
- 834      746500
- 835              	.LASF5:
- 836 009c 6C6F6E67 		.ascii	"long unsigned int\000"
- 836      20756E73 
- 836      69676E65 
- 836      6420696E 
- 836      7400
- 837              	.LASF3:
- 838 00ae 73686F72 		.ascii	"short unsigned int\000"
- 838      7420756E 
- 838      7369676E 
- 838      65642069 
- 838      6E7400
- 839              	.LASF29:
- 840 00c1 49544D5F 		.ascii	"ITM_RxBuffer\000"
- 840      52784275 
- 840      66666572 
-ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLEBgmN.s 			page 17
+ 831              	.LASF19:
+ 832 006d 636C6561 		.ascii	"cleanState\000"
+ 832      6E537461 
+ 832      746500
+ 833              	.LASF5:
+ 834 0078 6C6F6E67 		.ascii	"long unsigned int\000"
+ 834      20756E73 
+ 834      69676E65 
+ 834      6420696E 
+ 834      7400
+ 835              	.LASF3:
+ 836 008a 73686F72 		.ascii	"short unsigned int\000"
+ 836      7420756E 
+ 836      7369676E 
+ 836      65642069 
+ 836      6E7400
+ 837              	.LASF29:
+ 838 009d 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 838      52784275 
+ 838      66666572 
+ 838      00
+ 839              	.LASF1:
+ 840 00aa 756E7369 		.ascii	"unsigned char\000"
+ 840      676E6564 
+ 840      20636861 
+ 840      7200
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccP1Zuli.s 			page 17
 
 
- 840      00
- 841              	.LASF1:
- 842 00ce 756E7369 		.ascii	"unsigned char\000"
- 842      676E6564 
- 842      20636861 
- 842      7200
- 843              	.LASF23:
- 844 00dc 70726570 		.ascii	"prepareEastWestToDrive\000"
- 844      61726545 
- 844      61737457 
- 844      65737454 
- 844      6F447269 
- 845              	.LASF2:
- 846 00f3 73686F72 		.ascii	"short int\000"
- 846      7420696E 
- 846      7400
- 847              	.LASF27:
- 848 00fd 48414C2E 		.ascii	"HAL.c\000"
- 848      6300
- 849              	.LASF8:
- 850 0103 756E7369 		.ascii	"unsigned int\000"
- 850      676E6564 
- 850      20696E74 
- 850      00
- 851              	.LASF7:
- 852 0110 6C6F6E67 		.ascii	"long long unsigned int\000"
- 852      206C6F6E 
- 852      6720756E 
- 852      7369676E 
- 852      65642069 
- 853              	.LASF21:
- 854 0127 616C6C6F 		.ascii	"allowNorthSouthToDrive\000"
- 854      774E6F72 
- 854      7468536F 
- 854      75746854 
- 854      6F447269 
- 855              	.LASF17:
- 856 013e 73776974 		.ascii	"switch_north_south_state\000"
- 856      63685F6E 
- 856      6F727468 
- 856      5F736F75 
- 856      74685F73 
- 857              	.LASF10:
- 858 0157 696E7433 		.ascii	"int32_t\000"
- 858      325F7400 
- 859              	.LASF16:
- 860 015f 73697A65 		.ascii	"sizetype\000"
- 860      74797065 
- 860      00
- 861              	.LASF6:
- 862 0168 6C6F6E67 		.ascii	"long long int\000"
- 862      206C6F6E 
- 862      6720696E 
- 862      7400
- 863              	.LASF14:
- 864 0176 63686172 		.ascii	"char\000"
- 864      00
-ARM GAS  C:\Users\thieu\AppData\Local\Temp\ccLEBgmN.s 			page 18
+ 841              	.LASF23:
+ 842 00b8 70726570 		.ascii	"prepareEastWestToDrive\000"
+ 842      61726545 
+ 842      61737457 
+ 842      65737454 
+ 842      6F447269 
+ 843              	.LASF2:
+ 844 00cf 73686F72 		.ascii	"short int\000"
+ 844      7420696E 
+ 844      7400
+ 845              	.LASF27:
+ 846 00d9 48414C2E 		.ascii	"HAL.c\000"
+ 846      6300
+ 847              	.LASF8:
+ 848 00df 756E7369 		.ascii	"unsigned int\000"
+ 848      676E6564 
+ 848      20696E74 
+ 848      00
+ 849              	.LASF7:
+ 850 00ec 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 850      206C6F6E 
+ 850      6720756E 
+ 850      7369676E 
+ 850      65642069 
+ 851              	.LASF21:
+ 852 0103 616C6C6F 		.ascii	"allowNorthSouthToDrive\000"
+ 852      774E6F72 
+ 852      7468536F 
+ 852      75746854 
+ 852      6F447269 
+ 853              	.LASF17:
+ 854 011a 73776974 		.ascii	"switch_north_south_state\000"
+ 854      63685F6E 
+ 854      6F727468 
+ 854      5F736F75 
+ 854      74685F73 
+ 855              	.LASF10:
+ 856 0133 696E7433 		.ascii	"int32_t\000"
+ 856      325F7400 
+ 857              	.LASF16:
+ 858 013b 73697A65 		.ascii	"sizetype\000"
+ 858      74797065 
+ 858      00
+ 859              	.LASF6:
+ 860 0144 6C6F6E67 		.ascii	"long long int\000"
+ 860      206C6F6E 
+ 860      6720696E 
+ 860      7400
+ 861              	.LASF14:
+ 862 0152 63686172 		.ascii	"char\000"
+ 862      00
+ 863              	.LASF22:
+ 864 0157 70726570 		.ascii	"prepareNorthSouthToStop\000"
+ 864      6172654E 
+ 864      6F727468 
+ 864      536F7574 
+ 864      68546F53 
+ARM GAS  C:\Users\Trung\AppData\Local\Temp\ccP1Zuli.s 			page 18
 
 
- 865              	.LASF22:
- 866 017b 70726570 		.ascii	"prepareNorthSouthToStop\000"
- 866      6172654E 
- 866      6F727468 
- 866      536F7574 
- 866      68546F53 
- 867              	.LASF11:
- 868 0193 75696E74 		.ascii	"uint8\000"
- 868      3800
- 869              	.LASF4:
- 870 0199 6C6F6E67 		.ascii	"long int\000"
- 870      20696E74 
- 870      00
- 871              	.LASF15:
- 872 01a2 6C6F6E67 		.ascii	"long double\000"
- 872      20646F75 
- 872      626C6500 
- 873              	.LASF0:
- 874 01ae 7369676E 		.ascii	"signed char\000"
- 874      65642063 
- 874      68617200 
+ 865              	.LASF11:
+ 866 016f 75696E74 		.ascii	"uint8\000"
+ 866      3800
+ 867              	.LASF4:
+ 868 0175 6C6F6E67 		.ascii	"long int\000"
+ 868      20696E74 
+ 868      00
+ 869              	.LASF15:
+ 870 017e 6C6F6E67 		.ascii	"long double\000"
+ 870      20646F75 
+ 870      626C6500 
+ 871              	.LASF0:
+ 872 018a 7369676E 		.ascii	"signed char\000"
+ 872      65642063 
+ 872      68617200 
+ 873              	.LASF28:
+ 874 0196 443A5C67 		.ascii	"D:\\github\\MPS\\MPS_W22_Prakt_3.cydsn\000"
+ 874      69746875 
+ 874      625C4D50 
+ 874      535C4D50 
+ 874      535F5732 
  875              	.LASF26:
  876 01ba 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
  876      43313120 

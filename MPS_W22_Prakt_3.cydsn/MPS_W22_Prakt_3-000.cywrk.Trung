@@ -13,7 +13,7 @@
 <v>Output</v>
 </TreeKeys>
 <TreeStates>
-<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="MPS_W22_Prakt_3-000\MPS_W22_Prakt_3\Source Files\main.c">
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="MPS_W22_Prakt_3-000\MPS_W22_Prakt_3\TopDesign">
 <ExpandedNodeIds>
 <v>MPS_W22_Prakt_3-000</v>
 <v>MPS_W22_Prakt_3-000\MPS_W22_Prakt_3</v>
@@ -66,15 +66,6 @@
 <v>MPS_W22_Prakt_3-000\MPS_W22_Prakt_3\Generated_Source\PSoC5\isr_Clk</v>
 <v>MPS_W22_Prakt_3-000\MPS_W22_Prakt_3\Generated_Source\PSoC5\isr_CWEW</v>
 <v>MPS_W22_Prakt_3-000\MPS_W22_Prakt_3\Generated_Source\PSoC5\isr_UART_RX</v>
-<v>MPS_W22_Prakt_3-000\MPS_W22_Prakt_3\Generated_Source\PSoC5\Pin_CWEW</v>
-<v>MPS_W22_Prakt_3-000\MPS_W22_Prakt_3\Generated_Source\PSoC5\Pin_E_CW</v>
-<v>MPS_W22_Prakt_3-000\MPS_W22_Prakt_3\Generated_Source\PSoC5\Pin_E_R</v>
-<v>MPS_W22_Prakt_3-000\MPS_W22_Prakt_3\Generated_Source\PSoC5\Pin_E_Y</v>
-<v>MPS_W22_Prakt_3-000\MPS_W22_Prakt_3\Generated_Source\PSoC5\Pin_N_G</v>
-<v>MPS_W22_Prakt_3-000\MPS_W22_Prakt_3\Generated_Source\PSoC5\Pin_N_R</v>
-<v>MPS_W22_Prakt_3-000\MPS_W22_Prakt_3\Generated_Source\PSoC5\Pin_N_Y</v>
-<v>MPS_W22_Prakt_3-000\MPS_W22_Prakt_3\Generated_Source\PSoC5\Pin_S_CW</v>
-<v>MPS_W22_Prakt_3-000\MPS_W22_Prakt_3\Generated_Source\PSoC5\Pin_S_G</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 <CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
@@ -176,15 +167,6 @@
 <v>MPS_W22_Prakt_3-000\MPS_W22_Prakt_3\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_E_CW.lst</v>
 <v>MPS_W22_Prakt_3-000\MPS_W22_Prakt_3\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_E_R.lst</v>
 <v>MPS_W22_Prakt_3-000\MPS_W22_Prakt_3\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_E_Y.lst</v>
-<v>MPS_W22_Prakt_3-000\MPS_W22_Prakt_3\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_N_G.lst</v>
-<v>MPS_W22_Prakt_3-000\MPS_W22_Prakt_3\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_N_R.lst</v>
-<v>MPS_W22_Prakt_3-000\MPS_W22_Prakt_3\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_N_Y.lst</v>
-<v>MPS_W22_Prakt_3-000\MPS_W22_Prakt_3\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_S_CW.lst</v>
-<v>MPS_W22_Prakt_3-000\MPS_W22_Prakt_3\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_S_G.lst</v>
-<v>MPS_W22_Prakt_3-000\MPS_W22_Prakt_3\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_S_R.lst</v>
-<v>MPS_W22_Prakt_3-000\MPS_W22_Prakt_3\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_S_Y.lst</v>
-<v>MPS_W22_Prakt_3-000\MPS_W22_Prakt_3\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_VDEW.lst</v>
-<v>MPS_W22_Prakt_3-000\MPS_W22_Prakt_3\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_VDNS.lst</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 </TreeStates>
@@ -256,7 +238,22 @@
 </userData>
 </CyGuid_fdba8dfd-b15b-4469-9bbb-9e40c3e70997>
 <Unloaded />
-<OpenDocs />
+<OpenDocs>
+<name v=".\TopDesign\TopDesign.cysch" />
+<name v=".\HAL.c" />
+<name v=".\main.c" />
+<name v=".\HAL.h" />
+<name v=".\cyapicallbacks.h" />
+<name v=".\Generated_Source\PSoC5\PWM.h" />
+<name v=".\Generated_Source\PSoC5\PWM.c" />
+</OpenDocs>
+<OpenDocsLayout><![CDATA[<?xml version="1.0"?><!--
+
+  Actipro Docking/MDI for WinForms
+  Copyright (c) 2001-2016 Actipro Software LLC.  All rights reserved.
+  http://www.actiprosoftware.com
+
+--><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="1294, 559" SelectedTabbedMdiWindow="7ef6483c-7d40-4641-814d-5337c6314d6f"><ToolWindow Key="Start Page:bd4649ab-da6b-4d04-a663-c722b8bf99db:Start Page" Guid="fd7e14af-da70-4fc0-9cfb-587aee12ddb3" /><DocumentWindow Key="D:\github\MPS\MPS_W22_Prakt_3.cydsn\TopDesign\TopDesign.cysch" Guid="7ef6483c-7d40-4641-814d-5337c6314d6f" /><DocumentWindow Key="D:\github\MPS\MPS_W22_Prakt_3.cydsn\HAL.c" Guid="5a71a335-b6da-43d6-9882-159eafa99d28" /><DocumentWindow Key="D:\github\MPS\MPS_W22_Prakt_3.cydsn\main.c" Guid="e7ebc159-fb9b-4a7b-a852-c6237d351c4c" /><DocumentWindow Key="D:\github\MPS\MPS_W22_Prakt_3.cydsn\HAL.h" Guid="c978488f-6e46-4d6b-a200-31ef0b603cf1" /><DocumentWindow Key="D:\github\MPS\MPS_W22_Prakt_3.cydsn\cyapicallbacks.h" Guid="7d706f95-ef8e-4741-9650-f5c3490621b0" /><DocumentWindow Key="D:\github\MPS\MPS_W22_Prakt_3.cydsn\Generated_Source\PSoC5\PWM.h" Guid="77b52de5-692e-4083-8aac-717f0e767d19" /><DocumentWindow Key="D:\github\MPS\MPS_W22_Prakt_3.cydsn\Generated_Source\PSoC5\PWM.c" Guid="a46cca56-8a85-4d65-a768-5c5dfb284aea" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
 <config v="" />
 <AutoUpdate v="true" />
 </CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21>

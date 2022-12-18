@@ -3,7 +3,7 @@
 void switch_north_south_state(uint8 r, uint8 y, uint8 g){
      N_R(r), N_Y(y), N_G(g), S_R(r), S_Y(y), S_G(g) ;  
 }
-void switch_east_state(uint8 r, uint8 y, uint8 g){
+void switch_west_state(uint8 r, uint8 y, uint8 g){
      W_R(r), W_Y(y), W_G(g);
 }
 

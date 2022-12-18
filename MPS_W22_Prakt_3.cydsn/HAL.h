@@ -16,7 +16,7 @@
 #define S_Y(x) Pin_S_Y_Write(x)
 #define S_G(x) Pin_S_G_Write(x)
 // =============================================================
-#define WEST(r,y,g) switch_east_state(r,y,g)
+#define WEST(r,y,g) switch_west_state(r,y,g)
 #define W_R(x) Pin_W_R_Write(x)
 #define W_Y(x) Pin_W_Y_Write(x)
 #define W_G(x) Pin_W_G_Write(x)
