@@ -247,7 +247,21 @@
 </userData>
 </CyGuid_fdba8dfd-b15b-4469-9bbb-9e40c3e70997>
 <Unloaded />
-<OpenDocs />
+<OpenDocs>
+<name v=".\TopDesign\TopDesign.cysch" />
+<name v=".\HAL.h" />
+<name v=".\HAL.c" />
+<name v=".\main.c" />
+<name v=".\cyapicallbacks.h" />
+<name v=".\Generated_Source\PSoC5\PWM.c" />
+</OpenDocs>
+<OpenDocsLayout><![CDATA[<?xml version="1.0"?><!--
+
+  Actipro Docking/MDI for WinForms
+  Copyright (c) 2001-2016 Actipro Software LLC.  All rights reserved.
+  http://www.actiprosoftware.com
+
+--><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="908, 603" SelectedTabbedMdiWindow="9f2fa390-0efb-4fe9-89da-5f59e105bc72"><DocumentWindow Key="E:\github\MPS\MPS_W22_Prakt_3.cydsn\TopDesign\TopDesign.cysch" Guid="9f2fa390-0efb-4fe9-89da-5f59e105bc72" /><DocumentWindow Key="E:\github\MPS\MPS_W22_Prakt_3.cydsn\HAL.h" Guid="bd55a581-f30d-4e06-913a-f973d19438c8" /><DocumentWindow Key="E:\github\MPS\MPS_W22_Prakt_3.cydsn\HAL.c" Guid="a7538d47-0ba4-4d15-b475-1704a565304c" /><DocumentWindow Key="E:\github\MPS\MPS_W22_Prakt_3.cydsn\main.c" Guid="96a07506-0bbb-4560-8956-c7e98c09dcbb" /><DocumentWindow Key="E:\github\MPS\MPS_W22_Prakt_3.cydsn\cyapicallbacks.h" Guid="efd142ea-d5c2-49ac-9093-db24494d154e" /><DocumentWindow Key="E:\github\MPS\MPS_W22_Prakt_3.cydsn\Generated_Source\PSoC5\PWM.c" Guid="33a28bcc-081b-4465-9ff5-e034494f2ab3" /><ToolWindow Key="Start Page:bd4649ab-da6b-4d04-a663-c722b8bf99db:Start Page" Guid="09d83b8b-a0de-4eed-a07a-117299c45450" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
 <config v="" />
 <AutoUpdate v="true" />
 </CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21>
