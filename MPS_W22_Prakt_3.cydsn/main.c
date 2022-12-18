@@ -80,11 +80,14 @@ CY_ISR( IsrAppClk ) {
     }
 }
 
-static uint16 brightness = 300;
+
+//somehow I can't set brightness = PWM_ReadCompare() here
+static uint16 brightness = PWM_ReadCompare();
 
 
 // change the avarage power to change brightness
 void brightness_settings(u_int input){
+    brightness = PWM_ReadCompare();
     if(input && brightness < 1000){
         //uint16 test = PWM_ReadCompare();
         brightness = brightness + 200;
