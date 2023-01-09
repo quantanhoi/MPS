@@ -1,0 +1,1770 @@
+ARM GAS  C:\Users\dmaks\AppData\Local\Temp\ccv7w8Sz.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"main.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.bss
+  20              		.align	2
+  21              	buffer:
+  22 0000 00000000 		.space	128
+  22      00000000 
+  22      00000000 
+  22      00000000 
+  22      00000000 
+  23              	cRx:
+  24 0080 00       		.space	1
+  25              		.section	.text.MyIsrUartRX,"ax",%progbits
+  26              		.align	2
+  27              		.global	MyIsrUartRX
+  28              		.thumb
+  29              		.thumb_func
+  30              		.type	MyIsrUartRX, %function
+  31              	MyIsrUartRX:
+  32              	.LFB64:
+  33              		.file 1 "main.c"
+   1:main.c        **** /* ========================================
+   2:main.c        ****  *
+   3:main.c        ****  * Copyright R. Mayer, h_da, FbI, 
+   4:main.c        ****  * All Rights Reserved
+   5:main.c        ****  * UNPUBLISHED, LICENSED SOFTWARE.
+   6:main.c        ****  *
+   7:main.c        ****  * CONFIDENTIAL AND PROPRIETARY INFORMATION
+   8:main.c        ****  * WHICH IS THE PROPERTY OF your company.
+   9:main.c        ****  *
+  10:main.c        ****  * ========================================
+  11:main.c        ****  */
+  12:main.c        **** #include "project.h"
+  13:main.c        **** #include "HAL.h"
+  14:main.c        **** #include <stdio.h>          // für string-Operationen wie sprintf
+  15:main.c        **** /*
+  16:main.c        ****  * Diese Definitionen ermöglichen es, 
+  17:main.c        ****  * einfach Informationen auf den Bildschirm zu schreiben
+  18:main.c        ****  */
+  19:main.c        **** #define _VERSION_NR     "ver. 1.1"              //!< Version number. Please update
+  20:main.c        **** #define _PROJECT_NAME   "MPS21_Prakt_3"         //!< Project name
+ARM GAS  C:\Users\dmaks\AppData\Local\Temp\ccv7w8Sz.s 			page 2
+
+
+  21:main.c        **** #define _PROCESSOR      "PSoC 5LP"              //!< Processor type
+  22:main.c        **** #define _DEVICE_NAME    "FreeSoC2"              //!< Board or device type
+  23:main.c        **** #define _AUTHOR_        "Jamil Boujada, Damir Maksuti"
+  24:main.c        **** #define _COMPANY        "Template MPS 3"
+  25:main.c        **** 
+  26:main.c        **** // String für die Anzeige zusammenbauen
+  27:main.c        **** #define _VERSTR_       (_PROJECT_NAME", "_DEVICE_NAME", "_PROCESSOR", "_VERSION_NR"\n\r"\
+  28:main.c        **** _AUTHOR_" ("_COMPANY"), "__DATE__" "__TIME__)
+  29:main.c        **** /* 
+  30:main.c        ****  * String Buffer für Anzeige am Bildschirm anlegen.
+  31:main.c        ****  * Auf die maximale Größe achten!
+  32:main.c        ****  */
+  33:main.c        **** #define BUFFER_SIZE 128             //!< string output buffer size for sprintf
+  34:main.c        **** static char buffer[BUFFER_SIZE];    //!< buffer (global) for sprintf
+  35:main.c        **** static char cRx = 0;                //!< character from UART, visible within main.c
+  36:main.c        **** /** 
+  37:main.c        ****  * UART RX interrupt service routine.
+  38:main.c        ****  *
+  39:main.c        ****  * Collect a characters from UART into a global input variable.
+  40:main.c        ****  * @see cRx
+  41:main.c        ****  */
+  42:main.c        **** CY_ISR( MyIsrUartRX ) {
+  34              		.loc 1 42 0
+  35              		.cfi_startproc
+  36              		@ args = 0, pretend = 0, frame = 0
+  37              		@ frame_needed = 1, uses_anonymous_args = 0
+  38 0000 80B5     		push	{r7, lr}
+  39              		.cfi_def_cfa_offset 8
+  40              		.cfi_offset 7, -8
+  41              		.cfi_offset 14, -4
+  42 0002 00AF     		add	r7, sp, #0
+  43              		.cfi_def_cfa_register 7
+  43:main.c        ****     cRx = UART_GetChar();       // read and copy char
+  44              		.loc 1 43 0
+  45 0004 FFF7FEFF 		bl	UART_GetChar
+  46 0008 0346     		mov	r3, r0
+  47 000a 1A46     		mov	r2, r3
+  48 000c 014B     		ldr	r3, .L2
+  49 000e 1A70     		strb	r2, [r3]
+  44:main.c        **** //    UART_PutChar(cRx);
+  45:main.c        **** }
+  50              		.loc 1 45 0
+  51 0010 00BF     		nop
+  52 0012 80BD     		pop	{r7, pc}
+  53              	.L3:
+  54              		.align	2
+  55              	.L2:
+  56 0014 80000000 		.word	cRx
+  57              		.cfi_endproc
+  58              	.LFE64:
+  59              		.size	MyIsrUartRX, .-MyIsrUartRX
+  60              		.bss
+  61              	fCWEW_Isr:
+  62 0081 00       		.space	1
+  63              		.section	.text.MyIsrCWEW,"ax",%progbits
+  64              		.align	2
+  65              		.global	MyIsrCWEW
+ARM GAS  C:\Users\dmaks\AppData\Local\Temp\ccv7w8Sz.s 			page 3
+
+
+  66              		.thumb
+  67              		.thumb_func
+  68              		.type	MyIsrCWEW, %function
+  69              	MyIsrCWEW:
+  70              	.LFB65:
+  46:main.c        **** static uint8_t fCWEW_Isr = 0;   //!< flag CW EW button isr, visible within main.c
+  47:main.c        **** /** 
+  48:main.c        ****  * Interrupt isr_CWSN for button Pin_CWSN interrupt service routine.
+  49:main.c        ****  *
+  50:main.c        ****  * @see fCWEW_Isr
+  51:main.c        ****  */
+  52:main.c        **** CY_ISR( MyIsrCWEW ) {
+  71              		.loc 1 52 0
+  72              		.cfi_startproc
+  73              		@ args = 0, pretend = 0, frame = 0
+  74              		@ frame_needed = 1, uses_anonymous_args = 0
+  75 0000 80B5     		push	{r7, lr}
+  76              		.cfi_def_cfa_offset 8
+  77              		.cfi_offset 7, -8
+  78              		.cfi_offset 14, -4
+  79 0002 00AF     		add	r7, sp, #0
+  80              		.cfi_def_cfa_register 7
+  53:main.c        ****     /* Clear Interrupt first ! */
+  54:main.c        ****     Pin_CWEW_ClearInterrupt();
+  81              		.loc 1 54 0
+  82 0004 FFF7FEFF 		bl	Pin_CWEW_ClearInterrupt
+  55:main.c        ****     fCWEW_Isr = 1;              // set flag
+  83              		.loc 1 55 0
+  84 0008 024B     		ldr	r3, .L5
+  85 000a 0122     		movs	r2, #1
+  86 000c 1A70     		strb	r2, [r3]
+  56:main.c        **** }
+  87              		.loc 1 56 0
+  88 000e 00BF     		nop
+  89 0010 80BD     		pop	{r7, pc}
+  90              	.L6:
+  91 0012 00BF     		.align	2
+  92              	.L5:
+  93 0014 81000000 		.word	fCWEW_Isr
+  94              		.cfi_endproc
+  95              	.LFE65:
+  96              		.size	MyIsrCWEW, .-MyIsrCWEW
+  97              		.bss
+  98 0082 0000     		.align	2
+  99              	ms:
+ 100 0084 00000000 		.space	4
+ 101              	fsClock:
+ 102 0088 00       		.space	1
+ 103 0089 000000   		.align	2
+ 104              	timer:
+ 105 008c 00000000 		.space	4
+ 106              		.data
+ 107              		.align	1
+ 108              		.type	brightness, %object
+ 109              		.size	brightness, 2
+ 110              	brightness:
+ 111 0000 6400     		.short	100
+ARM GAS  C:\Users\dmaks\AppData\Local\Temp\ccv7w8Sz.s 			page 4
+
+
+ 112              		.section	.text.IsrAppClk,"ax",%progbits
+ 113              		.align	2
+ 114              		.global	IsrAppClk
+ 115              		.thumb
+ 116              		.thumb_func
+ 117              		.type	IsrAppClk, %function
+ 118              	IsrAppClk:
+ 119              	.LFB66:
+  57:main.c        **** static uint32_t ms = 0;         //!< microseconds
+  58:main.c        **** static uint8_t  fsClock = 0;    //!< s flag
+  59:main.c        **** static uint32_t timer = 0;      //Aufgabe 2c
+  60:main.c        **** static uint16 brightness = 100;
+  61:main.c        **** /** 
+  62:main.c        ****  * Application clock interrupt service routine for isr_Clk
+  63:main.c        ****  *
+  64:main.c        ****  * @see fClock
+  65:main.c        ****  */
+  66:main.c        **** CY_ISR( IsrAppClk ) {
+ 120              		.loc 1 66 0
+ 121              		.cfi_startproc
+ 122              		@ args = 0, pretend = 0, frame = 0
+ 123              		@ frame_needed = 1, uses_anonymous_args = 0
+ 124              		@ link register save eliminated.
+ 125 0000 80B4     		push	{r7}
+ 126              		.cfi_def_cfa_offset 4
+ 127              		.cfi_offset 7, -4
+ 128 0002 00AF     		add	r7, sp, #0
+ 129              		.cfi_def_cfa_register 7
+  67:main.c        ****     // TODO: implementieren
+  68:main.c        ****     ms++;                     // increment ms timestamp
+ 130              		.loc 1 68 0
+ 131 0004 0E4B     		ldr	r3, .L10
+ 132 0006 1B68     		ldr	r3, [r3]
+ 133 0008 0133     		adds	r3, r3, #1
+ 134 000a 0D4A     		ldr	r2, .L10
+ 135 000c 1360     		str	r3, [r2]
+  69:main.c        ****     if ((ms % 1000) == 0 ) {  // next 1 s reached
+ 136              		.loc 1 69 0
+ 137 000e 0C4B     		ldr	r3, .L10
+ 138 0010 1A68     		ldr	r2, [r3]
+ 139 0012 0C4B     		ldr	r3, .L10+4
+ 140 0014 A3FB0213 		umull	r1, r3, r3, r2
+ 141 0018 9B09     		lsrs	r3, r3, #6
+ 142 001a 4FF47A71 		mov	r1, #1000
+ 143 001e 01FB03F3 		mul	r3, r1, r3
+ 144 0022 D31A     		subs	r3, r2, r3
+ 145 0024 002B     		cmp	r3, #0
+ 146 0026 07D1     		bne	.L9
+  70:main.c        ****        fsClock = 1;                 // set flag 
+ 147              		.loc 1 70 0
+ 148 0028 074B     		ldr	r3, .L10+8
+ 149 002a 0122     		movs	r2, #1
+ 150 002c 1A70     		strb	r2, [r3]
+  71:main.c        ****        timer++;                     //Aufgabe 2c
+ 151              		.loc 1 71 0
+ 152 002e 074B     		ldr	r3, .L10+12
+ 153 0030 1B68     		ldr	r3, [r3]
+ARM GAS  C:\Users\dmaks\AppData\Local\Temp\ccv7w8Sz.s 			page 5
+
+
+ 154 0032 0133     		adds	r3, r3, #1
+ 155 0034 054A     		ldr	r2, .L10+12
+ 156 0036 1360     		str	r3, [r2]
+ 157              	.L9:
+  72:main.c        ****     }    
+  73:main.c        **** }
+ 158              		.loc 1 73 0
+ 159 0038 00BF     		nop
+ 160 003a BD46     		mov	sp, r7
+ 161              		.cfi_def_cfa_register 13
+ 162              		@ sp needed
+ 163 003c 80BC     		pop	{r7}
+ 164              		.cfi_restore 7
+ 165              		.cfi_def_cfa_offset 0
+ 166 003e 7047     		bx	lr
+ 167              	.L11:
+ 168              		.align	2
+ 169              	.L10:
+ 170 0040 84000000 		.word	ms
+ 171 0044 D34D6210 		.word	274877907
+ 172 0048 88000000 		.word	fsClock
+ 173 004c 8C000000 		.word	timer
+ 174              		.cfi_endproc
+ 175              	.LFE66:
+ 176              		.size	IsrAppClk, .-IsrAppClk
+ 177              		.section	.text.brightness_settings,"ax",%progbits
+ 178              		.align	2
+ 179              		.global	brightness_settings
+ 180              		.thumb
+ 181              		.thumb_func
+ 182              		.type	brightness_settings, %function
+ 183              	brightness_settings:
+ 184              	.LFB67:
+  74:main.c        **** void brightness_settings(u_int input){
+ 185              		.loc 1 74 0
+ 186              		.cfi_startproc
+ 187              		@ args = 0, pretend = 0, frame = 16
+ 188              		@ frame_needed = 1, uses_anonymous_args = 0
+ 189 0000 80B5     		push	{r7, lr}
+ 190              		.cfi_def_cfa_offset 8
+ 191              		.cfi_offset 7, -8
+ 192              		.cfi_offset 14, -4
+ 193 0002 84B0     		sub	sp, sp, #16
+ 194              		.cfi_def_cfa_offset 24
+ 195 0004 00AF     		add	r7, sp, #0
+ 196              		.cfi_def_cfa_register 7
+ 197 0006 7860     		str	r0, [r7, #4]
+  75:main.c        ****     if(input && brightness < 1000){
+ 198              		.loc 1 75 0
+ 199 0008 7B68     		ldr	r3, [r7, #4]
+ 200 000a 002B     		cmp	r3, #0
+ 201 000c 15D0     		beq	.L13
+ 202              		.loc 1 75 0 is_stmt 0 discriminator 1
+ 203 000e 154B     		ldr	r3, .L16
+ 204 0010 1B88     		ldrh	r3, [r3]
+ 205 0012 B3F57A7F 		cmp	r3, #1000
+ 206 0016 10D2     		bcs	.L13
+ARM GAS  C:\Users\dmaks\AppData\Local\Temp\ccv7w8Sz.s 			page 6
+
+
+ 207              	.LBB2:
+  76:main.c        ****         uint16 test = PWM_ReadCompare();
+ 208              		.loc 1 76 0 is_stmt 1
+ 209 0018 FFF7FEFF 		bl	PWM_ReadCompare
+ 210 001c 0346     		mov	r3, r0
+ 211 001e FB81     		strh	r3, [r7, #14]	@ movhi
+  77:main.c        ****         brightness = brightness + 100;
+ 212              		.loc 1 77 0
+ 213 0020 104B     		ldr	r3, .L16
+ 214 0022 1B88     		ldrh	r3, [r3]
+ 215 0024 6433     		adds	r3, r3, #100
+ 216 0026 9AB2     		uxth	r2, r3
+ 217 0028 0E4B     		ldr	r3, .L16
+ 218 002a 1A80     		strh	r2, [r3]	@ movhi
+  78:main.c        ****         PWM_WriteCompare( brightness);
+ 219              		.loc 1 78 0
+ 220 002c 0D4B     		ldr	r3, .L16
+ 221 002e 1B88     		ldrh	r3, [r3]
+ 222 0030 1846     		mov	r0, r3
+ 223 0032 FFF7FEFF 		bl	PWM_WriteCompare
+ 224              	.LBE2:
+  75:main.c        ****         uint16 test = PWM_ReadCompare();
+ 225              		.loc 1 75 0
+ 226 0036 00BF     		nop
+  79:main.c        ****         
+  80:main.c        ****     }else if( brightness != 0){
+  81:main.c        ****         brightness = brightness - 100;
+  82:main.c        ****         PWM_WriteCompare(brightness - 100);
+  83:main.c        ****     }
+  84:main.c        **** }
+ 227              		.loc 1 84 0
+ 228 0038 10E0     		b	.L15
+ 229              	.L13:
+  80:main.c        ****         brightness = brightness - 100;
+ 230              		.loc 1 80 0
+ 231 003a 0A4B     		ldr	r3, .L16
+ 232 003c 1B88     		ldrh	r3, [r3]
+ 233 003e 002B     		cmp	r3, #0
+ 234 0040 0CD0     		beq	.L15
+  81:main.c        ****         PWM_WriteCompare(brightness - 100);
+ 235              		.loc 1 81 0
+ 236 0042 084B     		ldr	r3, .L16
+ 237 0044 1B88     		ldrh	r3, [r3]
+ 238 0046 643B     		subs	r3, r3, #100
+ 239 0048 9AB2     		uxth	r2, r3
+ 240 004a 064B     		ldr	r3, .L16
+ 241 004c 1A80     		strh	r2, [r3]	@ movhi
+  82:main.c        ****     }
+ 242              		.loc 1 82 0
+ 243 004e 054B     		ldr	r3, .L16
+ 244 0050 1B88     		ldrh	r3, [r3]
+ 245 0052 643B     		subs	r3, r3, #100
+ 246 0054 9BB2     		uxth	r3, r3
+ 247 0056 1846     		mov	r0, r3
+ 248 0058 FFF7FEFF 		bl	PWM_WriteCompare
+ 249              	.L15:
+ 250              		.loc 1 84 0
+ARM GAS  C:\Users\dmaks\AppData\Local\Temp\ccv7w8Sz.s 			page 7
+
+
+ 251 005c 00BF     		nop
+ 252 005e 1037     		adds	r7, r7, #16
+ 253              		.cfi_def_cfa_offset 8
+ 254 0060 BD46     		mov	sp, r7
+ 255              		.cfi_def_cfa_register 13
+ 256              		@ sp needed
+ 257 0062 80BD     		pop	{r7, pc}
+ 258              	.L17:
+ 259              		.align	2
+ 260              	.L16:
+ 261 0064 00000000 		.word	brightness
+ 262              		.cfi_endproc
+ 263              	.LFE67:
+ 264              		.size	brightness_settings, .-brightness_settings
+ 265              		.section	.rodata
+ 266              		.align	2
+ 267              	.LC0:
+ 268 0000 4D505332 		.ascii	"MPS21_Prakt_3, FreeSoC2, PSoC 5LP, ver. 1.1\012\015"
+ 268      315F5072 
+ 268      616B745F 
+ 268      332C2046 
+ 268      72656553 
+ 269 002d 4A616D69 		.ascii	"Jamil Boujada, Damir Maksuti (Template MPS 3), Jun "
+ 269      6C20426F 
+ 269      756A6164 
+ 269      612C2044 
+ 269      616D6972 
+ 270 0060 32302032 		.ascii	"20 2022 11:29:55\000"
+ 270      30323220 
+ 270      31313A32 
+ 270      393A3535 
+ 270      00
+ 271 0071 000000   		.align	2
+ 272              	.LC1:
+ 273 0074 0A0D5765 		.ascii	"\012\015Welcome! %s\012\015\000"
+ 273      6C636F6D 
+ 273      65212025 
+ 273      730A0D00 
+ 274              		.align	2
+ 275              	.LC2:
+ 276 0084 48616E64 		.ascii	"Handle Keyboard %c\012\015\000"
+ 276      6C65204B 
+ 276      6579626F 
+ 276      61726420 
+ 276      25630A0D 
+ 277 0099 000000   		.align	2
+ 278              	.LC3:
+ 279 009c 0A0D4865 		.ascii	"\012\015Help:\012\015\\th,H: help\012\015\\tq,Q: so"
+ 279      6C703A0A 
+ 279      0D5C7468 
+ 279      2C483A20 
+ 279      68656C70 
+ 280 00bb 66747761 		.ascii	"ftware reset\012\015\000"
+ 280      72652072 
+ 280      65736574 
+ 280      0A0D00
+ 281              		.section	.text.main,"ax",%progbits
+ARM GAS  C:\Users\dmaks\AppData\Local\Temp\ccv7w8Sz.s 			page 8
+
+
+ 282              		.align	2
+ 283              		.global	main
+ 284              		.thumb
+ 285              		.thumb_func
+ 286              		.type	main, %function
+ 287              	main:
+ 288              	.LFB68:
+  85:main.c        **** /**
+  86:main.c        ****  * Basisprojekt mit UART mit Interrupt, User Button mit Interrupt und Statusabfrage. 
+  87:main.c        ****  * Pin-I/O Einfache Eingabe mit Button, Ausgabe mit LED
+  88:main.c        ****  * für FreeSoC2
+  89:main.c        ****  * 
+  90:main.c        ****  * @author Ralf S. Mayer
+  91:main.c        ****  * @date 2021-11-28
+  92:main.c        ****  * @version 1.0
+  93:main.c        ****  */
+  94:main.c        **** int main(void) {   
+ 289              		.loc 1 94 0
+ 290              		.cfi_startproc
+ 291              		@ args = 0, pretend = 0, frame = 8
+ 292              		@ frame_needed = 1, uses_anonymous_args = 0
+ 293 0000 80B5     		push	{r7, lr}
+ 294              		.cfi_def_cfa_offset 8
+ 295              		.cfi_offset 7, -8
+ 296              		.cfi_offset 14, -4
+ 297 0002 82B0     		sub	sp, sp, #8
+ 298              		.cfi_def_cfa_offset 16
+ 299 0004 00AF     		add	r7, sp, #0
+ 300              		.cfi_def_cfa_register 7
+  95:main.c        ****     /* Initialize and start UART, register ISR */
+  96:main.c        ****     UART_Start();                       // start UART
+ 301              		.loc 1 96 0
+ 302 0006 FFF7FEFF 		bl	UART_Start
+  97:main.c        ****     isr_UART_RX_StartEx( MyIsrUartRX ); // register ISR, enable itr uart
+ 303              		.loc 1 97 0
+ 304 000a 8548     		ldr	r0, .L40
+ 305 000c FFF7FEFF 		bl	isr_UART_RX_StartEx
+  98:main.c        ****     
+  99:main.c        ****     /* Initialize PWM */
+ 100:main.c        ****     PWM_Start();                        // start PWM
+ 306              		.loc 1 100 0
+ 307 0010 FFF7FEFF 		bl	PWM_Start
+ 101:main.c        **** 
+ 102:main.c        ****     /* Initialize and start MyIsrCWEW, register ISR */
+ 103:main.c        ****     isr_CWEW_StartEx( MyIsrCWEW );      // register CWEW itr
+ 308              		.loc 1 103 0
+ 309 0014 8348     		ldr	r0, .L40+4
+ 310 0016 FFF7FEFF 		bl	isr_CWEW_StartEx
+ 104:main.c        ****     Pin_CWEW_ClearInterrupt();          // clear eventual interrupt
+ 311              		.loc 1 104 0
+ 312 001a FFF7FEFF 		bl	Pin_CWEW_ClearInterrupt
+ 105:main.c        ****     isr_CWEW_ClearPending();            // clear eventual pending interrupt    
+ 313              		.loc 1 105 0
+ 314 001e FFF7FEFF 		bl	isr_CWEW_ClearPending
+ 106:main.c        ****     isr_Clk_StartEx( IsrAppClk );       // register application clock
+ 315              		.loc 1 106 0
+ 316 0022 8148     		ldr	r0, .L40+8
+ARM GAS  C:\Users\dmaks\AppData\Local\Temp\ccv7w8Sz.s 			page 9
+
+
+ 317 0024 FFF7FEFF 		bl	isr_Clk_StartEx
+ 107:main.c        ****     
+ 108:main.c        ****     CyGlobalIntEnable; /* Enable global interrupts. */
+ 318              		.loc 1 108 0
+ 319              		.syntax unified
+ 320              	@ 108 "main.c" 1
+ 321 0028 62B6     		CPSIE   i
+ 322              	@ 0 "" 2
+ 109:main.c        **** 
+ 110:main.c        ****     /* Welcome and info text Ausgabe */
+ 111:main.c        ****     sprintf( buffer, "\n\rWelcome! %s\n\r", _VERSTR_);  // formatiert in Buffer
+ 323              		.loc 1 111 0
+ 324              		.thumb
+ 325              		.syntax unified
+ 326 002a 804A     		ldr	r2, .L40+12
+ 327 002c 8049     		ldr	r1, .L40+16
+ 328 002e 8148     		ldr	r0, .L40+20
+ 329 0030 FFF7FEFF 		bl	sprintf
+ 112:main.c        ****     UART_PutString( buffer );                           // Ausgabe auf UART
+ 330              		.loc 1 112 0
+ 331 0034 7F48     		ldr	r0, .L40+20
+ 332 0036 FFF7FEFF 		bl	UART_PutString
+ 113:main.c        ****     
+ 114:main.c        ****     // Applikationsschleife
+ 115:main.c        ****     int zustand = 0;
+ 333              		.loc 1 115 0
+ 334 003a 0023     		movs	r3, #0
+ 335 003c 7B60     		str	r3, [r7, #4]
+ 336              	.L39:
+ 116:main.c        ****     for(;;) {
+ 117:main.c        ****         cRx = UART_GetChar();
+ 337              		.loc 1 117 0
+ 338 003e FFF7FEFF 		bl	UART_GetChar
+ 339 0042 0346     		mov	r3, r0
+ 340 0044 1A46     		mov	r2, r3
+ 341 0046 7C4B     		ldr	r3, .L40+24
+ 342 0048 1A70     		strb	r2, [r3]
+ 118:main.c        ****         if ( fsClock ) {
+ 343              		.loc 1 118 0
+ 344 004a 7C4B     		ldr	r3, .L40+28
+ 345 004c 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 346 004e 002B     		cmp	r3, #0
+ 347 0050 79D0     		beq	.L19
+ 119:main.c        ****             fsClock = 0;    // don't forget
+ 348              		.loc 1 119 0
+ 349 0052 7A4B     		ldr	r3, .L40+28
+ 350 0054 0022     		movs	r2, #0
+ 351 0056 1A70     		strb	r2, [r3]
+ 120:main.c        ****             
+ 121:main.c        ****             if(zustand == 0 && timer == 1) {
+ 352              		.loc 1 121 0
+ 353 0058 7B68     		ldr	r3, [r7, #4]
+ 354 005a 002B     		cmp	r3, #0
+ 355 005c 0BD1     		bne	.L20
+ 356              		.loc 1 121 0 is_stmt 0 discriminator 1
+ 357 005e 784B     		ldr	r3, .L40+32
+ 358 0060 1B68     		ldr	r3, [r3]
+ARM GAS  C:\Users\dmaks\AppData\Local\Temp\ccv7w8Sz.s 			page 10
+
+
+ 359 0062 012B     		cmp	r3, #1
+ 360 0064 07D1     		bne	.L20
+ 122:main.c        ****                 cleanState(); // Alle rot
+ 361              		.loc 1 122 0 is_stmt 1
+ 362 0066 FFF7FEFF 		bl	cleanState
+ 123:main.c        ****                 zustand++;
+ 363              		.loc 1 123 0
+ 364 006a 7B68     		ldr	r3, [r7, #4]
+ 365 006c 0133     		adds	r3, r3, #1
+ 366 006e 7B60     		str	r3, [r7, #4]
+ 124:main.c        ****                 timer = 0;
+ 367              		.loc 1 124 0
+ 368 0070 734B     		ldr	r3, .L40+32
+ 369 0072 0022     		movs	r2, #0
+ 370 0074 1A60     		str	r2, [r3]
+ 371              	.L20:
+ 125:main.c        ****             }           
+ 126:main.c        ****             if(zustand == 1 && timer == 1) {               
+ 372              		.loc 1 126 0
+ 373 0076 7B68     		ldr	r3, [r7, #4]
+ 374 0078 012B     		cmp	r3, #1
+ 375 007a 0BD1     		bne	.L21
+ 376              		.loc 1 126 0 is_stmt 0 discriminator 1
+ 377 007c 704B     		ldr	r3, .L40+32
+ 378 007e 1B68     		ldr	r3, [r3]
+ 379 0080 012B     		cmp	r3, #1
+ 380 0082 07D1     		bne	.L21
+ 127:main.c        ****                 prepareNorthSouthToDrive();
+ 381              		.loc 1 127 0 is_stmt 1
+ 382 0084 FFF7FEFF 		bl	prepareNorthSouthToDrive
+ 128:main.c        ****                 zustand++;
+ 383              		.loc 1 128 0
+ 384 0088 7B68     		ldr	r3, [r7, #4]
+ 385 008a 0133     		adds	r3, r3, #1
+ 386 008c 7B60     		str	r3, [r7, #4]
+ 129:main.c        ****                 timer = 0;               
+ 387              		.loc 1 129 0
+ 388 008e 6C4B     		ldr	r3, .L40+32
+ 389 0090 0022     		movs	r2, #0
+ 390 0092 1A60     		str	r2, [r3]
+ 391              	.L21:
+ 130:main.c        ****             }            
+ 131:main.c        ****             if(zustand == 2 && timer == 1) {
+ 392              		.loc 1 131 0
+ 393 0094 7B68     		ldr	r3, [r7, #4]
+ 394 0096 022B     		cmp	r3, #2
+ 395 0098 0BD1     		bne	.L22
+ 396              		.loc 1 131 0 is_stmt 0 discriminator 1
+ 397 009a 694B     		ldr	r3, .L40+32
+ 398 009c 1B68     		ldr	r3, [r3]
+ 399 009e 012B     		cmp	r3, #1
+ 400 00a0 07D1     		bne	.L22
+ 132:main.c        ****                 allowNorthSouthToDrive();
+ 401              		.loc 1 132 0 is_stmt 1
+ 402 00a2 FFF7FEFF 		bl	allowNorthSouthToDrive
+ 133:main.c        ****                 zustand++;
+ 403              		.loc 1 133 0
+ARM GAS  C:\Users\dmaks\AppData\Local\Temp\ccv7w8Sz.s 			page 11
+
+
+ 404 00a6 7B68     		ldr	r3, [r7, #4]
+ 405 00a8 0133     		adds	r3, r3, #1
+ 406 00aa 7B60     		str	r3, [r7, #4]
+ 134:main.c        ****                 timer = 0;
+ 407              		.loc 1 134 0
+ 408 00ac 644B     		ldr	r3, .L40+32
+ 409 00ae 0022     		movs	r2, #0
+ 410 00b0 1A60     		str	r2, [r3]
+ 411              	.L22:
+ 135:main.c        ****             }            
+ 136:main.c        ****             if(zustand == 3 && timer == 3) {
+ 412              		.loc 1 136 0
+ 413 00b2 7B68     		ldr	r3, [r7, #4]
+ 414 00b4 032B     		cmp	r3, #3
+ 415 00b6 0BD1     		bne	.L23
+ 416              		.loc 1 136 0 is_stmt 0 discriminator 1
+ 417 00b8 614B     		ldr	r3, .L40+32
+ 418 00ba 1B68     		ldr	r3, [r3]
+ 419 00bc 032B     		cmp	r3, #3
+ 420 00be 07D1     		bne	.L23
+ 137:main.c        ****                 prepareNorthSouthToStop();
+ 421              		.loc 1 137 0 is_stmt 1
+ 422 00c0 FFF7FEFF 		bl	prepareNorthSouthToStop
+ 138:main.c        ****                 zustand++;
+ 423              		.loc 1 138 0
+ 424 00c4 7B68     		ldr	r3, [r7, #4]
+ 425 00c6 0133     		adds	r3, r3, #1
+ 426 00c8 7B60     		str	r3, [r7, #4]
+ 139:main.c        ****                 timer = 0;
+ 427              		.loc 1 139 0
+ 428 00ca 5D4B     		ldr	r3, .L40+32
+ 429 00cc 0022     		movs	r2, #0
+ 430 00ce 1A60     		str	r2, [r3]
+ 431              	.L23:
+ 140:main.c        ****             }
+ 141:main.c        ****             if(zustand == 4 && timer == 1) {
+ 432              		.loc 1 141 0
+ 433 00d0 7B68     		ldr	r3, [r7, #4]
+ 434 00d2 042B     		cmp	r3, #4
+ 435 00d4 0BD1     		bne	.L24
+ 436              		.loc 1 141 0 is_stmt 0 discriminator 1
+ 437 00d6 5A4B     		ldr	r3, .L40+32
+ 438 00d8 1B68     		ldr	r3, [r3]
+ 439 00da 012B     		cmp	r3, #1
+ 440 00dc 07D1     		bne	.L24
+ 142:main.c        ****                 cleanState();
+ 441              		.loc 1 142 0 is_stmt 1
+ 442 00de FFF7FEFF 		bl	cleanState
+ 143:main.c        ****                 zustand++;
+ 443              		.loc 1 143 0
+ 444 00e2 7B68     		ldr	r3, [r7, #4]
+ 445 00e4 0133     		adds	r3, r3, #1
+ 446 00e6 7B60     		str	r3, [r7, #4]
+ 144:main.c        ****                 timer = 0;
+ 447              		.loc 1 144 0
+ 448 00e8 554B     		ldr	r3, .L40+32
+ 449 00ea 0022     		movs	r2, #0
+ARM GAS  C:\Users\dmaks\AppData\Local\Temp\ccv7w8Sz.s 			page 12
+
+
+ 450 00ec 1A60     		str	r2, [r3]
+ 451              	.L24:
+ 145:main.c        ****             }            
+ 146:main.c        ****             if(zustand == 5 && timer == 1) {
+ 452              		.loc 1 146 0
+ 453 00ee 7B68     		ldr	r3, [r7, #4]
+ 454 00f0 052B     		cmp	r3, #5
+ 455 00f2 0BD1     		bne	.L25
+ 456              		.loc 1 146 0 is_stmt 0 discriminator 1
+ 457 00f4 524B     		ldr	r3, .L40+32
+ 458 00f6 1B68     		ldr	r3, [r3]
+ 459 00f8 012B     		cmp	r3, #1
+ 460 00fa 07D1     		bne	.L25
+ 147:main.c        ****                 prepareEastWestToDrive();
+ 461              		.loc 1 147 0 is_stmt 1
+ 462 00fc FFF7FEFF 		bl	prepareEastWestToDrive
+ 148:main.c        ****                 zustand++;
+ 463              		.loc 1 148 0
+ 464 0100 7B68     		ldr	r3, [r7, #4]
+ 465 0102 0133     		adds	r3, r3, #1
+ 466 0104 7B60     		str	r3, [r7, #4]
+ 149:main.c        ****                 timer = 0;
+ 467              		.loc 1 149 0
+ 468 0106 4E4B     		ldr	r3, .L40+32
+ 469 0108 0022     		movs	r2, #0
+ 470 010a 1A60     		str	r2, [r3]
+ 471              	.L25:
+ 150:main.c        ****             }            
+ 151:main.c        ****             if(zustand == 6 && timer == 1) {
+ 472              		.loc 1 151 0
+ 473 010c 7B68     		ldr	r3, [r7, #4]
+ 474 010e 062B     		cmp	r3, #6
+ 475 0110 0BD1     		bne	.L26
+ 476              		.loc 1 151 0 is_stmt 0 discriminator 1
+ 477 0112 4B4B     		ldr	r3, .L40+32
+ 478 0114 1B68     		ldr	r3, [r3]
+ 479 0116 012B     		cmp	r3, #1
+ 480 0118 07D1     		bne	.L26
+ 152:main.c        ****                 allowEastWestToDrive();
+ 481              		.loc 1 152 0 is_stmt 1
+ 482 011a FFF7FEFF 		bl	allowEastWestToDrive
+ 153:main.c        ****                 zustand++;
+ 483              		.loc 1 153 0
+ 484 011e 7B68     		ldr	r3, [r7, #4]
+ 485 0120 0133     		adds	r3, r3, #1
+ 486 0122 7B60     		str	r3, [r7, #4]
+ 154:main.c        ****                 timer = 0;
+ 487              		.loc 1 154 0
+ 488 0124 464B     		ldr	r3, .L40+32
+ 489 0126 0022     		movs	r2, #0
+ 490 0128 1A60     		str	r2, [r3]
+ 491              	.L26:
+ 155:main.c        ****             }           
+ 156:main.c        ****             if(zustand == 7 && timer == 2) {
+ 492              		.loc 1 156 0
+ 493 012a 7B68     		ldr	r3, [r7, #4]
+ 494 012c 072B     		cmp	r3, #7
+ARM GAS  C:\Users\dmaks\AppData\Local\Temp\ccv7w8Sz.s 			page 13
+
+
+ 495 012e 0AD1     		bne	.L19
+ 496              		.loc 1 156 0 is_stmt 0 discriminator 1
+ 497 0130 434B     		ldr	r3, .L40+32
+ 498 0132 1B68     		ldr	r3, [r3]
+ 499 0134 022B     		cmp	r3, #2
+ 500 0136 06D1     		bne	.L19
+ 157:main.c        ****                 prepareEastWestToStop();
+ 501              		.loc 1 157 0 is_stmt 1
+ 502 0138 FFF7FEFF 		bl	prepareEastWestToStop
+ 158:main.c        ****                 zustand = 0;
+ 503              		.loc 1 158 0
+ 504 013c 0023     		movs	r3, #0
+ 505 013e 7B60     		str	r3, [r7, #4]
+ 159:main.c        ****                 timer = 0;
+ 506              		.loc 1 159 0
+ 507 0140 3F4B     		ldr	r3, .L40+32
+ 508 0142 0022     		movs	r2, #0
+ 509 0144 1A60     		str	r2, [r3]
+ 510              	.L19:
+ 160:main.c        ****             }
+ 161:main.c        ****         }            
+ 162:main.c        ****         // Behandlung Button-Ereignis aus ISR
+ 163:main.c        ****         if(fCWEW_Isr){
+ 511              		.loc 1 163 0
+ 512 0146 3F4B     		ldr	r3, .L40+36
+ 513 0148 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 514 014a 002B     		cmp	r3, #0
+ 515 014c 2ED0     		beq	.L27
+ 164:main.c        ****             // schneller auf weiß für Fußgänger OST-WEST
+ 165:main.c        ****             if (zustand == 0) { // alle rot -> direkt NORD-SÜD auf gelb -> state 2 wird aktiviert
+ 516              		.loc 1 165 0
+ 517 014e 7B68     		ldr	r3, [r7, #4]
+ 518 0150 002B     		cmp	r3, #0
+ 519 0152 06D1     		bne	.L28
+ 166:main.c        ****                 prepareNorthSouthToDrive();
+ 520              		.loc 1 166 0
+ 521 0154 FFF7FEFF 		bl	prepareNorthSouthToDrive
+ 167:main.c        ****                 zustand = 2;
+ 522              		.loc 1 167 0
+ 523 0158 0223     		movs	r3, #2
+ 524 015a 7B60     		str	r3, [r7, #4]
+ 168:main.c        ****                 timer = 0;
+ 525              		.loc 1 168 0
+ 526 015c 384B     		ldr	r3, .L40+32
+ 527 015e 0022     		movs	r2, #0
+ 528 0160 1A60     		str	r2, [r3]
+ 529              	.L28:
+ 169:main.c        ****             }          
+ 170:main.c        ****             // länger auf weiß für Fußgänger OST-WEST
+ 171:main.c        ****             if (zustand == 3 && timer < 3) {
+ 530              		.loc 1 171 0
+ 531 0162 7B68     		ldr	r3, [r7, #4]
+ 532 0164 032B     		cmp	r3, #3
+ 533 0166 08D1     		bne	.L29
+ 534              		.loc 1 171 0 is_stmt 0 discriminator 1
+ 535 0168 354B     		ldr	r3, .L40+32
+ 536 016a 1B68     		ldr	r3, [r3]
+ARM GAS  C:\Users\dmaks\AppData\Local\Temp\ccv7w8Sz.s 			page 14
+
+
+ 537 016c 022B     		cmp	r3, #2
+ 538 016e 04D8     		bhi	.L29
+ 172:main.c        ****                 timer = timer - 2;
+ 539              		.loc 1 172 0 is_stmt 1
+ 540 0170 334B     		ldr	r3, .L40+32
+ 541 0172 1B68     		ldr	r3, [r3]
+ 542 0174 023B     		subs	r3, r3, #2
+ 543 0176 324A     		ldr	r2, .L40+32
+ 544 0178 1360     		str	r3, [r2]
+ 545              	.L29:
+ 173:main.c        ****             }            
+ 174:main.c        ****             // schneller auf weiß für Fußgänger NORD-SÜD
+ 175:main.c        ****             if (zustand == 4) { // alle rot -> direkt OST-WEST auf gelb -> state 6 wird aktiviert
+ 546              		.loc 1 175 0
+ 547 017a 7B68     		ldr	r3, [r7, #4]
+ 548 017c 042B     		cmp	r3, #4
+ 549 017e 06D1     		bne	.L30
+ 176:main.c        ****                 prepareEastWestToDrive();
+ 550              		.loc 1 176 0
+ 551 0180 FFF7FEFF 		bl	prepareEastWestToDrive
+ 177:main.c        ****                 zustand = 6;
+ 552              		.loc 1 177 0
+ 553 0184 0623     		movs	r3, #6
+ 554 0186 7B60     		str	r3, [r7, #4]
+ 178:main.c        ****                 timer = 0;
+ 555              		.loc 1 178 0
+ 556 0188 2D4B     		ldr	r3, .L40+32
+ 557 018a 0022     		movs	r2, #0
+ 558 018c 1A60     		str	r2, [r3]
+ 559              	.L30:
+ 179:main.c        ****             }
+ 180:main.c        ****              // länger auf weiß für Fußgänger NORD-SÜD
+ 181:main.c        ****             if (zustand == 7 && timer < 2) {
+ 560              		.loc 1 181 0
+ 561 018e 7B68     		ldr	r3, [r7, #4]
+ 562 0190 072B     		cmp	r3, #7
+ 563 0192 08D1     		bne	.L31
+ 564              		.loc 1 181 0 is_stmt 0 discriminator 1
+ 565 0194 2A4B     		ldr	r3, .L40+32
+ 566 0196 1B68     		ldr	r3, [r3]
+ 567 0198 012B     		cmp	r3, #1
+ 568 019a 04D8     		bhi	.L31
+ 182:main.c        ****                 timer = timer - 2;
+ 569              		.loc 1 182 0 is_stmt 1
+ 570 019c 284B     		ldr	r3, .L40+32
+ 571 019e 1B68     		ldr	r3, [r3]
+ 572 01a0 023B     		subs	r3, r3, #2
+ 573 01a2 274A     		ldr	r2, .L40+32
+ 574 01a4 1360     		str	r3, [r2]
+ 575              	.L31:
+ 183:main.c        ****             }
+ 184:main.c        ****             fCWEW_Isr = 0; // Wieder auf Null!
+ 576              		.loc 1 184 0
+ 577 01a6 274B     		ldr	r3, .L40+36
+ 578 01a8 0022     		movs	r2, #0
+ 579 01aa 1A70     		strb	r2, [r3]
+ 580              	.L27:
+ARM GAS  C:\Users\dmaks\AppData\Local\Temp\ccv7w8Sz.s 			page 15
+
+
+ 185:main.c        ****         }
+ 186:main.c        ****         /* 
+ 187:main.c        ****          * Character aus Uart ISR abfragen 
+ 188:main.c        ****          * Beispiel für Menuesteuerung
+ 189:main.c        ****          */
+ 190:main.c        ****         
+ 191:main.c        ****         if ( cRx ) {
+ 581              		.loc 1 191 0
+ 582 01ac 224B     		ldr	r3, .L40+24
+ 583 01ae 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 584 01b0 002B     		cmp	r3, #0
+ 585 01b2 3FF444AF 		beq	.L39
+ 586              	.LBB3:
+ 192:main.c        ****             char c = cRx;   // copy char
+ 587              		.loc 1 192 0
+ 588 01b6 204B     		ldr	r3, .L40+24
+ 589 01b8 1B78     		ldrb	r3, [r3]
+ 590 01ba FB70     		strb	r3, [r7, #3]
+ 193:main.c        ****             cRx = 0;        // nicht vergessen!!! Warum?
+ 591              		.loc 1 193 0
+ 592 01bc 1E4B     		ldr	r3, .L40+24
+ 593 01be 0022     		movs	r2, #0
+ 594 01c0 1A70     		strb	r2, [r3]
+ 194:main.c        ****             // +++ Menuesteuerung +++
+ 195:main.c        ****             sprintf( buffer, "Handle Keyboard %c\n\r", c );
+ 595              		.loc 1 195 0
+ 596 01c2 FB78     		ldrb	r3, [r7, #3]	@ zero_extendqisi2
+ 597 01c4 1A46     		mov	r2, r3
+ 598 01c6 2049     		ldr	r1, .L40+40
+ 599 01c8 1A48     		ldr	r0, .L40+20
+ 600 01ca FFF7FEFF 		bl	sprintf
+ 196:main.c        ****             UART_PutString( buffer );
+ 601              		.loc 1 196 0
+ 602 01ce 1948     		ldr	r0, .L40+20
+ 603 01d0 FFF7FEFF 		bl	UART_PutString
+ 197:main.c        ****             switch ( c ) {
+ 604              		.loc 1 197 0
+ 605 01d4 FB78     		ldrb	r3, [r7, #3]	@ zero_extendqisi2
+ 606 01d6 482B     		cmp	r3, #72
+ 607 01d8 17D0     		beq	.L34
+ 608 01da 482B     		cmp	r3, #72
+ 609 01dc 04DC     		bgt	.L35
+ 610 01de 2B2B     		cmp	r3, #43
+ 611 01e0 0BD0     		beq	.L36
+ 612 01e2 2D2B     		cmp	r3, #45
+ 613 01e4 0DD0     		beq	.L37
+ 614 01e6 14E0     		b	.L33
+ 615              	.L35:
+ 616 01e8 682B     		cmp	r3, #104
+ 617 01ea 0ED0     		beq	.L34
+ 618 01ec 712B     		cmp	r3, #113
+ 619 01ee 01D0     		beq	.L38
+ 620 01f0 512B     		cmp	r3, #81
+ 621 01f2 0ED1     		bne	.L33
+ 622              	.L38:
+ 198:main.c        ****                 // Software reset, startet Programm neu
+ 199:main.c        ****                 case 'q':
+ARM GAS  C:\Users\dmaks\AppData\Local\Temp\ccv7w8Sz.s 			page 16
+
+
+ 200:main.c        ****                 case 'Q':   // fallthrough
+ 201:main.c        ****                     CySoftwareReset();
+ 623              		.loc 1 201 0
+ 624 01f4 FFF7FEFF 		bl	CySoftwareReset
+ 202:main.c        ****                     break;
+ 625              		.loc 1 202 0
+ 626 01f8 10E0     		b	.L32
+ 627              	.L36:
+ 203:main.c        ****                 case '+':   // fallthrough
+ 204:main.c        ****                     brightness_settings(1);
+ 628              		.loc 1 204 0
+ 629 01fa 0120     		movs	r0, #1
+ 630 01fc FFF7FEFF 		bl	brightness_settings
+ 205:main.c        ****                     break;
+ 631              		.loc 1 205 0
+ 632 0200 0CE0     		b	.L32
+ 633              	.L37:
+ 206:main.c        ****                 case '-': 
+ 207:main.c        ****                     brightness_settings(0);
+ 634              		.loc 1 207 0
+ 635 0202 0020     		movs	r0, #0
+ 636 0204 FFF7FEFF 		bl	brightness_settings
+ 208:main.c        ****                     break;
+ 637              		.loc 1 208 0
+ 638 0208 08E0     		b	.L32
+ 639              	.L34:
+ 209:main.c        ****                 case 'h':   // help
+ 210:main.c        ****                 case 'H':   // fallthrough
+ 211:main.c        ****                     UART_PutString( "\n\rHelp:\n\r\\th,H: help\n\r\\tq,Q: software reset\n\r" );
+ 640              		.loc 1 211 0
+ 641 020a 1048     		ldr	r0, .L40+44
+ 642 020c FFF7FEFF 		bl	UART_PutString
+ 212:main.c        ****                     break;
+ 643              		.loc 1 212 0
+ 644 0210 04E0     		b	.L32
+ 645              	.L33:
+ 213:main.c        ****                 default:
+ 214:main.c        ****                     UART_PutChar( c );    // Buchstabe auf Bildschirm ausgeben
+ 646              		.loc 1 214 0
+ 647 0212 FB78     		ldrb	r3, [r7, #3]	@ zero_extendqisi2
+ 648 0214 1846     		mov	r0, r3
+ 649 0216 FFF7FEFF 		bl	UART_PutChar
+ 215:main.c        ****                     break;
+ 650              		.loc 1 215 0
+ 651 021a 00BF     		nop
+ 652              	.L32:
+ 653              	.LBE3:
+ 216:main.c        ****             }  // end switch          
+ 217:main.c        ****         } // end if cRx                        
+ 218:main.c        ****     } // end for
+ 654              		.loc 1 218 0
+ 655 021c 0FE7     		b	.L39
+ 656              	.L41:
+ 657 021e 00BF     		.align	2
+ 658              	.L40:
+ 659 0220 00000000 		.word	MyIsrUartRX
+ 660 0224 00000000 		.word	MyIsrCWEW
+ARM GAS  C:\Users\dmaks\AppData\Local\Temp\ccv7w8Sz.s 			page 17
+
+
+ 661 0228 00000000 		.word	IsrAppClk
+ 662 022c 00000000 		.word	.LC0
+ 663 0230 74000000 		.word	.LC1
+ 664 0234 00000000 		.word	buffer
+ 665 0238 80000000 		.word	cRx
+ 666 023c 88000000 		.word	fsClock
+ 667 0240 8C000000 		.word	timer
+ 668 0244 81000000 		.word	fCWEW_Isr
+ 669 0248 84000000 		.word	.LC2
+ 670 024c 9C000000 		.word	.LC3
+ 671              		.cfi_endproc
+ 672              	.LFE68:
+ 673              		.size	main, .-main
+ 674              		.text
+ 675              	.Letext0:
+ 676              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.
+ 677              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.
+ 678              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ 679              		.file 5 "c:\\program files (x86)\\cypress\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.
+ 680              		.file 6 "Generated_Source\\PSoC5/core_cm3.h"
+ 681              		.section	.debug_info,"",%progbits
+ 682              	.Ldebug_info0:
+ 683 0000 28020000 		.4byte	0x228
+ 684 0004 0400     		.2byte	0x4
+ 685 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 686 000a 04       		.byte	0x4
+ 687 000b 01       		.uleb128 0x1
+ 688 000c 12000000 		.4byte	.LASF32
+ 689 0010 0C       		.byte	0xc
+ 690 0011 12020000 		.4byte	.LASF33
+ 691 0015 12010000 		.4byte	.LASF34
+ 692 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 693 001d 00000000 		.4byte	0
+ 694 0021 00000000 		.4byte	.Ldebug_line0
+ 695 0025 02       		.uleb128 0x2
+ 696 0026 01       		.byte	0x1
+ 697 0027 06       		.byte	0x6
+ 698 0028 DA000000 		.4byte	.LASF0
+ 699 002c 03       		.uleb128 0x3
+ 700 002d 00000000 		.4byte	.LASF4
+ 701 0031 02       		.byte	0x2
+ 702 0032 1D       		.byte	0x1d
+ 703 0033 37000000 		.4byte	0x37
+ 704 0037 02       		.uleb128 0x2
+ 705 0038 01       		.byte	0x1
+ 706 0039 08       		.byte	0x8
+ 707 003a E6000000 		.4byte	.LASF1
+ 708 003e 02       		.uleb128 0x2
+ 709 003f 02       		.byte	0x2
+ 710 0040 05       		.byte	0x5
+ 711 0041 1E020000 		.4byte	.LASF2
+ 712 0045 02       		.uleb128 0x2
+ 713 0046 02       		.byte	0x2
+ 714 0047 07       		.byte	0x7
+ 715 0048 67010000 		.4byte	.LASF3
+ 716 004c 03       		.uleb128 0x3
+ 717 004d B4000000 		.4byte	.LASF5
+ARM GAS  C:\Users\dmaks\AppData\Local\Temp\ccv7w8Sz.s 			page 18
+
+
+ 718 0051 02       		.byte	0x2
+ 719 0052 3F       		.byte	0x3f
+ 720 0053 57000000 		.4byte	0x57
+ 721 0057 02       		.uleb128 0x2
+ 722 0058 04       		.byte	0x4
+ 723 0059 05       		.byte	0x5
+ 724 005a 38020000 		.4byte	.LASF6
+ 725 005e 03       		.uleb128 0x3
+ 726 005f AB010000 		.4byte	.LASF7
+ 727 0063 02       		.byte	0x2
+ 728 0064 41       		.byte	0x41
+ 729 0065 69000000 		.4byte	0x69
+ 730 0069 02       		.uleb128 0x2
+ 731 006a 04       		.byte	0x4
+ 732 006b 07       		.byte	0x7
+ 733 006c 00010000 		.4byte	.LASF8
+ 734 0070 02       		.uleb128 0x2
+ 735 0071 08       		.byte	0x8
+ 736 0072 05       		.byte	0x5
+ 737 0073 04020000 		.4byte	.LASF9
+ 738 0077 02       		.uleb128 0x2
+ 739 0078 08       		.byte	0x8
+ 740 0079 07       		.byte	0x7
+ 741 007a D4010000 		.4byte	.LASF10
+ 742 007e 04       		.uleb128 0x4
+ 743 007f 04       		.byte	0x4
+ 744 0080 05       		.byte	0x5
+ 745 0081 696E7400 		.ascii	"int\000"
+ 746 0085 02       		.uleb128 0x2
+ 747 0086 04       		.byte	0x4
+ 748 0087 07       		.byte	0x7
+ 749 0088 C7010000 		.4byte	.LASF11
+ 750 008c 03       		.uleb128 0x3
+ 751 008d EB010000 		.4byte	.LASF12
+ 752 0091 03       		.byte	0x3
+ 753 0092 18       		.byte	0x18
+ 754 0093 2C000000 		.4byte	0x2c
+ 755 0097 03       		.uleb128 0x3
+ 756 0098 F3010000 		.4byte	.LASF13
+ 757 009c 03       		.byte	0x3
+ 758 009d 2C       		.byte	0x2c
+ 759 009e 4C000000 		.4byte	0x4c
+ 760 00a2 03       		.uleb128 0x3
+ 761 00a3 2F020000 		.4byte	.LASF14
+ 762 00a7 03       		.byte	0x3
+ 763 00a8 30       		.byte	0x30
+ 764 00a9 5E000000 		.4byte	0x5e
+ 765 00ad 05       		.uleb128 0x5
+ 766 00ae B6010000 		.4byte	.LASF15
+ 767 00b2 04       		.byte	0x4
+ 768 00b3 E501     		.2byte	0x1e5
+ 769 00b5 45000000 		.4byte	0x45
+ 770 00b9 02       		.uleb128 0x2
+ 771 00ba 04       		.byte	0x4
+ 772 00bb 04       		.byte	0x4
+ 773 00bc C8000000 		.4byte	.LASF16
+ 774 00c0 02       		.uleb128 0x2
+ARM GAS  C:\Users\dmaks\AppData\Local\Temp\ccv7w8Sz.s 			page 19
+
+
+ 775 00c1 08       		.byte	0x8
+ 776 00c2 04       		.byte	0x4
+ 777 00c3 9A010000 		.4byte	.LASF17
+ 778 00c7 02       		.uleb128 0x2
+ 779 00c8 01       		.byte	0x1
+ 780 00c9 08       		.byte	0x8
+ 781 00ca 19020000 		.4byte	.LASF18
+ 782 00ce 02       		.uleb128 0x2
+ 783 00cf 08       		.byte	0x8
+ 784 00d0 04       		.byte	0x4
+ 785 00d1 41020000 		.4byte	.LASF19
+ 786 00d5 02       		.uleb128 0x2
+ 787 00d6 04       		.byte	0x4
+ 788 00d7 07       		.byte	0x7
+ 789 00d8 FB010000 		.4byte	.LASF20
+ 790 00dc 03       		.uleb128 0x3
+ 791 00dd 57020000 		.4byte	.LASF21
+ 792 00e1 05       		.byte	0x5
+ 793 00e2 5F       		.byte	0x5f
+ 794 00e3 85000000 		.4byte	0x85
+ 795 00e7 06       		.uleb128 0x6
+ 796 00e8 CE000000 		.4byte	.LASF22
+ 797 00ec 01       		.byte	0x1
+ 798 00ed 2A       		.byte	0x2a
+ 799 00ee 00000000 		.4byte	.LFB64
+ 800 00f2 18000000 		.4byte	.LFE64-.LFB64
+ 801 00f6 01       		.uleb128 0x1
+ 802 00f7 9C       		.byte	0x9c
+ 803 00f8 06       		.uleb128 0x6
+ 804 00f9 4D020000 		.4byte	.LASF23
+ 805 00fd 01       		.byte	0x1
+ 806 00fe 34       		.byte	0x34
+ 807 00ff 00000000 		.4byte	.LFB65
+ 808 0103 18000000 		.4byte	.LFE65-.LFB65
+ 809 0107 01       		.uleb128 0x1
+ 810 0108 9C       		.byte	0x9c
+ 811 0109 07       		.uleb128 0x7
+ 812 010a BE000000 		.4byte	.LASF24
+ 813 010e 01       		.byte	0x1
+ 814 010f 42       		.byte	0x42
+ 815 0110 00000000 		.4byte	.LFB66
+ 816 0114 50000000 		.4byte	.LFE66-.LFB66
+ 817 0118 01       		.uleb128 0x1
+ 818 0119 9C       		.byte	0x9c
+ 819 011a 08       		.uleb128 0x8
+ 820 011b A0000000 		.4byte	.LASF35
+ 821 011f 01       		.byte	0x1
+ 822 0120 4A       		.byte	0x4a
+ 823 0121 00000000 		.4byte	.LFB67
+ 824 0125 68000000 		.4byte	.LFE67-.LFB67
+ 825 0129 01       		.uleb128 0x1
+ 826 012a 9C       		.byte	0x9c
+ 827 012b 56010000 		.4byte	0x156
+ 828 012f 09       		.uleb128 0x9
+ 829 0130 F4000000 		.4byte	.LASF36
+ 830 0134 01       		.byte	0x1
+ 831 0135 4A       		.byte	0x4a
+ARM GAS  C:\Users\dmaks\AppData\Local\Temp\ccv7w8Sz.s 			page 20
+
+
+ 832 0136 DC000000 		.4byte	0xdc
+ 833 013a 02       		.uleb128 0x2
+ 834 013b 91       		.byte	0x91
+ 835 013c 6C       		.sleb128 -20
+ 836 013d 0A       		.uleb128 0xa
+ 837 013e 18000000 		.4byte	.LBB2
+ 838 0142 1E000000 		.4byte	.LBE2-.LBB2
+ 839 0146 0B       		.uleb128 0xb
+ 840 0147 C2010000 		.4byte	.LASF25
+ 841 014b 01       		.byte	0x1
+ 842 014c 4C       		.byte	0x4c
+ 843 014d AD000000 		.4byte	0xad
+ 844 0151 02       		.uleb128 0x2
+ 845 0152 91       		.byte	0x91
+ 846 0153 76       		.sleb128 -10
+ 847 0154 00       		.byte	0
+ 848 0155 00       		.byte	0
+ 849 0156 0C       		.uleb128 0xc
+ 850 0157 BD010000 		.4byte	.LASF37
+ 851 015b 01       		.byte	0x1
+ 852 015c 5E       		.byte	0x5e
+ 853 015d 7E000000 		.4byte	0x7e
+ 854 0161 00000000 		.4byte	.LFB68
+ 855 0165 50020000 		.4byte	.LFE68-.LFB68
+ 856 0169 01       		.uleb128 0x1
+ 857 016a 9C       		.byte	0x9c
+ 858 016b 94010000 		.4byte	0x194
+ 859 016f 0B       		.uleb128 0xb
+ 860 0170 0A000000 		.4byte	.LASF26
+ 861 0174 01       		.byte	0x1
+ 862 0175 73       		.byte	0x73
+ 863 0176 7E000000 		.4byte	0x7e
+ 864 017a 02       		.uleb128 0x2
+ 865 017b 91       		.byte	0x91
+ 866 017c 74       		.sleb128 -12
+ 867 017d 0A       		.uleb128 0xa
+ 868 017e B6010000 		.4byte	.LBB3
+ 869 0182 66000000 		.4byte	.LBE3-.LBB3
+ 870 0186 0D       		.uleb128 0xd
+ 871 0187 6300     		.ascii	"c\000"
+ 872 0189 01       		.byte	0x1
+ 873 018a C0       		.byte	0xc0
+ 874 018b C7000000 		.4byte	0xc7
+ 875 018f 02       		.uleb128 0x2
+ 876 0190 91       		.byte	0x91
+ 877 0191 73       		.sleb128 -13
+ 878 0192 00       		.byte	0
+ 879 0193 00       		.byte	0
+ 880 0194 0E       		.uleb128 0xe
+ 881 0195 C7000000 		.4byte	0xc7
+ 882 0199 A4010000 		.4byte	0x1a4
+ 883 019d 0F       		.uleb128 0xf
+ 884 019e D5000000 		.4byte	0xd5
+ 885 01a2 7F       		.byte	0x7f
+ 886 01a3 00       		.byte	0
+ 887 01a4 0B       		.uleb128 0xb
+ 888 01a5 28020000 		.4byte	.LASF27
+ARM GAS  C:\Users\dmaks\AppData\Local\Temp\ccv7w8Sz.s 			page 21
+
+
+ 889 01a9 01       		.byte	0x1
+ 890 01aa 22       		.byte	0x22
+ 891 01ab 94010000 		.4byte	0x194
+ 892 01af 05       		.uleb128 0x5
+ 893 01b0 03       		.byte	0x3
+ 894 01b1 00000000 		.4byte	buffer
+ 895 01b5 0D       		.uleb128 0xd
+ 896 01b6 63527800 		.ascii	"cRx\000"
+ 897 01ba 01       		.byte	0x1
+ 898 01bb 23       		.byte	0x23
+ 899 01bc C7000000 		.4byte	0xc7
+ 900 01c0 05       		.uleb128 0x5
+ 901 01c1 03       		.byte	0x3
+ 902 01c2 80000000 		.4byte	cRx
+ 903 01c6 0B       		.uleb128 0xb
+ 904 01c7 A1010000 		.4byte	.LASF28
+ 905 01cb 01       		.byte	0x1
+ 906 01cc 2E       		.byte	0x2e
+ 907 01cd 8C000000 		.4byte	0x8c
+ 908 01d1 05       		.uleb128 0x5
+ 909 01d2 03       		.byte	0x3
+ 910 01d3 81000000 		.4byte	fCWEW_Isr
+ 911 01d7 0D       		.uleb128 0xd
+ 912 01d8 6D7300   		.ascii	"ms\000"
+ 913 01db 01       		.byte	0x1
+ 914 01dc 39       		.byte	0x39
+ 915 01dd A2000000 		.4byte	0xa2
+ 916 01e1 05       		.uleb128 0x5
+ 917 01e2 03       		.byte	0x3
+ 918 01e3 84000000 		.4byte	ms
+ 919 01e7 0B       		.uleb128 0xb
+ 920 01e8 7A010000 		.4byte	.LASF29
+ 921 01ec 01       		.byte	0x1
+ 922 01ed 3A       		.byte	0x3a
+ 923 01ee 8C000000 		.4byte	0x8c
+ 924 01f2 05       		.uleb128 0x5
+ 925 01f3 03       		.byte	0x3
+ 926 01f4 88000000 		.4byte	fsClock
+ 927 01f8 0B       		.uleb128 0xb
+ 928 01f9 FA000000 		.4byte	.LASF30
+ 929 01fd 01       		.byte	0x1
+ 930 01fe 3B       		.byte	0x3b
+ 931 01ff A2000000 		.4byte	0xa2
+ 932 0203 05       		.uleb128 0x5
+ 933 0204 03       		.byte	0x3
+ 934 0205 8C000000 		.4byte	timer
+ 935 0209 0B       		.uleb128 0xb
+ 936 020a 82010000 		.4byte	.LASF31
+ 937 020e 01       		.byte	0x1
+ 938 020f 3C       		.byte	0x3c
+ 939 0210 AD000000 		.4byte	0xad
+ 940 0214 05       		.uleb128 0x5
+ 941 0215 03       		.byte	0x3
+ 942 0216 00000000 		.4byte	brightness
+ 943 021a 10       		.uleb128 0x10
+ 944 021b 8D010000 		.4byte	.LASF38
+ 945 021f 06       		.byte	0x6
+ARM GAS  C:\Users\dmaks\AppData\Local\Temp\ccv7w8Sz.s 			page 22
+
+
+ 946 0220 1207     		.2byte	0x712
+ 947 0222 26020000 		.4byte	0x226
+ 948 0226 11       		.uleb128 0x11
+ 949 0227 97000000 		.4byte	0x97
+ 950 022b 00       		.byte	0
+ 951              		.section	.debug_abbrev,"",%progbits
+ 952              	.Ldebug_abbrev0:
+ 953 0000 01       		.uleb128 0x1
+ 954 0001 11       		.uleb128 0x11
+ 955 0002 01       		.byte	0x1
+ 956 0003 25       		.uleb128 0x25
+ 957 0004 0E       		.uleb128 0xe
+ 958 0005 13       		.uleb128 0x13
+ 959 0006 0B       		.uleb128 0xb
+ 960 0007 03       		.uleb128 0x3
+ 961 0008 0E       		.uleb128 0xe
+ 962 0009 1B       		.uleb128 0x1b
+ 963 000a 0E       		.uleb128 0xe
+ 964 000b 55       		.uleb128 0x55
+ 965 000c 17       		.uleb128 0x17
+ 966 000d 11       		.uleb128 0x11
+ 967 000e 01       		.uleb128 0x1
+ 968 000f 10       		.uleb128 0x10
+ 969 0010 17       		.uleb128 0x17
+ 970 0011 00       		.byte	0
+ 971 0012 00       		.byte	0
+ 972 0013 02       		.uleb128 0x2
+ 973 0014 24       		.uleb128 0x24
+ 974 0015 00       		.byte	0
+ 975 0016 0B       		.uleb128 0xb
+ 976 0017 0B       		.uleb128 0xb
+ 977 0018 3E       		.uleb128 0x3e
+ 978 0019 0B       		.uleb128 0xb
+ 979 001a 03       		.uleb128 0x3
+ 980 001b 0E       		.uleb128 0xe
+ 981 001c 00       		.byte	0
+ 982 001d 00       		.byte	0
+ 983 001e 03       		.uleb128 0x3
+ 984 001f 16       		.uleb128 0x16
+ 985 0020 00       		.byte	0
+ 986 0021 03       		.uleb128 0x3
+ 987 0022 0E       		.uleb128 0xe
+ 988 0023 3A       		.uleb128 0x3a
+ 989 0024 0B       		.uleb128 0xb
+ 990 0025 3B       		.uleb128 0x3b
+ 991 0026 0B       		.uleb128 0xb
+ 992 0027 49       		.uleb128 0x49
+ 993 0028 13       		.uleb128 0x13
+ 994 0029 00       		.byte	0
+ 995 002a 00       		.byte	0
+ 996 002b 04       		.uleb128 0x4
+ 997 002c 24       		.uleb128 0x24
+ 998 002d 00       		.byte	0
+ 999 002e 0B       		.uleb128 0xb
+ 1000 002f 0B       		.uleb128 0xb
+ 1001 0030 3E       		.uleb128 0x3e
+ 1002 0031 0B       		.uleb128 0xb
+ARM GAS  C:\Users\dmaks\AppData\Local\Temp\ccv7w8Sz.s 			page 23
+
+
+ 1003 0032 03       		.uleb128 0x3
+ 1004 0033 08       		.uleb128 0x8
+ 1005 0034 00       		.byte	0
+ 1006 0035 00       		.byte	0
+ 1007 0036 05       		.uleb128 0x5
+ 1008 0037 16       		.uleb128 0x16
+ 1009 0038 00       		.byte	0
+ 1010 0039 03       		.uleb128 0x3
+ 1011 003a 0E       		.uleb128 0xe
+ 1012 003b 3A       		.uleb128 0x3a
+ 1013 003c 0B       		.uleb128 0xb
+ 1014 003d 3B       		.uleb128 0x3b
+ 1015 003e 05       		.uleb128 0x5
+ 1016 003f 49       		.uleb128 0x49
+ 1017 0040 13       		.uleb128 0x13
+ 1018 0041 00       		.byte	0
+ 1019 0042 00       		.byte	0
+ 1020 0043 06       		.uleb128 0x6
+ 1021 0044 2E       		.uleb128 0x2e
+ 1022 0045 00       		.byte	0
+ 1023 0046 3F       		.uleb128 0x3f
+ 1024 0047 19       		.uleb128 0x19
+ 1025 0048 03       		.uleb128 0x3
+ 1026 0049 0E       		.uleb128 0xe
+ 1027 004a 3A       		.uleb128 0x3a
+ 1028 004b 0B       		.uleb128 0xb
+ 1029 004c 3B       		.uleb128 0x3b
+ 1030 004d 0B       		.uleb128 0xb
+ 1031 004e 27       		.uleb128 0x27
+ 1032 004f 19       		.uleb128 0x19
+ 1033 0050 11       		.uleb128 0x11
+ 1034 0051 01       		.uleb128 0x1
+ 1035 0052 12       		.uleb128 0x12
+ 1036 0053 06       		.uleb128 0x6
+ 1037 0054 40       		.uleb128 0x40
+ 1038 0055 18       		.uleb128 0x18
+ 1039 0056 9642     		.uleb128 0x2116
+ 1040 0058 19       		.uleb128 0x19
+ 1041 0059 00       		.byte	0
+ 1042 005a 00       		.byte	0
+ 1043 005b 07       		.uleb128 0x7
+ 1044 005c 2E       		.uleb128 0x2e
+ 1045 005d 00       		.byte	0
+ 1046 005e 3F       		.uleb128 0x3f
+ 1047 005f 19       		.uleb128 0x19
+ 1048 0060 03       		.uleb128 0x3
+ 1049 0061 0E       		.uleb128 0xe
+ 1050 0062 3A       		.uleb128 0x3a
+ 1051 0063 0B       		.uleb128 0xb
+ 1052 0064 3B       		.uleb128 0x3b
+ 1053 0065 0B       		.uleb128 0xb
+ 1054 0066 27       		.uleb128 0x27
+ 1055 0067 19       		.uleb128 0x19
+ 1056 0068 11       		.uleb128 0x11
+ 1057 0069 01       		.uleb128 0x1
+ 1058 006a 12       		.uleb128 0x12
+ 1059 006b 06       		.uleb128 0x6
+ARM GAS  C:\Users\dmaks\AppData\Local\Temp\ccv7w8Sz.s 			page 24
+
+
+ 1060 006c 40       		.uleb128 0x40
+ 1061 006d 18       		.uleb128 0x18
+ 1062 006e 9742     		.uleb128 0x2117
+ 1063 0070 19       		.uleb128 0x19
+ 1064 0071 00       		.byte	0
+ 1065 0072 00       		.byte	0
+ 1066 0073 08       		.uleb128 0x8
+ 1067 0074 2E       		.uleb128 0x2e
+ 1068 0075 01       		.byte	0x1
+ 1069 0076 3F       		.uleb128 0x3f
+ 1070 0077 19       		.uleb128 0x19
+ 1071 0078 03       		.uleb128 0x3
+ 1072 0079 0E       		.uleb128 0xe
+ 1073 007a 3A       		.uleb128 0x3a
+ 1074 007b 0B       		.uleb128 0xb
+ 1075 007c 3B       		.uleb128 0x3b
+ 1076 007d 0B       		.uleb128 0xb
+ 1077 007e 27       		.uleb128 0x27
+ 1078 007f 19       		.uleb128 0x19
+ 1079 0080 11       		.uleb128 0x11
+ 1080 0081 01       		.uleb128 0x1
+ 1081 0082 12       		.uleb128 0x12
+ 1082 0083 06       		.uleb128 0x6
+ 1083 0084 40       		.uleb128 0x40
+ 1084 0085 18       		.uleb128 0x18
+ 1085 0086 9642     		.uleb128 0x2116
+ 1086 0088 19       		.uleb128 0x19
+ 1087 0089 01       		.uleb128 0x1
+ 1088 008a 13       		.uleb128 0x13
+ 1089 008b 00       		.byte	0
+ 1090 008c 00       		.byte	0
+ 1091 008d 09       		.uleb128 0x9
+ 1092 008e 05       		.uleb128 0x5
+ 1093 008f 00       		.byte	0
+ 1094 0090 03       		.uleb128 0x3
+ 1095 0091 0E       		.uleb128 0xe
+ 1096 0092 3A       		.uleb128 0x3a
+ 1097 0093 0B       		.uleb128 0xb
+ 1098 0094 3B       		.uleb128 0x3b
+ 1099 0095 0B       		.uleb128 0xb
+ 1100 0096 49       		.uleb128 0x49
+ 1101 0097 13       		.uleb128 0x13
+ 1102 0098 02       		.uleb128 0x2
+ 1103 0099 18       		.uleb128 0x18
+ 1104 009a 00       		.byte	0
+ 1105 009b 00       		.byte	0
+ 1106 009c 0A       		.uleb128 0xa
+ 1107 009d 0B       		.uleb128 0xb
+ 1108 009e 01       		.byte	0x1
+ 1109 009f 11       		.uleb128 0x11
+ 1110 00a0 01       		.uleb128 0x1
+ 1111 00a1 12       		.uleb128 0x12
+ 1112 00a2 06       		.uleb128 0x6
+ 1113 00a3 00       		.byte	0
+ 1114 00a4 00       		.byte	0
+ 1115 00a5 0B       		.uleb128 0xb
+ 1116 00a6 34       		.uleb128 0x34
+ARM GAS  C:\Users\dmaks\AppData\Local\Temp\ccv7w8Sz.s 			page 25
+
+
+ 1117 00a7 00       		.byte	0
+ 1118 00a8 03       		.uleb128 0x3
+ 1119 00a9 0E       		.uleb128 0xe
+ 1120 00aa 3A       		.uleb128 0x3a
+ 1121 00ab 0B       		.uleb128 0xb
+ 1122 00ac 3B       		.uleb128 0x3b
+ 1123 00ad 0B       		.uleb128 0xb
+ 1124 00ae 49       		.uleb128 0x49
+ 1125 00af 13       		.uleb128 0x13
+ 1126 00b0 02       		.uleb128 0x2
+ 1127 00b1 18       		.uleb128 0x18
+ 1128 00b2 00       		.byte	0
+ 1129 00b3 00       		.byte	0
+ 1130 00b4 0C       		.uleb128 0xc
+ 1131 00b5 2E       		.uleb128 0x2e
+ 1132 00b6 01       		.byte	0x1
+ 1133 00b7 3F       		.uleb128 0x3f
+ 1134 00b8 19       		.uleb128 0x19
+ 1135 00b9 03       		.uleb128 0x3
+ 1136 00ba 0E       		.uleb128 0xe
+ 1137 00bb 3A       		.uleb128 0x3a
+ 1138 00bc 0B       		.uleb128 0xb
+ 1139 00bd 3B       		.uleb128 0x3b
+ 1140 00be 0B       		.uleb128 0xb
+ 1141 00bf 27       		.uleb128 0x27
+ 1142 00c0 19       		.uleb128 0x19
+ 1143 00c1 49       		.uleb128 0x49
+ 1144 00c2 13       		.uleb128 0x13
+ 1145 00c3 11       		.uleb128 0x11
+ 1146 00c4 01       		.uleb128 0x1
+ 1147 00c5 12       		.uleb128 0x12
+ 1148 00c6 06       		.uleb128 0x6
+ 1149 00c7 40       		.uleb128 0x40
+ 1150 00c8 18       		.uleb128 0x18
+ 1151 00c9 9642     		.uleb128 0x2116
+ 1152 00cb 19       		.uleb128 0x19
+ 1153 00cc 01       		.uleb128 0x1
+ 1154 00cd 13       		.uleb128 0x13
+ 1155 00ce 00       		.byte	0
+ 1156 00cf 00       		.byte	0
+ 1157 00d0 0D       		.uleb128 0xd
+ 1158 00d1 34       		.uleb128 0x34
+ 1159 00d2 00       		.byte	0
+ 1160 00d3 03       		.uleb128 0x3
+ 1161 00d4 08       		.uleb128 0x8
+ 1162 00d5 3A       		.uleb128 0x3a
+ 1163 00d6 0B       		.uleb128 0xb
+ 1164 00d7 3B       		.uleb128 0x3b
+ 1165 00d8 0B       		.uleb128 0xb
+ 1166 00d9 49       		.uleb128 0x49
+ 1167 00da 13       		.uleb128 0x13
+ 1168 00db 02       		.uleb128 0x2
+ 1169 00dc 18       		.uleb128 0x18
+ 1170 00dd 00       		.byte	0
+ 1171 00de 00       		.byte	0
+ 1172 00df 0E       		.uleb128 0xe
+ 1173 00e0 01       		.uleb128 0x1
+ARM GAS  C:\Users\dmaks\AppData\Local\Temp\ccv7w8Sz.s 			page 26
+
+
+ 1174 00e1 01       		.byte	0x1
+ 1175 00e2 49       		.uleb128 0x49
+ 1176 00e3 13       		.uleb128 0x13
+ 1177 00e4 01       		.uleb128 0x1
+ 1178 00e5 13       		.uleb128 0x13
+ 1179 00e6 00       		.byte	0
+ 1180 00e7 00       		.byte	0
+ 1181 00e8 0F       		.uleb128 0xf
+ 1182 00e9 21       		.uleb128 0x21
+ 1183 00ea 00       		.byte	0
+ 1184 00eb 49       		.uleb128 0x49
+ 1185 00ec 13       		.uleb128 0x13
+ 1186 00ed 2F       		.uleb128 0x2f
+ 1187 00ee 0B       		.uleb128 0xb
+ 1188 00ef 00       		.byte	0
+ 1189 00f0 00       		.byte	0
+ 1190 00f1 10       		.uleb128 0x10
+ 1191 00f2 34       		.uleb128 0x34
+ 1192 00f3 00       		.byte	0
+ 1193 00f4 03       		.uleb128 0x3
+ 1194 00f5 0E       		.uleb128 0xe
+ 1195 00f6 3A       		.uleb128 0x3a
+ 1196 00f7 0B       		.uleb128 0xb
+ 1197 00f8 3B       		.uleb128 0x3b
+ 1198 00f9 05       		.uleb128 0x5
+ 1199 00fa 49       		.uleb128 0x49
+ 1200 00fb 13       		.uleb128 0x13
+ 1201 00fc 3F       		.uleb128 0x3f
+ 1202 00fd 19       		.uleb128 0x19
+ 1203 00fe 3C       		.uleb128 0x3c
+ 1204 00ff 19       		.uleb128 0x19
+ 1205 0100 00       		.byte	0
+ 1206 0101 00       		.byte	0
+ 1207 0102 11       		.uleb128 0x11
+ 1208 0103 35       		.uleb128 0x35
+ 1209 0104 00       		.byte	0
+ 1210 0105 49       		.uleb128 0x49
+ 1211 0106 13       		.uleb128 0x13
+ 1212 0107 00       		.byte	0
+ 1213 0108 00       		.byte	0
+ 1214 0109 00       		.byte	0
+ 1215              		.section	.debug_aranges,"",%progbits
+ 1216 0000 3C000000 		.4byte	0x3c
+ 1217 0004 0200     		.2byte	0x2
+ 1218 0006 00000000 		.4byte	.Ldebug_info0
+ 1219 000a 04       		.byte	0x4
+ 1220 000b 00       		.byte	0
+ 1221 000c 0000     		.2byte	0
+ 1222 000e 0000     		.2byte	0
+ 1223 0010 00000000 		.4byte	.LFB64
+ 1224 0014 18000000 		.4byte	.LFE64-.LFB64
+ 1225 0018 00000000 		.4byte	.LFB65
+ 1226 001c 18000000 		.4byte	.LFE65-.LFB65
+ 1227 0020 00000000 		.4byte	.LFB66
+ 1228 0024 50000000 		.4byte	.LFE66-.LFB66
+ 1229 0028 00000000 		.4byte	.LFB67
+ 1230 002c 68000000 		.4byte	.LFE67-.LFB67
+ARM GAS  C:\Users\dmaks\AppData\Local\Temp\ccv7w8Sz.s 			page 27
+
+
+ 1231 0030 00000000 		.4byte	.LFB68
+ 1232 0034 50020000 		.4byte	.LFE68-.LFB68
+ 1233 0038 00000000 		.4byte	0
+ 1234 003c 00000000 		.4byte	0
+ 1235              		.section	.debug_ranges,"",%progbits
+ 1236              	.Ldebug_ranges0:
+ 1237 0000 00000000 		.4byte	.LFB64
+ 1238 0004 18000000 		.4byte	.LFE64
+ 1239 0008 00000000 		.4byte	.LFB65
+ 1240 000c 18000000 		.4byte	.LFE65
+ 1241 0010 00000000 		.4byte	.LFB66
+ 1242 0014 50000000 		.4byte	.LFE66
+ 1243 0018 00000000 		.4byte	.LFB67
+ 1244 001c 68000000 		.4byte	.LFE67
+ 1245 0020 00000000 		.4byte	.LFB68
+ 1246 0024 50020000 		.4byte	.LFE68
+ 1247 0028 00000000 		.4byte	0
+ 1248 002c 00000000 		.4byte	0
+ 1249              		.section	.debug_line,"",%progbits
+ 1250              	.Ldebug_line0:
+ 1251 0000 5B020000 		.section	.debug_str,"MS",%progbits,1
+ 1251      02005701 
+ 1251      00000201 
+ 1251      FB0E0D00 
+ 1251      01010101 
+ 1252              	.LASF4:
+ 1253 0000 5F5F7569 		.ascii	"__uint8_t\000"
+ 1253      6E74385F 
+ 1253      7400
+ 1254              	.LASF26:
+ 1255 000a 7A757374 		.ascii	"zustand\000"
+ 1255      616E6400 
+ 1256              	.LASF32:
+ 1257 0012 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1257      43313120 
+ 1257      352E342E 
+ 1257      31203230 
+ 1257      31363036 
+ 1258 0045 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 1258      20726576 
+ 1258      6973696F 
+ 1258      6E203233 
+ 1258      37373135 
+ 1259 0078 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 1259      66756E63 
+ 1259      74696F6E 
+ 1259      2D736563 
+ 1259      74696F6E 
+ 1260              	.LASF35:
+ 1261 00a0 62726967 		.ascii	"brightness_settings\000"
+ 1261      68746E65 
+ 1261      73735F73 
+ 1261      65747469 
+ 1261      6E677300 
+ 1262              	.LASF5:
+ 1263 00b4 5F5F696E 		.ascii	"__int32_t\000"
+ 1263      7433325F 
+ARM GAS  C:\Users\dmaks\AppData\Local\Temp\ccv7w8Sz.s 			page 28
+
+
+ 1263      7400
+ 1264              	.LASF24:
+ 1265 00be 49737241 		.ascii	"IsrAppClk\000"
+ 1265      7070436C 
+ 1265      6B00
+ 1266              	.LASF16:
+ 1267 00c8 666C6F61 		.ascii	"float\000"
+ 1267      7400
+ 1268              	.LASF22:
+ 1269 00ce 4D794973 		.ascii	"MyIsrUartRX\000"
+ 1269      72556172 
+ 1269      74525800 
+ 1270              	.LASF0:
+ 1271 00da 7369676E 		.ascii	"signed char\000"
+ 1271      65642063 
+ 1271      68617200 
+ 1272              	.LASF1:
+ 1273 00e6 756E7369 		.ascii	"unsigned char\000"
+ 1273      676E6564 
+ 1273      20636861 
+ 1273      7200
+ 1274              	.LASF36:
+ 1275 00f4 696E7075 		.ascii	"input\000"
+ 1275      7400
+ 1276              	.LASF30:
+ 1277 00fa 74696D65 		.ascii	"timer\000"
+ 1277      7200
+ 1278              	.LASF8:
+ 1279 0100 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1279      20756E73 
+ 1279      69676E65 
+ 1279      6420696E 
+ 1279      7400
+ 1280              	.LASF34:
+ 1281 0112 453A5C55 		.ascii	"E:\\UNI - ALL\\UNI\\Semester 6\\MPS\\Praktikum\\Pra"
+ 1281      4E49202D 
+ 1281      20414C4C 
+ 1281      5C554E49 
+ 1281      5C53656D 
+ 1282 013f 6B74696B 		.ascii	"ktikum 3\\Variante B\\MPS22_Prakt_3.cydsn\000"
+ 1282      756D2033 
+ 1282      5C566172 
+ 1282      69616E74 
+ 1282      6520425C 
+ 1283              	.LASF3:
+ 1284 0167 73686F72 		.ascii	"short unsigned int\000"
+ 1284      7420756E 
+ 1284      7369676E 
+ 1284      65642069 
+ 1284      6E7400
+ 1285              	.LASF29:
+ 1286 017a 6673436C 		.ascii	"fsClock\000"
+ 1286      6F636B00 
+ 1287              	.LASF31:
+ 1288 0182 62726967 		.ascii	"brightness\000"
+ 1288      68746E65 
+ 1288      737300
+ARM GAS  C:\Users\dmaks\AppData\Local\Temp\ccv7w8Sz.s 			page 29
+
+
+ 1289              	.LASF38:
+ 1290 018d 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 1290      52784275 
+ 1290      66666572 
+ 1290      00
+ 1291              	.LASF17:
+ 1292 019a 646F7562 		.ascii	"double\000"
+ 1292      6C6500
+ 1293              	.LASF28:
+ 1294 01a1 66435745 		.ascii	"fCWEW_Isr\000"
+ 1294      575F4973 
+ 1294      7200
+ 1295              	.LASF7:
+ 1296 01ab 5F5F7569 		.ascii	"__uint32_t\000"
+ 1296      6E743332 
+ 1296      5F7400
+ 1297              	.LASF15:
+ 1298 01b6 75696E74 		.ascii	"uint16\000"
+ 1298      313600
+ 1299              	.LASF37:
+ 1300 01bd 6D61696E 		.ascii	"main\000"
+ 1300      00
+ 1301              	.LASF25:
+ 1302 01c2 74657374 		.ascii	"test\000"
+ 1302      00
+ 1303              	.LASF11:
+ 1304 01c7 756E7369 		.ascii	"unsigned int\000"
+ 1304      676E6564 
+ 1304      20696E74 
+ 1304      00
+ 1305              	.LASF10:
+ 1306 01d4 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1306      206C6F6E 
+ 1306      6720756E 
+ 1306      7369676E 
+ 1306      65642069 
+ 1307              	.LASF12:
+ 1308 01eb 75696E74 		.ascii	"uint8_t\000"
+ 1308      385F7400 
+ 1309              	.LASF13:
+ 1310 01f3 696E7433 		.ascii	"int32_t\000"
+ 1310      325F7400 
+ 1311              	.LASF20:
+ 1312 01fb 73697A65 		.ascii	"sizetype\000"
+ 1312      74797065 
+ 1312      00
+ 1313              	.LASF9:
+ 1314 0204 6C6F6E67 		.ascii	"long long int\000"
+ 1314      206C6F6E 
+ 1314      6720696E 
+ 1314      7400
+ 1315              	.LASF33:
+ 1316 0212 6D61696E 		.ascii	"main.c\000"
+ 1316      2E6300
+ 1317              	.LASF18:
+ 1318 0219 63686172 		.ascii	"char\000"
+ 1318      00
+ARM GAS  C:\Users\dmaks\AppData\Local\Temp\ccv7w8Sz.s 			page 30
+
+
+ 1319              	.LASF2:
+ 1320 021e 73686F72 		.ascii	"short int\000"
+ 1320      7420696E 
+ 1320      7400
+ 1321              	.LASF27:
+ 1322 0228 62756666 		.ascii	"buffer\000"
+ 1322      657200
+ 1323              	.LASF14:
+ 1324 022f 75696E74 		.ascii	"uint32_t\000"
+ 1324      33325F74 
+ 1324      00
+ 1325              	.LASF6:
+ 1326 0238 6C6F6E67 		.ascii	"long int\000"
+ 1326      20696E74 
+ 1326      00
+ 1327              	.LASF19:
+ 1328 0241 6C6F6E67 		.ascii	"long double\000"
+ 1328      20646F75 
+ 1328      626C6500 
+ 1329              	.LASF23:
+ 1330 024d 4D794973 		.ascii	"MyIsrCWEW\000"
+ 1330      72435745 
+ 1330      5700
+ 1331              	.LASF21:
+ 1332 0257 755F696E 		.ascii	"u_int\000"
+ 1332      7400
+ 1333              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

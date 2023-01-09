@@ -1,0 +1,6 @@
+E:\UNI - ALL\UNI\Semester 6\MPS\Praktikum\Praktikum 3\Variante B\MPS22_Prakt_3.cydsn\MPS22_Prakt_3.cyprj|c4bd1b3f-983e-4f98-8393-55e1d66d9034
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|23d7e114-7ab7-4ead-a4ce-4df823a8849d
+C:\Users\dmaks\Documents\PSoC Creator\4.4\Downloads ( 4.4).cylib\Downloads ( 4.4).cyprj|79045b8f-227a-4522-9c66-c4955ecfa252
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|ea9a1431-8bac-49c2-adab-706dcfb9fc3f
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|f3b186e7-05b6-452a-a60c-2a930d3cb2b6
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|ae0c0747-ada0-4704-8a33-dfeddd1be2c1
