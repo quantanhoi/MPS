@@ -257,6 +257,7 @@
 <Unloaded />
 <OpenDocs>
 <name v=".\TopDesign\TopDesign.cysch" />
+<name v=".\main.c" />
 </OpenDocs>
 <OpenDocsLayout><![CDATA[<?xml version="1.0"?><!--
 
@@ -264,7 +265,7 @@
   Copyright (c) 2001-2016 Actipro Software LLC.  All rights reserved.
   http://www.actiprosoftware.com
 
---><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="1439, 925" SelectedTabbedMdiWindow="b5029a5a-8588-44f3-b652-0fb95278fac2"><ToolWindow Key="Start Page:bd4649ab-da6b-4d04-a663-c722b8bf99db:Start Page" Guid="fd7e14af-da70-4fc0-9cfb-587aee12ddb3" /><DocumentWindow Key="D:\github\MPS\MPS_W22_Prakt_4.cydsn\TopDesign\TopDesign.cysch" Guid="b5029a5a-8588-44f3-b652-0fb95278fac2" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
+--><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="1439, 925" SelectedTabbedMdiWindow="e6b93e0d-37c1-4443-9066-6cb72ed7ad56"><ToolWindow Key="Start Page:bd4649ab-da6b-4d04-a663-c722b8bf99db:Start Page" Guid="fd7e14af-da70-4fc0-9cfb-587aee12ddb3" /><DocumentWindow Key="D:\github\MPS\MPS_W22_Prakt_4.cydsn\TopDesign\TopDesign.cysch" Guid="b5029a5a-8588-44f3-b652-0fb95278fac2" /><DocumentWindow Key="D:\github\MPS\MPS_W22_Prakt_4.cydsn\main.c" Guid="e6b93e0d-37c1-4443-9066-6cb72ed7ad56" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
 <config v="" />
 <AutoUpdate v="true" />
 </CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21>
