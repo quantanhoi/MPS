@@ -43,8 +43,8 @@ static char cRx = 0;                //!< character from UART, visible within mai
 #include "scale.h"
 #define SysClk 24000000
 #define pre2 2      //f(tc) multiplier
-#define topValue 65535
-static int prescaler = 2;    
+#define topValue 1
+#define prescaler 16
 
     /*Define your macro callbacks here */
     /*For more information, refer to the Writing Code topic in the PSoC Creator Help.*/
@@ -56,7 +56,7 @@ static int prescaler = 2;
 
     void setTone(eTone p_tone) {
         Timer_WritePeriod(SysClk / (pre2 * prescaler * topValue) / p_tone);
-        
+        Out_Ena_Write(1);      
     }
 
 /**
@@ -165,29 +165,32 @@ int main(void)
             switch ( cRx ) {        // write Prescale Register value
 
                 case '0':
-                {
-                    prescaler = 2;
+                
+
                     RegPrescaler_Write(0);
-                }
+                    
+                
+                break;
                 case '1':
-                {
-                    prescaler = 16;
+
                     RegPrescaler_Write(1);
-                }
+                    
+                
+                break;
                 case '2':
-                {
-                    prescaler = 128;
+
                     RegPrescaler_Write(2);
                     
-                }
+                    
+                
+                break;
                 case '3':
                     //regVal = cRx - '0';     // erklären, wie das funktioniert!
                 //basically, cRx is a character, in this case when we input 3, we can turn it to integer by substract with character '0' 
                     //RegPrescaler_Write( regVal );
-                {
-                    prescaler = 1024;
+
                     RegPrescaler_Write(3);
-                }
+                
                     break;
 
                 case 'T':           // sound on
@@ -202,36 +205,56 @@ int main(void)
                     uint16 period = Timer_ReadPeriod();
                     sprintf(buffer, "\n\r Periode: %d", period);
                     UART_PutString(buffer);
+
                     break;
                 }
                 case 'c':
-                {
                     toneSettings(C4, 1./4);
-                }
+                    
+                    break;
+                
+
+                
                 case 'd':
-                {
+                
                     toneSettings(D4, 1./4);
-                }
+                    uint16 period = RegPrescaler_Read();
+                    sprintf(buffer, "\n\r RegPrescaler: %d", period);
+                    UART_PutString(buffer);
+
+                    break;
+
+                
                 case 'e':
-                {
+                
                     toneSettings(E4, 1./4);
-                }
+                    break;
+                
                 case 'f':
-                {
+                
                     toneSettings(F4, 1./4);
-                }
+                    break;
+                
                 case 'g':
-                {
+                
                     toneSettings(G4, 1./4);
-                }
+                    break;
+                
                 case 'h':
-                {
+                
                     toneSettings(H4, 1./4);
-                }
+                    break;
+                
                 case 'a':
-                {
+               
                     toneSettings(A4, 1./4);
-                }
+                    break;
+                
+                case 'p':
+                
+                    playSong();
+                    break;
+                
 
                 default:                    
                     UART_PutChar( cRx );    // (unbenutzten) Buchstaben auf Bildschirm ausgeben
