@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<blockRegMap version="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://cypress.com/xsd/cyblockregmap cyblockregmap.xsd" xmlns="http://cypress.com/xsd/cyblockregmap">
+  <block name="SFH203P_Photodiode" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="GND_3" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="TIA_PD" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false">
+    <block name="SC" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="ZeroTerminal_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="ZeroTerminal_2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="ZeroTerminal_4" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="ZeroTerminal_3" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <register name="PM_ACT_CFG1" address="0x400043A1" bitWidth="8" desc="Active Power Mode Configuration Register 1" hidden="false">
+      <field name="en_clk_a" from="3" to="0" access="RW" resetVal="" desc="Enables subsystems during the active power mode" hidden="false">
+        <value name="en_clk_a[0]" value="0001" desc="Enables clk_a 0" />
+        <value name="en_clk_a[1]" value="0010" desc="Enables clk_a 1" />
+        <value name="en_clk_a[2]" value="0100" desc="Enables clk_a 2" />
+        <value name="en_clk_a[3]" value="1000" desc="Enables clk_a 3" />
+      </field>
+    </register>
+    <register name="SC__PM_ACT_CFG9" address="0x400043A9" bitWidth="8" desc="Active Power Mode Configuration Register 9" hidden="false">
+      <field name="en_swcap" from="3" to="0" access="RW" resetVal="" desc="Enables subsystems during the active power mode" hidden="false">
+        <value name="en_swcap[0]" value="0001" desc="Enables SC Block 0" />
+        <value name="en_swcap[1]" value="0010" desc="Enables SC Block 1" />
+        <value name="en_swcap[2]" value="0100" desc="Enables SC Block 2" />
+        <value name="en_swcap[3]" value="1000" desc="Enables SC Block 3" />
+      </field>
+    </register>
+    <register name="PM_STBY_CFG1" address="0x400043B1" bitWidth="8" desc="Standby Power Mode Configuration Register 1" hidden="false">
+      <field name="en_clk_a" from="3" to="0" access="RW" resetVal="" desc="Enables subsystems during the standby power mode" hidden="false">
+        <value name="en_clk_a[0]" value="0001" desc="Enables clk_a 0" />
+        <value name="en_clk_a[1]" value="0010" desc="Enables clk_a 1" />
+        <value name="en_clk_a[2]" value="0100" desc="Enables clk_a 2" />
+        <value name="en_clk_a[3]" value="1000" desc="Enables clk_a 3" />
+      </field>
+    </register>
+    <register name="SC__PM_STBY_CFG9" address="0x400043B9" bitWidth="8" desc="Standby Power Mode Configuration Register 9" hidden="false">
+      <field name="en_swcap" from="3" to="0" access="RW" resetVal="" desc="Enables subsystems during the standby power mode" hidden="false">
+        <value name="en_swcap[0]" value="0001" desc="Enables SC Block 0" />
+        <value name="en_swcap[1]" value="0010" desc="Enables SC Block 1" />
+        <value name="en_swcap[2]" value="0100" desc="Enables SC Block 2" />
+        <value name="en_swcap[3]" value="1000" desc="Enables SC Block 3" />
+      </field>
+    </register>
+    <register name="SC_CR0" address="0x40005800" bitWidth="8" desc="Switched Capacitor Control Register 0" hidden="false">
+      <field name="mode" from="3" to="1" access="R" resetVal="" desc="Configuration select for the SC block" hidden="false">
+        <value name="SC_MODE_NAKED_OPAMP" value="000" desc="Naked Op-Amp" />
+        <value name="SC_MODE_TIA" value="001" desc="Transimpedance Amplifier (TIA)" />
+        <value name="SC_MODE_CTMIXER" value="010" desc="Continuous Time Mixer" />
+        <value name="SC_MODE_NRZ_SH" value="011" desc="Discrete Time Mixer - NRZ S/H" />
+        <value name="SC_MODE_UNITY" value="100" desc="Unity Gain Buffer" />
+        <value name="SC_MODE_1ST_MOD" value="101" desc="First Order Modulator" />
+        <value name="SC_MODE_PGA" value="110" desc="Programmable Gain Amplifier (PGA)" />
+        <value name="SC_MODE_TRACKANDHOLD" value="111" desc="Track and Hold" />
+      </field>
+      <field name="dft" from="5" to="4" access="R" resetVal="" desc="Configuration select for the SC block" hidden="false">
+        <value name="SC_DFT_NORMAL" value="00" desc="Normal Operation" />
+        <value name="SC_DFT_VBOOST" value="01" desc="Vboost DFT" />
+        <value name="SC_DFT_MODE_DEPENDENT" value="10" desc="Mode Dependent (PGA Mode = Voltage Integrator, TIA Mode = Charge Integrator, Naked Opamp Mode = Comparator)" />
+        <value name="SC_DFT_RESET" value="11" desc="DFT reset" />
+      </field>
+    </register>
+    <register name="SC_CR1" address="0x40005801" bitWidth="8" desc="Switched Capacitor Control Register 1" hidden="false">
+      <field name="drive" from="1" to="0" access="R" resetVal="" desc="Selects between current settings (I_Load (uA)) in the output buffer" hidden="false">
+        <value name="I_LOAD_175UA" value="00" desc="175 uA" />
+        <value name="I_LOAD_260UA" value="01" desc="260 uA" />
+        <value name="I_LOAD_330UA" value="10" desc="330 uA" />
+        <value name="I_LOAD_400UA" value="11" desc="400 uA" />
+      </field>
+      <field name="comp" from="3" to="2" access="RW" resetVal="" desc="Selects between various compensation capacitor sizes" hidden="false">
+        <value name="SC_COMP_3P0PF" value="00" desc="3.0pF" />
+        <value name="SC_COMP_3P6PF" value="01" desc="3.6pF" />
+        <value name="SC_COMP_4P35PF" value="10" desc="4.35pF" />
+        <value name="SC_COMP_5P1PF" value="11" desc="5.1pF" />
+      </field>
+      <field name="div2" from="4" to="4" access="RW" resetVal="" desc="When 0, the sample clock only needs to be half the desired sample frequency for S/H Mixer mode" hidden="false">
+        <value name="SC_DIV2_DISABLE" value="0" desc="no frequency division" />
+        <value name="SC_DIV2_ENABLE" value="1" desc="SC CLK is divided by two" />
+      </field>
+      <field name="gain" from="5" to="5" access="R" resetVal="" desc="Controls the ratio of the feedback cap for S/H Mixer mode and PGA mode" hidden="false">
+        <value name="GAIN_0DB" value="0" desc="0 dB" />
+        <value name="GAIN_6DB" value="1" desc="6 dB" />
+      </field>
+    </register>
+    <register name="SC_CR2" address="0x40005802" bitWidth="8" desc="Switched Capacitor Control Register 2" hidden="false">
+      <field name="bias_ctrl" from="0" to="0" access="RW" resetVal="" desc="Toggles the bias current in the amplifier between normal and 1/2" hidden="false">
+        <value name="BIAS_1X" value="0" desc="1x current reference reduces bandwidth to increase stability" />
+        <value name="BIAS_2X" value="1" desc="normal operation - 2x current reference to increase bandwidth" />
+      </field>
+      <field name="r20_40b" from="1" to="1" access="R" resetVal="" desc="PGA Mode: input impedance (Rin), Mixer Mode: input and feedback impedance (Rmix)" hidden="false">
+        <value name="SC_R20_40B_40K" value="0" desc="40kOhm" />
+        <value name="SC_R20_40B_20K" value="1" desc="20kOhm" />
+      </field>
+      <field name="redc" from="3" to="2" access="R" resetVal="" desc="Another stability control setting. Adjusts capactiance between amplifier output and first stage" hidden="false">
+        <value name="SC_REDC_00" value="00" desc="Varies depending on mode." />
+        <value name="SC_REDC_01" value="01" desc="Varies depending on mode." />
+        <value name="SC_REDC_10" value="10" desc="Varies depending on mode." />
+        <value name="SC_REDC_11" value="11" desc="Varies depending on mode." />
+      </field>
+      <field name="rval" from="6" to="4" access="RW" resetVal="" desc="Programmable Gain Amplifier (PGA) and Transimpedance Amplifier (TIA): Feedback resistor (Rfb)" hidden="false">
+        <value name="SC_RVAL_20" value="000" desc="20 kOhm" />
+        <value name="SC_RVAL_30" value="001" desc="30 kOhm" />
+        <value name="SC_RVAL_40" value="010" desc="40 kOhm" />
+        <value name="SC_RVAL_80" value="011" desc="80 kOhm" />
+        <value name="SC_RVAL_120" value="100" desc="120 kOhm" />
+        <value name="SC_RVAL_250" value="101" desc="250 kOhm" />
+        <value name="SC_RVAL_500" value="110" desc="500 kOhm" />
+        <value name="SC_RVAL_1000" value="111" desc="1 MegaOhm" />
+      </field>
+      <field name="pga_gndvref" from="7" to="7" access="R" resetVal="" desc="Programmable Gain Amplifier Application - Ground VREF" hidden="false">
+        <value name="SC_PGA_GNDVREF_DIS" value="0" desc="VREF not grounded" />
+        <value name="SC_PGA_GNDVREF_EN" value="1" desc="VREF grounded" />
+      </field>
+    </register>
+    <register name="SC__BST" address="0x40005A0C" bitWidth="8" desc="Switched Capacitor Boost Clock Selection Register" hidden="false">
+      <field name="mx_bst_clk" from="2" to="0" access="RW" resetVal="" desc="Clock Selection" hidden="false">
+        <value name="MX_CLK_0" value="000" desc="Select clk_a0 and clk_a0_dig" />
+        <value name="MX_CLK_1" value="001" desc="Select clk_a1 and clk_a1_dig" />
+        <value name="MX_CLK_2" value="010" desc="Select clk_a2 and clk_a2_dig" />
+        <value name="MX_CLK_3" value="011" desc="Select clk_a3 and clk_a3_dig" />
+        <value name="MX_CLK_4" value="100" desc="Select UDB generated clock" />
+        <value name="MX_CLK_5" value="101" desc="Reserved" />
+        <value name="MX_CLK_6" value="110" desc="Reserved" />
+        <value name="MX_CLK_7" value="111" desc="Reserved" />
+      </field>
+      <field name="bst_clk_en" from="3" to="3" access="RW" resetVal="" desc="Clock gating control" hidden="false">
+        <value name="CLK_EN_0" value="0" desc="disable clock" />
+        <value name="CLK_EN_1" value="1" desc="enable clock" />
+      </field>
+    </register>
+    <register name="SC_MISC" address="0x40005B56" bitWidth="8" desc="Switched Cap Miscellaneous Control Register" hidden="false">
+      <field name="diff_pga_0_2" from="0" to="0" access="R" resetVal="" desc="Switched Cap Pair Connect for Differential Amplifier Applications" hidden="false">
+        <value name="SC_DIFF_PGA_DISABLED" value="0" desc="Differential PGA pair connect disabled" />
+        <value name="SC_DIFF_PGA_ENABLED" value="1" desc="Differential PGA pair connect enabled" />
+      </field>
+      <field name="diff_pga_1_3" from="1" to="1" access="R" resetVal="" desc="Switched Cap Pair Connect for Differential Amplifier Applications" hidden="false">
+        <value name="SC_DIFF_PGA_DISABLED" value="0" desc="Differential PGA pair connect disabled" />
+        <value name="SC_DIFF_PGA_ENABLED" value="1" desc="Differential PGA pair connect enabled" />
+      </field>
+      <field name="sc_pump_auto" from="4" to="4" access="RW" resetVal="" desc="Enable autopumping - if block enabled pump when low voltage detected" hidden="false" />
+      <field name="sc_pump_force" from="3" to="3" access="RW" resetVal="" desc="Force pumping - if block enabled enable pump regardless of voltage state" hidden="false" />
+    </register>
+  </block>
+  <block name="cy_constant_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="SW_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="isr_USR_SW1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="not_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="ADC_SAR_PD" BASE="0x0" SIZE="0x0" desc="SAR ADC" visible="true" hidden="false">
+    <block name="ZeroTerminal_8" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="ZeroTerminal_7" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="Clock_VirtualMux_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="theACLK" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="ZeroTerminal_6" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="ZeroTerminal_3" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="cy_constant_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="ZeroTerminal_5" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="ZeroTerminal_4" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="cy_analog_noconnect_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="cy_analog_virtualmux_4" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="or_internalClock" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="noconnect_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="vRef_1024" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="cy_analog_virtualmux_2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="ADC_SAR" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="noconnect" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="cy_analog_virtualmux_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="cy_analog_virtualmux_3" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="ZeroTerminal_2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="ZeroTerminal_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="IRQ" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <register name="SAR_TR0" address="0x40004614" bitWidth="8" desc="SAR trim register" hidden="false" />
+    <register name="SAR_CSR0" address="0x40005900" bitWidth="8" desc="SAR status and control register 0" hidden="false" />
+    <register name="SAR_CSR1" address="0x40005901" bitWidth="8" desc="SAR status and control register 1" hidden="false" />
+    <register name="SAR_CSR2" address="0x40005902" bitWidth="8" desc="SAR status and control register 2" hidden="false" />
+    <register name="SAR_CSR3" address="0x40005903" bitWidth="8" desc="SAR status and control register 3" hidden="false" />
+    <register name="SAR_CSR4" address="0x40005904" bitWidth="8" desc="SAR status and control register 4" hidden="false" />
+    <register name="SAR_CSR5" address="0x40005905" bitWidth="8" desc="SAR status and control register 5" hidden="false" />
+    <register name="SAR_CSR6" address="0x40005906" bitWidth="8" desc="SAR status and control register 6" hidden="false" />
+    <register name="SAR_SW0" address="0x40005B20" bitWidth="8" desc="SAR Analog Routing Register 0" hidden="false" />
+    <register name="SAR_SW2" address="0x40005B22" bitWidth="8" desc="SAR Analog Routing Register 2" hidden="false" />
+    <register name="SAR_SW3" address="0x40005B23" bitWidth="8" desc="SAR Analog Routing Register 3" hidden="false" />
+    <register name="SAR_SW4" address="0x40005B24" bitWidth="8" desc="SAR Analog Routing Register 4" hidden="false" />
+    <register name="SAR_SW6" address="0x40005B26" bitWidth="8" desc="SAR Analog Routing Register 6" hidden="false" />
+    <register name="SAR_CLK" address="0x40005B27" bitWidth="8" desc="SAR Clock Selection Register" hidden="false" />
+    <register name="SAR_WRK" address="0x40005BA0" bitWidth="16" desc="SAR working register" hidden="false" />
+  </block>
+  <block name="GND_4" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="cy_boot" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="Em_EEPROM_Dynamic" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="Voltmeter" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="PinPD_K" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="PinPD_A" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="Pin_TIA_OUT" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="GND_2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="PWR" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="PCF8574" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="isr_UART_RX" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="UART" BASE="0x0" SIZE="0x0" desc="UART" visible="true" hidden="false">
+    <block name="IntClock" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="VirtualMux_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="BUART" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <register name="RX_UART_RX_ADDRESS1" address="0x4000642D" bitWidth="8" desc="RX Address1 Register" hidden="false" />
+    <register name="RX_UART_RX_ADDRESS2" address="0x4000643D" bitWidth="8" desc="RX Address2 Register" hidden="false" />
+    <register name="TX_UART_TX_DATA" address="0x4000644B" bitWidth="8" desc="TX Data Register" hidden="false" />
+    <register name="RX_UART_RX_DATA" address="0x4000644D" bitWidth="8" desc="RX Data Register" hidden="false" />
+    <register name="TX_UART_TX_STATUS" address="0x4000646B" bitWidth="8" desc="TX status register" hidden="false">
+      <field name="UART_TX_STS_COMPLETE" from="0" to="0" access="R" resetVal="" desc="" hidden="false" />
+      <field name="UART_TX_STS_FIFO_EMPTY" from="1" to="1" access="R" resetVal="" desc="" hidden="false" />
+      <field name="UART_TX_STS_FIFO_FULL" from="2" to="2" access="R" resetVal="" desc="" hidden="false" />
+      <field name="UART_TX_STS_FIFO_NOT_FULL" from="3" to="3" access="R" resetVal="" desc="" hidden="false" />
+    </register>
+    <register name="RX_UART_RX_STATUS" address="0x4000646D" bitWidth="8" desc="RX status register" hidden="false">
+      <field name="UART_RX_STS_MRKSPC" from="0" to="0" access="R" resetVal="" desc="" hidden="false" />
+      <field name="UART_RX_STS_BREAK" from="1" to="1" access="R" resetVal="" desc="" hidden="false" />
+      <field name="UART_RX_STS_PAR_ERROR" from="2" to="2" access="R" resetVal="" desc="" hidden="false" />
+      <field name="UART_RX_STS_STOP_ERROR" from="3" to="3" access="R" resetVal="" desc="" hidden="false" />
+      <field name="UART_RX_STS_OVERRUN" from="4" to="4" access="R" resetVal="" desc="" hidden="false" />
+      <field name="UART_RX_STS_FIFO_NOTEMPTY" from="5" to="5" access="R" resetVal="" desc="" hidden="false" />
+      <field name="UART_RX_STS_ADDR_MATCH" from="6" to="6" access="R" resetVal="" desc="" hidden="false" />
+    </register>
+  </block>
+  <block name="Rx_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="Tx_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="I2C" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false">
+    <block name="or_udb" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="ZeroTerminal_2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="ZeroTerminal_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="Vmux_clock" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="or_ff" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="Vmux_scl_in" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="Vmux_timeout_clock" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="or_udb_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="Bufoe_sda" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="Vmux_sda_in" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="Bufoe_scl" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="ZeroTerminal_3" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="I2C_IRQ" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="Vmux_interrupt" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="OneTerminal_2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="Vmux_sda_out" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="Vmux_scl_out" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="OneTerminal_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="IntClock" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="bI2C_UDB" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <register name="I2C_CFG" address="0x4000647C" bitWidth="8" desc="I2C Configuration Register" hidden="false">
+      <field name="start_gen" from="7" to="7" access="RW" resetVal="" desc="Set to 1 to generate a Start condition on the bus. This bit must be cleared by firmware before initiating the next transaction." hidden="false" />
+      <field name="stop_gen" from="6" to="6" access="RW" resetVal="" desc="Set to 1 to generate a Stop condition on the bus. This bit must be cleared by firmware before initiating the next transaction." hidden="false" />
+      <field name="restart_gen" from="5" to="5" access="RW" resetVal="" desc="Set to 1 to generate a Restart condition on the bus. This bit must be cleared by firmware after a Restart condition is generated." hidden="false" />
+      <field name="nack" from="4" to="4" access="RW" resetVal="" desc="Set to 1 to NAK the next read byte. Clear to ACK next read byte. This bit must be cleared by firmware between bytes." hidden="false" />
+      <field name="transmit" from="2" to="2" access="RW" resetVal="" desc="Set to 1 to set the current mode to transmit or clear to 0 to receive a byte of data. This bit must be cleared by firmware before starting the next transmit or receive transaction." hidden="false" />
+      <field name="master_en" from="1" to="1" access="RW" resetVal="" desc="Set to 1 to enable the master functionality." hidden="false" />
+    </register>
+    <register name="I2C_DATA" address="0x4000650A" bitWidth="8" desc="I2C Data Register" hidden="false">
+      <field name="data" from="7" to="0" access="RW" resetVal="" desc="Read received data or write data to transmit." hidden="false" />
+    </register>
+    <register name="I2C_CSR" address="0x40006569" bitWidth="8" desc="I2C Status Register" hidden="false">
+      <field name="lost_arb" from="6" to="6" access="R" resetVal="" desc="If set, indicates arbitration was lost (multi-master and multi-master-slave modes)." hidden="false" />
+      <field name="stop_status" from="5" to="5" access="R" resetVal="" desc="If set, indicates a Stop condition was detected on the bus." hidden="false" />
+      <field name="bus_busy" from="4" to="4" access="R" resetVal="" desc="If set, indicates the bus is busy. Data is currently being transmitted or received." hidden="false" />
+      <field name="address" from="3" to="3" access="R" resetVal="" desc="Address detection. If set, indicates that an address byte was sent." hidden="false" />
+      <field name="master_mode" from="2" to="2" access="R" resetVal="" desc="Indicates that a valid Start condition was generated and a hardware device is operating as bus master." hidden="false" />
+      <field name="lrb" from="1" to="1" access="R" resetVal="" desc="Last Received Bit. Indicates the state of the last received bit, which is the ACK/NAK received for the last byte transmitted. Cleared = ACK and set = NAK." hidden="false" />
+      <field name="byte_complete" from="0" to="0" access="R" resetVal="" desc="Transmit or receive status since the last read of this register. In Transmit mode this bit indicates that eight bits of data plus ACK/NAK have been transmitted since the last read. In Receive mode this bit indicates that eight bits of data have been received since the last read of this register." hidden="false" />
+    </register>
+    <register name="I2C_INT_MASK" address="0x40006589" bitWidth="8" desc="I2C Interrupt Enable Mask" hidden="false">
+      <field name="lost_arb" from="6" to="6" access="RW" resetVal="" desc="Enables interrupt from the corresponding bit in status register." hidden="false" />
+      <field name="stop_status" from="5" to="5" access="RW" resetVal="" desc="Enables interrupt from the corresponding bit in status register." hidden="false" />
+      <field name="bus_busy" from="4" to="4" access="RW" resetVal="" desc="Enables interrupt from the corresponding bit in status register." hidden="false" />
+      <field name="address" from="3" to="3" access="RW" resetVal="" desc="Enables interrupt from the corresponding bit in status register." hidden="false" />
+      <field name="master_mode" from="2" to="2" access="RW" resetVal="" desc="Enables interrupt from the corresponding bit in status register." hidden="false" />
+      <field name="lrb" from="1" to="1" access="RW" resetVal="" desc="Enables interrupt from the corresponding bit in status register." hidden="false" />
+      <field name="byte_complete" from="0" to="0" access="RW" resetVal="" desc="Enables interrupt from the corresponding bit in status register." hidden="false" />
+    </register>
+  </block>
+  <block name="LED1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="GND_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="Pin_USR_SW1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="R_21" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="SCL" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="SDA" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="Pin_USR_LED" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+</blockRegMap>

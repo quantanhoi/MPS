@@ -115,6 +115,8 @@ void playSong(){
         playTone(&harm[i]);
     }
 }
+
+
     void play( const sNoteSimple_t* psNote, uint16_t len ) {
         // +++ TODO +++
         return;
@@ -165,32 +167,19 @@ int main(void)
             switch ( cRx ) {        // write Prescale Register value
 
                 case '0':
-                
-
-                    RegPrescaler_Write(0);
-                    
-                
+                    RegPrescaler_Write(0);                                    
                 break;
                 case '1':
-
-                    RegPrescaler_Write(1);
-                    
-                
+                    RegPrescaler_Write(1);                                  
                 break;
                 case '2':
-
-                    RegPrescaler_Write(2);
-                    
-                    
-                
+                    RegPrescaler_Write(2);               
                 break;
                 case '3':
                     //regVal = cRx - '0';     // erklären, wie das funktioniert!
                 //basically, cRx is a character, in this case when we input 3, we can turn it to integer by substract with character '0' 
                     //RegPrescaler_Write( regVal );
-
-                    RegPrescaler_Write(3);
-                
+                    RegPrescaler_Write(3);                
                     break;
 
                 case 'T':           // sound on
@@ -211,51 +200,31 @@ int main(void)
                 case 'c':
                     toneSettings(C4, 1./4);
                     
-                    break;
-                
-
-                
-                case 'd':
-                
+                    break;              
+                case 'd':             
                     toneSettings(D4, 1./4);
                     uint16 period = RegPrescaler_Read();
                     sprintf(buffer, "\n\r RegPrescaler: %d", period);
                     UART_PutString(buffer);
-
-                    break;
-
-                
-                case 'e':
-                
+                    break;       
+                case 'e':                
                     toneSettings(E4, 1./4);
-                    break;
-                
-                case 'f':
-                
+                    break;                
+                case 'f':                
                     toneSettings(F4, 1./4);
-                    break;
-                
-                case 'g':
-                
+                    break;               
+                case 'g':                
                     toneSettings(G4, 1./4);
-                    break;
-                
-                case 'h':
-                
+                    break;               
+                case 'h':               
                     toneSettings(H4, 1./4);
-                    break;
-                
-                case 'a':
-               
+                    break;               
+                case 'a':              
                     toneSettings(A4, 1./4);
-                    break;
-                
-                case 'p':
-                
+                    break;               
+                case 'p':              
                     playSong();
                     break;
-                
-
                 default:                    
                     UART_PutChar( cRx );    // (unbenutzten) Buchstaben auf Bildschirm ausgeben
                     break;
