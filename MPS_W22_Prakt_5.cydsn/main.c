@@ -89,9 +89,10 @@ int main(void)
         
 #ifdef I2C_PROJ_ON
     // +++ TODO +++
-    I2C_MasterSendStart(I2C_PCF8574_ADDR,1);
+
     /* Start I2C UDB Master */
     I2C_Start();
+    I2C_MasterSendStart(I2C_PCF8574_ADDR,0);     //master will write data to slave using 0
     // !!! I2C starten, Befehl? !!!
     // TODO!                        // start device
 #endif // I2C_PROJ_ON
@@ -129,8 +130,8 @@ int main(void)
 #ifdef I2C_PROJ_ON
         /* +++ I2C I/O-Expander +++ */
         static uint8_t i2cByte = 0;         // warum static ?
-        sarResult = ADC_SAR_PD_GetResult16();
-        i2cByte = sarResult >> 8;                                        // ... weil nur einmal initialisiert, dann unten verändert
+        //sarResult = ADC_SAR_PD_GetResult16();
+        //i2cByte = sarResult >> 8;                                        // ... weil nur einmal initialisiert, dann unten verändert
     #ifdef I2C_SIMPLE_BLINK             // simple blink LED's
         // blinking all LED's
         sts = I2C_MasterClearStatus();  // clear master status
@@ -153,9 +154,27 @@ int main(void)
         i2cByte = ~i2cByte;             // invert all bits for blinking
         #else  // implementieren
         /* +++ TODO +++ */
-        /* eigene Werte auf I/O*/
-            uint8 data = ADC_SAR_PD_GetResult8();
-            I2C_MasterWriteBuf(I2C_PCF8574_ADDR , &data , 1, I2C_MODE_COMPLETE_XFER);
+        /* eigene Werte auf I/O*/    
+            i2cByte = ADC_SAR_PD_GetResult8();      //helligkeit
+                    sts = I2C_MasterClearStatus();  // clear master status
+            if ( sts != I2C_MSTR_NO_ERROR ) {
+                UART_PutString( "I2C error clear\n\r" );
+            }
+            sts = I2C_MasterSendStart( I2C_PCF8574_ADDR, 0);  // send address for write
+            if ( sts != I2C_MSTR_NO_ERROR ) {
+                UART_PutString( "I2C error address\n\r" );
+            }
+            //because the data is only 8 bit long, is it better to use WriteByte instead of writeBuff here?
+            sts = I2C_MasterWriteBuf(I2C_PCF8574_ADDR , &i2cByte , 1, I2C_MODE_COMPLETE_XFER);;              // write byte
+            if ( sts != I2C_MSTR_NO_ERROR ) {
+                UART_PutString( "I2C error write\n\r" );
+            }
+            sts = I2C_MasterSendStop();                      // stop comm
+            if ( sts != I2C_MSTR_NO_ERROR ) {
+                UART_PutString( "I2C error stop\n\r" );
+            }
+            CyDelay( 100 );                 // some delay
+            i2cByte = ~i2cByte;             // invert all bits for blinking
             
     #endif // I2C_SIMPLE_BLINK   
 
@@ -166,13 +185,13 @@ int main(void)
     /* +++ TODO +++ */
     /* ??? wie kann man erreichen, dass hier das Ende der Konversion abgewartet wird ??? */
     // TODO!   // blocks until end of conversion
-    if (ADC_SAR_PD_IsEndConversion(0)) {
+    if (ADC_SAR_PD_IsEndConversion(1)) {      //after the last conversion is finished
         /* !!! ADC-Wert in sarResult auslesen !!! */
         sarResult = ADC_SAR_PD_GetResult16();
         sarResult8bit = sarResult >> 8;
         //sarResult = ADC_SAR_PD_GetResult8();        // read SAR
         /* !!! ADC-Wert anzeigen !!! */
-        sprintf( buffer, "ADC: %d\n\r", sarResult8bit );
+        sprintf( buffer, "ADC: %d\n\r", sarResult );
         UART_PutString( buffer );
 //        ADC_isr = 0;
     }
