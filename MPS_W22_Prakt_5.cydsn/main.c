@@ -31,13 +31,13 @@ _AUTHOR_" ("_COMPANY"), "__DATE__" "__TIME__)
  * +++ Lösungs Template: An- und Abschalten von Teillösungen und Optionen +++ 
  * ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 #define I2C_PROJ_ON         //!< use I2C hardware
-#define I2C_SIMPLE_BLINK    //!< blink LED's  !Kommentar entfernen, wenn  implementiert!
+//#define I2C_SIMPLE_BLINK    //!< blink LED's  !Kommentar entfernen, wenn  implementiert!
 #define READ_ADC            //!< ADC lesen    !Kommentar entfernen, wenn  implementiert!
 
 /* +++ settings for PCF8574 Philips/NXP) 7(!)-bit address +++ */
 #define I2C_PCF8574_BASE_ADDR (0x20)     //!< TODO!, ÄNDERN, FUNKTIONIERT NICHT! device base address
 //probably 0b011, since VSS in connected to A2
-#define I2C_PCF8574_DEV_ADDR  (0b011)    //!< TODO!ÄNDERN, FUNKTIONIERT NICHT! individual device address. !! ANPASSEN !!
+#define I2C_PCF8574_DEV_ADDR  (0b001)    //!< TODO!ÄNDERN, FUNKTIONIERT NICHT! individual device address. !! ANPASSEN !!
 #define I2C_PCF8574_ADDR      (I2C_PCF8574_BASE_ADDR | (I2C_PCF8574_DEV_ADDR)) //!< full 7-bit address
 
 
@@ -83,12 +83,15 @@ int main(void)
     TIA_PD_Start();             // Start TIA for photo diode
     ADC_SAR_PD_Start();         // Start ADC
     // +++ TODO +++
+    ADC_SAR_PD_Init();
     // !!! ADC Konversion starten, Befehl? !!!
     // TODO!  // Start ADC conversion
         
 #ifdef I2C_PROJ_ON
     // +++ TODO +++
+    I2C_MasterSendStart(I2C_PCF8574_ADDR,1);
     /* Start I2C UDB Master */
+    I2C_Start();
     // !!! I2C starten, Befehl? !!!
     // TODO!                        // start device
 #endif // I2C_PROJ_ON
@@ -100,6 +103,7 @@ int main(void)
     UART_PutString( buffer );                           // Ausgabe auf UART
 
     int16_t sarResult;                  // signed SAR result
+    int8_t sarResult8bit;
     
 #ifdef I2C_PROJ_ON
     uint8_t  sts = I2C_MSTR_NO_ERROR;    // I2C transfer status (no error)
@@ -125,43 +129,34 @@ int main(void)
 #ifdef I2C_PROJ_ON
         /* +++ I2C I/O-Expander +++ */
         static uint8_t i2cByte = 0;         // warum static ?
-                                        // ... weil nur einmal initialisiert, dann unten verändert
+        sarResult = ADC_SAR_PD_GetResult16();
+        i2cByte = sarResult >> 8;                                        // ... weil nur einmal initialisiert, dann unten verändert
     #ifdef I2C_SIMPLE_BLINK             // simple blink LED's
         // blinking all LED's
         sts = I2C_MasterClearStatus();  // clear master status
         if ( sts != I2C_MSTR_NO_ERROR ) {
             UART_PutString( "I2C error clear\n\r" );
         }
-        else {
-            sprintf( buffer, "I2C state: %d\n\r", I2C_state ); UART_PutString( buffer );
-        }
         sts = I2C_MasterSendStart( I2C_PCF8574_ADDR, 0);  // send address for write
         if ( sts != I2C_MSTR_NO_ERROR ) {
             UART_PutString( "I2C error address\n\r" );
-        }
-        else {
-            sprintf( buffer, "I2C state: %d\n\r", I2C_state ); UART_PutString( buffer );
         }
         sts = I2C_MasterWriteByte(i2cByte);              // write byte
         if ( sts != I2C_MSTR_NO_ERROR ) {
             UART_PutString( "I2C error write\n\r" );
         }
-        else {
-            sprintf( buffer, "I2C state: %d\n\r", I2C_state ); UART_PutString( buffer );
-        }
         sts = I2C_MasterSendStop();                      // stop comm
         if ( sts != I2C_MSTR_NO_ERROR ) {
             UART_PutString( "I2C error stop\n\r" );
-        }
-        else {
-            sprintf( buffer, "I2C state: %d\n\r", I2C_state ); UART_PutString( buffer );
         }
         CyDelay( 100 );                 // some delay
         i2cByte = ~i2cByte;             // invert all bits for blinking
         #else  // implementieren
         /* +++ TODO +++ */
         /* eigene Werte auf I/O*/
-            sprintf( buffer, "I2C state: %d\n\r", I2C_state ); UART_PutString( buffer );
+            uint8 data = ADC_SAR_PD_GetResult8();
+            I2C_MasterWriteBuf(I2C_PCF8574_ADDR , &data , 1, I2C_MODE_COMPLETE_XFER);
+            
     #endif // I2C_SIMPLE_BLINK   
 
 #endif // I2C_PROJ_ON
@@ -171,12 +166,15 @@ int main(void)
     /* +++ TODO +++ */
     /* ??? wie kann man erreichen, dass hier das Ende der Konversion abgewartet wird ??? */
     // TODO!   // blocks until end of conversion
-    if(ADC_isr) {
+    if (ADC_SAR_PD_IsEndConversion(0)) {
         /* !!! ADC-Wert in sarResult auslesen !!! */
-        sarResult = ADC_SAR_PD_GetResult8();                            // read SAR
+        sarResult = ADC_SAR_PD_GetResult16();
+        sarResult8bit = sarResult >> 8;
+        //sarResult = ADC_SAR_PD_GetResult8();        // read SAR
         /* !!! ADC-Wert anzeigen !!! */
-        sprintf( buffer, "ADC: %d\n\r", sarResult );
+        sprintf( buffer, "ADC: %d\n\r", sarResult8bit );
         UART_PutString( buffer );
+//        ADC_isr = 0;
     }
 
 #endif // READ_ADC
@@ -205,6 +203,7 @@ int main(void)
                     UART_PutString( "unbekannte Eingabe <" );
                     UART_PutChar( chr );
                     UART_PutString( "> !!! \n\r" );   // Zeilenabschluss LF CR
+                    
                     break;
             } // end switch
             chr = 0;                    // nicht vergessen mit ISR

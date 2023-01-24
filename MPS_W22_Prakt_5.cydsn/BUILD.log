@@ -1,14 +1,21 @@
---------------- Build Started: 01/23/2023 01:44:29 Project: MPS_W22_Prakt_5, Configuration: ARM GCC 5.4-2016-q2-update Debug ---------------
+--------------- Build Started: 01/23/2023 18:09:28 Project: MPS_W22_Prakt_5, Configuration: ARM GCC 5.4-2016-q2-update Debug ---------------
 The code generation step is up to date.
 arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/main.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -Og -c main.c -o .\CortexM3\ARM_GCC_541\Debug\main.o
+main.c: In function 'main':
+main.c:131:24: warning: variable 'i2cByte' set but not used [-Wunused-but-set-variable]
+         static uint8_t i2cByte = 0;         // warum static ?
+                        ^
+main.c:109:14: warning: unused variable 'sts' [-Wunused-variable]
+     uint8_t  sts = I2C_MSTR_NO_ERROR;    // I2C transfer status (no error)
+              ^
 arm-none-eabi-ar.exe -rs .\CortexM3\ARM_GCC_541\Debug\MPS_W22_Prakt_5.a .\CortexM3\ARM_GCC_541\Debug\UART.o .\CortexM3\ARM_GCC_541\Debug\UART_PM.o .\CortexM3\ARM_GCC_541\Debug\UART_INT.o .\CortexM3\ARM_GCC_541\Debug\UART_BOOT.o .\CortexM3\ARM_GCC_541\Debug\isr_UART_RX.o .\CortexM3\ARM_GCC_541\Debug\I2C.o .\CortexM3\ARM_GCC_541\Debug\I2C_BOOT.o .\CortexM3\ARM_GCC_541\Debug\I2C_INT.o .\CortexM3\ARM_GCC_541\Debug\I2C_PM.o .\CortexM3\ARM_GCC_541\Debug\I2C_SLAVE.o .\CortexM3\ARM_GCC_541\Debug\I2C_MASTER.o .\CortexM3\ARM_GCC_541\Debug\SCL.o .\CortexM3\ARM_GCC_541\Debug\SDA.o .\CortexM3\ARM_GCC_541\Debug\Pin_USR_LED.o .\CortexM3\ARM_GCC_541\Debug\Pin_USR_SW1.o .\CortexM3\ARM_GCC_541\Debug\isr_USR_SW1.o .\CortexM3\ARM_GCC_541\Debug\TIA_PD.o .\CortexM3\ARM_GCC_541\Debug\TIA_PD_PM.o .\CortexM3\ARM_GCC_541\Debug\ADC_SAR_PD.o .\CortexM3\ARM_GCC_541\Debug\ADC_SAR_PD_INT.o .\CortexM3\ARM_GCC_541\Debug\ADC_SAR_PD_PM.o .\CortexM3\ARM_GCC_541\Debug\PinPD_K.o .\CortexM3\ARM_GCC_541\Debug\PinPD_A.o .\CortexM3\ARM_GCC_541\Debug\Pin_TIA_OUT.o .\CortexM3\ARM_GCC_541\Debug\UART_IntClock.o .\CortexM3\ARM_GCC_541\Debug\I2C_IntClock.o .\CortexM3\ARM_GCC_541\Debug\ADC_SAR_PD_IRQ.o .\CortexM3\ARM_GCC_541\Debug\ADC_SAR_PD_theACLK.o .\CortexM3\ARM_GCC_541\Debug\CyDmac.o .\CortexM3\ARM_GCC_541\Debug\CyFlash.o .\CortexM3\ARM_GCC_541\Debug\CyLib.o .\CortexM3\ARM_GCC_541\Debug\cyPm.o .\CortexM3\ARM_GCC_541\Debug\CySpc.o .\CortexM3\ARM_GCC_541\Debug\cyutils.o .\CortexM3\ARM_GCC_541\Debug\cy_em_eeprom.o .\CortexM3\ARM_GCC_541\Debug\CyBootAsmGnu.o
 arm-none-eabi-ar.exe: creating .\CortexM3\ARM_GCC_541\Debug\MPS_W22_Prakt_5.a
-arm-none-eabi-gcc.exe -Wl,--start-group -o D:\github\MPS\MPS_W22_Prakt_5.cydsn\CortexM3\ARM_GCC_541\Debug\MPS_W22_Prakt_5.elf .\CortexM3\ARM_GCC_541\Debug\main.o .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o .\CortexM3\ARM_GCC_541\Debug\cymetadata.o .\CortexM3\ARM_GCC_541\Debug\Cm3Start.o .\CortexM3\ARM_GCC_541\Debug\MPS_W22_Prakt_5.a "D:\Tools\PSoc Creator\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CortexM3\ARM_GCC_541\Debug\CyComponentLibrary.a" -mcpu=cortex-m3 -mthumb -L Generated_Source\PSoC5 -Wl,-Map,.\CortexM3\ARM_GCC_541\Debug/MPS_W22_Prakt_5.map -T Generated_Source\PSoC5\cm3gcc.ld -specs=nano.specs -Wl,--gc-sections -g -ffunction-sections -Og -ffat-lto-objects -Wl,--end-group
-cyelftool.exe -C D:\github\MPS\MPS_W22_Prakt_5.cydsn\CortexM3\ARM_GCC_541\Debug\MPS_W22_Prakt_5.elf --flash_row_size 256 --flash_size 262144 --flash_offset 0x00000000
+arm-none-eabi-gcc.exe -Wl,--start-group -o E:\github\MPS\MPS_W22_Prakt_5.cydsn\CortexM3\ARM_GCC_541\Debug\MPS_W22_Prakt_5.elf .\CortexM3\ARM_GCC_541\Debug\main.o .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o .\CortexM3\ARM_GCC_541\Debug\cymetadata.o .\CortexM3\ARM_GCC_541\Debug\Cm3Start.o .\CortexM3\ARM_GCC_541\Debug\MPS_W22_Prakt_5.a "E:\PSoc Creator\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CortexM3\ARM_GCC_541\Debug\CyComponentLibrary.a" -mcpu=cortex-m3 -mthumb -L Generated_Source\PSoC5 -Wl,-Map,.\CortexM3\ARM_GCC_541\Debug/MPS_W22_Prakt_5.map -T Generated_Source\PSoC5\cm3gcc.ld -specs=nano.specs -Wl,--gc-sections -g -ffunction-sections -Og -ffat-lto-objects -Wl,--end-group
+cyelftool.exe -C E:\github\MPS\MPS_W22_Prakt_5.cydsn\CortexM3\ARM_GCC_541\Debug\MPS_W22_Prakt_5.elf --flash_row_size 256 --flash_size 262144 --flash_offset 0x00000000
 No ELF section .cychecksum found, creating one
 Application checksum calculated and stored in ELF section .cychecksum
 Checksum calculated and stored in ELF section .cymeta
-cyelftool.exe -S D:\github\MPS\MPS_W22_Prakt_5.cydsn\CortexM3\ARM_GCC_541\Debug\MPS_W22_Prakt_5.elf
-Flash used: 5984 of 262144 bytes (2.3%).
-SRAM used: 2705 of 65536 bytes (4.1%). Stack: 2048 bytes. Heap: 128 bytes.
---------------- Build Succeeded: 01/23/2023 01:44:29 ---------------
+cyelftool.exe -S E:\github\MPS\MPS_W22_Prakt_5.cydsn\CortexM3\ARM_GCC_541\Debug\MPS_W22_Prakt_5.elf
+Flash used: 6872 of 262144 bytes (2.6%).
+SRAM used: 2713 of 65536 bytes (4.1%). Stack: 2048 bytes. Heap: 128 bytes.
+--------------- Build Succeeded: 01/23/2023 18:09:30 ---------------
