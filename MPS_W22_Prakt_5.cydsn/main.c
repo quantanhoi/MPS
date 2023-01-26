@@ -92,9 +92,11 @@ int main(void)
 
     /* Start I2C UDB Master */
     I2C_Start();
-    I2C_MasterSendStart(I2C_PCF8574_ADDR,0);     //master will write data to slave using 0
+    //I2C_MasterSendStart(I2C_PCF8574_ADDR,0);     //master will write data to slave using 0
+    I2C_MasterClearStatus();
     // !!! I2C starten, Befehl? !!!
     // TODO!                        // start device
+    
 #endif // I2C_PROJ_ON
 
     CyGlobalIntEnable; /* Enable global interrupts. */
