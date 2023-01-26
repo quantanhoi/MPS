@@ -2,7 +2,7 @@
 --	Conversion of MPS_W22_Prakt_5.v to vh2:
 --
 --	Cypress Semiconductor - WARP Version 6.3 IR 41
---	Mon Jan 23 16:48:52 2023
+--	Thu Jan 26 16:06:44 2023
 --
 
 USE cypress.cypress.all;

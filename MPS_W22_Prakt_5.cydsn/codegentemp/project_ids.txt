@@ -1,7 +1,6 @@
-E:\github\MPS\MPS_W22_Prakt_5.cydsn\MPS_W22_Prakt_5.cyprj|df45ddc2-6cc1-4cd1-905c-692bdfff9345
-E:\PSoc Creator\PSoC Creator\4.4\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|9b5b10ee-7de6-423f-a85c-248bb4f99f5b
-C:\Users\thieu\OneDrive\Documents\PSoC Creator\4.4\Downloads ( 4.4).cylib\Downloads ( 4.4).cyprj|9b8e8f89-01e8-4312-9b0b-96904480c3cc
-E:\PSoc Creator\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|a2132665-836e-4766-b695-c4a0090f8737
-E:\PSoc Creator\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|faa94c64-0448-46ae-97f7-ef49345a8266
-E:\PSoc Creator\PSoC Creator\4.4\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|271f0192-4de2-4a00-a20f-c205e9ccc17d
-E:\PSoc Creator\PSoC Creator\4.4\PSoC Creator\dev\psoc3\AnalogDevice\PSoC35AnalogDevice.cylib\PSoC35AnalogDevice.cyprj|a7b3e4bc-eb1e-4d38-80f0-cccb17739b0c
+E:\github\MPS\MPS_W22_Prakt_5.cydsn\MPS_W22_Prakt_5.cyprj|ace5a1c8-b30e-4f16-bf79-f97c6304acb0
+E:\PSoc Creator\PSoC Creator\4.4\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|8ba2f490-1202-4647-821d-208167a4d881
+C:\Users\thieu\OneDrive\Documents\PSoC Creator\4.4\Downloads ( 4.4).cylib\Downloads ( 4.4).cyprj|b5456e08-1140-46b1-87b1-de4c627c0534
+E:\PSoc Creator\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|87d9d255-6161-4d1d-a100-27471ae3d6dc
+E:\PSoc Creator\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|05d4a69b-a741-46f7-b9ee-6dfc1fef7032
+E:\PSoc Creator\PSoC Creator\4.4\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|2d1f9b4b-e3e5-428e-a829-52d440a7525c

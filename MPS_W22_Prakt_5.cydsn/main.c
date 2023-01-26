@@ -20,8 +20,8 @@
 #define _PROJECT_NAME   "MPS22_Prakt_5a" //!< Project name
 #define _PROCESSOR      "PSoC 5LP"      //!< Processor type
 #define _DEVICE_NAME    "FreeSoC2"      //!< Board or device type
-#define _AUTHOR_        "Marie O'hana, Effi Driehn"        //!< Ihr(e) Name(n)!
-#define _COMPANY        "FbI Template MPS 5"
+#define _AUTHOR_        "Trung Thieu Quang, Viet Anh Müller"        //!< Ihr(e) Name(n)!
+#define _COMPANY        "FbI Template MPS 5" 
 
 // String für die Anzeige zusammenbauen
 #define _VERSTR_       (_PROJECT_NAME", "_DEVICE_NAME", "_PROCESSOR", "_VERSION_NR"\n\r"\
@@ -36,18 +36,9 @@ _AUTHOR_" ("_COMPANY"), "__DATE__" "__TIME__)
 
 /* +++ settings for PCF8574 Philips/NXP) 7(!)-bit address +++ */
 #define I2C_PCF8574_BASE_ADDR (0x20)     //!< TODO!, ÄNDERN, FUNKTIONIERT NICHT! device base address
-//probably 0b011, since VSS in connected to A2
 #define I2C_PCF8574_DEV_ADDR  (0b001)    //!< TODO!ÄNDERN, FUNKTIONIERT NICHT! individual device address. !! ANPASSEN !!
 #define I2C_PCF8574_ADDR      (I2C_PCF8574_BASE_ADDR | (I2C_PCF8574_DEV_ADDR)) //!< full 7-bit address
 
-
-
-
-static uint8_t ADC_isr = 0;
-CY_ISR( myADC_isr) {
-    Pin_TIA_OUT_ClearInterrupt();
-    ADC_isr = 1;
-}
 /* 
  * String Buffer für Anzeige am Bildschirm anlegen.
  * Auf die maximale Größe achten!
@@ -83,19 +74,16 @@ int main(void)
     TIA_PD_Start();             // Start TIA for photo diode
     ADC_SAR_PD_Start();         // Start ADC
     // +++ TODO +++
-    ADC_SAR_PD_Init();
     // !!! ADC Konversion starten, Befehl? !!!
     // TODO!  // Start ADC conversion
-        
+    ADC_SAR_PD_StartConvert(); // Start Conversion     ?????
+    
 #ifdef I2C_PROJ_ON
     // +++ TODO +++
-
     /* Start I2C UDB Master */
-    I2C_Start();
-    //I2C_MasterSendStart(I2C_PCF8574_ADDR,0);     //master will write data to slave using 0
-    I2C_MasterClearStatus();
     // !!! I2C starten, Befehl? !!!
     // TODO!                        // start device
+    I2C_Start();
     
 #endif // I2C_PROJ_ON
 
@@ -106,7 +94,6 @@ int main(void)
     UART_PutString( buffer );                           // Ausgabe auf UART
 
     int16_t sarResult;                  // signed SAR result
-    int8_t sarResult8bit;
     
 #ifdef I2C_PROJ_ON
     uint8_t  sts = I2C_MSTR_NO_ERROR;    // I2C transfer status (no error)
@@ -132,8 +119,7 @@ int main(void)
 #ifdef I2C_PROJ_ON
         /* +++ I2C I/O-Expander +++ */
         static uint8_t i2cByte = 0;         // warum static ?
-        //sarResult = ADC_SAR_PD_GetResult16();
-        //i2cByte = sarResult >> 8;                                        // ... weil nur einmal initialisiert, dann unten verändert
+                                        // ... weil nur einmal initialisiert, dann unten verändert
     #ifdef I2C_SIMPLE_BLINK             // simple blink LED's
         // blinking all LED's
         sts = I2C_MasterClearStatus();  // clear master status
@@ -143,8 +129,8 @@ int main(void)
         sts = I2C_MasterSendStart( I2C_PCF8574_ADDR, 0);  // send address for write
         if ( sts != I2C_MSTR_NO_ERROR ) {
             UART_PutString( "I2C error address\n\r" );
-        }
-        sts = I2C_MasterWriteByte(i2cByte);              // write byte
+        }//~(2 ^ (sarResult / 256))
+        sts = I2C_MasterWriteByte(~(2 ^ (sarResult / 256)));              // write byte
         if ( sts != I2C_MSTR_NO_ERROR ) {
             UART_PutString( "I2C error write\n\r" );
         }
@@ -154,50 +140,49 @@ int main(void)
         }
         CyDelay( 100 );                 // some delay
         i2cByte = ~i2cByte;             // invert all bits for blinking
-        #else  // implementieren
+    #else  // implementieren
         /* +++ TODO +++ */
-        /* eigene Werte auf I/O*/    
-            i2cByte = ADC_SAR_PD_GetResult8();      //helligkeit
-                    sts = I2C_MasterClearStatus();  // clear master status
-            if ( sts != I2C_MSTR_NO_ERROR ) {
-                UART_PutString( "I2C error clear\n\r" );
-            }
-            sts = I2C_MasterSendStart( I2C_PCF8574_ADDR, 0);  // send address for write
-            if ( sts != I2C_MSTR_NO_ERROR ) {
-                UART_PutString( "I2C error address\n\r" );
-            }
-            //because the data is only 8 bit long, is it better to use WriteByte instead of writeBuff here?
-            sts = I2C_MasterWriteBuf(I2C_PCF8574_ADDR , &i2cByte , 1, I2C_MODE_COMPLETE_XFER);;              // write byte
-            if ( sts != I2C_MSTR_NO_ERROR ) {
-                UART_PutString( "I2C error write\n\r" );
-            }
-            sts = I2C_MasterSendStop();                      // stop comm
-            if ( sts != I2C_MSTR_NO_ERROR ) {
-                UART_PutString( "I2C error stop\n\r" );
-            }
-            CyDelay( 100 );                 // some delay
-            i2cByte = ~i2cByte;             // invert all bits for blinking
-            
+        /* eigene Werte auf I/O-Expander anzeigen */
+        
+       sts = I2C_MasterClearStatus();  // clear master status
+        if ( sts != I2C_MSTR_NO_ERROR ) {
+            UART_PutString( "I2C error clear\n\r" );
+        }
+        sts = I2C_MasterSendStart( I2C_PCF8574_ADDR, 0);  // send address for write
+        if ( sts != I2C_MSTR_NO_ERROR ) {
+            UART_PutString( "I2C error address\n\r" );
+        }
+        sts = I2C_MasterWriteByte(~(sarResult / 16));              // write byte
+        if ( sts != I2C_MSTR_NO_ERROR ) {
+            UART_PutString( "I2C error write\n\r" );
+        }
+        sts = I2C_MasterSendStop();                      // stop comm
+        if ( sts != I2C_MSTR_NO_ERROR ) {
+            UART_PutString( "I2C error stop\n\r" );
+        }
+        CyDelay( 100 );
+        i2cByte = ~i2cByte; 
+        
+        
+        
     #endif // I2C_SIMPLE_BLINK   
 
 #endif // I2C_PROJ_ON
 
 #ifdef READ_ADC
-
     /* +++ TODO +++ */
     /* ??? wie kann man erreichen, dass hier das Ende der Konversion abgewartet wird ??? */
+    //sprintf( buffer, "vor Read: \n\r" );
+    //UART_PutString( buffer );
+    if (ADC_SAR_PD_IsEndConversion(ADC_SAR_PD_RETURN_STATUS)){
+    
     // TODO!   // blocks until end of conversion
-    if (ADC_SAR_PD_IsEndConversion(1)) {      //after the last conversion is finished
-        /* !!! ADC-Wert in sarResult auslesen !!! */
-        sarResult = ADC_SAR_PD_GetResult16();
-        sarResult8bit = sarResult >> 8;
-        //sarResult = ADC_SAR_PD_GetResult8();        // read SAR
-        /* !!! ADC-Wert anzeigen !!! */
-        sprintf( buffer, "ADC: %d\n\r", sarResult );
-        UART_PutString( buffer );
-//        ADC_isr = 0;
+    /* !!! ADC-Wert in sarResult auslesen !!! */
+     sarResult = ADC_SAR_PD_GetResult16();    //TODO!                            // read SAR
+    /* !!! ADC-Wert anzeigen !!! */
+    sprintf( buffer, "ADC: %d\n\r", sarResult );
+    UART_PutString( buffer );
     }
-
 #endif // READ_ADC
 
         /* +++ Character aus Uart, ISR abfragen +++ */
@@ -224,7 +209,6 @@ int main(void)
                     UART_PutString( "unbekannte Eingabe <" );
                     UART_PutChar( chr );
                     UART_PutString( "> !!! \n\r" );   // Zeilenabschluss LF CR
-                    
                     break;
             } // end switch
             chr = 0;                    // nicht vergessen mit ISR
