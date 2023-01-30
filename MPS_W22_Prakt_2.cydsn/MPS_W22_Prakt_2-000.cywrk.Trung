@@ -260,7 +260,7 @@
   Copyright (c) 2001-2016 Actipro Software LLC.  All rights reserved.
   http://www.actiprosoftware.com
 
---><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="1363, 721" SelectedTabbedMdiWindow="3e3e9632-abac-4ace-8d05-96e5c8b9f159"><ToolWindow Key="Start Page:bd4649ab-da6b-4d04-a663-c722b8bf99db:Start Page" Guid="fd7e14af-da70-4fc0-9cfb-587aee12ddb3" /><DocumentWindow Key="D:\github\MPS\MPS_W22_Prakt_2.cydsn\main.c" Guid="b030b5e1-c6ce-4465-9a6e-5e94e39cc2a4" /><DocumentWindow Key="D:\github\MPS\MPS_W22_Prakt_2.cydsn\TopDesign\TopDesign.cysch" Guid="3e3e9632-abac-4ace-8d05-96e5c8b9f159" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
+--><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="1363, 721" SelectedTabbedMdiWindow="b030b5e1-c6ce-4465-9a6e-5e94e39cc2a4"><ToolWindow Key="Start Page:bd4649ab-da6b-4d04-a663-c722b8bf99db:Start Page" Guid="fd7e14af-da70-4fc0-9cfb-587aee12ddb3" /><DocumentWindow Key="D:\github\MPS\MPS_W22_Prakt_2.cydsn\main.c" Guid="b030b5e1-c6ce-4465-9a6e-5e94e39cc2a4" /><DocumentWindow Key="D:\github\MPS\MPS_W22_Prakt_2.cydsn\TopDesign\TopDesign.cysch" Guid="3e3e9632-abac-4ace-8d05-96e5c8b9f159" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
 <config v="" />
 <AutoUpdate v="true" />
 </CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21>
